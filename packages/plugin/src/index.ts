@@ -8,7 +8,7 @@ import type {
   UserMessage,
   Part,
   Auth,
-} from ken8n-coder-ai/sdk"
+} from "@ken8n-coder/sdk"
 import type { BunShell } from "./shell"
 
 export type PluginInput = {
