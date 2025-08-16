@@ -128,6 +128,12 @@ if [ ! -d "$HOME/.ken8n-coder/ken8n-coder" ]; then
     mv ken8n-coder-dev ken8n-coder
     
     echo "✅ Backend downloaded"
+    echo "📦 Installing dependencies..."
+    
+    cd ken8n-coder
+    bun install > /dev/null 2>&1
+    
+    echo "✅ Dependencies installed"
 fi
 
 # Store the current working directory where the command was invoked
