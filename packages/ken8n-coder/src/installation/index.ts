@@ -5,9 +5,6 @@ import { NamedError } from "../util/error"
 import { Bus } from "../bus"
 import { Log } from "../util/log"
 
-declare global {
-  const OPENCODE_VERSION: string
-}
 
 export namespace Installation {
   const log = Log.create({ service: "installation" })

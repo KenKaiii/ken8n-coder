@@ -16,9 +16,6 @@ import { Ide } from "../../ide"
 import { Flag } from "../../flag/flag"
 import { Session } from "../../session"
 
-declare global {
-  const OPENCODE_TUI_PATH: string
-}
 
 if (typeof OPENCODE_TUI_PATH !== "undefined") {
   await import(OPENCODE_TUI_PATH as string, {
