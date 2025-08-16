@@ -5,7 +5,7 @@ import (
 	"log/slog"
 	"sync"
 
-	opencode "github.com/sst/opencode-sdk-go"
+	opencode "github.com/kenkaiii/ken8n-coder-sdk-go"
 )
 
 type APILogHandler struct {

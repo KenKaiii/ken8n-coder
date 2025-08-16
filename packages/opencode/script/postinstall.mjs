@@ -49,8 +49,8 @@ function detectPlatformAndArch() {
 
 function findBinary() {
   const { platform, arch } = detectPlatformAndArch()
-  const packageName = `opencode-${platform}-${arch}`
-  const binary = platform === "windows" ? "opencode.exe" : "opencode"
+  const packageName = `ken8n-coder-${platform}-${arch}`
+  const binary = platform === "windows" ? "ken8n-coder.exe" : "ken8n-coder"
 
   try {
     // Use require.resolve to find the package
@@ -71,7 +71,7 @@ function findBinary() {
 function main() {
   try {
     const binaryPath = findBinary()
-    const binScript = path.join(__dirname, "bin", "opencode")
+    const binScript = path.join(__dirname, "bin", "ken8n-coder")
 
     // Remove existing bin script if it exists
     if (fs.existsSync(binScript)) {
@@ -80,9 +80,9 @@ function main() {
 
     // Create symlink to the actual binary
     fs.symlinkSync(binaryPath, binScript)
-    console.log(`opencode binary symlinked: ${binScript} -> ${binaryPath}`)
+    console.log(`ken8n-coder binary symlinked: ${binScript} -> ${binaryPath}`)
   } catch (error) {
-    console.error("Failed to create opencode binary symlink:", error.message)
+    console.error("Failed to create ken8n-coder binary symlink:", error.message)
     process.exit(1)
   }
 }

@@ -11,11 +11,11 @@ import (
 	"github.com/charmbracelet/lipgloss/v2"
 	"github.com/lithammer/fuzzysearch/fuzzy"
 	"github.com/muesli/reflow/truncate"
-	"github.com/sst/opencode/internal/completions"
-	"github.com/sst/opencode/internal/components/list"
-	"github.com/sst/opencode/internal/styles"
-	"github.com/sst/opencode/internal/theme"
-	"github.com/sst/opencode/internal/util"
+	"github.com/kenkaiii/ken8n-coder/internal/completions"
+	"github.com/kenkaiii/ken8n-coder/internal/components/list"
+	"github.com/kenkaiii/ken8n-coder/internal/styles"
+	"github.com/kenkaiii/ken8n-coder/internal/theme"
+	"github.com/kenkaiii/ken8n-coder/internal/util"
 )
 
 type CompletionSelectedMsg struct {

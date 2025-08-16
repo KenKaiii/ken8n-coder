@@ -6,10 +6,10 @@ import (
 
 	"github.com/charmbracelet/lipgloss/v2"
 	"github.com/lithammer/fuzzysearch/fuzzy"
-	"github.com/sst/opencode/internal/app"
-	"github.com/sst/opencode/internal/commands"
-	"github.com/sst/opencode/internal/styles"
-	"github.com/sst/opencode/internal/theme"
+	"github.com/kenkaiii/ken8n-coder/internal/app"
+	"github.com/kenkaiii/ken8n-coder/internal/commands"
+	"github.com/kenkaiii/ken8n-coder/internal/styles"
+	"github.com/kenkaiii/ken8n-coder/internal/theme"
 )
 
 type CommandCompletionProvider struct {

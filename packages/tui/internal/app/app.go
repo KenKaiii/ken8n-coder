@@ -11,14 +11,14 @@ import (
 	"log/slog"
 
 	tea "github.com/charmbracelet/bubbletea/v2"
-	"github.com/sst/opencode-sdk-go"
-	"github.com/sst/opencode/internal/clipboard"
-	"github.com/sst/opencode/internal/commands"
-	"github.com/sst/opencode/internal/components/toast"
-	"github.com/sst/opencode/internal/id"
-	"github.com/sst/opencode/internal/styles"
-	"github.com/sst/opencode/internal/theme"
-	"github.com/sst/opencode/internal/util"
+	"github.com/kenkaiii/ken8n-coder-sdk-go"
+	"github.com/kenkaiii/ken8n-coder/internal/clipboard"
+	"github.com/kenkaiii/ken8n-coder/internal/commands"
+	"github.com/kenkaiii/ken8n-coder/internal/components/toast"
+	"github.com/kenkaiii/ken8n-coder/internal/id"
+	"github.com/kenkaiii/ken8n-coder/internal/styles"
+	"github.com/kenkaiii/ken8n-coder/internal/theme"
+	"github.com/kenkaiii/ken8n-coder/internal/util"
 )
 
 type Message struct {

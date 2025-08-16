@@ -11,12 +11,12 @@ import (
 	"github.com/charmbracelet/lipgloss/v2"
 	"github.com/charmbracelet/lipgloss/v2/compat"
 	"github.com/fsnotify/fsnotify"
-	"github.com/sst/opencode/internal/app"
-	"github.com/sst/opencode/internal/commands"
-	"github.com/sst/opencode/internal/layout"
-	"github.com/sst/opencode/internal/styles"
-	"github.com/sst/opencode/internal/theme"
-	"github.com/sst/opencode/internal/util"
+	"github.com/kenkaiii/ken8n-coder/internal/app"
+	"github.com/kenkaiii/ken8n-coder/internal/commands"
+	"github.com/kenkaiii/ken8n-coder/internal/layout"
+	"github.com/kenkaiii/ken8n-coder/internal/styles"
+	"github.com/kenkaiii/ken8n-coder/internal/theme"
+	"github.com/kenkaiii/ken8n-coder/internal/util"
 )
 
 type GitBranchUpdatedMsg struct {
@@ -67,11 +67,11 @@ func (m *statusComponent) logo() string {
 		Bold(true).
 		Render
 
-	open := base("open")
-	code := emphasis("code")
+	ken := base("ken8n")
+	coder := emphasis("-coder")
 	version := base(" " + m.app.Version)
 
-	content := open + code
+	content := ken + coder
 	if m.width > 40 {
 		content += version
 	}
@@ -142,7 +142,7 @@ func (m *statusComponent) View() string {
 	agentStyle := styles.NewStyle().Background(modeBackground).Foreground(modeForeground)
 	agentNameStyle := agentStyle.Bold(true).Render
 	agentDescStyle := agentStyle.Render
-	agent := agentNameStyle(strings.ToUpper(m.app.Agent().Name)) + agentDescStyle(" AGENT")
+	agent := agentNameStyle(strings.ToUpper(m.app.Agent().Name)) + agentDescStyle(" WORKFLOW AGENT")
 	agent = agentStyle.
 		Padding(0, 1).
 		BorderLeft(true).

@@ -1,6 +1,6 @@
 package completions
 
-import "github.com/sst/opencode/internal/styles"
+import "github.com/kenkaiii/ken8n-coder/internal/styles"
 
 // CompletionSuggestion represents a data-only completion suggestion
 // with no styling or rendering logic

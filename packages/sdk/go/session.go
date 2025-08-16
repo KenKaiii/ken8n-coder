@@ -9,11 +9,11 @@ import (
 	"net/http"
 	"reflect"
 
-	"github.com/sst/opencode-sdk-go/internal/apijson"
-	"github.com/sst/opencode-sdk-go/internal/param"
-	"github.com/sst/opencode-sdk-go/internal/requestconfig"
-	"github.com/sst/opencode-sdk-go/option"
-	"github.com/sst/opencode-sdk-go/shared"
+	"github.com/kenkaiii/ken8n-coder-sdk-go/internal/apijson"
+	"github.com/kenkaiii/ken8n-coder-sdk-go/internal/param"
+	"github.com/kenkaiii/ken8n-coder-sdk-go/internal/requestconfig"
+	"github.com/kenkaiii/ken8n-coder-sdk-go/option"
+	"github.com/kenkaiii/ken8n-coder-sdk-go/shared"
 	"github.com/tidwall/gjson"
 )
 

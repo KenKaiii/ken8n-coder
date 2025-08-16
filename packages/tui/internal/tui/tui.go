@@ -5,8 +5,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"log/slog"
-	"os"
-	"os/exec"
 	"slices"
 	"strings"
 	"time"
@@ -15,21 +13,21 @@ import (
 	tea "github.com/charmbracelet/bubbletea/v2"
 	"github.com/charmbracelet/lipgloss/v2"
 
-	"github.com/sst/opencode-sdk-go"
-	"github.com/sst/opencode/internal/api"
-	"github.com/sst/opencode/internal/app"
-	"github.com/sst/opencode/internal/commands"
-	"github.com/sst/opencode/internal/completions"
-	"github.com/sst/opencode/internal/components/chat"
-	cmdcomp "github.com/sst/opencode/internal/components/commands"
-	"github.com/sst/opencode/internal/components/dialog"
-	"github.com/sst/opencode/internal/components/modal"
-	"github.com/sst/opencode/internal/components/status"
-	"github.com/sst/opencode/internal/components/toast"
-	"github.com/sst/opencode/internal/layout"
-	"github.com/sst/opencode/internal/styles"
-	"github.com/sst/opencode/internal/theme"
-	"github.com/sst/opencode/internal/util"
+	opencode "github.com/kenkaiii/ken8n-coder-sdk-go"
+	"github.com/kenkaiii/ken8n-coder/internal/api"
+	"github.com/kenkaiii/ken8n-coder/internal/app"
+	"github.com/kenkaiii/ken8n-coder/internal/commands"
+	"github.com/kenkaiii/ken8n-coder/internal/completions"
+	"github.com/kenkaiii/ken8n-coder/internal/components/chat"
+	cmdcomp "github.com/kenkaiii/ken8n-coder/internal/components/commands"
+	"github.com/kenkaiii/ken8n-coder/internal/components/dialog"
+	"github.com/kenkaiii/ken8n-coder/internal/components/modal"
+	"github.com/kenkaiii/ken8n-coder/internal/components/status"
+	"github.com/kenkaiii/ken8n-coder/internal/components/toast"
+	"github.com/kenkaiii/ken8n-coder/internal/layout"
+	"github.com/kenkaiii/ken8n-coder/internal/styles"
+	"github.com/kenkaiii/ken8n-coder/internal/theme"
+	"github.com/kenkaiii/ken8n-coder/internal/util"
 )
 
 // InterruptDebounceTimeoutMsg is sent when the interrupt key debounce timeout expires
@@ -82,7 +80,7 @@ type Model struct {
 func (a Model) Init() tea.Cmd {
 	var cmds []tea.Cmd
 	// https://github.com/charmbracelet/bubbletea/issues/1440
-	// https://github.com/sst/opencode/issues/127
+	// https://github.com/kenkaiii/ken8n-coder/issues/127
 	if !util.IsWsl() {
 		cmds = append(cmds, tea.RequestBackgroundColor)
 	}
@@ -1069,14 +1067,23 @@ func (a Model) chat() (string, int, int) {
 }
 
 func (a Model) executeCommand(command commands.Command) (tea.Model, tea.Cmd) {
-	var cmd tea.Cmd
 	cmds := []tea.Cmd{
 		util.CmdHandler(commands.CommandExecutedMsg(command)),
 	}
 	switch command.Name {
-	case commands.AppHelpCommand:
-		helpDialog := dialog.NewHelpDialog(a.app)
-		a.modal = helpDialog
+	case commands.SessionNewCommand:
+		if a.app.Session.ID == "" {
+			return a, nil
+		}
+		cmds = append(cmds, util.CmdHandler(app.SessionClearedMsg{}))
+	case commands.SessionListCommand:
+		sessionDialog := dialog.NewSessionDialog(a.app)
+		a.modal = sessionDialog
+	case commands.ModelListCommand:
+		modelDialog := dialog.NewModelDialog(a.app)
+		a.modal = modelDialog
+	case commands.AppExitCommand:
+		return a, tea.Quit
 	case commands.AgentCycleCommand:
 		updated, cmd := a.app.SwitchAgent()
 		a.app = updated
@@ -1085,305 +1092,12 @@ func (a Model) executeCommand(command commands.Command) (tea.Model, tea.Cmd) {
 		updated, cmd := a.app.SwitchAgentReverse()
 		a.app = updated
 		cmds = append(cmds, cmd)
-	case commands.EditorOpenCommand:
-		if a.app.IsBusy() {
-			// status.Warn("Agent is working, please wait...")
-			return a, nil
-		}
-		editor := os.Getenv("EDITOR")
-		if editor == "" {
-			return a, toast.NewErrorToast("No EDITOR set, can't open editor")
-		}
-
-		value := a.editor.Value()
-		updated, cmd := a.editor.Clear()
-		a.editor = updated.(chat.EditorComponent)
-		cmds = append(cmds, cmd)
-
-		tmpfile, err := os.CreateTemp("", "msg_*.md")
-		tmpfile.WriteString(value)
-		if err != nil {
-			slog.Error("Failed to create temp file", "error", err)
-			return a, toast.NewErrorToast("Something went wrong, couldn't open editor")
-		}
-		tmpfile.Close()
-		parts := strings.Fields(editor)
-		c := exec.Command(parts[0], append(parts[1:], tmpfile.Name())...) //nolint:gosec
-		c.Stdin = os.Stdin
-		c.Stdout = os.Stdout
-		c.Stderr = os.Stderr
-		cmd = tea.ExecProcess(c, func(err error) tea.Msg {
-			if err != nil {
-				slog.Error("Failed to open editor", "error", err)
-				return nil
-			}
-			content, err := os.ReadFile(tmpfile.Name())
-			if err != nil {
-				slog.Error("Failed to read file", "error", err)
-				return nil
-			}
-			if len(content) == 0 {
-				slog.Warn("Message is empty")
-				return nil
-			}
-			os.Remove(tmpfile.Name())
-			return app.SetEditorContentMsg{
-				Text: string(content),
-			}
-		})
-		cmds = append(cmds, cmd)
-	case commands.SessionNewCommand:
-		if a.app.Session.ID == "" {
-			return a, nil
-		}
-		cmds = append(cmds, util.CmdHandler(app.SessionClearedMsg{}))
-
-	case commands.SessionListCommand:
-		sessionDialog := dialog.NewSessionDialog(a.app)
-		a.modal = sessionDialog
-	case commands.SessionNavigationCommand:
-		if a.app.Session.ID == "" {
-			return a, toast.NewErrorToast("No active session")
-		}
-		navigationDialog := dialog.NewNavigationDialog(a.app)
-		a.modal = navigationDialog
-	case commands.SessionShareCommand:
-		if a.app.Session.ID == "" {
-			return a, nil
-		}
-		response, err := a.app.Client.Session.Share(context.Background(), a.app.Session.ID)
-		if err != nil {
-			slog.Error("Failed to share session", "error", err)
-			return a, toast.NewErrorToast("Failed to share session")
-		}
-		shareUrl := response.Share.URL
-		cmds = append(cmds, app.SetClipboard(shareUrl))
-		cmds = append(cmds, toast.NewSuccessToast("Share URL copied to clipboard!"))
-	case commands.SessionUnshareCommand:
-		if a.app.Session.ID == "" {
-			return a, nil
-		}
-		_, err := a.app.Client.Session.Unshare(context.Background(), a.app.Session.ID)
-		if err != nil {
-			slog.Error("Failed to unshare session", "error", err)
-			return a, toast.NewErrorToast("Failed to unshare session")
-		}
-		a.app.Session.Share.URL = ""
-		cmds = append(cmds, toast.NewSuccessToast("Session unshared successfully"))
 	case commands.SessionInterruptCommand:
 		if a.app.Session.ID == "" {
 			return a, nil
 		}
 		a.app.Cancel(context.Background(), a.app.Session.ID)
 		return a, nil
-	case commands.SessionCompactCommand:
-		if a.app.Session.ID == "" {
-			return a, nil
-		}
-		// TODO: block until compaction is complete
-		a.app.CompactSession(context.Background())
-	case commands.SessionChildCycleCommand:
-		if a.app.Session.ID == "" {
-			return a, nil
-		}
-		cmds = append(cmds, func() tea.Msg {
-			parentSessionID := a.app.Session.ID
-			var parentSession *opencode.Session
-			if a.app.Session.ParentID != "" {
-				parentSessionID = a.app.Session.ParentID
-				session, err := a.app.Client.Session.Get(context.Background(), parentSessionID)
-				if err != nil {
-					slog.Error("Failed to get parent session", "error", err)
-					return toast.NewErrorToast("Failed to get parent session")
-				}
-				parentSession = session
-			} else {
-				parentSession = a.app.Session
-			}
-
-			children, err := a.app.Client.Session.Children(context.Background(), parentSessionID)
-			if err != nil {
-				slog.Error("Failed to get session children", "error", err)
-				return toast.NewErrorToast("Failed to get session children")
-			}
-
-			// Reverse sort the children (newest first)
-			slices.Reverse(*children)
-
-			// Create combined array: [parent, child1, child2, ...]
-			sessions := []*opencode.Session{parentSession}
-			for i := range *children {
-				sessions = append(sessions, &(*children)[i])
-			}
-
-			if len(sessions) == 1 {
-				return toast.NewInfoToast("No child sessions available")
-			}
-
-			// Find current session index in combined array
-			currentIndex := -1
-			for i, session := range sessions {
-				if session.ID == a.app.Session.ID {
-					currentIndex = i
-					break
-				}
-			}
-
-			// If session not found, default to parent (shouldn't happen)
-			if currentIndex == -1 {
-				currentIndex = 0
-			}
-
-			// Cycle to next session (parent or child)
-			nextIndex := (currentIndex + 1) % len(sessions)
-			nextSession := sessions[nextIndex]
-
-			return app.SessionSelectedMsg(nextSession)
-		})
-	case commands.SessionChildCycleReverseCommand:
-		if a.app.Session.ID == "" {
-			return a, nil
-		}
-		cmds = append(cmds, func() tea.Msg {
-			parentSessionID := a.app.Session.ID
-			var parentSession *opencode.Session
-			if a.app.Session.ParentID != "" {
-				parentSessionID = a.app.Session.ParentID
-				session, err := a.app.Client.Session.Get(context.Background(), parentSessionID)
-				if err != nil {
-					slog.Error("Failed to get parent session", "error", err)
-					return toast.NewErrorToast("Failed to get parent session")
-				}
-				parentSession = session
-			} else {
-				parentSession = a.app.Session
-			}
-
-			children, err := a.app.Client.Session.Children(context.Background(), parentSessionID)
-			if err != nil {
-				slog.Error("Failed to get session children", "error", err)
-				return toast.NewErrorToast("Failed to get session children")
-			}
-
-			// Reverse sort the children (newest first)
-			slices.Reverse(*children)
-
-			// Create combined array: [parent, child1, child2, ...]
-			sessions := []*opencode.Session{parentSession}
-			for i := range *children {
-				sessions = append(sessions, &(*children)[i])
-			}
-
-			if len(sessions) == 1 {
-				return toast.NewInfoToast("No child sessions available")
-			}
-
-			// Find current session index in combined array
-			currentIndex := -1
-			for i, session := range sessions {
-				if session.ID == a.app.Session.ID {
-					currentIndex = i
-					break
-				}
-			}
-
-			// If session not found, default to parent (shouldn't happen)
-			if currentIndex == -1 {
-				currentIndex = 0
-			}
-
-			// Cycle to previous session (parent or child)
-			nextIndex := (currentIndex - 1 + len(sessions)) % len(sessions)
-			nextSession := sessions[nextIndex]
-
-			return app.SessionSelectedMsg(nextSession)
-		})
-	case commands.SessionExportCommand:
-		if a.app.Session.ID == "" {
-			return a, toast.NewErrorToast("No active session to export.")
-		}
-
-		// Use current conversation history
-		messages := a.app.Messages
-		if len(messages) == 0 {
-			return a, toast.NewInfoToast("No messages to export.")
-		}
-
-		// Format to Markdown
-		markdownContent := formatConversationToMarkdown(messages)
-
-		// Check if EDITOR is set
-		editor := os.Getenv("EDITOR")
-		if editor == "" {
-			return a, toast.NewErrorToast("No EDITOR set, can't open editor")
-		}
-
-		// Create and write to temp file
-		tmpfile, err := os.CreateTemp("", "conversation-*.md")
-		if err != nil {
-			slog.Error("Failed to create temp file", "error", err)
-			return a, toast.NewErrorToast("Failed to create temporary file.")
-		}
-
-		_, err = tmpfile.WriteString(markdownContent)
-		if err != nil {
-			slog.Error("Failed to write to temp file", "error", err)
-			tmpfile.Close()
-			os.Remove(tmpfile.Name())
-			return a, toast.NewErrorToast("Failed to write conversation to file.")
-		}
-		tmpfile.Close()
-
-		// Open in editor
-		parts := strings.Fields(editor)
-		c := exec.Command(parts[0], append(parts[1:], tmpfile.Name())...) //nolint:gosec
-		c.Stdin = os.Stdin
-		c.Stdout = os.Stdout
-		c.Stderr = os.Stderr
-		cmd = tea.ExecProcess(c, func(err error) tea.Msg {
-			if err != nil {
-				slog.Error("Failed to open editor for conversation", "error", err)
-			}
-			// Clean up the file after editor closes
-			os.Remove(tmpfile.Name())
-			return nil
-		})
-		cmds = append(cmds, cmd)
-	case commands.ToolDetailsCommand:
-		message := "Tool details are now visible"
-		if a.messages.ToolDetailsVisible() {
-			message = "Tool details are now hidden"
-		}
-		cmds = append(cmds, util.CmdHandler(chat.ToggleToolDetailsMsg{}))
-		cmds = append(cmds, toast.NewInfoToast(message))
-	case commands.ThinkingBlocksCommand:
-		message := "Thinking blocks are now visible"
-		if a.messages.ThinkingBlocksVisible() {
-			message = "Thinking blocks are now hidden"
-		}
-		cmds = append(cmds, util.CmdHandler(chat.ToggleThinkingBlocksMsg{}))
-		cmds = append(cmds, toast.NewInfoToast(message))
-	case commands.ModelListCommand:
-		modelDialog := dialog.NewModelDialog(a.app)
-		a.modal = modelDialog
-
-	case commands.AgentListCommand:
-		agentDialog := dialog.NewAgentDialog(a.app)
-		a.modal = agentDialog
-	case commands.ModelCycleRecentCommand:
-		slog.Debug("ModelCycleRecentCommand triggered")
-		updated, cmd := a.app.CycleRecentModel()
-		a.app = updated
-		cmds = append(cmds, cmd)
-	case commands.ModelCycleRecentReverseCommand:
-		updated, cmd := a.app.CycleRecentModelReverse()
-		a.app = updated
-		cmds = append(cmds, cmd)
-	case commands.ThemeListCommand:
-		themeDialog := dialog.NewThemeDialog()
-		a.modal = themeDialog
-	case commands.ProjectInitCommand:
-		cmds = append(cmds, a.app.InitializeProject(context.Background()))
 	case commands.InputClearCommand:
 		if a.editor.Value() == "" {
 			return a, nil
@@ -1403,14 +1117,6 @@ func (a Model) executeCommand(command commands.Command) (tea.Model, tea.Cmd) {
 		updated, cmd := a.editor.Newline()
 		a.editor = updated.(chat.EditorComponent)
 		cmds = append(cmds, cmd)
-	case commands.MessagesFirstCommand:
-		updated, cmd := a.messages.GotoTop()
-		a.messages = updated.(chat.MessagesComponent)
-		cmds = append(cmds, cmd)
-	case commands.MessagesLastCommand:
-		updated, cmd := a.messages.GotoBottom()
-		a.messages = updated.(chat.MessagesComponent)
-		cmds = append(cmds, cmd)
 	case commands.MessagesPageUpCommand:
 		updated, cmd := a.messages.PageUp()
 		a.messages = updated.(chat.MessagesComponent)
@@ -1419,28 +1125,6 @@ func (a Model) executeCommand(command commands.Command) (tea.Model, tea.Cmd) {
 		updated, cmd := a.messages.PageDown()
 		a.messages = updated.(chat.MessagesComponent)
 		cmds = append(cmds, cmd)
-	case commands.MessagesHalfPageUpCommand:
-		updated, cmd := a.messages.HalfPageUp()
-		a.messages = updated.(chat.MessagesComponent)
-		cmds = append(cmds, cmd)
-	case commands.MessagesHalfPageDownCommand:
-		updated, cmd := a.messages.HalfPageDown()
-		a.messages = updated.(chat.MessagesComponent)
-		cmds = append(cmds, cmd)
-	case commands.MessagesCopyCommand:
-		updated, cmd := a.messages.CopyLastMessage()
-		a.messages = updated.(chat.MessagesComponent)
-		cmds = append(cmds, cmd)
-	case commands.MessagesUndoCommand:
-		updated, cmd := a.messages.UndoLastMessage()
-		a.messages = updated.(chat.MessagesComponent)
-		cmds = append(cmds, cmd)
-	case commands.MessagesRedoCommand:
-		updated, cmd := a.messages.RedoLastMessage()
-		a.messages = updated.(chat.MessagesComponent)
-		cmds = append(cmds, cmd)
-	case commands.AppExitCommand:
-		return a, tea.Quit
 	}
 	return a, tea.Batch(cmds...)
 }

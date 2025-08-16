@@ -7,7 +7,7 @@ import (
 	"strings"
 
 	tea "github.com/charmbracelet/bubbletea/v2"
-	"github.com/sst/opencode-sdk-go"
+	"github.com/kenkaiii/ken8n-coder-sdk-go"
 )
 
 type ExecuteCommandMsg Command
@@ -64,13 +64,11 @@ func (r CommandRegistry) Sorted() []Command {
 		commands = append(commands, command)
 	}
 	slices.SortFunc(commands, func(a, b Command) int {
-		// Priority order: session_new, session_share, model_list, agent_list, app_help first, app_exit last
+		// Priority order: session_new, session_list, model_list first, app_exit last
 		priorityOrder := map[CommandName]int{
-			SessionNewCommand:   0,
-			AppHelpCommand:      1,
-			SessionShareCommand: 2,
-			ModelListCommand:    3,
-			AgentListCommand:    4,
+			SessionNewCommand:  0,
+			SessionListCommand: 1,
+			ModelListCommand:   2,
 		}
 
 		aPriority, aHasPriority := priorityOrder[a.Name]
@@ -186,84 +184,16 @@ func parseBindings(bindings ...string) []Keybinding {
 func LoadFromConfig(config *opencode.Config) CommandRegistry {
 	defaults := []Command{
 		{
-			Name:        AppHelpCommand,
-			Description: "show help",
-			Keybindings: parseBindings("<leader>h"),
-			Trigger:     []string{"help"},
-		},
-		{
-			Name:        EditorOpenCommand,
-			Description: "open editor",
-			Keybindings: parseBindings("<leader>e"),
-			Trigger:     []string{"editor"},
-		},
-		{
-			Name:        SessionExportCommand,
-			Description: "export conversation",
-			Keybindings: parseBindings("<leader>x"),
-			Trigger:     []string{"export"},
-		},
-		{
 			Name:        SessionNewCommand,
 			Description: "new session",
 			Keybindings: parseBindings("<leader>n"),
-			Trigger:     []string{"new", "clear"},
+			Trigger:     []string{"new"},
 		},
 		{
 			Name:        SessionListCommand,
 			Description: "list sessions",
 			Keybindings: parseBindings("<leader>l"),
-			Trigger:     []string{"sessions", "resume", "continue"},
-		},
-		{
-			Name:        SessionNavigationCommand,
-			Description: "jump to message",
-			Keybindings: parseBindings("<leader>g"),
-			Trigger:     []string{"jump", "goto", "navigate"},
-		},
-		{
-			Name:        SessionShareCommand,
-			Description: "share session",
-			Keybindings: parseBindings("<leader>s"),
-			Trigger:     []string{"share"},
-		},
-		{
-			Name:        SessionUnshareCommand,
-			Description: "unshare session",
-			Trigger:     []string{"unshare"},
-		},
-		{
-			Name:        SessionInterruptCommand,
-			Description: "interrupt session",
-			Keybindings: parseBindings("esc"),
-		},
-		{
-			Name:        SessionCompactCommand,
-			Description: "compact the session",
-			Keybindings: parseBindings("<leader>c"),
-			Trigger:     []string{"compact", "summarize"},
-		},
-		{
-			Name:        SessionChildCycleCommand,
-			Description: "cycle to next child session",
-			Keybindings: parseBindings("ctrl+right"),
-		},
-		{
-			Name:        SessionChildCycleReverseCommand,
-			Description: "cycle to previous child session",
-			Keybindings: parseBindings("ctrl+left"),
-		},
-		{
-			Name:        ToolDetailsCommand,
-			Description: "toggle tool details",
-			Keybindings: parseBindings("<leader>d"),
-			Trigger:     []string{"details"},
-		},
-		{
-			Name:        ThinkingBlocksCommand,
-			Description: "toggle thinking blocks",
-			Keybindings: parseBindings("<leader>b"),
-			Trigger:     []string{"thinking"},
+			Trigger:     []string{"sessions"},
 		},
 		{
 			Name:        ModelListCommand,
@@ -272,21 +202,12 @@ func LoadFromConfig(config *opencode.Config) CommandRegistry {
 			Trigger:     []string{"models"},
 		},
 		{
-			Name:        ModelCycleRecentCommand,
-			Description: "next recent model",
-			Keybindings: parseBindings("f2"),
+			Name:        AppExitCommand,
+			Description: "exit the app",
+			Keybindings: parseBindings("ctrl+c", "<leader>q"),
+			Trigger:     []string{"exit"},
 		},
-		{
-			Name:        ModelCycleRecentReverseCommand,
-			Description: "previous recent model",
-			Keybindings: parseBindings("shift+f2"),
-		},
-		{
-			Name:        AgentListCommand,
-			Description: "list agents",
-			Keybindings: parseBindings("<leader>a"),
-			Trigger:     []string{"agents"},
-		},
+		// Essential keyboard commands (no menu triggers)
 		{
 			Name:        AgentCycleCommand,
 			Description: "next agent",
@@ -298,16 +219,9 @@ func LoadFromConfig(config *opencode.Config) CommandRegistry {
 			Keybindings: parseBindings("shift+tab"),
 		},
 		{
-			Name:        ThemeListCommand,
-			Description: "list themes",
-			Keybindings: parseBindings("<leader>t"),
-			Trigger:     []string{"themes"},
-		},
-		{
-			Name:        ProjectInitCommand,
-			Description: "create/update AGENTS.md",
-			Keybindings: parseBindings("<leader>i"),
-			Trigger:     []string{"init"},
+			Name:        SessionInterruptCommand,
+			Description: "interrupt session",
+			Keybindings: parseBindings("esc"),
 		},
 		{
 			Name:        InputClearCommand,
@@ -338,51 +252,6 @@ func LoadFromConfig(config *opencode.Config) CommandRegistry {
 			Name:        MessagesPageDownCommand,
 			Description: "page down",
 			Keybindings: parseBindings("pgdown"),
-		},
-		{
-			Name:        MessagesHalfPageUpCommand,
-			Description: "half page up",
-			Keybindings: parseBindings("ctrl+alt+u"),
-		},
-		{
-			Name:        MessagesHalfPageDownCommand,
-			Description: "half page down",
-			Keybindings: parseBindings("ctrl+alt+d"),
-		},
-
-		{
-			Name:        MessagesFirstCommand,
-			Description: "first message",
-			Keybindings: parseBindings("ctrl+g"),
-		},
-		{
-			Name:        MessagesLastCommand,
-			Description: "last message",
-			Keybindings: parseBindings("ctrl+alt+g"),
-		},
-
-		{
-			Name:        MessagesCopyCommand,
-			Description: "copy message",
-			Keybindings: parseBindings("<leader>y"),
-		},
-		{
-			Name:        MessagesUndoCommand,
-			Description: "undo last message",
-			Keybindings: parseBindings("<leader>u"),
-			Trigger:     []string{"undo"},
-		},
-		{
-			Name:        MessagesRedoCommand,
-			Description: "redo message",
-			Keybindings: parseBindings("<leader>r"),
-			Trigger:     []string{"redo"},
-		},
-		{
-			Name:        AppExitCommand,
-			Description: "exit the app",
-			Keybindings: parseBindings("ctrl+c", "<leader>q"),
-			Trigger:     []string{"exit", "quit", "q"},
 		},
 	}
 	registry := make(CommandRegistry)

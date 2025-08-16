@@ -7,11 +7,11 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/sst/opencode-sdk-go/internal/apijson"
-	"github.com/sst/opencode-sdk-go/internal/apiquery"
-	"github.com/sst/opencode-sdk-go/internal/param"
-	"github.com/sst/opencode-sdk-go/internal/requestconfig"
-	"github.com/sst/opencode-sdk-go/option"
+	"github.com/kenkaiii/ken8n-coder-sdk-go/internal/apijson"
+	"github.com/kenkaiii/ken8n-coder-sdk-go/internal/apiquery"
+	"github.com/kenkaiii/ken8n-coder-sdk-go/internal/param"
+	"github.com/kenkaiii/ken8n-coder-sdk-go/internal/requestconfig"
+	"github.com/kenkaiii/ken8n-coder-sdk-go/option"
 )
 
 // FindService contains methods and other services that help with interacting with

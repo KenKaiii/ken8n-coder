@@ -8,9 +8,9 @@ import (
 	"os"
 	"testing"
 
-	"github.com/sst/opencode-sdk-go"
-	"github.com/sst/opencode-sdk-go/internal/testutil"
-	"github.com/sst/opencode-sdk-go/option"
+	"github.com/kenkaiii/ken8n-coder-sdk-go"
+	"github.com/kenkaiii/ken8n-coder-sdk-go/internal/testutil"
+	"github.com/kenkaiii/ken8n-coder-sdk-go/option"
 )
 
 func TestSessionPermissionRespond(t *testing.T) {

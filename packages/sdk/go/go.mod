@@ -1,4 +1,4 @@
-module github.com/sst/opencode-sdk-go
+module github.com/kenkaiii/ken8n-coder-sdk-go
 
 go 1.21
 

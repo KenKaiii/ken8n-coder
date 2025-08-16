@@ -13,7 +13,7 @@ import (
 
 	"github.com/tidwall/sjson"
 
-	"github.com/sst/opencode-sdk-go/internal/param"
+	"github.com/kenkaiii/ken8n-coder-sdk-go/internal/param"
 )
 
 var encoders sync.Map // map[encoderEntry]encoderFunc

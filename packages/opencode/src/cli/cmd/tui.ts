@@ -105,7 +105,7 @@ export const TuiCommand = cmd({
         })
 
         let cmd = ["go", "run", "./main.go"]
-        let cwd = Bun.fileURLToPath(new URL("../../../../tui/cmd/opencode", import.meta.url))
+        let cwd = Bun.fileURLToPath(new URL("../../../../tui/cmd/ken8n-coder", import.meta.url))
         const tui = Bun.embeddedFiles.find((item) => (item as File).name.includes("tui")) as File
         if (tui) {
           let binaryName = tui.name

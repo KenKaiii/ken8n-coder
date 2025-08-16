@@ -8,10 +8,10 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/sst/opencode-sdk-go/internal/apijson"
-	"github.com/sst/opencode-sdk-go/internal/param"
-	"github.com/sst/opencode-sdk-go/internal/requestconfig"
-	"github.com/sst/opencode-sdk-go/option"
+	"github.com/kenkaiii/ken8n-coder-sdk-go/internal/apijson"
+	"github.com/kenkaiii/ken8n-coder-sdk-go/internal/param"
+	"github.com/kenkaiii/ken8n-coder-sdk-go/internal/requestconfig"
+	"github.com/kenkaiii/ken8n-coder-sdk-go/option"
 )
 
 // SessionPermissionService contains methods and other services that help with

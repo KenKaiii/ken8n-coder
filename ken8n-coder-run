@@ -1,0 +1,9 @@
+#!/bin/bash
+# ken8n-coder global launcher script
+
+# Change to the project directory
+cd /home/ken/Projects/ken8n-coder/ken8n-coder
+
+# Set up bun path and run the TypeScript application
+export PATH="$HOME/.bun/bin:$PATH"
+exec bun run --conditions=development packages/opencode/src/index.ts "$@"

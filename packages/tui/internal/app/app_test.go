@@ -3,7 +3,7 @@ package app
 import (
 	"testing"
 
-	"github.com/sst/opencode-sdk-go"
+	"github.com/kenkaiii/ken8n-coder-sdk-go"
 )
 
 // TestFindModelByFullID tests the findModelByFullID function

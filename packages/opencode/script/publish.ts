@@ -35,17 +35,17 @@ for (const [os, arch] of targets) {
   console.log(`building ${os}-${arch}`)
   const name = `${pkg.name}-${os}-${arch}`
   await $`mkdir -p dist/${name}/bin`
-  await $`CGO_ENABLED=0 GOOS=${os} GOARCH=${GOARCH[arch]} go build -ldflags="-s -w -X main.Version=${version}" -o ../opencode/dist/${name}/bin/tui ../tui/cmd/opencode/main.go`.cwd(
+  await $`CGO_ENABLED=0 GOOS=${os} GOARCH=${GOARCH[arch]} go build -ldflags="-s -w -X main.Version=${version}" -o ../opencode/dist/${name}/bin/tui ../tui/cmd/ken8n-coder/main.go`.cwd(
     "../tui",
   )
-  await $`bun build --define OPENCODE_TUI_PATH="'../../../dist/${name}/bin/tui'" --define OPENCODE_VERSION="'${version}'" --compile --target=bun-${os}-${arch} --outfile=dist/${name}/bin/opencode ./src/index.ts`
+  await $`bun build --define KEN8N_CODER_TUI_PATH="'../../../dist/${name}/bin/tui'" --define KEN8N_CODER_VERSION="'${version}'" --compile --target=bun-${os}-${arch} --outfile=dist/${name}/bin/ken8n-coder ./src/index.ts`
   // Run the binary only if it matches current OS/arch
   if (
     process.platform === (os === "windows" ? "win32" : os) &&
     (process.arch === arch || (process.arch === "x64" && arch === "x64-baseline"))
   ) {
-    console.log(`smoke test: running dist/${name}/bin/opencode --version`)
-    await $`./dist/${name}/bin/opencode --version`
+    console.log(`smoke test: running dist/${name}/bin/ken8n-coder --version`)
+    await $`./dist/${name}/bin/ken8n-coder --version`
   }
   await $`rm -rf ./dist/${name}/bin/tui`
   await Bun.file(`dist/${name}/package.json`).write(
@@ -121,12 +121,12 @@ if (!snapshot) {
     `sha256sums_x86_64=('${x64Sha}')`,
     "",
     "package() {",
-    '  install -Dm755 ./opencode "${pkgdir}/usr/bin/opencode"',
+    '  install -Dm755 ./ken8n-coder "${pkgdir}/usr/bin/ken8n-coder"',
     "}",
     "",
   ].join("\n")
 
-  for (const pkg of ["opencode-bin"]) {
+  for (const pkg of ["ken8n-coder-bin"]) {
     await $`rm -rf ./dist/aur-${pkg}`
     await $`git clone ssh://aur@aur.archlinux.org/${pkg}.git ./dist/aur-${pkg}`
     await $`cd ./dist/aur-${pkg} && git checkout master`
@@ -155,7 +155,7 @@ if (!snapshot) {
     `      sha256 "${macX64Sha}"`,
     "",
     "      def install",
-    '        bin.install "opencode"',
+    '        bin.install "ken8n-coder"',
     "      end",
     "    end",
     "    if Hardware::CPU.arm?",
@@ -163,7 +163,7 @@ if (!snapshot) {
     `      sha256 "${macArm64Sha}"`,
     "",
     "      def install",
-    '        bin.install "opencode"',
+    '        bin.install "ken8n-coder"',
     "      end",
     "    end",
     "  end",
@@ -173,14 +173,14 @@ if (!snapshot) {
     `      url "https://github.com/sst/opencode/releases/download/v${version}/opencode-linux-x64.zip"`,
     `      sha256 "${x64Sha}"`,
     "      def install",
-    '        bin.install "opencode"',
+    '        bin.install "ken8n-coder"',
     "      end",
     "    end",
     "    if Hardware::CPU.arm? and Hardware::CPU.is_64_bit?",
     `      url "https://github.com/sst/opencode/releases/download/v${version}/opencode-linux-arm64.zip"`,
     `      sha256 "${arm64Sha}"`,
     "      def install",
-    '        bin.install "opencode"',
+    '        bin.install "ken8n-coder"',
     "      end",
     "    end",
     "  end",

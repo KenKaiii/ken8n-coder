@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
-  "name": "opencode",
+  "name": "ken8n-coder",
   "private": true,
   "type": "module",
   "packageManager": "bun@1.2.19",
@@ -36,7 +36,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/sst/opencode"
+    "url": "https://github.com/kenkaiii/ken8n-coder"
   },
   "license": "MIT",
   "prettier": {
