@@ -195,7 +195,7 @@ export const TuiCommand = cmd({
 
 /**
  * Get the correct command to run ken8n-coder CLI
- * In development: ["bun", "run", "packages/opencode/src/index.ts"]
+ * In development: ["bun", "run", "packages/ken8n-coder/src/index.ts"]
  * In production: ["/path/to/ken8n-coder"]
  */
 function getOpencodeCommand(): string[] {

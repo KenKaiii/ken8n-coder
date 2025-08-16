@@ -6,7 +6,7 @@ import { CodeProvider } from "@openauthjs/openauth/provider/code"
 import { GithubProvider } from "@openauthjs/openauth/provider/github"
 import { GoogleOidcProvider } from "@openauthjs/openauth/provider/google"
 import { CloudflareStorage } from "@openauthjs/openauth/storage/cloudflare"
-import { Account } from "@opencode/cloud-core/account.js"
+import { Account } from ken8n-coder/cloud-core/account.js"
 
 type Env = {
   AuthStorage: KVNamespace

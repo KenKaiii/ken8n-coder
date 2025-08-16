@@ -30,7 +30,7 @@ for (const file of pkgjsons) {
 await $`bun install`
 
 console.log("\n=== opencode ===\n")
-await import(`../packages/opencode/script/publish.ts`)
+await import(`../packages/ken8n-coder/script/publish.ts`)
 
 console.log("\n=== sdk ===\n")
 await import(`../packages/sdk/js/script/publish.ts`)
@@ -79,7 +79,7 @@ if (!snapshot) {
       })
       .join("\n") || "No notable changes"
 
-  await $`gh release create v${version} --title "v${version}" --notes ${notes} ./packages/opencode/dist/*.zip`
+  await $`gh release create v${version} --title "v${version}" --notes ${notes} ./packages/ken8n-coder/dist/*.zip`
 }
 if (snapshot) {
   await $`git checkout -b snapshot-${version}`

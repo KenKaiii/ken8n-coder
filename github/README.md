@@ -108,7 +108,7 @@ To test locally:
    MODEL=anthropic/claude-sonnet-4-20250514 \
      ANTHROPIC_API_KEY=sk-ant-api03-1234567890 \
      GITHUB_RUN_ID=dummy \
-     bun /path/to/ken8n-coder/packages/opencode/src/index.ts github run \
+     bun /path/to/ken8n-coder/packages/ken8n-coder/src/index.ts github run \
      --token 'github_pat_1234567890' \
      --event '{"eventName":"issue_comment",...}'
    ```
@@ -116,7 +116,7 @@ To test locally:
    - `MODEL`: The model used by ken8n-coder. Same as the `MODEL` defined in the GitHub workflow.
    - `ANTHROPIC_API_KEY`: Your model provider API key. Same as the keys defined in the GitHub workflow.
    - `GITHUB_RUN_ID`: Dummy value to emulate GitHub action environment.
-   - `/path/to/ken8n-coder`: Path to your cloned ken8n-coder repo. `bun /path/to/ken8n-coder/packages/opencode/src/index.ts` runs your local version of `ken8n-coder`.
+   - `/path/to/ken8n-coder`: Path to your cloned ken8n-coder repo. `bun /path/to/ken8n-coder/packages/ken8n-coder/src/index.ts` runs your local version of `ken8n-coder`.
    - `--token`: A GitHub personal access token. This token is used to verify you have `admin` or `write` access to the test repo. Generate a token [here](https://github.com/settings/personal-access-tokens).
    - `--event`: Mock GitHub event payload (see templates below).
 

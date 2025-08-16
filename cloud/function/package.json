@@ -1,5 +1,5 @@
 {
-  "name": "@opencode/cloud-function",
+  "name": "@ken8n-coder/cloud-function",
   "version": "0.5.4",
   "$schema": "https://json.schemastore.org/package.json",
   "private": true,

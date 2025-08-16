@@ -3,4 +3,4 @@
 
 cd "$(dirname "$0")"
 export PATH="$HOME/.bun/bin:$PATH"
-exec bun run --conditions=development packages/opencode/src/index.ts "$@"
+exec bun run --conditions=development packages/ken8n-coder/src/index.ts "$@"

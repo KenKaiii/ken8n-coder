@@ -1,5 +1,5 @@
 {
-  "name": "@opencode/cloud-app",
+  "name": "@ken8n-coder/cloud-app",
   "type": "module",
   "scripts": {
     "dev": "vinxi dev --host 0.0.0.0",

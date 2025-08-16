@@ -2,7 +2,7 @@
   "memories": [
     {
       "id": "mem_1755338166079_dmt48edl2",
-      "content": "Opencode Analysis - Initial findings:\n- AI coding agent built for terminal with client/server architecture\n- Uses TUI (Terminal User Interface) built in Go\n- Core packages: opencode (main), tui (Go UI), function (API), sdk (clients)\n- Provider agnostic (supports OpenAI, Anthropic, Google, local models)\n- Has agent system, MCP support, tools for bash/edit/grep/etc\n- Built with Bun, TypeScript, uses Hono for API server\n- VS Code extension available\n- Architecture: Server (packages/opencode) + TUI client (packages/tui)",
+      "content": "Opencode Analysis - Initial findings:\n- AI coding agent built for terminal with client/server architecture\n- Uses TUI (Terminal User Interface) built in Go\n- Core packages: opencode (main), tui (Go UI), function (API), sdk (clients)\n- Provider agnostic (supports OpenAI, Anthropic, Google, local models)\n- Has agent system, MCP support, tools for bash/edit/grep/etc\n- Built with Bun, TypeScript, uses Hono for API server\n- VS Code extension available\n- Architecture: Server (packages/ken8n-coder) + TUI client (packages/tui)",
       "type": "code",
       "tags": [
         "code",
@@ -1194,7 +1194,7 @@
     },
     {
       "id": "mem_1755359156127_wip4kzidy",
-      "content": "Ken8n-coder has fragmented system prompts across multiple files:\n1. anthropic.txt (200 lines) - Claude specific prompts with n8n workflow creation focus\n2. copilot-gpt-5.txt (161 lines) - GPT agent mode with autonomous workflow creation\n3. AGENTS.md in packages/opencode (28 lines) - Brief agent guidelines for opencode\n4. AGENTS.md in project root (46 lines) - Ken8n-coder specific agent guidelines\n\nKey overlaps: Super Code node configuration, library usage, file structure requirements\nKey differences: Anthropic focuses on concise responses, GPT focuses on autonomous agent behavior",
+      "content": "Ken8n-coder has fragmented system prompts across multiple files:\n1. anthropic.txt (200 lines) - Claude specific prompts with n8n workflow creation focus\n2. copilot-gpt-5.txt (161 lines) - GPT agent mode with autonomous workflow creation\n3. AGENTS.md in packages/ken8n-coder (28 lines) - Brief agent guidelines for opencode\n4. AGENTS.md in project root (46 lines) - Ken8n-coder specific agent guidelines\n\nKey overlaps: Super Code node configuration, library usage, file structure requirements\nKey differences: Anthropic focuses on concise responses, GPT focuses on autonomous agent behavior",
       "type": "config",
       "tags": [
         "config",
@@ -1282,7 +1282,7 @@
     },
     {
       "id": "mem_1755359203244_xmpzu7zx0",
-      "content": "Ken8n-Coder Prompt File Redundancy Assessment:\n\nFINDINGS:\n- Three main prompt files with overlapping content:\n  1. /packages/opencode/src/session/prompt/anthropic.txt (200 lines)\n  2. /packages/opencode/src/session/prompt/copilot-gpt-5.txt (161 lines) \n  3. /AGENTS.md (46 lines, project root)\n\nREDUNDANT CONTENT:\n- Super Code node specifications (@kenkaiii/n8n-nodes-supercode.superCodeNodeVmSafe)\n- \"code\" parameter requirement (NOT \"jsCode\")\n- VM environment library globals (lodash, axios, etc.)\n- n8n workflow JSON structure requirements\n- File saving to ken8n-workflows/ directory\n- Library usage patterns and syntax examples\n\nVARIATIONS:\n- anthropic.txt: Most comprehensive (200 lines), detailed examples, TodoWrite emphasis\n- copilot-gpt-5.txt: Agent-focused, structured workflow process, more verbose\n- AGENTS.md: Concise essentials only, missing detailed examples\n\nMAINTENANCE ISSUES:\n- Same information duplicated 3x with slight variations\n- Updates require syncing across multiple files\n- Risk of inconsistencies between files",
+      "content": "Ken8n-Coder Prompt File Redundancy Assessment:\n\nFINDINGS:\n- Three main prompt files with overlapping content:\n  1. /packages/ken8n-coder/src/session/prompt/anthropic.txt (200 lines)\n  2. /packages/ken8n-coder/src/session/prompt/copilot-gpt-5.txt (161 lines) \n  3. /AGENTS.md (46 lines, project root)\n\nREDUNDANT CONTENT:\n- Super Code node specifications (@kenkaiii/n8n-nodes-supercode.superCodeNodeVmSafe)\n- \"code\" parameter requirement (NOT \"jsCode\")\n- VM environment library globals (lodash, axios, etc.)\n- n8n workflow JSON structure requirements\n- File saving to ken8n-workflows/ directory\n- Library usage patterns and syntax examples\n\nVARIATIONS:\n- anthropic.txt: Most comprehensive (200 lines), detailed examples, TodoWrite emphasis\n- copilot-gpt-5.txt: Agent-focused, structured workflow process, more verbose\n- AGENTS.md: Concise essentials only, missing detailed examples\n\nMAINTENANCE ISSUES:\n- Same information duplicated 3x with slight variations\n- Updates require syncing across multiple files\n- Risk of inconsistencies between files",
       "type": "config",
       "tags": [
         "config",
@@ -1656,7 +1656,201 @@
       "lastAccessed": "2025-08-16T16:25:28.834Z",
       "lastVerified": "2025-08-16T16:25:28.834Z",
       "status": "fresh"
+    },
+    {
+      "id": "mem_1755362264786_ynn4o49kv",
+      "content": "User wants to understand and potentially create new tab-based modes like WORKFLOW BUILDER and WORKFLOW PLANNER in ken8n-coder project",
+      "type": "general",
+      "tags": [
+        "general",
+        "mode-system",
+        "tabs",
+        "workflow",
+        "investigation"
+      ],
+      "timestamp": "2025-08-16T16:37:44.786Z",
+      "context": "Investigation request - need to examine how tabs/modes are implemented and if extensible",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T16:37:44.786Z",
+      "lastVerified": "2025-08-16T16:37:44.786Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755362292546_2qqs7skil",
+      "content": "Found that modes are deprecated in favor of \"agents\". The TUI shows tabs but these appear to be different from the traditional mode system. Tab key switches between modes but WORKFLOW BUILDER/PLANNER might be something different - need to find the specific UI tab implementation.",
+      "type": "general",
+      "tags": [
+        "general",
+        "modes",
+        "agents",
+        "tabs",
+        "workflow",
+        "deprecated"
+      ],
+      "timestamp": "2025-08-16T16:38:12.546Z",
+      "context": "Investigation findings",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T16:38:12.546Z",
+      "lastVerified": "2025-08-16T16:38:12.546Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755362364964_6bd53pke7",
+      "content": "Found the tab system! What you see as \"WORKFLOW BUILDER\" and \"WORKFLOW PLANNER\" are actually different AGENTS, not traditional modes. The system cycles through agents using Tab key via AgentCycleCommand. Status bar shows current agent as \"AGENTNAME WORKFLOW AGENT\". The agents are loaded from config and stored in app.Agents array. AgentIndex tracks current agent. cycleMode() function handles switching between agents, skipping any with mode \"subagent\".",
+      "type": "config",
+      "tags": [
+        "config",
+        "agents",
+        "tabs",
+        "workflow",
+        "cycling",
+        "status-bar"
+      ],
+      "timestamp": "2025-08-16T16:39:24.964Z",
+      "context": "Key finding about tab system implementation",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T16:39:24.964Z",
+      "lastVerified": "2025-08-16T16:39:24.964Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755362409295_0w9xtn6o9",
+      "content": "COMPLETE UNDERSTANDING: The tab system shows \"WORKFLOW BUILDER\" and \"WORKFLOW PLANNER\" are actually AGENTS. Agents are loaded from: 1) JSON config in opencode.json \"agent\" section, 2) Markdown files in agent/*.md (global config), 3) .opencode/agent/*.md (project-specific). The system cycles through agents using Tab key, displaying \"AGENTNAME WORKFLOW AGENT\" in status bar. You can create new tab modes by adding new agent configurations!",
+      "type": "config",
+      "tags": [
+        "config",
+        "agents",
+        "tabs",
+        "markdown",
+        "solution"
+      ],
+      "timestamp": "2025-08-16T16:40:09.295Z",
+      "context": "Complete analysis results - how to create new tab modes",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T16:40:09.295Z",
+      "lastVerified": "2025-08-16T16:40:09.295Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755362613693_mnj976mtq",
+      "content": "User corrected me - they want to add a new mode to the existing BUILD/PLAN workflow agent system, not create completely new agent configs. Need to find where BUILD WORKFLOW AGENT and PLAN WORKFLOW AGENT are defined.",
+      "type": "general",
+      "tags": [
+        "general",
+        "correction",
+        "built-in-modes",
+        "workflow-agents"
+      ],
+      "timestamp": "2025-08-16T16:43:33.693Z",
+      "context": "Correction - looking for existing workflow mode system",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T16:43:33.693Z",
+      "lastVerified": "2025-08-16T16:43:33.693Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755363209467_nxcnh02gg",
+      "content": "User corrected me again! They want to add a new MODE (not agent) that cycles with Tab. This uses the prompt files in packages/ken8n-coder/src/session/prompt/ like anthropic.txt, plan.txt, etc. Need to find how modes are defined and cycle through different prompt files.",
+      "type": "general",
+      "tags": [
+        "general",
+        "modes",
+        "prompts",
+        "session",
+        "cycling",
+        "correction"
+      ],
+      "timestamp": "2025-08-16T16:53:29.467Z",
+      "context": "Final correction - looking for mode system with prompt files",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T16:53:29.467Z",
+      "lastVerified": "2025-08-16T16:53:29.467Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755364545196_c56vl0poo",
+      "content": "Found error: Cannot find module 'opencode-ai/sdk' from packages/opencode/src/plugin/index.ts - need to find and fix all remaining opencode references to ken8n-coder",
+      "type": "troubleshooting",
+      "tags": [
+        "troubleshooting",
+        "bug",
+        "renaming",
+        "ken8n-coder"
+      ],
+      "timestamp": "2025-08-16T17:15:45.196Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T17:15:45.196Z",
+      "lastVerified": "2025-08-16T17:15:45.196Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755364746619_6r172grzo",
+      "content": "Successfully fixed all opencode references in ken8n-coder codebase. Issues resolved: 1) Updated package names from @opencode-ai/plugin and @opencode-ai/sdk to @ken8n-coder/plugin and @ken8n-coder/sdk, 2) Renamed packages/opencode directory to packages/ken8n-coder, 3) Updated all import paths and launcher scripts, 4) Fixed bun workspace references. ken8n-coder command now works properly.",
+      "type": "code",
+      "tags": [
+        "code",
+        "fix",
+        "renaming",
+        "ken8n-coder",
+        "success"
+      ],
+      "timestamp": "2025-08-16T17:19:06.619Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T17:19:06.619Z",
+      "lastVerified": "2025-08-16T17:19:06.619Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755364814793_lr9bwr3jk",
+      "content": "Fixed global ken8n-coder command. The issue was that the global launcher script at /home/ken/.local/bin/ken8n-coder was still pointing to packages/opencode/src/index.ts instead of packages/ken8n-coder/src/index.ts. Updated the script and confirmed the global command now works properly.",
+      "type": "troubleshooting",
+      "tags": [
+        "troubleshooting",
+        "fix",
+        "global-command",
+        "ken8n-coder",
+        "success"
+      ],
+      "timestamp": "2025-08-16T17:20:14.793Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T17:20:14.793Z",
+      "lastVerified": "2025-08-16T17:20:14.793Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755364866097_uldp0bpe1",
+      "content": "User requested /commit - need to spawn gitty agent to handle complete commit + sync flow with human-style commit message (no AI robot speak). Should review changes, create natural conversational commit message, commit locally, and push to remote.",
+      "type": "tip",
+      "tags": [
+        "tip",
+        "commit",
+        "gitty",
+        "workflow"
+      ],
+      "timestamp": "2025-08-16T17:21:06.097Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T17:21:06.097Z",
+      "lastVerified": "2025-08-16T17:21:06.097Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755364893626_oos8jnzi0",
+      "content": "Major codebase refactor: Renamed opencode to ken8n-coder throughout entire project. This included deleting packages/opencode directory, creating packages/ken8n-coder, updating all package.json files, changing import paths, workspace references, and binary names. Also removed .opencode agent configs and updated all references in cloud/, packages/, and script/ directories.",
+      "type": "code",
+      "tags": [
+        "code",
+        "refactor",
+        "branding",
+        "package-rename",
+        "git-commit"
+      ],
+      "timestamp": "2025-08-16T17:21:33.626Z",
+      "context": "Committing massive refactor from opencode to ken8n-coder branding",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T17:21:33.626Z",
+      "lastVerified": "2025-08-16T17:21:33.626Z",
+      "status": "fresh"
     }
   ],
-  "lastUpdated": "2025-08-16T16:25:28.834Z"
+  "lastUpdated": "2025-08-16T17:21:33.626Z"
 }

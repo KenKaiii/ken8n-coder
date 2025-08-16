@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
-  "name": "@opencode-ai/sdk",
+  "name": "@ken8n-coder/sdk",
   "version": "0.5.4",
   "type": "module",
   "scripts": {

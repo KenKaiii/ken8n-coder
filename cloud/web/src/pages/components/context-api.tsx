@@ -1,5 +1,5 @@
 import { hc } from "hono/client"
-import { ApiType } from "@opencode/cloud-function/src/gateway"
+import { ApiType } from ken8n-coder/cloud-function/src/gateway"
 import { useWorkspace } from "./context-workspace"
 import { useOpenAuth } from "../../components/context-openauth"
 

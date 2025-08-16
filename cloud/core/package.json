@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
-  "name": "@opencode/cloud-core",
+  "name": "@ken8n-coder/cloud-core",
   "version": "0.5.4",
   "private": true,
   "type": "module",

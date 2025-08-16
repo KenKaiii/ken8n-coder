@@ -5,7 +5,7 @@
   "type": "module",
   "packageManager": "bun@1.2.19",
   "scripts": {
-    "dev": "bun run --conditions=development packages/opencode/src/index.ts",
+    "dev": "bun run --conditions=development packages/ken8n-coder/src/index.ts",
     "typecheck": "bun run --filter='*' typecheck",
     "generate": "(cd packages/sdk && ./js/script/generate.ts) && (cd packages/sdk/stainless && ./generate.ts)",
     "postinstall": "./script/hooks"

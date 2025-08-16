@@ -55,7 +55,7 @@ describe("tool.ls", () => {
     })
 
     // Normalize absolute path to relative for consistent snapshots
-    const normalizedOutput = result.output.replace(fixturePath, "packages/opencode/test/fixtures/example")
+    const normalizedOutput = result.output.replace(fixturePath, "packages/ken8n-coder/test/fixtures/example")
     expect(normalizedOutput).toMatchSnapshot()
   })
 })

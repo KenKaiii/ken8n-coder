@@ -17,6 +17,7 @@ import {
 
 import PROMPT_INITIALIZE from "../session/prompt/initialize.txt"
 import PROMPT_PLAN from "../session/prompt/plan.txt"
+import PROMPT_SUPERCODE from "../session/prompt/supercode.txt"
 
 import { App } from "../app/app"
 import { Bus } from "../bus"
@@ -723,6 +724,16 @@ export namespace Session {
         sessionID: input.sessionID,
         type: "text",
         text: PROMPT_PLAN,
+        synthetic: true,
+      })
+    }
+    if (agent.name === "supercode") {
+      msgs.at(-1)?.parts.push({
+        id: Identifier.ascending("part"),
+        messageID: userMsg.id,
+        sessionID: input.sessionID,
+        type: "text",
+        text: PROMPT_SUPERCODE,
         synthetic: true,
       })
     }
