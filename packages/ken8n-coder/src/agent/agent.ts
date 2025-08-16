@@ -36,18 +36,18 @@ export namespace Agent {
     })
   export type Info = z.infer<typeof Info>
 
-  const state = App.state("agent", async () => {
-    const cfg = await Config.get()
-    const defaultPermission: Info["permission"] = {
+  function getDefaultPermission(): Info["permission"] {
+    return {
       edit: "allow",
       bash: {
         "*": "allow",
       },
       webfetch: "allow",
     }
-    const agentPermission = mergeAgentPermissions(defaultPermission, cfg.permission ?? {})
+  }
 
-    const result: Record<string, Info> = {
+  function getBuiltInAgents(agentPermission: Info["permission"]): Record<string, Info> {
+    return {
       general: {
         name: "general",
         description:
@@ -81,8 +81,8 @@ export namespace Agent {
         mode: "primary",
         builtIn: true,
       },
-      supercode: {
-        name: "supercode",
+      "super-code": {
+        name: "super-code",
         description: "Advanced Super Code node builder for n8n workflows",
         tools: {},
         options: {},
@@ -91,42 +91,58 @@ export namespace Agent {
         builtIn: true,
       },
     }
-    for (const [key, value] of Object.entries(cfg.agent ?? {})) {
-      if (value.disable) {
-        delete result[key]
-        continue
-      }
-      let item = result[key]
-      if (!item)
-        item = result[key] = {
-          name: key,
-          mode: "all",
-          permission: agentPermission,
-          options: {},
-          tools: {},
-          builtIn: false,
-        }
-      const { model, prompt, tools, description, temperature, top_p, mode, permission, ...extra } = value
-      item.options = {
-        ...item.options,
-        ...extra,
-      }
-      if (model) item.model = Provider.parseModel(model)
-      if (prompt) item.prompt = prompt
-      if (tools)
-        item.tools = {
-          ...item.tools,
-          ...tools,
-        }
-      if (description) item.description = description
-      if (temperature != undefined) item.temperature = temperature
-      if (top_p != undefined) item.topP = top_p
-      if (mode) item.mode = mode
+  }
 
-      if (permission ?? cfg.permission) {
-        item.permission = mergeAgentPermissions(cfg.permission ?? {}, permission ?? {})
+  function processConfigAgent(
+    result: Record<string, Info>,
+    key: string,
+    value: any,
+    agentPermission: Info["permission"],
+    cfg: any,
+  ) {
+    if (value.disable) {
+      delete result[key]
+      return
+    }
+
+    let item = result[key]
+    if (!item) {
+      item = result[key] = {
+        name: key,
+        mode: "all",
+        permission: agentPermission,
+        options: {},
+        tools: {},
+        builtIn: false,
       }
     }
+
+    const { model, prompt, tools, description, temperature, top_p, mode, permission, ...extra } = value
+    item.options = { ...item.options, ...extra }
+
+    if (model) item.model = Provider.parseModel(model)
+    if (prompt) item.prompt = prompt
+    if (tools) item.tools = { ...item.tools, ...tools }
+    if (description) item.description = description
+    if (temperature != undefined) item.temperature = temperature
+    if (top_p != undefined) item.topP = top_p
+    if (mode) item.mode = mode
+
+    if (permission ?? cfg.permission) {
+      item.permission = mergeAgentPermissions(cfg.permission ?? {}, permission ?? {})
+    }
+  }
+
+  const state = App.state("agent", async () => {
+    const cfg = await Config.get()
+    const defaultPermission = getDefaultPermission()
+    const agentPermission = mergeAgentPermissions(defaultPermission, cfg.permission ?? {})
+    const result = getBuiltInAgents(agentPermission)
+
+    for (const [key, value] of Object.entries(cfg.agent ?? {})) {
+      processConfigAgent(result, key, value, agentPermission, cfg)
+    }
+
     return result
   })
 
@@ -155,7 +171,7 @@ export namespace Agent {
         ),
         {
           role: "user",
-          content: `Create an agent configuration based on this request: \"${input.description}\".\n\nIMPORTANT: The following identifiers already exist and must NOT be used: ${existing.map((i) => i.name).join(", ")}\n  Return ONLY the JSON object, no other text, do not wrap in backticks`,
+          content: `Create an agent configuration based on this request: "${input.description}".\n\nIMPORTANT: The following identifiers already exist and must NOT be used: ${existing.map((i) => i.name).join(", ")}\n  Return ONLY the JSON object, no other text, do not wrap in backticks`,
         },
       ],
       model: model.language,

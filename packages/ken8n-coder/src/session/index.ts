@@ -727,7 +727,7 @@ export namespace Session {
         synthetic: true,
       })
     }
-    if (agent.name === "supercode") {
+    if (agent.name === "super-code") {
       msgs.at(-1)?.parts.push({
         id: Identifier.ascending("part"),
         messageID: userMsg.id,

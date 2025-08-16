@@ -1850,7 +1850,119 @@
       "lastAccessed": "2025-08-16T17:21:33.626Z",
       "lastVerified": "2025-08-16T17:21:33.626Z",
       "status": "fresh"
+    },
+    {
+      "id": "mem_1755365023731_8enro1igi",
+      "content": "Successfully completed commit + sync workflow for opencode to ken8n-coder rebrand:\n\n1. ✅ Major rebrand commit (7e1bfe26): Renamed entire codebase from opencode to ken8n-coder, including 162 files with package renames, directory moves, import path updates\n2. ✅ TypeScript fix commit (6557684f): Fixed syntax error in plugin import path - missing quote\n3. ✅ Cleanup commit (a3b6acb8): Removed unused PROMPT_SUPERCODE import to fix TypeScript warning\n4. ✅ All commits pushed successfully to origin/dev after installing bun and passing pre-push typecheck hooks\n\nHuman-style commit messages used throughout, avoiding AI robot speak. Project now fully rebranded from opencode to ken8n-coder.",
+      "type": "warning",
+      "tags": [
+        "warning",
+        "typescript",
+        "git",
+        "commit",
+        "push",
+        "rebrand",
+        "success",
+        "workflow"
+      ],
+      "timestamp": "2025-08-16T17:23:43.731Z",
+      "context": "Completed full git workflow for opencode rebrand to ken8n-coder",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T17:23:43.731Z",
+      "lastVerified": "2025-08-16T17:23:43.731Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755365146185_fqzxldr1h",
+      "content": "Fixed remaining TypeScript errors after ken8n-coder rebrand: 1) Fixed malformed import statement in packages/web/src/components/share/part.tsx (missing quote around import path), 2) All TypeScript checks now pass - bun run typecheck returns exit code 0 for all packages.",
+      "type": "code",
+      "tags": [
+        "code",
+        "typescript",
+        "fix",
+        "ken8n-coder",
+        "success"
+      ],
+      "timestamp": "2025-08-16T17:25:46.185Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T17:25:46.185Z",
+      "lastVerified": "2025-08-16T17:25:46.185Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755365272148_12pi1o5fa",
+      "content": "Fixed final TypeScript error - CSS module import issue in part.tsx. Created env.d.ts file in packages/web/src/ with CSS module type declarations and updated tsconfig.json to include it. All TypeScript checks now pass across all packages (plugin, sdk, and ken8n-coder).",
+      "type": "config",
+      "tags": [
+        "config",
+        "typescript",
+        "css-modules",
+        "astro",
+        "fix",
+        "success"
+      ],
+      "timestamp": "2025-08-16T17:27:52.148Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T17:27:52.148Z",
+      "lastVerified": "2025-08-16T17:27:52.148Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755365348097_jab3gs84s",
+      "content": "IDE still showing error for non-existent packages/opencode/tsconfig.json path. This is likely IDE cache - command line TypeScript checking works perfectly (all packages pass with exit code 0). The error is from IDE looking for old path after directory rename from packages/opencode to packages/ken8n-coder. Actual code and build system work correctly.",
+      "type": "error",
+      "tags": [
+        "error",
+        "typescript",
+        "ide-cache",
+        "non-issue",
+        "packages-rename"
+      ],
+      "timestamp": "2025-08-16T17:29:08.097Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T17:29:08.097Z",
+      "lastVerified": "2025-08-16T17:29:08.097Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755365695328_kcbd9qded",
+      "content": "Successfully renamed SUPERCODE WORKFLOW AGENT to SUPER CODE AGENT. Changes made: 1) Changed agent name from 'supercode' to 'super-code' in packages/ken8n-coder/src/agent/agent.ts, 2) Updated status component to show 'AGENT' instead of 'WORKFLOW AGENT' in packages/tui/internal/components/status/status.go, 3) Updated agent name reference in session logic. Also refactored agent.ts to fix cognitive complexity linting issue by extracting helper functions.",
+      "type": "troubleshooting",
+      "tags": [
+        "troubleshooting",
+        "go",
+        "agent-rename",
+        "ui-update",
+        "super-code",
+        "success"
+      ],
+      "timestamp": "2025-08-16T17:34:55.328Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T17:34:55.328Z",
+      "lastVerified": "2025-08-16T17:34:55.328Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755365809340_ei9wx95zd",
+      "content": "Current git commit has several key changes: 1) Renamed supercode agent to super-code agent, 2) Fixed CSS module import issue in part.tsx, 3) Added TypeScript definition files for CSS modules, 4) Updated Go status component to show 'AGENT' instead of 'WORKFLOW AGENT', 5) Refactored agent.ts to reduce cognitive complexity by extracting helper functions, 6) Updated memories.json with recent work history, 7) Deleted old supercode-demo-workflow.json file. This follows up on the opencode to ken8n-coder rebrand work.",
+      "type": "troubleshooting",
+      "tags": [
+        "troubleshooting",
+        "typescript",
+        "go",
+        "git",
+        "commit",
+        "super-code",
+        "agent-rename",
+        "refactor"
+      ],
+      "timestamp": "2025-08-16T17:36:49.340Z",
+      "context": "Preparing commit for various fixes and improvements after ken8n-coder rebrand",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T17:36:49.340Z",
+      "lastVerified": "2025-08-16T17:36:49.340Z",
+      "status": "fresh"
     }
   ],
-  "lastUpdated": "2025-08-16T17:21:33.626Z"
+  "lastUpdated": "2025-08-16T17:36:49.340Z"
 }

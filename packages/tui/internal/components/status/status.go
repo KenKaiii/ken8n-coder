@@ -142,7 +142,7 @@ func (m *statusComponent) View() string {
 	agentStyle := styles.NewStyle().Background(modeBackground).Foreground(modeForeground)
 	agentNameStyle := agentStyle.Bold(true).Render
 	agentDescStyle := agentStyle.Render
-	agent := agentNameStyle(strings.ToUpper(m.app.Agent().Name)) + agentDescStyle(" WORKFLOW AGENT")
+	agent := agentNameStyle(strings.ToUpper(m.app.Agent().Name)) + agentDescStyle(" AGENT")
 	agent = agentStyle.
 		Padding(0, 1).
 		BorderLeft(true).

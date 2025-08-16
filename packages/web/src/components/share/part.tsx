@@ -27,7 +27,7 @@ import { ContentBash } from "./content-bash"
 import { ContentError } from "./content-error"
 import { formatDuration } from "../share/common"
 import { ContentMarkdown } from "./content-markdown"
-import type { MessageV2 } from ken8n-coder/session/message-v2"
+import type { MessageV2 } from "ken8n-coder/session/message-v2"
 import type { Diagnostic } from "vscode-languageserver-types"
 
 import styles from "./part.module.css"
@@ -168,32 +168,25 @@ export function Part(props: PartProps) {
             </Show>
           </div>
         )}
-        {
-          props.message.role === "user" && props.part.type === "file" && (
-            <div data-component="attachment">
-              <div data-slot="copy">Attachment</div>
-              <div data-slot="filename">{props.part.filename}</div>
-            </div>
-          )
-        }
-        {
-          props.part.type === "step-start" && props.message.role === "assistant" && (
-            <div data-component="step-start">
-              <div data-slot="provider">{props.message.providerID}</div>
-              <div data-slot="model">{props.message.modelID}</div>
-            </div>
-          )
-        }
-        {
-          props.part.type === "tool" && props.part.state.status === "error" && (
-            <div data-component="tool" data-tool="error">
-              <ContentError>{formatErrorString(props.part.state.error)}</ContentError>
-              <Spacer />
-            </div>
-          )
-        }
-        {
-          props.part.type === "tool" &&
+        {props.message.role === "user" && props.part.type === "file" && (
+          <div data-component="attachment">
+            <div data-slot="copy">Attachment</div>
+            <div data-slot="filename">{props.part.filename}</div>
+          </div>
+        )}
+        {props.part.type === "step-start" && props.message.role === "assistant" && (
+          <div data-component="step-start">
+            <div data-slot="provider">{props.message.providerID}</div>
+            <div data-slot="model">{props.message.modelID}</div>
+          </div>
+        )}
+        {props.part.type === "tool" && props.part.state.status === "error" && (
+          <div data-component="tool" data-tool="error">
+            <ContentError>{formatErrorString(props.part.state.error)}</ContentError>
+            <Spacer />
+          </div>
+        )}
+        {props.part.type === "tool" &&
           props.part.state.status === "completed" &&
           props.message.role === "assistant" && (
             <>
@@ -295,10 +288,9 @@ export function Part(props: PartProps) {
                   .toMillis()}
               />
             </>
-          )
-        }
-      </div >
-    </div >
+          )}
+      </div>
+    </div>
   )
 }
 
