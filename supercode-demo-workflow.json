@@ -1,0 +1,238 @@
+{
+  "name": "SuperCode Power Demo",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "c4a8b9f0-3e5d-4321-9876-1234567890ab",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "values": [
+            {
+              "name": "salesData",
+              "value": [
+                {
+                  "date": "2024-01-15",
+                  "product": "Laptop Pro X1",
+                  "price": 1299.99,
+                  "quantity": 5,
+                  "customer": {
+                    "name": "Tech Corp Ltd",
+                    "email": "orders@techcorp.com",
+                    "country": "USA"
+                  }
+                },
+                {
+                  "date": "2024-01-16",
+                  "product": "Wireless Mouse Z2",
+                  "price": 49.99,
+                  "quantity": 25,
+                  "customer": {
+                    "name": "Office Supplies Inc",
+                    "email": "purchase@officesupplies.com",
+                    "country": "Canada"
+                  }
+                },
+                {
+                  "date": "2024-01-17",
+                  "product": "USB-C Hub Ultra",
+                  "price": 89.99,
+                  "quantity": 15,
+                  "customer": {
+                    "name": "Digital Solutions GmbH",
+                    "email": "einkauf@digitalsolutions.de",
+                    "country": "Germany"
+                  }
+                },
+                {
+                  "date": "2024-01-18",
+                  "product": "Laptop Pro X1",
+                  "price": 1299.99,
+                  "quantity": 3,
+                  "customer": {
+                    "name": "StartUp Innovations",
+                    "email": "buy@startupinno.com",
+                    "country": "UK"
+                  }
+                },
+                {
+                  "date": "2024-01-19",
+                  "product": "Mechanical Keyboard K7",
+                  "price": 159.99,
+                  "quantity": 10,
+                  "customer": {
+                    "name": "Gaming Zone LLC",
+                    "email": "orders@gamingzone.com",
+                    "country": "USA"
+                  }
+                }
+              ]
+            },
+            {
+              "name": "textData",
+              "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Machine learning algorithms process vast amounts of data efficiently. The quick brown fox jumps over the lazy dog. Artificial intelligence is transforming industries worldwide. Data science combines statistics, programming, and domain expertise. Cloud computing enables scalable infrastructure solutions. DevOps practices streamline software development and deployment. Cybersecurity measures protect digital assets from threats. Blockchain technology ensures transparent and secure transactions. Internet of Things connects billions of devices globally."
+            },
+            {
+              "name": "customerFeedback",
+              "value": [
+                {
+                  "rating": 5,
+                  "comment": "Excellent product quality and fast shipping! Will definitely order again.",
+                  "product": "Laptop Pro X1"
+                },
+                {
+                  "rating": 4,
+                  "comment": "Good value for money, but packaging could be improved.",
+                  "product": "Wireless Mouse Z2"
+                },
+                {
+                  "rating": 5,
+                  "comment": "Outstanding USB hub, works perfectly with all my devices.",
+                  "product": "USB-C Hub Ultra"
+                },
+                {
+                  "rating": 3,
+                  "comment": "Keyboard is okay, but keys are a bit too loud for office use.",
+                  "product": "Mechanical Keyboard K7"
+                },
+                {
+                  "rating": 5,
+                  "comment": "Best laptop I've ever owned! Performance is incredible.",
+                  "product": "Laptop Pro X1"
+                }
+              ]
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d5e6f7a8-b9c0-1234-5678-9abcdef01234",
+      "name": "Set Mock Sales Data",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [450, 200]
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "values": [
+            {
+              "name": "cryptoData",
+              "value": {
+                "apiKey": "demo-key-12345",
+                "secret": "demo-secret-abcdef",
+                "message": "This is a confidential message that needs encryption",
+                "password": "SuperSecure123!"
+              }
+            },
+            {
+              "name": "imageData",
+              "value": {
+                "width": 800,
+                "height": 600,
+                "backgroundColor": "#f0f0f0",
+                "text": "SuperCode Demo",
+                "qrData": "https://n8n.io"
+              }
+            },
+            {
+              "name": "validationRules",
+              "value": {
+                "email": {
+                  "type": "string",
+                  "format": "email",
+                  "required": true
+                },
+                "age": {
+                  "type": "number",
+                  "min": 18,
+                  "max": 100
+                },
+                "username": {
+                  "type": "string",
+                  "minLength": 3,
+                  "maxLength": 20,
+                  "pattern": "^[a-zA-Z0-9_]+$"
+                }
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "f8a9b0c1-d2e3-4567-8901-23456789abcd",
+      "name": "Set Config & Crypto Data",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [450, 400]
+    },
+    {
+      "parameters": {
+        "code": "const salesData = $input.all()[0].json.salesData;\nconst textData = $input.all()[0].json.textData;\nconst customerFeedback = $input.all()[0].json.customerFeedback;\nconst cryptoData = $input.all()[1].json.cryptoData;\nconst imageData = $input.all()[1].json.imageData;\nconst validationRules = $input.all()[1].json.validationRules;\n\nconst results = {};\n\n// 1. Data Analysis with Lodash\nresults.salesAnalysis = {\n  totalRevenue: lodash.sumBy(salesData, item => item.price * item.quantity),\n  averageOrderValue: lodash.meanBy(salesData, item => item.price * item.quantity),\n  topProduct: lodash.maxBy(salesData, item => item.price * item.quantity),\n  salesByCountry: lodash.groupBy(salesData, 'customer.country'),\n  uniqueProducts: lodash.uniqBy(salesData, 'product').map(item => item.product)\n};\n\n// 2. Date Processing with dayjs\nresults.dateAnalysis = {\n  salesDates: salesData.map(sale => ({\n    original: sale.date,\n    formatted: dayjs(sale.date).format('MMMM D, YYYY'),\n    daysAgo: dayjs().diff(dayjs(sale.date), 'day'),\n    quarter: 'Q' + Math.ceil((dayjs(sale.date).month() + 1) / 3),\n    weekday: dayjs(sale.date).format('dddd')\n  })),\n  currentTime: dayjs().format('YYYY-MM-DD HH:mm:ss'),\n  timezone: dayjs.tz.guess()\n};\n\n// 3. Text Analysis with string-similarity and sentiment\nconst words = textData.split(' ').filter(word => word.length > 4);\nconst techTerms = ['machine', 'learning', 'data', 'artificial', 'intelligence', 'cloud', 'computing'];\n\nresults.textAnalysis = {\n  wordCount: words.length,\n  uniqueWords: lodash.uniq(words).length,\n  mostFrequent: lodash.chain(words)\n    .countBy()\n    .toPairs()\n    .sortBy(1)\n    .reverse()\n    .take(5)\n    .fromPairs()\n    .value(),\n  techRelevance: techTerms.map(term => ({\n    term,\n    similarity: stringSimilarity.findBestMatch(term, words).bestMatch.rating\n  })),\n  averageRating: lodash.meanBy(customerFeedback, 'rating'),\n  sentimentScores: customerFeedback.map(feedback => ({\n    rating: feedback.rating,\n    comment: feedback.comment.substring(0, 50) + '...',\n    positiveWords: feedback.comment.match(/excellent|great|good|best|outstanding|perfect/gi) || []\n  }))\n};\n\n// 4. Cryptography with CryptoJS\nconst encrypted = CryptoJS.AES.encrypt(cryptoData.message, cryptoData.secret).toString();\nconst decrypted = CryptoJS.AES.decrypt(encrypted, cryptoData.secret).toString(CryptoJS.enc.Utf8);\n\nresults.cryptography = {\n  originalMessage: cryptoData.message,\n  encrypted: encrypted,\n  decrypted: decrypted,\n  md5Hash: CryptoJS.MD5(cryptoData.message).toString(),\n  sha256Hash: CryptoJS.SHA256(cryptoData.message).toString(),\n  hmac: CryptoJS.HmacSHA256(cryptoData.message, cryptoData.apiKey).toString(),\n  base64: CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(cryptoData.message))\n};\n\n// 5. Validation with Joi\nconst schema = Joi.object({\n  email: Joi.string().email().required(),\n  age: Joi.number().min(18).max(100),\n  username: Joi.string().alphanum().min(3).max(20)\n});\n\nconst testData = [\n  { email: 'valid@email.com', age: 25, username: 'user123' },\n  { email: 'invalid-email', age: 150, username: 'us' },\n  { email: 'test@test.com', age: 17, username: 'valid_user' }\n];\n\nresults.validation = testData.map(data => {\n  const validation = schema.validate(data);\n  return {\n    input: data,\n    isValid: !validation.error,\n    errors: validation.error ? validation.error.details.map(d => d.message) : []\n  };\n});\n\n// 6. UUID Generation\nresults.identifiers = {\n  transactionIds: salesData.map(sale => ({\n    product: sale.product,\n    uuid: uuid.v4(),\n    shortId: nanoid.nanoid(10)\n  })),\n  sessionId: uuid.v4(),\n  apiKey: nanoid.nanoid(32)\n};\n\n// 7. Data Formatting\nresults.formatting = {\n  slugs: lodash.uniq(salesData.map(s => s.product)).map(product => ({\n    original: product,\n    slug: slug(product),\n    kebab: lodash.kebabCase(product),\n    snake: lodash.snakeCase(product)\n  })),\n  plural: {\n    '1 item': pluralize('item', 1),\n    '5 items': pluralize('item', 5),\n    '1 person': pluralize('person', 1),\n    '3 people': pluralize('person', 3)\n  },\n  bytes: {\n    '1024': bytes(1024),\n    '1048576': bytes(1048576),\n    '1073741824': bytes(1073741824)\n  }\n};\n\n// 8. Advanced Data Processing\nconst csvData = papaparse.unparse(salesData.map(sale => ({\n  Date: sale.date,\n  Product: sale.product,\n  Price: sale.price,\n  Quantity: sale.quantity,\n  Total: sale.price * sale.quantity,\n  Customer: sale.customer.name,\n  Country: sale.customer.country\n})));\n\nresults.dataExport = {\n  csvPreview: csvData.split('\\n').slice(0, 5).join('\\n') + '\\n...',\n  jsonSize: bytes(JSON.stringify(salesData).length),\n  yamlPreview: YAML.stringify(salesData[0])\n};\n\n// 9. Math Operations\nconst revenues = salesData.map(s => s.price * s.quantity);\nresults.statistics = {\n  mean: math.mean(revenues),\n  median: math.median(revenues),\n  std: math.std(revenues),\n  variance: math.variance(revenues),\n  sum: math.sum(revenues),\n  expression: math.evaluate('sqrt(3^2 + 4^2)')\n};\n\n// 10. Summary Dashboard\nresults.dashboard = {\n  totalOrders: salesData.length,\n  totalRevenue: results.salesAnalysis.totalRevenue,\n  topProduct: results.salesAnalysis.topProduct.product,\n  averageRating: results.textAnalysis.averageRating.toFixed(1),\n  countries: Object.keys(results.salesAnalysis.salesByCountry).length,\n  processingTime: dayjs().format('HH:mm:ss'),\n  securityStatus: 'All data encrypted successfully',\n  validationPassed: results.validation.filter(v => v.isValid).length + '/' + results.validation.length\n};\n\nreturn results;"
+      },
+      "id": "9f6cad11-913f-47dd-b171-9e47994bc065",
+      "name": "Super Code - Advanced Processing",
+      "type": "@kenkaiii/n8n-nodes-supercode.superCodeNodeVmSafe",
+      "typeVersion": 1,
+      "position": [750, 300]
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Set Mock Sales Data",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Set Config & Crypto Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Mock Sales Data": {
+      "main": [
+        [
+          {
+            "node": "Super Code - Advanced Processing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Config & Crypto Data": {
+      "main": [
+        [
+          {
+            "node": "Super Code - Advanced Processing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateId": "supercode-power-demo"
+  },
+  "pinData": {},
+  "versionId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "triggerCount": 0,
+  "tags": []
+}

@@ -28,12 +28,12 @@ if (typeof OPENCODE_TUI_PATH !== "undefined") {
 
 export const TuiCommand = cmd({
   command: "$0 [project]",
-  describe: "start opencode tui",
+  describe: "✨ start ken8n-coder interactive TUI",
   builder: (yargs) =>
     yargs
       .positional("project", {
         type: "string",
-        describe: "path to start opencode in",
+        describe: "path to start ken8n-coder in",
       })
       .option("model", {
         type: "string",
@@ -194,9 +194,9 @@ export const TuiCommand = cmd({
 })
 
 /**
- * Get the correct command to run opencode CLI
+ * Get the correct command to run ken8n-coder CLI
  * In development: ["bun", "run", "packages/opencode/src/index.ts"]
- * In production: ["/path/to/opencode"]
+ * In production: ["/path/to/ken8n-coder"]
  */
 function getOpencodeCommand(): string[] {
   // Check if OPENCODE_BIN_PATH is set (used by shell wrapper scripts)

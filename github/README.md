@@ -1,30 +1,30 @@
-# opencode GitHub Action
+# ken8n-coder GitHub Action
 
-A GitHub Action that integrates [opencode](https://opencode.ai) directly into your GitHub workflow.
+A GitHub Action that integrates [ken8n-coder](https://github.com/kenkaiii/ken8n-coder) directly into your GitHub workflow.
 
-Mention `/opencode` in your comment, and opencode will execute tasks within your GitHub Actions runner.
+Mention `/ken8n-coder` in your comment, and ken8n-coder will execute tasks within your GitHub Actions runner.
 
 ## Features
 
-#### Explain an issues
+#### Explain issues
 
-Leave the following comment on a GitHub issue. `opencode` will read the entire thread, including all comments, and reply with a clear explanation.
-
-```
-/opencode explain this issue
-```
-
-#### Fix an issues
-
-Leave the following comment on a GitHub issue. opencode will create a new branch, implement the changes, and open a PR with the changes.
+Leave the following comment on a GitHub issue. `ken8n-coder` will read the entire thread, including all comments, and reply with a clear explanation.
 
 ```
-/opencode fix this
+/ken8n-coder explain this issue
+```
+
+#### Fix issues
+
+Leave the following comment on a GitHub issue. ken8n-coder will create a new branch, implement the changes, and open a PR with the changes.
+
+```
+/ken8n-coder fix this
 ```
 
 #### Review PRs and make changes
 
-Leave the following comment on a GitHub PR. opencode will implement the requested change and commit it to the same PR.
+Leave the following comment on a GitHub PR. ken8n-coder will implement the requested change and commit it to the same PR.
 
 ```
 Delete the attachment from S3 when the note is removed /oc
@@ -32,10 +32,21 @@ Delete the attachment from S3 when the note is removed /oc
 
 ## Installation
 
+### Step 1: Install ken8n-coder
+
+First, install ken8n-coder globally via npm:
+
+```bash
+# Install globally via npm (works on Windows, Mac, and Linux)
+npm i -g ken8n-coder@latest
+```
+
+### Step 2: Set up GitHub Integration
+
 Run the following command in the terminal from your GitHub repo:
 
 ```bash
-opencode github install
+ken8n-coder github install
 ```
 
 This will walk you through installing the GitHub app, creating the workflow, and setting up secrets.
@@ -43,20 +54,20 @@ This will walk you through installing the GitHub app, creating the workflow, and
 ### Manual Setup
 
 1. Install the GitHub app https://github.com/apps/opencode-agent. Make sure it is installed on the target repository.
-2. Add the following workflow file to `.github/workflows/opencode.yml` in your repo. Set the appropriate `model` and required API keys in `env`.
+2. Add the following workflow file to `.github/workflows/ken8n-coder.yml` in your repo. Set the appropriate `model` and required API keys in `env`.
 
    ```yml
-   name: opencode
+   name: ken8n-coder
 
    on:
      issue_comment:
        types: [created]
 
    jobs:
-     opencode:
+     ken8n-coder:
        if: |
          contains(github.event.comment.body, '/oc') ||
-         contains(github.event.comment.body, '/opencode')
+         contains(github.event.comment.body, '/ken8n-coder')
        runs-on: ubuntu-latest
        permissions:
          id-token: write
@@ -66,19 +77,20 @@ This will walk you through installing the GitHub app, creating the workflow, and
            with:
              fetch-depth: 1
 
-         - name: Run opencode
-           uses: sst/opencode/github@latest
+         - name: Install ken8n-coder
+           run: npm i -g ken8n-coder@latest
+
+         - name: Run ken8n-coder
            env:
              ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-           with:
-             model: anthropic/claude-sonnet-4-20250514
+           run: ken8n-coder github run --model anthropic/claude-sonnet-4-20250514
    ```
 
 3. Store the API keys in secrets. In your organization or project **settings**, expand **Secrets and variables** on the left and select **Actions**. Add the required API keys.
 
 ## Support
 
-This is an early release. If you encounter issues or have feedback, please create an issue at https://github.com/sst/opencode/issues.
+This is an early release. If you encounter issues or have feedback, please create an issue at https://github.com/kenkaiii/ken8n-coder/issues.
 
 ## Development
 
@@ -96,16 +108,16 @@ To test locally:
    MODEL=anthropic/claude-sonnet-4-20250514 \
      ANTHROPIC_API_KEY=sk-ant-api03-1234567890 \
      GITHUB_RUN_ID=dummy \
-     bun /path/to/opencode/packages/opencode/src/index.ts github run \
+     bun /path/to/ken8n-coder/packages/opencode/src/index.ts github run \
      --token 'github_pat_1234567890' \
      --event '{"eventName":"issue_comment",...}'
    ```
 
-   - `MODEL`: The model used by opencode. Same as the `MODEL` defined in the GitHub workflow.
+   - `MODEL`: The model used by ken8n-coder. Same as the `MODEL` defined in the GitHub workflow.
    - `ANTHROPIC_API_KEY`: Your model provider API key. Same as the keys defined in the GitHub workflow.
    - `GITHUB_RUN_ID`: Dummy value to emulate GitHub action environment.
-   - `/path/to/opencode`: Path to your cloned opencode repo. `bun /path/to/opencode/packages/opencode/src/index.ts` runs your local version of `opencode`.
-   - `--token`: A GitHub persontal access token. This token is used to verify you have `admin` or `write` access to the test repo. Generate a token [here](https://github.com/settings/personal-access-tokens).
+   - `/path/to/ken8n-coder`: Path to your cloned ken8n-coder repo. `bun /path/to/ken8n-coder/packages/opencode/src/index.ts` runs your local version of `ken8n-coder`.
+   - `--token`: A GitHub personal access token. This token is used to verify you have `admin` or `write` access to the test repo. Generate a token [here](https://github.com/settings/personal-access-tokens).
    - `--event`: Mock GitHub event payload (see templates below).
 
 ### Issue comment event

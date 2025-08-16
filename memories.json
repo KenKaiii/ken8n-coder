@@ -14,8 +14,8 @@
         "architecture"
       ],
       "timestamp": "2025-08-16T09:56:06.079Z",
-      "accessCount": 10,
-      "lastAccessed": "2025-08-16T10:49:48.449Z",
+      "accessCount": 25,
+      "lastAccessed": "2025-08-16T16:04:11.815Z",
       "lastVerified": "2025-08-16T09:56:06.079Z",
       "status": "fresh"
     },
@@ -31,8 +31,8 @@
         "generation"
       ],
       "timestamp": "2025-08-16T09:56:32.524Z",
-      "accessCount": 9,
-      "lastAccessed": "2025-08-16T10:49:48.449Z",
+      "accessCount": 22,
+      "lastAccessed": "2025-08-16T16:03:52.869Z",
       "lastVerified": "2025-08-16T09:56:32.524Z",
       "status": "fresh"
     },
@@ -49,8 +49,8 @@
       ],
       "timestamp": "2025-08-16T09:56:48.904Z",
       "context": "Starting research task for n8n development",
-      "accessCount": 6,
-      "lastAccessed": "2025-08-16T10:48:02.650Z",
+      "accessCount": 15,
+      "lastAccessed": "2025-08-16T16:03:52.746Z",
       "lastVerified": "2025-08-16T09:56:48.904Z",
       "status": "fresh"
     },
@@ -70,8 +70,8 @@
       ],
       "timestamp": "2025-08-16T10:01:19.276Z",
       "context": "Successfully completed comprehensive n8n research task",
-      "accessCount": 10,
-      "lastAccessed": "2025-08-16T10:49:48.449Z",
+      "accessCount": 26,
+      "lastAccessed": "2025-08-16T16:04:19.011Z",
       "lastVerified": "2025-08-16T10:01:19.276Z",
       "status": "fresh"
     },
@@ -89,8 +89,8 @@
         "requirements"
       ],
       "timestamp": "2025-08-16T10:01:39.136Z",
-      "accessCount": 8,
-      "lastAccessed": "2025-08-16T10:48:02.650Z",
+      "accessCount": 19,
+      "lastAccessed": "2025-08-16T16:03:52.869Z",
       "lastVerified": "2025-08-16T10:01:39.136Z",
       "status": "fresh"
     },
@@ -111,8 +111,8 @@
         "opencode"
       ],
       "timestamp": "2025-08-16T10:01:51.233Z",
-      "accessCount": 10,
-      "lastAccessed": "2025-08-16T10:49:48.449Z",
+      "accessCount": 25,
+      "lastAccessed": "2025-08-16T16:04:19.011Z",
       "lastVerified": "2025-08-16T10:01:51.233Z",
       "status": "fresh"
     },
@@ -129,8 +129,8 @@
         "libraries"
       ],
       "timestamp": "2025-08-16T10:25:31.431Z",
-      "accessCount": 10,
-      "lastAccessed": "2025-08-16T10:49:48.449Z",
+      "accessCount": 24,
+      "lastAccessed": "2025-08-16T16:04:11.815Z",
       "lastVerified": "2025-08-16T10:25:31.431Z",
       "status": "fresh"
     },
@@ -146,8 +146,8 @@
         "final"
       ],
       "timestamp": "2025-08-16T10:41:51.594Z",
-      "accessCount": 6,
-      "lastAccessed": "2025-08-16T10:48:02.650Z",
+      "accessCount": 16,
+      "lastAccessed": "2025-08-16T16:03:52.869Z",
       "lastVerified": "2025-08-16T10:41:51.594Z",
       "status": "fresh"
     },
@@ -163,8 +163,8 @@
         "system-prompts"
       ],
       "timestamp": "2025-08-16T10:45:35.124Z",
-      "accessCount": 11,
-      "lastAccessed": "2025-08-16T10:49:48.449Z",
+      "accessCount": 26,
+      "lastAccessed": "2025-08-16T16:04:19.011Z",
       "lastVerified": "2025-08-16T10:45:35.124Z",
       "status": "fresh"
     },
@@ -183,8 +183,8 @@
         "n8n"
       ],
       "timestamp": "2025-08-16T10:46:40.466Z",
-      "accessCount": 6,
-      "lastAccessed": "2025-08-16T10:49:48.449Z",
+      "accessCount": 22,
+      "lastAccessed": "2025-08-16T16:04:19.011Z",
       "lastVerified": "2025-08-16T10:46:40.466Z",
       "status": "fresh"
     },
@@ -203,8 +203,8 @@
         "score"
       ],
       "timestamp": "2025-08-16T10:46:41.719Z",
-      "accessCount": 5,
-      "lastAccessed": "2025-08-16T10:49:52.023Z",
+      "accessCount": 14,
+      "lastAccessed": "2025-08-16T16:04:19.011Z",
       "lastVerified": "2025-08-16T10:46:41.719Z",
       "status": "fresh"
     },
@@ -224,8 +224,8 @@
       ],
       "timestamp": "2025-08-16T10:46:54.150Z",
       "context": "Analysis of ken8n-coder system gaps for comprehensive n8n workflow creation",
-      "accessCount": 3,
-      "lastAccessed": "2025-08-16T10:49:48.449Z",
+      "accessCount": 7,
+      "lastAccessed": "2025-08-16T16:04:19.011Z",
       "lastVerified": "2025-08-16T10:46:54.150Z",
       "status": "fresh"
     },
@@ -244,8 +244,8 @@
       ],
       "timestamp": "2025-08-16T10:47:08.698Z",
       "context": "UX evaluation of ken8n-coder system prompts and documentation for n8n workflow creation",
-      "accessCount": 4,
-      "lastAccessed": "2025-08-16T10:49:48.449Z",
+      "accessCount": 10,
+      "lastAccessed": "2025-08-16T16:04:19.011Z",
       "lastVerified": "2025-08-16T10:47:08.698Z",
       "status": "fresh"
     },
@@ -510,8 +510,8 @@
       ],
       "timestamp": "2025-08-16T11:24:55.966Z",
       "context": "Global command setup for ken8n-coder - multiple working approaches",
-      "accessCount": 0,
-      "lastAccessed": "2025-08-16T11:24:55.966Z",
+      "accessCount": 1,
+      "lastAccessed": "2025-08-16T16:16:49.536Z",
       "lastVerified": "2025-08-16T11:24:55.966Z",
       "status": "fresh"
     },
@@ -531,8 +531,8 @@
       ],
       "timestamp": "2025-08-16T11:27:41.402Z",
       "context": "Complete ken8n-coder global setup with configuration and documentation",
-      "accessCount": 0,
-      "lastAccessed": "2025-08-16T11:27:41.402Z",
+      "accessCount": 1,
+      "lastAccessed": "2025-08-16T16:16:49.536Z",
       "lastVerified": "2025-08-16T11:27:41.402Z",
       "status": "fresh"
     },
@@ -552,8 +552,8 @@
       ],
       "timestamp": "2025-08-16T11:31:38.704Z",
       "context": "ken8n-coder global command debugging and fix",
-      "accessCount": 0,
-      "lastAccessed": "2025-08-16T11:31:38.704Z",
+      "accessCount": 1,
+      "lastAccessed": "2025-08-16T16:16:49.536Z",
       "lastVerified": "2025-08-16T11:31:38.704Z",
       "status": "fresh"
     },
@@ -593,8 +593,8 @@
       ],
       "timestamp": "2025-08-16T11:42:46.285Z",
       "context": "Fixed global ken8n-coder command to work properly",
-      "accessCount": 0,
-      "lastAccessed": "2025-08-16T11:42:46.285Z",
+      "accessCount": 1,
+      "lastAccessed": "2025-08-16T16:16:49.536Z",
       "lastVerified": "2025-08-16T11:42:46.285Z",
       "status": "fresh"
     },
@@ -632,8 +632,8 @@
         "cleanup"
       ],
       "timestamp": "2025-08-16T12:04:13.449Z",
-      "accessCount": 0,
-      "lastAccessed": "2025-08-16T12:04:13.449Z",
+      "accessCount": 1,
+      "lastAccessed": "2025-08-16T16:16:49.536Z",
       "lastVerified": "2025-08-16T12:04:13.449Z",
       "status": "fresh"
     },
@@ -671,8 +671,8 @@
       ],
       "timestamp": "2025-08-16T12:07:36.317Z",
       "context": "Fixed TUI runtime issues after command cleanup",
-      "accessCount": 0,
-      "lastAccessed": "2025-08-16T12:07:36.317Z",
+      "accessCount": 1,
+      "lastAccessed": "2025-08-16T16:16:49.536Z",
       "lastVerified": "2025-08-16T12:07:36.317Z",
       "status": "fresh"
     },
@@ -689,8 +689,8 @@
       ],
       "timestamp": "2025-08-16T12:11:22.796Z",
       "context": "Debugging ken8n-coder TUI immediate exit issue",
-      "accessCount": 0,
-      "lastAccessed": "2025-08-16T12:11:22.796Z",
+      "accessCount": 1,
+      "lastAccessed": "2025-08-16T16:16:49.536Z",
       "lastVerified": "2025-08-16T12:11:22.796Z",
       "status": "fresh"
     },
@@ -707,8 +707,8 @@
       ],
       "timestamp": "2025-08-16T12:12:11.665Z",
       "context": "Debugging ken8n-coder TUI immediate exit - command analysis",
-      "accessCount": 0,
-      "lastAccessed": "2025-08-16T12:12:11.665Z",
+      "accessCount": 1,
+      "lastAccessed": "2025-08-16T16:16:49.536Z",
       "lastVerified": "2025-08-16T12:12:11.665Z",
       "status": "fresh"
     },
@@ -725,8 +725,8 @@
       ],
       "timestamp": "2025-08-16T12:12:49.636Z",
       "context": "Debugging ken8n-coder TUI immediate exit - root cause found",
-      "accessCount": 0,
-      "lastAccessed": "2025-08-16T12:12:49.636Z",
+      "accessCount": 1,
+      "lastAccessed": "2025-08-16T16:16:49.536Z",
       "lastVerified": "2025-08-16T12:12:49.636Z",
       "status": "fresh"
     },
@@ -866,7 +866,797 @@
       "lastAccessed": "2025-08-16T12:40:02.810Z",
       "lastVerified": "2025-08-16T12:40:02.810Z",
       "status": "fresh"
+    },
+    {
+      "id": "mem_1755348537778_xk538jrju",
+      "content": "Fixed git sync (needed bun in PATH for pre-push hook) and updated TUI branding completely. Created new ken8n-coder.json theme with light pink (#ffb3d1) and orange (#ffa366) colors while keeping white/grey text. Changed default theme from 'opencode' to 'ken8n-coder' and default agent from 'build' to 'workflow'. Updated status component to show 'ken8n-coder' instead of 'opencode' and 'WORKFLOW AGENT' instead of 'AGENT'. TUI now has distinctive pink/orange color scheme.",
+      "type": "solution",
+      "tags": [
+        "solution",
+        "git",
+        "sync",
+        "TUI",
+        "theme",
+        "colors",
+        "pink",
+        "orange",
+        "branding",
+        "workflow"
+      ],
+      "timestamp": "2025-08-16T12:48:57.778Z",
+      "context": "Complete TUI rebranding with new color scheme",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T12:48:57.778Z",
+      "lastVerified": "2025-08-16T12:48:57.778Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755348863544_w7iw4lpzi",
+      "content": "Completed full visual rebranding of ken8n-coder. Updated ASCII art from 'OPEN CODE' to 'KEN8N CODER' using exact same design as README. Applied light pink (#ffb3d1) and orange (#ff8c42) colors to ASCII art. Changed CLI script name from 'opencode' to 'ken8n-coder'. Updated command descriptions. Created complete visual identity with distinctive pink/orange color scheme throughout CLI and TUI interfaces.",
+      "type": "general",
+      "tags": [
+        "general",
+        "ASCII",
+        "branding",
+        "colors",
+        "pink",
+        "orange",
+        "CLI",
+        "visual",
+        "complete"
+      ],
+      "timestamp": "2025-08-16T12:54:23.544Z",
+      "context": "Complete visual rebranding with pink/orange ASCII art",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T12:54:23.544Z",
+      "lastVerified": "2025-08-16T12:54:23.544Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755349226608_laeilg94x",
+      "content": "Fixed TUI main interface ASCII art colors. Updated the actual TUI startup screen (not just CLI help) to show 'ken8n' + 'coder' ASCII in pink (#ffb3d1) and orange (#ff8c42) colors. Kept the exact same ASCII art design but applied new color scheme. Fixed compilation issues with compat.AdaptiveColor types and removed unused variables. TUI now shows distinctive pink/orange branding when launched.",
+      "type": "solution",
+      "tags": [
+        "solution",
+        "TUI",
+        "ASCII",
+        "colors",
+        "pink",
+        "orange",
+        "interface",
+        "branding"
+      ],
+      "timestamp": "2025-08-16T13:00:26.608Z",
+      "context": "TUI main interface ASCII art color update",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T13:00:26.608Z",
+      "lastVerified": "2025-08-16T13:00:26.608Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755349340674_odgb67ia7",
+      "content": "Updated CLI ASCII art to match TUI interface exactly. Changed from large KEN8N CODER ASCII to the same compact 'ken8n' + 'coder' ASCII used in TUI. Both CLI help (--help) and TUI interface now show identical ASCII art with matching pink (#ffb3d1) and orange (#ff8c42) colors. Consistent branding across all interfaces now complete.",
+      "type": "general",
+      "tags": [
+        "general",
+        "ASCII",
+        "consistency",
+        "CLI",
+        "TUI",
+        "matching",
+        "branding",
+        "pink",
+        "orange"
+      ],
+      "timestamp": "2025-08-16T13:02:20.674Z",
+      "context": "Made CLI and TUI ASCII art identical with matching colors",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T13:02:20.674Z",
+      "lastVerified": "2025-08-16T13:02:20.674Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755349575096_rko0t3u1z",
+      "content": "Updated ken8n-coder to use new custom ASCII art exactly as specified. Applied pink/orange coloring to the new ASCII design. Updated both CLI and TUI to use identical ASCII art. Changed TUI background from black to dark blue navy (#1a1a2e, #16213e, #0f3460) for better visual contrast with pink/orange accents while maintaining WCAG accessibility. Complete visual overhaul completed with consistent branding.",
+      "type": "general",
+      "tags": [
+        "general",
+        "ASCII",
+        "custom",
+        "pink",
+        "orange",
+        "navy",
+        "background",
+        "WCAG",
+        "accessibility",
+        "branding"
+      ],
+      "timestamp": "2025-08-16T13:06:15.096Z",
+      "context": "Custom ASCII art update with navy background and pink/orange theme",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T13:06:15.096Z",
+      "lastVerified": "2025-08-16T13:06:15.096Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755349899707_hlqe5tjm8",
+      "content": "Updated both CLI and TUI to use the new large KEN8NCODER ASCII art exactly as specified. Applied pink (#ffb3d1) coloring to the ASCII art. Both CLI help and TUI interface now show identical large-format ASCII branding. Combined with navy blue background theme (#1a1a2e) and pink/orange accents for a completely distinctive visual identity that maintains WCAG accessibility standards.",
+      "type": "general",
+      "tags": [
+        "general",
+        "ASCII",
+        "KEN8NCODER",
+        "large",
+        "consistent",
+        "CLI",
+        "TUI",
+        "pink",
+        "navy",
+        "branding",
+        "final"
+      ],
+      "timestamp": "2025-08-16T13:11:39.707Z",
+      "context": "Final ASCII art update to large KEN8NCODER format with consistent branding",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T13:11:39.707Z",
+      "lastVerified": "2025-08-16T13:11:39.707Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755350073020_fgzgj1h05",
+      "content": "Final ASCII art update complete! Updated both CLI and TUI to use the new stylized block ASCII art exactly as requested. The stylized 'KEN8N CODER' ASCII with gradient shading blocks (░▒▓) now appears consistently in both interfaces with pink (#ffb3d1) coloring. Combined with navy blue background theme and pink/orange accents for a completely unique and professional visual identity.",
+      "type": "general",
+      "tags": [
+        "general",
+        "ASCII",
+        "stylized",
+        "blocks",
+        "gradient",
+        "final",
+        "consistent",
+        "pink",
+        "navy",
+        "complete"
+      ],
+      "timestamp": "2025-08-16T13:14:33.020Z",
+      "context": "Final ASCII art update to stylized block design",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T13:14:33.020Z",
+      "lastVerified": "2025-08-16T13:14:33.020Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755353363130_1c8flrlo0",
+      "content": "Successfully updated ken8n-coder README.md to focus on NPM installation:\n1. Removed all curl installer references from Quick Start section\n2. Replaced \"Installation Options\" section with simplified \"Installation\" section\n3. Emphasized NPM as the universal, cross-platform solution\n4. Kept alternative package managers (bun, pnpm, yarn) as options\n5. Removed custom installation directory sections that were curl-specific\n6. Made it clear NPM works on Windows, Mac, and Linux\n\nMain task completed, though markdown linting issues remain (mostly line length violations in ASCII art and other formatting issues).",
+      "type": "solution",
+      "tags": [
+        "solution",
+        "ken8n-coder",
+        "readme",
+        "npm-installation",
+        "documentation"
+      ],
+      "timestamp": "2025-08-16T14:09:23.130Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T14:09:23.130Z",
+      "lastVerified": "2025-08-16T14:09:23.130Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755356999000_7lycxwy1r",
+      "content": "Evaluating AGENTS.md requirements for ken8n-coder - AI agent for creating n8n workflows with Super Code nodes. Need to assess current codebase and recommend essential guidelines.",
+      "type": "tip",
+      "tags": [
+        "tip",
+        "ken8n-coder",
+        "agents-md",
+        "evaluation",
+        "n8n",
+        "workflow"
+      ],
+      "timestamp": "2025-08-16T15:09:59.000Z",
+      "context": "Opinion task for ken8n-coder AGENTS.md file structure",
+      "accessCount": 1,
+      "lastAccessed": "2025-08-16T15:45:11.233Z",
+      "lastVerified": "2025-08-16T15:09:59.000Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755357041185_ijpy695uf",
+      "content": "Current AGENTS.md scored 2/10 - completely misses project purpose. Need total rewrite focusing on n8n workflow creation, Super Code nodes, available libraries, VM environment constraints, and ken8n-workflows directory structure.",
+      "type": "config",
+      "tags": [
+        "config",
+        "agents-md",
+        "evaluation",
+        "score-2",
+        "rewrite-needed",
+        "n8n",
+        "workflow"
+      ],
+      "timestamp": "2025-08-16T15:10:41.185Z",
+      "context": "AGENTS.md evaluation results",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T15:10:41.185Z",
+      "lastVerified": "2025-08-16T15:10:41.185Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755357146657_0d5g60ex8",
+      "content": "Created focused AGENTS.md for ken8n-coder project with these key sections:\n1. PRIMARY PURPOSE: Clear statement about creating n8n workflow JSON files with Super Code nodes\n2. SUPER CODE NODE ESSENTIALS: Critical parameter info (code not jsCode), node type, VM environment restrictions\n3. FILE REQUIREMENTS: Save location (ken8n-workflows/), naming conventions, security restrictions\n4. AVAILABLE LIBRARIES: Quick reference to 35+ pre-loaded global libraries (lodash, axios, etc.)\n5. WORKFLOW PATTERNS: Basic n8n structure guidance\n6. VALIDATION: JSON structure and importability checks\n\nReplaced old TypeScript/Bun content with n8n-specific workflow creation guidelines. File passed markdown linting.",
+      "type": "config",
+      "tags": [
+        "config",
+        "typescript",
+        "ken8n-coder",
+        "agents",
+        "documentation",
+        "n8n",
+        "workflow"
+      ],
+      "timestamp": "2025-08-16T15:12:26.657Z",
+      "accessCount": 1,
+      "lastAccessed": "2025-08-16T15:45:11.233Z",
+      "lastVerified": "2025-08-16T15:12:26.657Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755358937552_2h1v2z6r3",
+      "content": "Analyzed ken8n-coder system prompts for information density evaluation. Key findings:\n- anthropic.txt: 200 lines with critical Super Code details, library usage, validation requirements\n- copilot-gpt-5.txt: 161 lines with structured workflow processes and agent instructions  \n- AGENTS.md: 46 lines focused summary of essentials\n- SUPERCODE_NODE.md: 104 lines comprehensive library reference\n\nSystem contains extensive n8n workflow creation guidance, Super Code VM environment specifics, 35+ library references, validation requirements, and detailed troubleshooting patterns.",
+      "type": "config",
+      "tags": [
+        "config",
+        "ken8n-coder",
+        "system-prompts",
+        "information-density",
+        "analysis"
+      ],
+      "timestamp": "2025-08-16T15:42:17.552Z",
+      "accessCount": 5,
+      "lastAccessed": "2025-08-16T16:04:19.011Z",
+      "lastVerified": "2025-08-16T15:42:17.552Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755358974023_78w3s0rmv",
+      "content": "Starting research on AI agent system prompt optimization. Focus: optimal prompt length, information hierarchy, repetition vs clarity, cognitive load, failure prevention approaches. Goal: evaluate if 500+ line system prompts help or hurt performance for specialized tasks like n8n workflow creation.",
+      "type": "error",
+      "tags": [
+        "error",
+        "optimization",
+        "research",
+        "ai-agents",
+        "prompt-engineering",
+        "system-prompts"
+      ],
+      "timestamp": "2025-08-16T15:42:54.023Z",
+      "context": "User wants to understand if current verbose system prompts are optimal for specialized agent tasks",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T15:42:54.023Z",
+      "lastVerified": "2025-08-16T15:42:54.023Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755359135728_fddvretk9",
+      "content": "Super Code Library Reference Analysis:\nCurrent approach lists 35+ libraries multiple times across different sections:\n- Line 58: Complete comma-separated list (58 libraries)\n- Lines 82-83: Same list repeated  \n- Lines 94-105: Usage examples showing correct vs incorrect syntax\n- SUPERCODE_NODE.md: Categorized list with descriptions\n\nREFERENCE EFFICIENCY PROBLEMS:\n1. Massive duplication - same library list appears 3+ times\n2. Inconsistent formatting between sections\n3. Mixed presentation styles (categorized vs flat list)\n4. Usage examples only for a few libraries, not comprehensive\n5. Context switching between formats confusing for agents",
+      "type": "general",
+      "tags": [
+        "general",
+        "super-code",
+        "libraries",
+        "documentation",
+        "agent-reference",
+        "efficiency"
+      ],
+      "timestamp": "2025-08-16T15:45:35.728Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T15:45:35.728Z",
+      "lastVerified": "2025-08-16T15:45:35.728Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755359148400_30h4tkmvh",
+      "content": "Ken8n-Coder Sequential Building Instruction Analysis:\n\nCURRENT INSTRUCTION: \"CRITICAL: Build workflows SEQUENTIALLY, node by node - do not create the entire workflow at once. This allows careful consideration of each node's configuration and parameters.\"\n\nCONTEXT: Found in anthropic.txt and copilot-gpt-5.txt prompts. Supported by related instructions about \"incremental\" building and \"step by step\" approach.\n\nCLARITY ISSUES IDENTIFIED:\n1. No specific definition of what \"node by node\" means practically\n2. No concrete steps for how to build sequentially\n3. No examples showing sequential vs incorrect approaches\n4. Missing guidance on when to add connections between nodes\n5. No instruction on how to validate each node before moving to next\n\nSUPPORTING INSTRUCTIONS FOUND:\n- \"Build the workflow incrementally. Create nodes, configure parameters, and write JavaScript for Super Code nodes\"\n- \"Test frequently. Validate JSON structure and node connections after each change\"\n- TodoWrite tool for tracking progress\n- Examples show breaking down into todo items per node type",
+      "type": "warning",
+      "tags": [
+        "warning",
+        "javascript",
+        "evaluation",
+        "ken8n-coder",
+        "sequential-building",
+        "instructions",
+        "clarity"
+      ],
+      "timestamp": "2025-08-16T15:45:48.400Z",
+      "accessCount": 3,
+      "lastAccessed": "2025-08-16T16:04:19.011Z",
+      "lastVerified": "2025-08-16T15:45:48.400Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755359152582_985cct8ma",
+      "content": "Ken8n-Coder Current Prompt Analysis:\n- Main prompt (anthropic.txt): 199 lines \n- Total across all prompt files: 1,092 lines\n- Highly specialized for n8n workflow creation with Super Code nodes\n- Contains extensive library documentation (lodash, axios, etc.)\n- Very prescriptive about JSON structure and error prevention\n- Includes 15+ detailed examples and anti-patterns\n- Focus: Prevention over creativity (error avoidance)",
+      "type": "error",
+      "tags": [
+        "error",
+        "analysis",
+        "prompts",
+        "ken8n-coder",
+        "n8n",
+        "optimization"
+      ],
+      "timestamp": "2025-08-16T15:45:52.582Z",
+      "context": "Evaluating prompt length optimization for specialized n8n workflow task",
+      "accessCount": 3,
+      "lastAccessed": "2025-08-16T16:04:19.011Z",
+      "lastVerified": "2025-08-16T15:45:52.582Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755359156127_wip4kzidy",
+      "content": "Ken8n-coder has fragmented system prompts across multiple files:\n1. anthropic.txt (200 lines) - Claude specific prompts with n8n workflow creation focus\n2. copilot-gpt-5.txt (161 lines) - GPT agent mode with autonomous workflow creation\n3. AGENTS.md in packages/opencode (28 lines) - Brief agent guidelines for opencode\n4. AGENTS.md in project root (46 lines) - Ken8n-coder specific agent guidelines\n\nKey overlaps: Super Code node configuration, library usage, file structure requirements\nKey differences: Anthropic focuses on concise responses, GPT focuses on autonomous agent behavior",
+      "type": "config",
+      "tags": [
+        "config",
+        "ken8n-coder",
+        "information-architecture",
+        "system-prompts",
+        "documentation"
+      ],
+      "timestamp": "2025-08-16T15:45:56.127Z",
+      "context": "System prompt architecture analysis for ken8n-coder",
+      "accessCount": 2,
+      "lastAccessed": "2025-08-16T16:04:11.815Z",
+      "lastVerified": "2025-08-16T15:45:56.127Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755359164055_3b1hqt3m4",
+      "content": "Ken8n-Coder System Prompt Analysis Completed:\n\nCRITICAL (failure prevention):\n- Super Code node specifics: @kenkaiii/n8n-nodes-supercode.superCodeNodeVmSafe, \"code\" parameter (NOT \"jsCode\")\n- Library usage: NEVER require() - use global variables directly (lodash.sum vs const _ = require('lodash'))\n- n8n JSON structure: Object root {\"name\", \"nodes\", \"connections\"} - NEVER array [{...}]\n- Node property requirements (Set nodes need \"values\": {\"values\": [...]}, HTTP needs url/requestMethod)\n- Validation requirement: Must run validate.js after workflow creation\n- Security: No hardcoded passwords/keys in workflows\n\nSUPPLEMENTARY (nice-to-have):\n- Verbose tone guidance and examples (75% of prompt is tone/style)\n- Tool usage policy details\n- Multiple example conversations\n- Proactiveness guidelines\n- TodoWrite usage patterns\n\nRECOMMENDATION: Keep critical technical rules, compress tone/style section to 20% of current size",
+      "type": "warning",
+      "tags": [
+        "warning",
+        "analysis",
+        "ken8n-coder",
+        "system-prompts",
+        "critical-vs-supplementary"
+      ],
+      "timestamp": "2025-08-16T15:46:04.055Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T15:46:04.055Z",
+      "lastVerified": "2025-08-16T15:46:04.055Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755359164869_p2zkrxgsk",
+      "content": "Ken8n-Coder System Prompt Analysis Started: Evaluating necessity of tone/style instructions in system prompts. Found extensive tone guidance in anthropic.txt (lines 9-72) including conciseness requirements, verbosity rules, emoji restrictions, and response formatting. Also found structured workflow instructions in copilot-gpt-5.txt. Need to assess if this guidance helps or hinders n8n workflow creation performance.",
+      "type": "general",
+      "tags": [
+        "general",
+        "analysis",
+        "system-prompts",
+        "tone-style",
+        "ken8n-coder"
+      ],
+      "timestamp": "2025-08-16T15:46:04.869Z",
+      "accessCount": 2,
+      "lastAccessed": "2025-08-16T16:04:11.815Z",
+      "lastVerified": "2025-08-16T15:46:04.869Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755359167378_w1dwzqfen",
+      "content": "Ken8n-Coder Validation Analysis - Current State:\n\nVALIDATION APPROACH:\n- Dedicated validate.js script (216 lines) with comprehensive workflow validation\n- Covers: JSON structure, node parameters, Super Code specific validation, security checks\n- AGENTS.md mentions validation at end (3 lines) - minimal guidance\n- System prompts extremely minimal - no validation emphasis found\n\nVALIDATION DEPTH:\n- Script validates: required fields, duplicate IDs/names, parameter structures, security patterns\n- Missing from prompts: mandatory validator usage instructions, error handling guidance\n- Gap: Agents may create workflows without running validation\n\nCURRENT INSTRUCTION DENSITY: \n- AGENTS.md: 3/46 lines (~6.5%) on validation\n- System prompts: No validation instructions found\n- Cloud system.txt: Generic OpenControl, no ken8n validation guidance",
+      "type": "error",
+      "tags": [
+        "error",
+        "validation",
+        "ken8n-coder",
+        "analysis",
+        "system-prompts",
+        "instruction-density"
+      ],
+      "timestamp": "2025-08-16T15:46:07.378Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T15:46:07.378Z",
+      "lastVerified": "2025-08-16T15:46:07.378Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755359183892_h7joudels",
+      "content": "Ken8n-Coder Tone/Style Analysis Complete: Scored 3/10 necessity. Found 63 lines (9-72) of tone guidance in anthropic.txt that create cognitive overhead without improving n8n workflow creation. Issues: excessive conciseness rules, 18 formatting examples, contradictory directives. Recommendation: eliminate 80% of tone instructions, replace with technical n8n guidance like Super Code examples and validation procedures.",
+      "type": "general",
+      "tags": [
+        "general",
+        "evaluation",
+        "system-prompts",
+        "ken8n-coder",
+        "recommendation",
+        "optimization"
+      ],
+      "timestamp": "2025-08-16T15:46:23.892Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T15:46:23.892Z",
+      "lastVerified": "2025-08-16T15:46:23.892Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755359203244_xmpzu7zx0",
+      "content": "Ken8n-Coder Prompt File Redundancy Assessment:\n\nFINDINGS:\n- Three main prompt files with overlapping content:\n  1. /packages/opencode/src/session/prompt/anthropic.txt (200 lines)\n  2. /packages/opencode/src/session/prompt/copilot-gpt-5.txt (161 lines) \n  3. /AGENTS.md (46 lines, project root)\n\nREDUNDANT CONTENT:\n- Super Code node specifications (@kenkaiii/n8n-nodes-supercode.superCodeNodeVmSafe)\n- \"code\" parameter requirement (NOT \"jsCode\")\n- VM environment library globals (lodash, axios, etc.)\n- n8n workflow JSON structure requirements\n- File saving to ken8n-workflows/ directory\n- Library usage patterns and syntax examples\n\nVARIATIONS:\n- anthropic.txt: Most comprehensive (200 lines), detailed examples, TodoWrite emphasis\n- copilot-gpt-5.txt: Agent-focused, structured workflow process, more verbose\n- AGENTS.md: Concise essentials only, missing detailed examples\n\nMAINTENANCE ISSUES:\n- Same information duplicated 3x with slight variations\n- Updates require syncing across multiple files\n- Risk of inconsistencies between files",
+      "type": "config",
+      "tags": [
+        "config",
+        "assessment",
+        "redundancy",
+        "maintenance",
+        "ken8n-coder",
+        "prompts"
+      ],
+      "timestamp": "2025-08-16T15:46:43.244Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T15:46:43.244Z",
+      "lastVerified": "2025-08-16T15:46:43.244Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755359218342_5mji0bdpi",
+      "content": "Ken8n-Coder Example Density Evaluation: Found 25+ examples across anthropic.txt and copilot-gpt-5.txt system prompts. Critical analysis reveals significant redundancy and cognitive overload issues. Examples include repetitive Super Code syntax corrections, multiple workflow creation patterns, and overlapping JavaScript usage demonstrations. System has evolved from general-purpose OpenCode to specialized n8n tool but retained excessive example baggage.",
+      "type": "general",
+      "tags": [
+        "general",
+        "javascript",
+        "opinion",
+        "ken8n-coder",
+        "system-prompts",
+        "example-density",
+        "learning-efficiency",
+        "cognitive-load"
+      ],
+      "timestamp": "2025-08-16T15:46:58.342Z",
+      "context": "Opinion evaluation of ken8n-coder system prompt example density for learning efficiency optimization",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T15:46:58.342Z",
+      "lastVerified": "2025-08-16T15:46:58.342Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755359227785_ajhptpizk",
+      "content": "Ken8n-Coder System Prompt Analysis Complete:\n\nFINDINGS:\n- Main system prompt: ~500+ lines total (anthropic.txt = 199 lines base, plus environment/custom additions)  \n- Extremely detailed with extensive examples, constraints, and instructions\n- Heavy focus on n8n workflow JSON creation with Super Code nodes\n- Multiple redundant sections covering same concepts (library usage repeated 3+ times)\n- Verbose examples that could be condensed\n- Tool usage policies, task management, file references all heavily detailed\n\nCOGNITIVE LOAD ISSUES IDENTIFIED:\n- Information overload with excessive detail repetition\n- Mixed abstraction levels (high-level goals mixed with implementation details)\n- Too many examples covering similar patterns\n- Verbose constraints that could be simplified\n- Instructions scattered across multiple sections instead of organized hierarchy",
+      "type": "config",
+      "tags": [
+        "config",
+        "evaluation",
+        "ken8n-coder",
+        "system-prompts",
+        "cognitive-load",
+        "analysis"
+      ],
+      "timestamp": "2025-08-16T15:47:07.785Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T15:47:07.785Z",
+      "lastVerified": "2025-08-16T15:47:07.785Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755359257577_03mrziw1j",
+      "content": "Opinion agent consensus on ken8n-coder system prompts:\n\nUNANIMOUS VERDICT: Massive information overload (500+ lines) hurting agent performance\n\nKEY SCORES:\n- Current system: 3-4/10 across all agents  \n- Information density: TOO HIGH - cognitive overload\n- Redundancy: 70-80% duplicate content across files\n- Example bloat: 15+ examples where 3-4 would suffice\n\nCRITICAL RECOMMENDATIONS:\n1. Cut prompt length by 70-85% (500+ lines → 150-200 lines)\n2. Consolidate files into single source of truth\n3. Front-load critical constraints (Super Code specs, validation)\n4. Remove redundant examples and tone guidance\n5. Focus on failure prevention over comprehensive coverage\n\nAGENT CONSENSUS: Less is exponentially more effective for specialized tasks",
+      "type": "error",
+      "tags": [
+        "error",
+        "system-prompts",
+        "optimization",
+        "agent-feedback",
+        "ken8n-coder"
+      ],
+      "timestamp": "2025-08-16T15:47:37.577Z",
+      "context": "System prompt optimization for ken8n-coder based on 10 opinion agent feedback",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T15:47:37.577Z",
+      "lastVerified": "2025-08-16T15:47:37.577Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755360234596_jpxkom4j7",
+      "content": "Evaluating instruction clarity for \"Build SEQUENTIALLY, node by node (not all at once)\" - assessing if concise format maintains effectiveness for agent workflow guidance in complex multi-node builds",
+      "type": "general",
+      "tags": [
+        "general",
+        "instruction-clarity",
+        "agent-workflow",
+        "prompt-optimization",
+        "sequential-building"
+      ],
+      "timestamp": "2025-08-16T16:03:54.596Z",
+      "context": "Opinion agent evaluation of prompt optimization - instruction clarity assessment",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T16:03:54.596Z",
+      "lastVerified": "2025-08-16T16:03:54.596Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755360234718_70asxx1q7",
+      "content": "Evaluating ken8n-coder library preservation strategy: single comprehensive line with 35+ libraries vs categorized lists approach. Focus on agent accessibility and Super Code development performance.",
+      "type": "general",
+      "tags": [
+        "general",
+        "evaluation",
+        "library-strategy",
+        "ken8n-coder",
+        "agent-performance"
+      ],
+      "timestamp": "2025-08-16T16:03:54.718Z",
+      "context": "Library accessibility evaluation for streamlined prompts",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T16:03:54.718Z",
+      "lastVerified": "2025-08-16T16:03:54.718Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755360250139_58lt0cgcg",
+      "content": "Library strategy evaluation complete: Single-line format scored 4/10 due to cognitive overload and poor discoverability. Recommendation: Use categorized mini-sections for better agent accessibility while maintaining completeness. Key insight: optimizing for storage space vs usability hurts agent performance.",
+      "type": "general",
+      "tags": [
+        "general",
+        "evaluation-complete",
+        "library-strategy",
+        "recommendation",
+        "agent-ux"
+      ],
+      "timestamp": "2025-08-16T16:04:10.139Z",
+      "context": "Completed evaluation with clear recommendation for improvement",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T16:04:10.139Z",
+      "lastVerified": "2025-08-16T16:04:10.139Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755360254677_tsrr97dh6",
+      "content": "Evaluated ken8n-coder system prompt optimization: 8.5/10 score. Excellent application of cognitive load theory - 25% reduction through removing redundant examples while preserving 100% functionality. Front-loading critical constraints leverages primacy effects and working memory optimization. Should significantly improve agent performance through reduced extraneous cognitive load. Recommendation: Implement immediately.",
+      "type": "tip",
+      "tags": [
+        "tip",
+        "optimization",
+        "cognitive-load",
+        "system-prompt",
+        "evaluation",
+        "ken8n-coder"
+      ],
+      "timestamp": "2025-08-16T16:04:14.677Z",
+      "context": "Cognitive science evaluation of AI agent system prompt optimization",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T16:04:14.677Z",
+      "lastVerified": "2025-08-16T16:04:14.677Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755360259988_89onakrab",
+      "content": "User asked to assess copilot-gpt-5.txt streamlining changes: 161 lines → 109 lines (32% reduction). Changes included: condensed agent behavior instructions to 3 lines, front-loaded Super Code requirements, preserved library list, simplified workflow to 5 steps, maintained autonomous characteristics. File not found in current workspace.",
+      "type": "general",
+      "tags": [
+        "general",
+        "assessment",
+        "gpt-agent",
+        "workflow-optimization",
+        "copilot"
+      ],
+      "timestamp": "2025-08-16T16:04:19.988Z",
+      "context": "Assessment request for GPT agent performance impact",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T16:04:19.988Z",
+      "lastVerified": "2025-08-16T16:04:19.988Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755360271283_f11skjzqh",
+      "content": "Ken8n-Coder Validation Workflow Integration Analysis:\n\nCURRENT VALIDATION INTEGRATION:\n- CRITICAL section in both anthropic.txt and copilot-gpt-5.txt\n- Mandatory validation command: \"node ken8n-workflows/validate.js workflow.json\"  \n- Positioned as final step before completion\n- Success criteria: \"✅ Workflow Clear, No problems!\"\n- 216-line comprehensive validation script covering JSON, nodes, security\n\nINTEGRATION POSITIONING:\n- Line 19 in anthropic.txt (CRITICAL section, high visibility)\n- Repeated at end with specific command example and success criteria\n- Front-loaded as failure prevention requirement\n- Clear command syntax provided for agent execution\n\nRELIABILITY ASSESSMENT:\n- Strong technical foundation with comprehensive validator\n- Clear positioning prevents agents from skipping validation  \n- Specific success message creates clear completion criteria\n- Addresses \"Could not find property option\" errors through parameter validation",
+      "type": "config",
+      "tags": [
+        "config",
+        "validation",
+        "integration",
+        "ken8n-coder",
+        "reliability",
+        "assessment"
+      ],
+      "timestamp": "2025-08-16T16:04:31.283Z",
+      "context": "Analyzing validation workflow integration effectiveness in ken8n-coder system prompts",
+      "accessCount": 1,
+      "lastAccessed": "2025-08-16T16:16:49.536Z",
+      "lastVerified": "2025-08-16T16:04:31.283Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755360275835_gwbetq1w6",
+      "content": "Model-specific differentiation analysis between anthropic.txt and copilot-gpt-5.txt files completed. Key findings:\n\nBEHAVIORAL DIFFERENCES:\n- anthropic.txt: \"Concise, direct answers. No explanations unless requested. One-word answers when possible.\" (line 3)\n- copilot-gpt-5.txt: \"Thorough, autonomous, persistent. Use TodoWrite to track progress. Test rigorously. Never end turn until problem fully solved.\" (line 3)\n\nTECHNICAL CONTENT: Nearly identical across both files\n- Same Super Code node requirements \n- Same n8n workflow structure requirements\n- Same library lists and validation workflows\n- Same critical configuration parameters\n\nMODEL OPTIMIZATION ASSESSMENT:\n- Differentiation is meaningful but limited in scope\n- Core technical requirements properly shared\n- Behavioral differences target known model characteristics\n- Claude optimized for conciseness, GPT for autonomy",
+      "type": "warning",
+      "tags": [
+        "warning",
+        "optimization",
+        "analysis",
+        "model-optimization",
+        "ken8n-coder",
+        "system-prompts",
+        "anthropic",
+        "gpt",
+        "evaluation"
+      ],
+      "timestamp": "2025-08-16T16:04:35.835Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T16:04:35.835Z",
+      "lastVerified": "2025-08-16T16:04:35.835Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755360277249_ztizx9dbr",
+      "content": "Ken8n-coder system prompts analysis: Two main files examined - anthropic.txt (163 lines) and copilot-gpt-5.txt (110 lines). Both contain Super Code node requirements, workflow structure rules, and library lists. Anthropic version has more verbose explanations and examples, while copilot version is more concise. Key redundancies identified: Super Code library lists repeated multiple times, identical critical constraints, overlapping examples.",
+      "type": "config",
+      "tags": [
+        "config",
+        "ken8n-coder",
+        "system-prompts",
+        "redundancy-analysis",
+        "maintenance"
+      ],
+      "timestamp": "2025-08-16T16:04:37.249Z",
+      "context": "Evaluating redundancy elimination strategy in ken8n-coder system prompts for maintenance and clarity improvements",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T16:04:37.249Z",
+      "lastVerified": "2025-08-16T16:04:37.249Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755360299152_sw91mgu9m",
+      "content": "Ken8n-coder Information Hierarchy Analysis: Analyzed optimized prompt structure with CRITICAL hierarchy. Current structure in anthropic.txt shows clear front-loading: CRITICAL Super Code requirements (lines 7-12), CRITICAL n8n workflow structure (lines 14-19), CRITICAL property requirements (lines 21-26), Complete library reference (lines 28-29), followed by supporting instructions. This replaces scattered information with clear priority levels.",
+      "type": "general",
+      "tags": [
+        "general",
+        "analysis",
+        "ken8n-coder",
+        "information-hierarchy",
+        "prompts",
+        "evaluation"
+      ],
+      "timestamp": "2025-08-16T16:04:59.152Z",
+      "context": "User requested assessment of hierarchical organization effectiveness in ken8n-coder prompts from information architecture perspective",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T16:04:59.152Z",
+      "lastVerified": "2025-08-16T16:04:59.152Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755360311374_5o1gvgdww",
+      "content": "Ken8n-Coder n8n Property Requirements Assessment:\n\nFound validation script at ken8n-workflows/validate.js with comprehensive n8n node parameter validation:\n- Set nodes: values/assignments structure with nested values array and options object requirement\n- HTTP nodes: url/requestMethod validation  \n- Webhook nodes: httpMethod/path validation\n- IF nodes: conditions parameter requirement\n- Code nodes: jsCode vs code parameter validation\n- Super Code specific: \"code\" not \"jsCode\", no require() statements\n\nCurrent organization: Requirements are scattered throughout validation script, not consolidated in prompts",
+      "type": "config",
+      "tags": [
+        "config",
+        "ken8n-coder",
+        "n8n",
+        "validation",
+        "property-requirements",
+        "assessment"
+      ],
+      "timestamp": "2025-08-16T16:05:11.374Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T16:05:11.374Z",
+      "lastVerified": "2025-08-16T16:05:11.374Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755360339207_15l8dm2zh",
+      "content": "10 Opinion Agent Consensus on ken8n-coder System Prompt Optimization:\n\nAVERAGE SCORE: 6.8/10 - Good optimization with room for improvement\n\nUNANIMOUS STRENGTHS:\n- Front-loading critical constraints (ALL agents agreed this helps)\n- 25-32% size reduction eliminates cognitive overhead\n- ALL 35+ libraries preserved (critical requirement met)\n- Mandatory validation integration prevents import errors\n- Clear CRITICAL hierarchy improves information accessibility\n\nCONSENSUS CONCERNS:\n- Information density still high (162-109 lines may still overload)\n- Library list interrupts flow between critical sections\n- Sequential building instruction needs more operational specificity\n- Model differentiation benefits don't justify duplication overhead\n\nKEY RECOMMENDATIONS (Agent Consensus):\n1. Further consolidate to shared core + minimal model overlays\n2. Move library list to appendix/reference section\n3. Strengthen validation enforcement positioning\n4. Add specific operational guidance for \"node by node\" building\n5. Create tiered information architecture (Critical → Validation → Reference)\n\nCONFIDENCE: High - Strong agreement across agents on optimization direction",
+      "type": "warning",
+      "tags": [
+        "warning",
+        "optimization",
+        "optimization-results",
+        "system-prompts",
+        "agent-consensus",
+        "ken8n-coder"
+      ],
+      "timestamp": "2025-08-16T16:05:39.207Z",
+      "context": "System prompt optimization evaluation by 10 opinion agents",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T16:05:39.207Z",
+      "lastVerified": "2025-08-16T16:05:39.207Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755361053582_le1d4owh3",
+      "content": "ken8n-coder CLI already supports --project parameter to specify working directory. The TUI command accepts a positional [project] argument that resolves to the desired working directory, and the application uses app.path.cwd throughout for file operations.",
+      "type": "general",
+      "tags": [
+        "general",
+        "CLI",
+        "directory",
+        "project",
+        "global-command",
+        "working-directory"
+      ],
+      "timestamp": "2025-08-16T16:17:33.582Z",
+      "context": "Analyzing options for making global ken8n-coder command directory-aware",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T16:17:33.582Z",
+      "lastVerified": "2025-08-16T16:17:33.582Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755361266954_293u20d1l",
+      "content": "Successfully committed directory-aware enhancement to ken8n-coder global launcher script. Changes include:\n- Stores current working directory before changing to project directory\n- Passes original working directory as project parameter to the application\n- Allows ken8n-coder to execute from any directory while giving agents access to files in that directory\n- Commit: 6685c857 \"feat(launcher): make global ken8n-coder command directory-aware\"\n- File changed: ken8n-coder-run (6 insertions, 3 deletions)",
+      "type": "general",
+      "tags": [
+        "general",
+        "git",
+        "commit",
+        "ken8n-coder",
+        "launcher",
+        "directory-aware",
+        "global-command"
+      ],
+      "timestamp": "2025-08-16T16:21:06.954Z",
+      "context": "Successfully committed the directory-aware launcher enhancement",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T16:21:06.954Z",
+      "lastVerified": "2025-08-16T16:21:06.954Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755361439058_ezei1chb8",
+      "content": "Found the cursor positioning issue in ken8n-coder TUI. The problem is in tui.go lines 1013 and 1065 where both home() and chat() functions return cursor Y position as `editorY + 2`. This hardcoded +2 offset is causing the cursor to appear on the next line instead of being centered in the input field. The offset should align with the actual input field position within the styled textarea component.",
+      "type": "tip",
+      "tags": [
+        "tip",
+        "go",
+        "debugging",
+        "cursor",
+        "tui",
+        "positioning",
+        "ken8n-coder"
+      ],
+      "timestamp": "2025-08-16T16:23:59.058Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T16:23:59.058Z",
+      "lastVerified": "2025-08-16T16:23:59.058Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755361481583_oxqi07b6t",
+      "content": "Fixed cursor positioning issue in ken8n-coder TUI by changing cursor Y offset from +2 to +1 in tui.go lines 1013 and 1065. The problem was that the textarea component has PaddingTop(1) but the cursor was being positioned with an extra line offset, causing it to appear on the next line instead of being centered in the input field.",
+      "type": "troubleshooting",
+      "tags": [
+        "troubleshooting",
+        "go",
+        "fix",
+        "cursor",
+        "tui",
+        "positioning",
+        "ken8n-coder"
+      ],
+      "timestamp": "2025-08-16T16:24:41.583Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T16:24:41.583Z",
+      "lastVerified": "2025-08-16T16:24:41.583Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755361528834_i0vlcrlxw",
+      "content": "Fixed cursor positioning bug in TUI where cursor appeared on next line instead of centered in input field. Changed cursor Y offset from +2 to +1 in tui.go lines 1013 and 1065 to properly align with textarea padding. Simple but important fix for user experience.",
+      "type": "troubleshooting",
+      "tags": [
+        "troubleshooting",
+        "go",
+        "bug-fix",
+        "tui",
+        "cursor",
+        "positioning",
+        "ui-fix"
+      ],
+      "timestamp": "2025-08-16T16:25:28.834Z",
+      "context": "TUI cursor positioning fix for ken8n-coder",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T16:25:28.834Z",
+      "lastVerified": "2025-08-16T16:25:28.834Z",
+      "status": "fresh"
     }
   ],
-  "lastUpdated": "2025-08-16T12:40:02.810Z"
+  "lastUpdated": "2025-08-16T16:25:28.834Z"
 }

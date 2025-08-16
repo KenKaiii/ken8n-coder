@@ -4,7 +4,7 @@ import { cmd } from "./cmd"
 
 export const ModelsCommand = cmd({
   command: "models",
-  describe: "list all available models",
+  describe: "🤖 list available AI models for ken8n-coder",
   handler: async () => {
     await App.provide({ cwd: process.cwd() }, async () => {
       const providers = await Provider.list()

@@ -1,7 +1,7 @@
 # ken8n-coder
 
-```
- ██╗  ██╗███████╗███╗   ██╗ █████╗ ███╗   ██╗      ██████╗ ██████╗ ██████╗ ███████╗██████╗ 
+```text
+ ██╗  ██╗███████╗███╗   ██╗ █████╗ ███╗   ██╗      ██████╗ ██████╗ ██████╗ ███████╗██████╗
  ██║ ██╔╝██╔════╝████╗  ██║██╔══██╗████╗  ██║     ██╔════╝██╔═══██╗██╔══██╗██╔════╝██╔══██╗
  █████╔╝ █████╗  ██╔██╗ ██║╚█████╔╝██╔██╗ ██║     ██║     ██║   ██║██║  ██║█████╗  ██████╔╝
  ██╔═██╗ ██╔══╝  ██║╚██╗██║██╔══██╗██║╚██╗██║     ██║     ██║   ██║██║  ██║██╔══╝  ██╔══██╗
@@ -32,18 +32,15 @@ Transform your n8n workflow building from manual node configuration to natural l
 ken8n-coder bridges the gap between natural language workflow descriptions and production-ready n8n automations. Instead of manually configuring nodes and connections, you describe what you want in plain English and get working JavaScript code for n8n's Super Code nodes.
 
 Perfect for:
-- **n8n developers** who want to accelerate workflow creation
-- **Automation engineers** building complex JavaScript-based workflows  
+
+- **Automation engineers** building complex JavaScript-based workflows
 - **Teams** standardizing on AI-assisted workflow development
 - **Rapid prototyping** of automation ideas
 
 ## Quick Start
 
 ```bash
-# One-line install (recommended)
-curl -fsSL https://raw.githubusercontent.com/kenkaiii/ken8n-coder/main/install | bash
-
-# Or via npm
+# Install globally via npm (works on Windows, Mac, and Linux)
 npm i -g ken8n-coder@latest
 
 # Launch the terminal interface
@@ -56,13 +53,13 @@ Terminal-based AI agent that generates n8n workflows with specialized focus on S
 
 ## Core Features
 
-| Feature | Description | Benefit |
-|---------|-------------|---------|
+| Feature                       | Description                                                       | Benefit                                                             |
+| ----------------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------- |
 | **Super Code Specialization** | Optimized for n8n's Super Code node with 46+ JavaScript libraries | Generate complex automation logic without manual library management |
-| **Multi-Provider AI** | OpenAI, Anthropic Claude, and other models | Choose the best AI for your workflow complexity |
-| **Terminal TUI** | Clean, keyboard-driven interface | Stay in your development flow without context switching |
-| **Rapid Iteration** | Generate, test, and refine workflows quickly | Accelerate development from idea to production |
-| **Library-Rich Environment** | Pre-loaded with utilities, data processing, crypto, and more | Build sophisticated workflows without dependency management |
+| **Multi-Provider AI**         | OpenAI, Anthropic Claude, and other models                        | Choose the best AI for your workflow complexity                     |
+| **Terminal TUI**              | Clean, keyboard-driven interface                                  | Stay in your development flow without context switching             |
+| **Rapid Iteration**           | Generate, test, and refine workflows quickly                      | Accelerate development from idea to production                      |
+| **Library-Rich Environment**  | Pre-loaded with utilities, data processing, crypto, and more      | Build sophisticated workflows without dependency management         |
 
 ## Interactive Commands
 
@@ -126,84 +123,80 @@ ken8n-coder specializes in generating JavaScript for n8n's Super Code node envir
 </setting>
 </configuration>
 
-## Installation Options
+## Installation
 
-### Curl Installer (Recommended)
-```bash
-curl -fsSL https://raw.githubusercontent.com/kenkaiii/ken8n-coder/main/install | bash
-```
+Install ken8n-coder globally using npm. This universal method works on Windows, Mac, and Linux:
 
-### Package Managers
 ```bash
+# Install with npm (recommended)
 npm i -g ken8n-coder@latest
-# Also supports bun, pnpm, yarn
-```
 
-### Custom Installation Directory
-```bash
-# Custom location
-KEN8N_CODER_INSTALL_DIR=/usr/local/bin curl -fsSL https://raw.githubusercontent.com/kenkaiii/ken8n-coder/main/install | bash
-
-# XDG-compliant
-XDG_BIN_DIR=$HOME/.local/bin curl -fsSL https://raw.githubusercontent.com/kenkaiii/ken8n-coder/main/install | bash
+# Alternative package managers also work
+bun add -g ken8n-coder@latest
+pnpm add -g ken8n-coder@latest
+yarn global add ken8n-coder@latest
 ```
 
 <patterns>
 <pattern name="workflow-creation">
 ```bash
+
 # Launch ken8n-coder
+
 ken8n-coder
 
-# In the TUI:
-/new
-# Describe your workflow in natural language
-# Example: "Create a workflow that processes CSV files, validates email addresses, and sends notifications"
+# In the TUI
 
-# Get generated Super Code node JavaScript
-# Copy the workflow JSON
+/new
+
 # Import into your n8n instance
-```
+
+````
 </pattern>
 
 <pattern name="session-management">
+
 ```bash
 # Save current work
 /sessions
 
 # Resume previous session
 /sessions
+
 # Select from list of saved sessions
 
 # Continue iterating on workflow
-```
+````
+
 </pattern>
 </patterns>
 
 ## Examples
 
 ### Data Processing Workflow
+
 ```
 Input: "Process CSV uploads, validate email fields with joi, transform data using lodash, and export to XLSX"
 
 Output: Complete n8n workflow with Super Code nodes containing:
 - CSV parsing with papaparse
 - Email validation with joi
-- Data transformation with lodash utilities  
-- XLSX generation with proper formatting
+- Data transformation with lodash utilities
 ```
 
 ### API Integration Workflow
+
 ```
 Input: "Fetch data from REST API, handle authentication with JWT, process responses, and store in database"
 
 Output: n8n workflow featuring:
 - axios HTTP client configuration
 - JWT token handling
-- Error handling and retries
 - Data validation and processing
 ```
 
 ### Notification System
+
 ```
 Input: "Monitor webhook for events, filter based on criteria, format messages with templates, send via multiple channels"
 
@@ -223,7 +216,7 @@ ken8n-coder uses a configuration file at `ken8n-coder.json`:
   "$schema": "https://opencode.ai/config.json",
   "mcp": {
     "context7": {
-      "type": "remote", 
+      "type": "remote",
       "url": "https://mcp.context7.com/sse"
     }
   }
@@ -236,6 +229,7 @@ ken8n-coder welcomes contributions focused on n8n workflow excellence:
 
 - **Super Code enhancements** - New library integrations or code patterns
 - **Workflow templates** - Common automation patterns for the community
+
 - **n8n node support** - Expanding beyond Super Code to other node types
 - **AI model optimization** - Better prompts and model configurations
 - **Documentation** - Usage guides and best practices
@@ -250,6 +244,7 @@ bun dev
 ```
 
 Requirements:
+
 - Bun (package manager)
 - Golang 1.24.x
 - n8n instance (for testing workflows)
@@ -257,7 +252,8 @@ Requirements:
 ## Why ken8n-coder?
 
 | Traditional n8n | ken8n-coder |
-|----------------|-------------|
+| --------------- | ----------- |
+
 | Manual node configuration | Natural language descriptions |
 | Copy/paste code snippets | AI-generated, optimized JavaScript |
 | Trial and error with libraries | 46+ libraries pre-configured |

@@ -26,7 +26,7 @@ const TOOL: Record<string, [string, string]> = {
 
 export const RunCommand = cmd({
   command: "run [message..]",
-  describe: "run opencode with a message",
+  describe: "🚀 run ken8n-coder with a message",
   builder: (yargs: Argv) => {
     return yargs
       .positional("message", {
@@ -100,7 +100,7 @@ export const RunCommand = cmd({
 
       const agent = await (async () => {
         if (args.agent) return Agent.get(args.agent)
-        const build = Agent.get("build")
+        const build = await Agent.get("build")
         if (build) return build
         return Agent.list().then((x) => x[0])
       })()

@@ -11,14 +11,14 @@ import (
 	"syscall"
 
 	tea "github.com/charmbracelet/bubbletea/v2"
-	flag "github.com/spf13/pflag"
-	"github.com/kenkaiii/ken8n-coder-sdk-go"
+	opencode "github.com/kenkaiii/ken8n-coder-sdk-go"
 	"github.com/kenkaiii/ken8n-coder-sdk-go/option"
 	"github.com/kenkaiii/ken8n-coder/internal/api"
 	"github.com/kenkaiii/ken8n-coder/internal/app"
 	"github.com/kenkaiii/ken8n-coder/internal/clipboard"
 	"github.com/kenkaiii/ken8n-coder/internal/tui"
 	"github.com/kenkaiii/ken8n-coder/internal/util"
+	flag "github.com/spf13/pflag"
 )
 
 var Version = "dev"
