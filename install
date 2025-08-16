@@ -96,23 +96,8 @@ download_and_install() {
     curl -# -L -o "$filename" "$url"
     unzip -q "$filename"
     
-    # Move the Go TUI binary to a subdirectory
-    mkdir -p "$INSTALL_DIR/tui"
-    mv ken8n-coder "$INSTALL_DIR/tui/ken8n-coder-tui"
-    
-    # Create launcher that uses the Go binary directly
-    # The Go binary now provides helpful guidance when backend isn't available
-    cat > "$INSTALL_DIR/ken8n-coder" << 'EOF'
-#!/bin/bash
-# ken8n-coder launcher
-
-# Get the directory where this script is located
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-
-# Run the Go TUI binary
-exec "$SCRIPT_DIR/tui/ken8n-coder-tui" "$@"
-EOF
-    
+    # Use the Go binary directly - it now provides helpful guidance
+    mv ken8n-coder "$INSTALL_DIR/ken8n-coder"
     chmod +x "$INSTALL_DIR/ken8n-coder"
     cd .. && rm -rf ken8ncodertmp 
 }
