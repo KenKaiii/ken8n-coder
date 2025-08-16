@@ -12,6 +12,7 @@ import (
 	"github.com/charmbracelet/bubbles/v2/key"
 	tea "github.com/charmbracelet/bubbletea/v2"
 	"github.com/charmbracelet/lipgloss/v2"
+	"github.com/charmbracelet/lipgloss/v2/compat"
 
 	opencode "github.com/kenkaiii/ken8n-coder-sdk-go"
 	"github.com/kenkaiii/ken8n-coder/internal/api"
@@ -891,23 +892,21 @@ func (a Model) home() (string, int, int) {
 	t := theme.CurrentTheme()
 	effectiveWidth := a.width - 4
 	baseStyle := styles.NewStyle().Background(t.Background())
-	base := baseStyle.Render
-	muted := styles.NewStyle().Foreground(t.TextMuted()).Background(t.Background()).Render
 
-	ken8n := `
-█ █ █▀▀ █▀▀▄ █▀▀▀ █▀▀▄
-█▀▄ █▀▀ █░░█ █▀▀▀ █░░█
-▀ ▀ ▀▀▀ ▀  ▀ ▀▀▀▀ ▀  ▀`
-	coder := `
-█▀▀ █▀▀█ █▀▀▄ █▀▀ █▀▀█
-█░░ █░░█ █░░█ █▀▀ █▄▄▀
-▀▀▀ ▀▀▀▀ ▀▀▀  ▀▀▀ ▀ ▀▀`
+	logo_ascii := `░▒▓█▓▒░░▒▓█▓▒░▒▓████████▓▒░▒▓███████▓▒░ ░▒▓██████▓▒░░▒▓███████▓▒░  
+░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░ 
+░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░ 
+░▒▓███████▓▒░░▒▓██████▓▒░ ░▒▓█▓▒░░▒▓█▓▒░░▒▓██████▓▒░░▒▓█▓▒░░▒▓█▓▒░ 
+░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░ 
+░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░ 
+░▒▓█▓▒░░▒▓█▓▒░▒▓████████▓▒░▒▓█▓▒░░▒▓█▓▒░░▒▓██████▓▒░░▒▓█▓▒░░▒▓█▓▒░ 
+                                                                   
+                                                                   `
 
-	logo := lipgloss.JoinHorizontal(
-		lipgloss.Top,
-		muted(ken8n),
-		base(coder),
-	)
+	// Apply pink gradient colors to the ASCII art
+	logoStyle := styles.NewStyle().Foreground(compat.AdaptiveColor{Light: lipgloss.Color("#ff6b8a"), Dark: lipgloss.Color("#ffb3d1")}).Background(t.Background())
+
+	logo := logoStyle.Render(logo_ascii)
 	// cwd := app.Info.Path.Cwd
 	// config := app.Info.Path.Config
 
@@ -1011,7 +1010,7 @@ func (a Model) home() (string, int, int) {
 		)
 	}
 
-	return mainLayout, editorX + 5, editorY + 2
+	return mainLayout, editorX + 5, editorY + 1
 }
 
 func (a Model) chat() (string, int, int) {
@@ -1063,7 +1062,7 @@ func (a Model) chat() (string, int, int) {
 		)
 	}
 
-	return mainLayout, editorX + 5, editorY + 2
+	return mainLayout, editorX + 5, editorY + 1
 }
 
 func (a Model) executeCommand(command commands.Command) (tea.Model, tea.Cmd) {
