@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"encoding/json"
-	"fmt"
 	"io"
 	"log/slog"
 	"os"
@@ -37,34 +36,12 @@ func main() {
 	flag.Parse()
 
 	url := os.Getenv("OPENCODE_SERVER")
-	if url == "" {
-		// Standalone mode - provide helpful guidance
-		fmt.Println("🚀 ken8n-coder - AI-powered n8n workflow creator")
-		fmt.Println("")
-		fmt.Println("❌ Backend server not detected")
-		fmt.Println("")
-		fmt.Println("For full functionality, install the complete package:")
-		fmt.Println("  npm install -g ken8n-coder")
-		fmt.Println("")
-		fmt.Println("Or run from development setup:")
-		fmt.Println("  git clone https://github.com/kenkaiii/ken8n-coder")
-		fmt.Println("  cd ken8n-coder")
-		fmt.Println("  ./ken8n-coder-run")
-		fmt.Println("")
-		fmt.Println("Available commands:")
-		fmt.Println("  ken8n-coder auth login   # Configure authentication")
-		fmt.Println("  ken8n-coder --help       # Show help")
-		os.Exit(0)
-	}
 
 	appInfoStr := os.Getenv("OPENCODE_APP_INFO")
 	var appInfo opencode.App
 	err := json.Unmarshal([]byte(appInfoStr), &appInfo)
 	if err != nil {
 		slog.Error("Failed to unmarshal app info", "error", err)
-		fmt.Println("")
-		fmt.Println("For full functionality, use complete installation:")
-		fmt.Println("  npm install -g ken8n-coder")
 		os.Exit(1)
 	}
 

@@ -96,8 +96,51 @@ download_and_install() {
     curl -# -L -o "$filename" "$url"
     unzip -q "$filename"
     
-    # Use the Go binary directly - it now provides helpful guidance
-    mv ken8n-coder "$INSTALL_DIR/ken8n-coder"
+    # Store the Go TUI binary
+    mkdir -p "$INSTALL_DIR/tui"
+    mv ken8n-coder "$INSTALL_DIR/tui/ken8n-coder-tui"
+    
+    # Create launcher that runs the full stack (like ken8n-coder-run)
+    cat > "$INSTALL_DIR/ken8n-coder" << 'EOF'
+#!/bin/bash
+# ken8n-coder global launcher
+
+# Check if Bun is available
+if ! command -v bun >/dev/null 2>&1; then
+    echo "❌ ken8n-coder requires Bun runtime"
+    echo ""
+    echo "Install Bun:"
+    echo "  curl -fsSL https://bun.sh/install | bash"
+    echo ""
+    echo "Then restart your shell and try again."
+    exit 1
+fi
+
+# Check if we have the TypeScript backend available
+if [ ! -d "$HOME/.ken8n-coder/ken8n-coder" ]; then
+    echo "🚀 Setting up ken8n-coder for first use..."
+    echo ""
+    echo "Downloading ken8n-coder backend..."
+    
+    # Clone the repository to get the TypeScript backend
+    cd "$HOME/.ken8n-coder"
+    curl -fsSL https://github.com/kenkaiii/ken8n-coder/archive/dev.tar.gz | tar -xz
+    mv ken8n-coder-dev ken8n-coder
+    
+    echo "✅ Backend downloaded"
+fi
+
+# Store the current working directory where the command was invoked
+CURRENT_DIR="$(pwd)"
+
+# Change to the ken8n-coder directory and run like ken8n-coder-run
+cd "$HOME/.ken8n-coder/ken8n-coder"
+
+# Set up bun path and run with the original working directory as project
+export PATH="$HOME/.bun/bin:$PATH"
+exec bun run --conditions=development packages/ken8n-coder/src/index.ts "$CURRENT_DIR" "$@"
+EOF
+    
     chmod +x "$INSTALL_DIR/ken8n-coder"
     cd .. && rm -rf ken8ncodertmp 
 }
