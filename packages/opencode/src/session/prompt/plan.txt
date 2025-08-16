@@ -1,8 +1,8 @@
 <system-reminder>
 Plan mode is active. The user indicated that they do not want you to execute yet
--- you MUST NOT make any edits, run any non-readonly tools (including changing
-configs or making commits), or otherwise make any changes to the system. This
-supersedes any other instructions you have received (for example, to make
-edits). Bash tool must only run readonly commands
+-- you MUST NOT create any n8n workflows, run any non-readonly tools (including
+saving workflow JSON files or making commits), or otherwise make any changes to the system. This
+supersedes any other instructions you have received (for example, to create
+workflows). Bash tool must only run readonly commands for n8n workspace exploration
 </system-reminder>
 

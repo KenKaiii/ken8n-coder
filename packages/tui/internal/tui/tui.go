@@ -896,19 +896,19 @@ func (a Model) home() (string, int, int) {
 	base := baseStyle.Render
 	muted := styles.NewStyle().Foreground(t.TextMuted()).Background(t.Background()).Render
 
-	open := `
-█▀▀█ █▀▀█ █▀▀ █▀▀▄ 
-█░░█ █░░█ █▀▀ █░░█ 
-▀▀▀▀ █▀▀▀ ▀▀▀ ▀  ▀ `
-	code := `
-█▀▀ █▀▀█ █▀▀▄ █▀▀
-█░░ █░░█ █░░█ █▀▀
-▀▀▀ ▀▀▀▀ ▀▀▀  ▀▀▀`
+	ken8n := `
+█ █ █▀▀ █▀▀▄ █▀▀▀ █▀▀▄
+█▀▄ █▀▀ █░░█ █▀▀▀ █░░█
+▀ ▀ ▀▀▀ ▀  ▀ ▀▀▀▀ ▀  ▀`
+	coder := `
+█▀▀ █▀▀█ █▀▀▄ █▀▀ █▀▀█
+█░░ █░░█ █░░█ █▀▀ █▄▄▀
+▀▀▀ ▀▀▀▀ ▀▀▀  ▀▀▀ ▀ ▀▀`
 
 	logo := lipgloss.JoinHorizontal(
 		lipgloss.Top,
-		muted(open),
-		base(code),
+		muted(ken8n),
+		base(coder),
 	)
 	// cwd := app.Info.Path.Cwd
 	// config := app.Info.Path.Config

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
-APP=opencode
+APP=ken8n-coder
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -41,19 +41,19 @@ case "$filename" in
     ;;
 esac
 
-INSTALL_DIR=$HOME/.opencode/bin
+INSTALL_DIR=$HOME/.ken8n-coder/bin
 mkdir -p "$INSTALL_DIR"
 
 if [ -z "$requested_version" ]; then
-    url="https://github.com/sst/opencode/releases/latest/download/$filename"
-    specific_version=$(curl -s https://api.github.com/repos/sst/opencode/releases/latest | awk -F'"' '/"tag_name": "/ {gsub(/^v/, "", $4); print $4}')
+    url="https://github.com/kenkaiii/ken8n-coder/releases/latest/download/$filename"
+    specific_version=$(curl -s https://api.github.com/repos/kenkaiii/ken8n-coder/releases/latest | awk -F'"' '/"tag_name": "/ {gsub(/^v/, "", $4); print $4}')
 
     if [[ $? -ne 0 || -z "$specific_version" ]]; then
         echo "${RED}Failed to fetch version information${NC}"
         exit 1
     fi
 else
-    url="https://github.com/sst/opencode/releases/download/v${requested_version}/$filename"
+    url="https://github.com/kenkaiii/ken8n-coder/releases/download/v${requested_version}/$filename"
     specific_version=$requested_version
 fi
 
@@ -72,12 +72,12 @@ print_message() {
 }
 
 check_version() {
-    if command -v opencode >/dev/null 2>&1; then
-        opencode_path=$(which opencode)
+    if command -v ken8n-coder >/dev/null 2>&1; then
+        ken8n_coder_path=$(which ken8n-coder)
 
 
         ## TODO: check if version is installed
-        # installed_version=$(opencode version)
+        # installed_version=$(ken8n-coder version)
         installed_version="0.0.1"
         installed_version=$(echo $installed_version | awk '{print $2}')
 
@@ -91,12 +91,12 @@ check_version() {
 }
 
 download_and_install() {
-    print_message info "Downloading ${ORANGE}opencode ${GREEN}version: ${YELLOW}$specific_version ${GREEN}..."
-    mkdir -p opencodetmp && cd opencodetmp
+    print_message info "Downloading ${ORANGE}ken8n-coder ${GREEN}version: ${YELLOW}$specific_version ${GREEN}..."
+    mkdir -p ken8ncodertmp && cd ken8ncodertmp
     curl -# -L -o "$filename" "$url"
     unzip -q "$filename"
-    mv opencode "$INSTALL_DIR"
-    cd .. && rm -rf opencodetmp 
+    mv ken8n-coder "$INSTALL_DIR"
+    cd .. && rm -rf ken8ncodertmp 
 }
 
 check_version
@@ -110,9 +110,9 @@ add_to_path() {
     if grep -Fxq "$command" "$config_file"; then
         print_message info "Command already exists in $config_file, skipping write."
     elif [[ -w $config_file ]]; then
-        echo -e "\n# opencode" >> "$config_file"
+        echo -e "\n# ken8n-coder" >> "$config_file"
         echo "$command" >> "$config_file"
-        print_message info "Successfully added ${ORANGE}opencode ${GREEN}to \$PATH in $config_file"
+        print_message info "Successfully added ${ORANGE}ken8n-coder ${GREEN}to \$PATH in $config_file"
     else
         print_message warning "Manually add the directory to $config_file (or similar):"
         print_message info "  $command"
