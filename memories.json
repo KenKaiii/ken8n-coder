@@ -14,8 +14,8 @@
         "architecture"
       ],
       "timestamp": "2025-08-16T09:56:06.079Z",
-      "accessCount": 25,
-      "lastAccessed": "2025-08-16T16:04:11.815Z",
+      "accessCount": 26,
+      "lastAccessed": "2025-08-16T18:54:41.602Z",
       "lastVerified": "2025-08-16T09:56:06.079Z",
       "status": "fresh"
     },
@@ -31,8 +31,8 @@
         "generation"
       ],
       "timestamp": "2025-08-16T09:56:32.524Z",
-      "accessCount": 22,
-      "lastAccessed": "2025-08-16T16:03:52.869Z",
+      "accessCount": 23,
+      "lastAccessed": "2025-08-16T18:54:41.602Z",
       "lastVerified": "2025-08-16T09:56:32.524Z",
       "status": "fresh"
     },
@@ -111,8 +111,8 @@
         "opencode"
       ],
       "timestamp": "2025-08-16T10:01:51.233Z",
-      "accessCount": 25,
-      "lastAccessed": "2025-08-16T16:04:19.011Z",
+      "accessCount": 26,
+      "lastAccessed": "2025-08-16T18:54:41.602Z",
       "lastVerified": "2025-08-16T10:01:51.233Z",
       "status": "fresh"
     },
@@ -129,8 +129,8 @@
         "libraries"
       ],
       "timestamp": "2025-08-16T10:25:31.431Z",
-      "accessCount": 24,
-      "lastAccessed": "2025-08-16T16:04:11.815Z",
+      "accessCount": 25,
+      "lastAccessed": "2025-08-16T18:54:41.602Z",
       "lastVerified": "2025-08-16T10:25:31.431Z",
       "status": "fresh"
     },
@@ -146,8 +146,8 @@
         "final"
       ],
       "timestamp": "2025-08-16T10:41:51.594Z",
-      "accessCount": 16,
-      "lastAccessed": "2025-08-16T16:03:52.869Z",
+      "accessCount": 17,
+      "lastAccessed": "2025-08-16T18:54:41.602Z",
       "lastVerified": "2025-08-16T10:41:51.594Z",
       "status": "fresh"
     },
@@ -183,8 +183,8 @@
         "n8n"
       ],
       "timestamp": "2025-08-16T10:46:40.466Z",
-      "accessCount": 22,
-      "lastAccessed": "2025-08-16T16:04:19.011Z",
+      "accessCount": 23,
+      "lastAccessed": "2025-08-16T18:54:41.602Z",
       "lastVerified": "2025-08-16T10:46:40.466Z",
       "status": "fresh"
     },
@@ -203,8 +203,8 @@
         "score"
       ],
       "timestamp": "2025-08-16T10:46:41.719Z",
-      "accessCount": 14,
-      "lastAccessed": "2025-08-16T16:04:19.011Z",
+      "accessCount": 15,
+      "lastAccessed": "2025-08-16T18:54:41.602Z",
       "lastVerified": "2025-08-16T10:46:41.719Z",
       "status": "fresh"
     },
@@ -244,8 +244,8 @@
       ],
       "timestamp": "2025-08-16T10:47:08.698Z",
       "context": "UX evaluation of ken8n-coder system prompts and documentation for n8n workflow creation",
-      "accessCount": 10,
-      "lastAccessed": "2025-08-16T16:04:19.011Z",
+      "accessCount": 11,
+      "lastAccessed": "2025-08-16T18:54:41.602Z",
       "lastVerified": "2025-08-16T10:47:08.698Z",
       "status": "fresh"
     },
@@ -1112,8 +1112,8 @@
         "analysis"
       ],
       "timestamp": "2025-08-16T15:42:17.552Z",
-      "accessCount": 5,
-      "lastAccessed": "2025-08-16T16:04:19.011Z",
+      "accessCount": 6,
+      "lastAccessed": "2025-08-16T18:54:41.602Z",
       "lastVerified": "2025-08-16T15:42:17.552Z",
       "status": "fresh"
     },
@@ -1187,8 +1187,8 @@
       ],
       "timestamp": "2025-08-16T15:45:52.582Z",
       "context": "Evaluating prompt length optimization for specialized n8n workflow task",
-      "accessCount": 3,
-      "lastAccessed": "2025-08-16T16:04:19.011Z",
+      "accessCount": 4,
+      "lastAccessed": "2025-08-16T18:54:41.602Z",
       "lastVerified": "2025-08-16T15:45:52.582Z",
       "status": "fresh"
     },
@@ -1962,7 +1962,240 @@
       "lastAccessed": "2025-08-16T17:36:49.340Z",
       "lastVerified": "2025-08-16T17:36:49.340Z",
       "status": "fresh"
+    },
+    {
+      "id": "mem_1755365860035_qf7xhh2e1",
+      "content": "Successfully completed commit + push workflow. Commit 24e47848 \"Clean up after rebrand and fix some nagging issues\" includes: 1) Renamed supercode to super-code agent, 2) Updated Go UI to show \"AGENT\" not \"WORKFLOW AGENT\", 3) Fixed CSS module TypeScript errors with proper type definitions, 4) Refactored agent.ts for reduced complexity, 5) Cleaned up old demo workflow file. Push succeeded after installing bun for pre-push hooks. All TypeScript checks pass.",
+      "type": "troubleshooting",
+      "tags": [
+        "troubleshooting",
+        "go",
+        "typescript",
+        "git",
+        "success",
+        "commit",
+        "push",
+        "bun",
+        "super-code"
+      ],
+      "timestamp": "2025-08-16T17:37:40.035Z",
+      "context": "Completed full git workflow successfully",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T17:37:40.035Z",
+      "lastVerified": "2025-08-16T17:37:40.035Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755366183549_1q6p9fsnq",
+      "content": "Current ken8n-coder installation setup analysis:\n\nMAIN ISSUES FOUND:\n1. The main package.json has \"private\": true, preventing npm publication\n2. Binary setup points to \"./bin/ken8n-coder\" but the script looks for Go binary, not Node.js/TypeScript\n3. Cross-platform issues: hardcoded paths, platform-specific binary handling\n\nCURRENT SETUP:\n- Root package.json: workspace root, private, not publishable\n- packages/ken8n-coder/package.json: has bin config pointing to \"./bin/ken8n-coder\"\n- ken8n-coder-run: bash script for development, hardcoded to specific path\n- Auth system: ken8n-coder auth login command implemented in TypeScript\n\nBINARY RESOLUTION FLOW:\n1. packages/ken8n-coder/bin/ken8n-coder (shell script)\n2. Looks for Go binary at ../../tui/ken8n-coder or global ken8n-coder command\n3. Falls back to TypeScript development mode\n\nKEY FILES:\n- packages/ken8n-coder/package.json: contains bin config and dependencies\n- packages/ken8n-coder/src/cli/cmd/auth.ts: auth login implementation  \n- packages/ken8n-coder/src/cli/cmd/tui.ts: main TUI command, calls auth login when no provider\n- packages/ken8n-coder/bin/ken8n-coder: shell wrapper script",
+      "type": "config",
+      "tags": [
+        "config",
+        "go",
+        "typescript",
+        "ken8n-coder",
+        "installation",
+        "setup",
+        "analysis",
+        "packaging"
+      ],
+      "timestamp": "2025-08-16T17:43:03.549Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T17:43:03.549Z",
+      "lastVerified": "2025-08-16T17:43:03.549Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755366743933_pyn077le9",
+      "content": "ken8n-coder npm packaging SUCCESS SUMMARY:\n\n✅ COMPLETED:\n1. Made packages/ken8n-coder publishable (removed private flag)\n2. Fixed workspace dependencies (converted catalog: and workspace: to exact versions)\n3. Removed external @ken8n-coder/* dependencies (inlined types)\n4. Created cross-platform Node.js binary wrapper (ken8n-coder.js)\n5. Fixed TypeScript build configuration\n6. Created working postinstall script (.cjs for CommonJS)\n7. Successfully tested global npm installation\n8. Verified ken8n-coder command works with Node.js fallback\n\n✅ CURRENT STATUS:\n- Package ken8n-coder@0.5.4 successfully installs globally via npm\n- Commands work: ken8n-coder --help, ken8n-coder auth --help\n- Binary wrapper detects missing Go binary and falls back to Node.js\n- Installation includes proper file permissions and setup messages\n\n📦 PACKAGE DETAILS:\n- Size: 146.5 kB compressed, 565.3 kB unpacked\n- 125 files included\n- Cross-platform compatible (Linux/Mac/Windows)\n- Dependencies: All resolved except optional peer warnings (non-critical)\n\n🚀 READY FOR:\n- Publishing to npm registry\n- Global installation on any OS with Node.js",
+      "type": "config",
+      "tags": [
+        "config",
+        "typescript",
+        "go",
+        "ken8n-coder",
+        "npm",
+        "packaging",
+        "success",
+        "installation",
+        "global"
+      ],
+      "timestamp": "2025-08-16T17:52:23.933Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T17:52:23.933Z",
+      "lastVerified": "2025-08-16T17:52:23.933Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755367057322_h374t9oko",
+      "content": "ken8n-coder COMPLETE INSTALLATION SETUP:\n\n🎯 FINAL STATUS: READY FOR GLOBAL INSTALLATION\n\n✅ PACKAGE STRUCTURE:\n- ken8n-coder@0.5.4 (148.1 kB compressed, 571.7 kB unpacked)\n- Cross-platform Node.js launcher (bin/ken8n-coder.js)\n- Smart command routing (CLI vs TUI)\n- Download-on-demand Go binaries\n- Standalone dependencies (no workspace/catalog references)\n\n✅ COMMAND ROUTING:\n- ken8n-coder auth login → TypeScript CLI\n- ken8n-coder --help → TypeScript CLI  \n- ken8n-coder (no args) → Go TUI (via TypeScript bootstrap)\n- ken8n-coder models, stats, etc. → TypeScript CLI\n\n✅ BINARY RESOLUTION:\n1. KEN8N_CODER_BIN_PATH env var\n2. Downloaded platform binary (bin/tui/ken8n-coder-{os}-{arch})\n3. Bundled binary (future)\n4. Development binary (../../tui/ken8n-coder)\n5. Global binary (ken8n-coder-tui)\n6. Node.js fallback\n\n✅ INSTALLATION FLOW:\n1. npm install -g ken8n-coder\n2. Postinstall downloads appropriate binary from GitHub releases\n3. Sets permissions and provides user feedback\n4. Commands immediately available globally\n\n⚠️ PREREQUISITES FOR USERS:\n- Node.js v18+ (required)\n- npm/yarn (required)  \n- Go binaries (optional - auto-downloaded)\n\n🚀 READY FOR:\n- Publishing to npm registry\n- GitHub releases with pre-built binaries\n- Global installation on Linux/Mac/Windows",
+      "type": "config",
+      "tags": [
+        "config",
+        "go",
+        "typescript",
+        "ken8n-coder",
+        "installation",
+        "complete",
+        "global",
+        "npm",
+        "ready"
+      ],
+      "timestamp": "2025-08-16T17:57:37.322Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T17:57:37.322Z",
+      "lastVerified": "2025-08-16T17:57:37.322Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755367603437_lcalazp2q",
+      "content": "USER FEEDBACK: Stop overcomplicating npm packaging approach. User wants simple installation method, possibly using curl instead. Revert all changes made to package.json and binary wrapper. The original codebase works with Bun - don't force it into npm packaging if it's not designed for it.",
+      "type": "warning",
+      "tags": [
+        "warning",
+        "feedback",
+        "revert",
+        "installation",
+        "curl",
+        "simplicity"
+      ],
+      "timestamp": "2025-08-16T18:06:43.437Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T18:06:43.437Z",
+      "lastVerified": "2025-08-16T18:06:43.437Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755368064735_b3pjlbp6j",
+      "content": "Successfully created and pushed git tag v0.5.4 for ken8n-coder release. Binaries are ready in /tmp/ken8n-coder-release/ with all required platforms. Install script is ready and working. Next step is to create GitHub release with proper authentication.",
+      "type": "config",
+      "tags": [
+        "config",
+        "authentication",
+        "release",
+        "ken8n-coder",
+        "github",
+        "v0.5.4"
+      ],
+      "timestamp": "2025-08-16T18:14:24.735Z",
+      "context": "GitHub release creation for ken8n-coder v0.5.4",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T18:14:24.735Z",
+      "lastVerified": "2025-08-16T18:14:24.735Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755368885924_0w04crr4i",
+      "content": "ISSUE IDENTIFIED: curl install puts Go binary directly in PATH, but Go TUI needs Bun backend first.\n\nERROR: \"Failed to unmarshal app info error=\"unexpected end of JSON input\"\"\n\nROOT CAUSE: Go TUI expects OPENCODE_APP_INFO environment variable with JSON data, but when run directly (not via Bun backend), this is empty.\n\nCORRECT FLOW:\n1. User runs ken8n-coder\n2. Bun backend starts (src/index.ts)\n3. Bun starts HTTP server\n4. Bun launches Go TUI with proper environment (OPENCODE_SERVER, OPENCODE_APP_INFO)\n\nCURRENT BROKEN FLOW:\n1. User runs ken8n-coder\n2. Go binary runs directly\n3. No environment variables → JSON error\n\nSOLUTION: curl installer should install Bun launcher script, not Go binary directly.",
+      "type": "tip",
+      "tags": [
+        "tip",
+        "go",
+        "bug",
+        "installation",
+        "go-tui",
+        "environment",
+        "curl"
+      ],
+      "timestamp": "2025-08-16T18:28:05.924Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T18:28:05.924Z",
+      "lastVerified": "2025-08-16T18:28:05.924Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755369148468_3aruhmdm3",
+      "content": "Researching sst/opencode's standalone npm package creation process. Need to understand how they bundle workspace dependencies into a 5.79 kB standalone package with 0 dependencies that works globally. Focus on build/publish process, workspace bundling, and binary distribution.",
+      "type": "general",
+      "tags": [
+        "general",
+        "research",
+        "opencode",
+        "npm-packaging",
+        "workspace-bundling"
+      ],
+      "timestamp": "2025-08-16T18:32:28.468Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T18:32:28.468Z",
+      "lastVerified": "2025-08-16T18:32:28.468Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755369395443_e6fvtgvv2",
+      "content": "Found SST opencode's distribution strategy: They use GoReleaser to build Go binaries for multiple platforms (linux/darwin, amd64/arm64) and distribute via Homebrew, AUR, .deb/.rpm packages. No direct npm publishing in .goreleaser.yml - they likely have a separate npm package that downloads platform-specific binaries.",
+      "type": "general",
+      "tags": [
+        "general",
+        "go",
+        "opencode",
+        "goreleaser",
+        "binary-distribution",
+        "npm-packaging"
+      ],
+      "timestamp": "2025-08-16T18:36:35.443Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T18:36:35.443Z",
+      "lastVerified": "2025-08-16T18:36:35.443Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755369494889_yfcs3tnq1",
+      "content": "SST opencode's npm packaging strategy: They use platform-specific npm packages (opencode-win32-x64, opencode-linux-amd64, etc.) with optionalDependencies + postinstall script pattern. The main package downloads platform-specific binaries during install. Currently missing Windows packages causing install failures. Go binaries built via GoReleaser, then separate npm packages created for distribution.",
+      "type": "config",
+      "tags": [
+        "config",
+        "go",
+        "opencode",
+        "npm-packaging",
+        "platform-binaries",
+        "postinstall",
+        "optionalDependencies"
+      ],
+      "timestamp": "2025-08-16T18:38:14.889Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T18:38:14.889Z",
+      "lastVerified": "2025-08-16T18:38:14.889Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755370604511_t1lm2fqei",
+      "content": "OpenCode Standalone Binary Research - Key Findings:\n\nDIFFERENT OPENCODE PROJECTS:\n1. sst/opencode - Client/server architecture, still needs backend\n2. opencode-ai/opencode - Standalone Go binary (discontinued, moved to \"Crush\")\n3. openai/codex - Rust-based fully standalone with TOML config\n\nSTANDALONE ARCHITECTURE PATTERNS:\n- Use config files (TOML/JSON) instead of environment variables\n- Built-in CLI parsing and command handling in main binary\n- Embed all logic rather than external servers\n- Graceful handling of missing env vars with defaults/config fallbacks\n\nKEN8N-CODER CURRENT ISSUE:\n- Go binary requires OPENCODE_SERVER and OPENCODE_APP_INFO environment variables\n- These are set by TypeScript backend in tui.ts (lines 142-143)\n- Go main.go fails immediately if these are missing (lines 38-46)\n- Environment variables contain server URL and app metadata JSON\n\nSOLUTION APPROACHES:\n1. Add config file support to Go binary\n2. Provide default values when env vars missing\n3. Embed server functionality directly in Go binary\n4. Create standalone mode that doesn't require backend server",
+      "type": "config",
+      "tags": [
+        "config",
+        "go",
+        "rust",
+        "typescript",
+        "research",
+        "opencode",
+        "standalone",
+        "architecture",
+        "environment-variables",
+        "ken8n-coder"
+      ],
+      "timestamp": "2025-08-16T18:56:44.511Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T18:56:44.511Z",
+      "lastVerified": "2025-08-16T18:56:44.511Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755371945975_684qi7211",
+      "content": "Commit context: User wants to commit current changes with natural, human-style commit message. Need to handle complete commit + sync flow with conversational tone, avoiding AI robot speak.",
+      "type": "general",
+      "tags": [
+        "general",
+        "commit",
+        "gitty",
+        "sync",
+        "human-style"
+      ],
+      "timestamp": "2025-08-16T19:19:05.975Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T19:19:05.975Z",
+      "lastVerified": "2025-08-16T19:19:05.975Z",
+      "status": "fresh"
     }
   ],
-  "lastUpdated": "2025-08-16T17:36:49.340Z"
+  "lastUpdated": "2025-08-16T19:19:05.975Z"
 }
