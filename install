@@ -95,7 +95,40 @@ download_and_install() {
     mkdir -p ken8ncodertmp && cd ken8ncodertmp
     curl -# -L -o "$filename" "$url"
     unzip -q "$filename"
-    mv ken8n-coder "$INSTALL_DIR"
+    
+    # Move the Go TUI binary to a subdirectory
+    mkdir -p "$INSTALL_DIR/tui"
+    mv ken8n-coder "$INSTALL_DIR/tui/ken8n-coder-tui"
+    
+    # Create Bun launcher script
+    cat > "$INSTALL_DIR/ken8n-coder" << 'EOF'
+#!/bin/bash
+# ken8n-coder launcher - requires Bun runtime
+
+# Check if Bun is available
+if ! command -v bun >/dev/null 2>&1; then
+    echo "❌ ken8n-coder requires Bun runtime"
+    echo ""
+    echo "Install Bun:"
+    echo "  curl -fsSL https://bun.sh/install | bash"
+    echo ""
+    echo "Then restart your shell and try again."
+    exit 1
+fi
+
+# Store the current working directory where the command was invoked
+CURRENT_DIR="$(pwd)"
+
+# For now, fall back to development setup
+# TODO: Create standalone Bun package
+echo "⚠️  ken8n-coder requires development setup for now"
+echo "Please clone the repository and use ./ken8n-coder-run instead"
+echo ""
+echo "Repository: https://github.com/kenkaiii/ken8n-coder"
+exit 1
+EOF
+    
+    chmod +x "$INSTALL_DIR/ken8n-coder"
     cd .. && rm -rf ken8ncodertmp 
 }
 
