@@ -97,18 +97,17 @@ download_and_install() {
     curl -# -L -o "$filename" "$url"
     unzip -q "$filename"
     
-    # Store the Go TUI binary
-    mkdir -p "$INSTALL_DIR/tui"
-    mv ken8n-coder "$INSTALL_DIR/tui/ken8n-coder-tui"
+    # Store the Go TUI binary as the main executable
+    mv ken8n-coder "$INSTALL_DIR/ken8n-coder"
     
-    # Create launcher that runs the full stack (like ken8n-coder-run)
-    cat > "$INSTALL_DIR/ken8n-coder" << 'EOF'
+    # Create additional script for full TypeScript development mode (optional)
+    cat > "$INSTALL_DIR/ken8n-coder-dev" << 'EOF'
 #!/bin/bash
-# ken8n-coder global launcher
+# ken8n-coder development launcher (uses TypeScript backend)
 
 # Check if Bun is available
 if ! command -v bun >/dev/null 2>&1; then
-    echo "❌ ken8n-coder requires Bun runtime"
+    echo "❌ ken8n-coder-dev requires Bun runtime"
     echo ""
     echo "Install Bun:"
     echo "  curl -fsSL https://bun.sh/install | bash"
@@ -151,6 +150,7 @@ exec bun run --conditions=development "$HOME/.ken8n-coder/ken8n-coder/packages/k
 EOF
     
     chmod +x "$INSTALL_DIR/ken8n-coder"
+    chmod +x "$INSTALL_DIR/ken8n-coder-dev"
     cd .. && rm -rf ken8ncodertmp 
 }
 

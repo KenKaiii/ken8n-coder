@@ -7,6 +7,7 @@ import { UI } from "../ui"
 import { cmd } from "./cmd"
 import path from "path"
 import fs from "fs/promises"
+import * as fsSync from "fs"
 import os from "os"
 import { Installation } from "../../installation"
 import { Config } from "../../config/config"
@@ -208,7 +209,7 @@ export const TuiCommand = cmd({
 /**
  * Get the correct command to run ken8n-coder CLI
  * In development: ["bun", "run", "packages/ken8n-coder/src/index.ts"]
- * In production: ["/path/to/ken8n-coder"]
+ * In production: ["/path/to/ken8n-coder-dev"] (TypeScript backend)
  */
 function getOpencodeCommand(): string[] {
   // Check if KEN8N_CODER_BIN_PATH is set (used by shell wrapper scripts)
@@ -223,6 +224,17 @@ function getOpencodeCommand(): string[] {
     return [execPath, "run", process.argv[1]]
   }
 
-  // In production, use the current executable path
+  // In production, if we're running from the Go TUI binary, use ken8n-coder-dev for auth
+  // This prevents infinite recursion since the Go binary is only for TUI, not full CLI
+  const devCommand = path.join(path.dirname(process.execPath), "ken8n-coder-dev")
+  try {
+    if (process.execPath.includes("ken8n-coder") && fsSync.existsSync(devCommand)) {
+      return [devCommand]
+    }
+  } catch (e) {
+    // fs might not be available in all contexts, continue to fallback
+  }
+
+  // Fallback to current executable path
   return [process.execPath]
 }
