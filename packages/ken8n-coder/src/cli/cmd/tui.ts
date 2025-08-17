@@ -1,3 +1,4 @@
+/// <reference path="../../global.d.ts" />
 import { Global } from "../../global"
 import { Provider } from "../../provider/provider"
 import { Server } from "../../server/server"

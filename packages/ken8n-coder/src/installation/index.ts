@@ -1,3 +1,4 @@
+/// <reference path="../global.d.ts" />
 import path from "path"
 import { $ } from "bun"
 import { z } from "zod"
@@ -133,10 +134,10 @@ export namespace Installation {
   }
 
   export const VERSION = typeof KEN8N_CODER_VERSION === "string" ? KEN8N_CODER_VERSION : "dev"
-  export const USER_AGENT = `opencode/${VERSION}`
+  export const USER_AGENT = `ken8n-coder/${VERSION}`
 
   export async function latest() {
-    return fetch("https://api.github.com/repos/sst/opencode/releases/latest")
+    return fetch("https://api.github.com/repos/kenkaiii/ken8n-coder/releases/latest")
       .then((res) => res.json())
       .then((data) => {
         if (typeof data.tag_name !== "string") {
