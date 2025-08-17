@@ -98,7 +98,20 @@ download_and_install() {
     unzip -q "$filename"
     
     # Store the Go TUI binary as the main executable
-    mv ken8n-coder "$INSTALL_DIR/ken8n-coder"
+    # Check if binary is in bin/ subdirectory (v1.1.3+) or root (older versions)
+    if [ -f "bin/ken8n-coder" ]; then
+        mv bin/ken8n-coder "$INSTALL_DIR/ken8n-coder"
+    elif [ -f "ken8n-coder" ]; then
+        mv ken8n-coder "$INSTALL_DIR/ken8n-coder"
+    else
+        echo "❌ Error: ken8n-coder binary not found in archive"
+        exit 1
+    fi
+    
+    # Copy validation scripts if present (v1.1.3+)
+    if [ -d "validation-scripts" ]; then
+        cp -r validation-scripts "$HOME/.ken8n-coder/"
+    fi
     
     # Create additional script for full TypeScript development mode (optional)
     cat > "$INSTALL_DIR/ken8n-coder-dev" << 'EOF'
