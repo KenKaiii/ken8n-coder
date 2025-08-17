@@ -2195,7 +2195,148 @@
       "lastAccessed": "2025-08-16T19:19:05.975Z",
       "lastVerified": "2025-08-16T19:19:05.975Z",
       "status": "fresh"
+    },
+    {
+      "id": "mem_1755373586867_bk6iojtr5",
+      "content": "TypeScript compilation failing because multiple files try to import { Global } from \"../global\" but only global.d.ts exists (which declares global variables OPENCODE_VERSION, OPENCODE_TUI_PATH but doesn't export Global object). Need to either create global.ts file with Global export or fix imports to use global variables directly.",
+      "type": "troubleshooting",
+      "tags": [
+        "troubleshooting",
+        "typescript",
+        "compilation-error",
+        "global-module",
+        "ken8n-coder"
+      ],
+      "timestamp": "2025-08-16T19:46:26.867Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T19:46:26.867Z",
+      "lastVerified": "2025-08-16T19:46:26.867Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755373682353_0d0tbzpyc",
+      "content": "Successfully fixed ken8n-coder TypeScript compilation errors and completed git workflow. Created missing global.ts file that exports Global object from global/index.ts, resolving import errors across multiple files. Committed with natural human-style message and pushed to remote. All installation fixes (log paths, missing os import, TUI binary resolution) are now working correctly with clean TypeScript compilation.",
+      "type": "code",
+      "tags": [
+        "code",
+        "typescript",
+        "ken8n-coder",
+        "compilation-fix",
+        "git-commit",
+        "installation-working",
+        "success"
+      ],
+      "timestamp": "2025-08-16T19:48:02.353Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-16T19:48:02.353Z",
+      "lastVerified": "2025-08-16T19:48:02.353Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755405660444_xkbwsvvzz",
+      "content": "TypeError: fetch() URL is invalid error during ken8n-coder auth login initialization. Error occurs 2-3ms after git detection during app creation in service=default. Auth interface starts but crashes immediately. Need to find specific fetch() call with invalid/undefined URL in early app initialization phase.",
+      "type": "error",
+      "tags": [
+        "error",
+        "debug",
+        "fetch-error",
+        "auth-login",
+        "ken8n-coder"
+      ],
+      "timestamp": "2025-08-17T04:41:00.444Z",
+      "context": "Debugging ken8n-coder auth login failure",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T04:41:00.444Z",
+      "lastVerified": "2025-08-17T04:41:00.444Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755405685360_pv6zrbnnn",
+      "content": "Found the bug! Config.ts line 40: fetch(`${key}/.well-known/opencode`) where key from auth entries may not be valid URL format. Need to validate/sanitize key before using in fetch() URL construction. This happens during app initialization when loading auth configs with wellknown type.",
+      "type": "config",
+      "tags": [
+        "config",
+        "fix-identified",
+        "config-loading",
+        "url-validation"
+      ],
+      "timestamp": "2025-08-17T04:41:25.360Z",
+      "context": "Root cause identified for fetch() URL invalid error",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T04:41:25.360Z",
+      "lastVerified": "2025-08-17T04:41:25.360Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755405730796_jwegcmj7o",
+      "content": "Fixed config.ts line 40 with URL validation, but fetch() URL error still occurring. Error timestamp shows it happens 3ms after git detection, same as before. Need to investigate if there are other wellknown auth entries or other fetch calls causing this.",
+      "type": "config",
+      "tags": [
+        "config",
+        "debug",
+        "persistent-error",
+        "needs-investigation"
+      ],
+      "timestamp": "2025-08-17T04:42:10.796Z",
+      "context": "Issue persists after first fix attempt",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T04:42:10.796Z",
+      "lastVerified": "2025-08-17T04:42:10.796Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755405829962_i4d44ic2h",
+      "content": "Found the actual bug! In auth.ts line 82: fetch(`${args.url}/.well-known/opencode`) where args.url could be undefined/null causing the \"fetch() URL is invalid\" error. This happens in the auth login command handler when no URL is provided.",
+      "type": "error",
+      "tags": [
+        "error",
+        "bug-found",
+        "auth-command",
+        "url-validation"
+      ],
+      "timestamp": "2025-08-17T04:43:49.962Z",
+      "context": "Real root cause identified",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T04:43:49.962Z",
+      "lastVerified": "2025-08-17T04:43:49.962Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755405921630_zeaxvnc78",
+      "content": "✅ FIXED: TypeError: fetch() URL is invalid error in ken8n-coder auth login. Root cause: auth.ts line 81 was treating file paths as URLs. Fixed by adding URL validation (must start with http:// or https://) before attempting fetch(). Auth login now works properly and shows provider selection interface.",
+      "type": "error",
+      "tags": [
+        "error",
+        "fixed",
+        "auth-login",
+        "fetch-validation",
+        "success"
+      ],
+      "timestamp": "2025-08-17T04:45:21.630Z",
+      "context": "Bug resolution completed successfully",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T04:45:21.630Z",
+      "lastVerified": "2025-08-17T04:45:21.630Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755410449884_dbqbv6usl",
+      "content": "Commit context: User wants to commit the current installation fixes with natural, human-style commit message. We just fixed the argument order in the install script and created release v0.5.7 for seamless installation testing.",
+      "type": "config",
+      "tags": [
+        "config",
+        "testing",
+        "commit",
+        "installation",
+        "fixes",
+        "v0.5.7"
+      ],
+      "timestamp": "2025-08-17T06:00:49.884Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T06:00:49.884Z",
+      "lastVerified": "2025-08-17T06:00:49.884Z",
+      "status": "fresh"
     }
   ],
-  "lastUpdated": "2025-08-16T19:19:05.975Z"
+  "lastUpdated": "2025-08-17T06:00:49.884Z"
 }
