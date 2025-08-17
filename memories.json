@@ -1937,8 +1937,8 @@
         "success"
       ],
       "timestamp": "2025-08-16T17:34:55.328Z",
-      "accessCount": 1,
-      "lastAccessed": "2025-08-17T10:11:23.473Z",
+      "accessCount": 2,
+      "lastAccessed": "2025-08-17T18:57:50.699Z",
       "lastVerified": "2025-08-16T17:34:55.328Z",
       "status": "fresh"
     },
@@ -4388,7 +4388,25 @@
       "lastAccessed": "2025-08-17T18:49:44.143Z",
       "lastVerified": "2025-08-17T18:49:44.143Z",
       "status": "fresh"
+    },
+    {
+      "id": "mem_1755457307942_aj7hwjter",
+      "content": "Fixed critical security/privacy issue in ken8n-coder v1.1.5:\n- Removed personal CLAUDE.md loading from SystemPrompt (was loading ~/.claude/CLAUDE.md)\n- Modified /packages/ken8n-coder/src/session/system.ts to remove global CLAUDE.md\n- Agents now only load project-specific instructions from AGENTS.md\n- User decided not to use KEN8N.md - removed it\n- This prevents ken8n-coder agents from accessing personal Claude configuration",
+      "type": "config",
+      "tags": [
+        "config",
+        "security",
+        "privacy",
+        "claude.md",
+        "agents",
+        "v1.1.5"
+      ],
+      "timestamp": "2025-08-17T19:01:47.942Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T19:01:47.942Z",
+      "lastVerified": "2025-08-17T19:01:47.942Z",
+      "status": "fresh"
     }
   ],
-  "lastUpdated": "2025-08-17T18:49:44.143Z"
+  "lastUpdated": "2025-08-17T19:01:47.942Z"
 }

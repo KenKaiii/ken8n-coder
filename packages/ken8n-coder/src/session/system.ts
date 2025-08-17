@@ -56,19 +56,16 @@ export namespace SystemPrompt {
 
   const LOCAL_RULE_FILES = [
     "AGENTS.md",
-    "CLAUDE.md",
+    "KEN8N.md", // Project-specific instructions
     "CONTEXT.md", // deprecated
   ]
   const GLOBAL_RULE_FILES = [
     path.join(Global.Path.config, "AGENTS.md"),
-    path.join(os.homedir(), ".claude", "CLAUDE.md"),
+    // REMOVED: path.join(os.homedir(), ".claude", "CLAUDE.md") - Don't load personal CLAUDE.md!
   ]
 
-  export async function custom() {
-    const { cwd, root } = App.info().path
-    const config = await Config.get()
+  async function findLocalRules(cwd: string, root: string): Promise<Set<string>> {
     const paths = new Set<string>()
-
     for (const localRuleFile of LOCAL_RULE_FILES) {
       const matches = await Filesystem.findUp(localRuleFile, cwd, root)
       if (matches.length > 0) {
@@ -76,34 +73,63 @@ export namespace SystemPrompt {
         break
       }
     }
+    return paths
+  }
 
+  async function findGlobalRules(): Promise<Set<string>> {
+    const paths = new Set<string>()
     for (const globalRuleFile of GLOBAL_RULE_FILES) {
       if (await Bun.file(globalRuleFile).exists()) {
         paths.add(globalRuleFile)
         break
       }
     }
+    return paths
+  }
 
-    if (config.instructions) {
-      for (let instruction of config.instructions) {
-        if (instruction.startsWith("~/")) {
-          instruction = path.join(os.homedir(), instruction.slice(2))
-        }
-        let matches: string[] = []
-        if (path.isAbsolute(instruction)) {
-          matches = await Array.fromAsync(
-            new Bun.Glob(path.basename(instruction)).scan({
-              cwd: path.dirname(instruction),
-              absolute: true,
-              onlyFiles: true,
-            }),
-          ).catch(() => [])
-        } else {
-          matches = await Filesystem.globUp(instruction, cwd, root).catch(() => [])
-        }
-        matches.forEach((path) => paths.add(path))
+  async function findConfigInstructions(config: any, cwd: string, root: string): Promise<Set<string>> {
+    const paths = new Set<string>()
+    if (!config.instructions) return paths
+
+    for (const originalInstruction of config.instructions) {
+      const instruction = originalInstruction.startsWith("~/")
+        ? path.join(os.homedir(), originalInstruction.slice(2))
+        : originalInstruction
+
+      let matches: string[] = []
+      if (path.isAbsolute(instruction)) {
+        matches = await Array.fromAsync(
+          new Bun.Glob(path.basename(instruction)).scan({
+            cwd: path.dirname(instruction),
+            absolute: true,
+            onlyFiles: true,
+          }),
+        ).catch(() => [])
+      } else {
+        matches = await Filesystem.globUp(instruction, cwd, root).catch(() => [])
       }
+      matches.forEach((path) => paths.add(path))
     }
+    return paths
+  }
+
+  export async function custom() {
+    const { cwd, root } = App.info().path
+    const config = await Config.get()
+
+    const paths = new Set<string>()
+
+    // Find local rules
+    const localPaths = await findLocalRules(cwd, root)
+    localPaths.forEach((p) => paths.add(p))
+
+    // Find global rules
+    const globalPaths = await findGlobalRules()
+    globalPaths.forEach((p) => paths.add(p))
+
+    // Find config instructions
+    const configPaths = await findConfigInstructions(config, cwd, root)
+    configPaths.forEach((p) => paths.add(p))
 
     const found = Array.from(paths).map((p) =>
       Bun.file(p)
