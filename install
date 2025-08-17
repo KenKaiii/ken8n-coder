@@ -95,7 +95,7 @@ download_and_install() {
     print_message info "Downloading ${ORANGE}ken8n-coder ${GREEN}version: ${YELLOW}$specific_version ${GREEN}..."
     mkdir -p ken8ncodertmp && cd ken8ncodertmp
     curl -# -L -o "$filename" "$url"
-    unzip -qo "$filename"
+    unzip -qo "$filename" </dev/null
     
     # Store the Go TUI binary as the main executable
     # Check if binary is in bin/ subdirectory (v1.1.3+) or root (older versions)
