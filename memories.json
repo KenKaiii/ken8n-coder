@@ -4406,7 +4406,59 @@
       "lastAccessed": "2025-08-17T19:01:47.942Z",
       "lastVerified": "2025-08-17T19:01:47.942Z",
       "status": "fresh"
+    },
+    {
+      "id": "mem_1755457561288_yg12qplvk",
+      "content": "Release v1.1.5 Summary:\n- CRITICAL FIX: Removed personal CLAUDE.md loading from agents\n- Modified system.ts to prevent loading ~/.claude/CLAUDE.md\n- Updated all package versions to 1.1.5\n- Windows package already published to NPM\n- Ready to commit and create GitHub release\nChanges:\n- packages/ken8n-coder/src/session/system.ts: Removed CLAUDE.md from GLOBAL_RULE_FILES\n- All package.json files: Updated version to 1.1.5\n- install script: Updated fallback version to 1.1.5\n- TUI main.go: Updated version to 1.1.5",
+      "type": "config",
+      "tags": [
+        "config",
+        "go",
+        "release",
+        "v1.1.5",
+        "security-fix"
+      ],
+      "timestamp": "2025-08-17T19:06:01.288Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T19:06:01.288Z",
+      "lastVerified": "2025-08-17T19:06:01.288Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755457728909_fbih4kz25",
+      "content": "Build process for ken8n-coder v1.1.5 binaries:\n1. Build TUI: cd packages/tui && CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags=\"-s -w -X main.Version=1.1.5\" -o ../ken8n-coder/dist/PLATFORM/bin/tui cmd/ken8n-coder/main.go\n2. Build ken8n-coder: cd packages/ken8n-coder && bun build --compile --target=bun-PLATFORM --outfile=dist/PLATFORM/bin/ken8n-coder ./src/index.ts\n3. Clean TUI: rm dist/PLATFORM/bin/tui\n4. Add validation: cp validation-scripts/validate-supercode-static.js dist/PLATFORM/validation-scripts/\n5. Create zip: cd dist && zip -r PLATFORM.zip PLATFORM",
+      "type": "config",
+      "tags": [
+        "config",
+        "go",
+        "build",
+        "release",
+        "v1.1.5"
+      ],
+      "timestamp": "2025-08-17T19:08:48.909Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T19:08:48.909Z",
+      "lastVerified": "2025-08-17T19:08:48.909Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755458006437_6ss3j88yf",
+      "content": "Successfully released ken8n-coder v1.1.5 with critical security fix:\n\nWHAT WAS FIXED:\n- Removed personal CLAUDE.md loading from agents (was loading ~/.claude/CLAUDE.md)\n- Modified packages/ken8n-coder/src/session/system.ts to prevent global CLAUDE.md access\n- Agents now only load project-specific AGENTS.md files\n\nRELEASE PROCESS COMPLETED:\n1. Updated version to 1.1.5 in all package.json files\n2. Updated TUI version in packages/tui/cmd/ken8n-coder/main.go\n3. Updated install script fallback version\n4. Built binaries for all platforms (Linux x64/arm64, macOS x64/arm64, Windows x64)\n5. Created GitHub release with all binaries\n6. Fixed install script to handle new platform-specific directory structure\n7. Tested and verified installation works correctly\n\nGitHub Release: https://github.com/KenKaiii/ken8n-coder/releases/tag/v1.1.5\nInstallation command: curl -fsSL https://raw.githubusercontent.com/kenkaiii/ken8n-coder/main/install | bash",
+      "type": "config",
+      "tags": [
+        "config",
+        "go",
+        "release",
+        "v1.1.5",
+        "security-fix",
+        "completed"
+      ],
+      "timestamp": "2025-08-17T19:13:26.437Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T19:13:26.437Z",
+      "lastVerified": "2025-08-17T19:13:26.437Z",
+      "status": "fresh"
     }
   ],
-  "lastUpdated": "2025-08-17T19:01:47.942Z"
+  "lastUpdated": "2025-08-17T19:13:26.437Z"
 }
