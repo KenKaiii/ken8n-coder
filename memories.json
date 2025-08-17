@@ -14,8 +14,8 @@
         "architecture"
       ],
       "timestamp": "2025-08-16T09:56:06.079Z",
-      "accessCount": 34,
-      "lastAccessed": "2025-08-17T10:11:30.200Z",
+      "accessCount": 36,
+      "lastAccessed": "2025-08-17T13:44:04.789Z",
       "lastVerified": "2025-08-16T09:56:06.079Z",
       "status": "fresh"
     },
@@ -31,8 +31,8 @@
         "generation"
       ],
       "timestamp": "2025-08-16T09:56:32.524Z",
-      "accessCount": 32,
-      "lastAccessed": "2025-08-17T07:20:53.496Z",
+      "accessCount": 33,
+      "lastAccessed": "2025-08-17T13:43:01.837Z",
       "lastVerified": "2025-08-16T09:56:32.524Z",
       "status": "fresh"
     },
@@ -49,8 +49,8 @@
       ],
       "timestamp": "2025-08-16T09:56:48.904Z",
       "context": "Starting research task for n8n development",
-      "accessCount": 23,
-      "lastAccessed": "2025-08-17T07:20:53.496Z",
+      "accessCount": 24,
+      "lastAccessed": "2025-08-17T13:43:01.837Z",
       "lastVerified": "2025-08-16T09:56:48.904Z",
       "status": "fresh"
     },
@@ -70,8 +70,8 @@
       ],
       "timestamp": "2025-08-16T10:01:19.276Z",
       "context": "Successfully completed comprehensive n8n research task",
-      "accessCount": 34,
-      "lastAccessed": "2025-08-17T07:20:53.496Z",
+      "accessCount": 36,
+      "lastAccessed": "2025-08-17T13:44:04.789Z",
       "lastVerified": "2025-08-16T10:01:19.276Z",
       "status": "fresh"
     },
@@ -89,8 +89,8 @@
         "requirements"
       ],
       "timestamp": "2025-08-16T10:01:39.136Z",
-      "accessCount": 27,
-      "lastAccessed": "2025-08-17T07:20:53.496Z",
+      "accessCount": 28,
+      "lastAccessed": "2025-08-17T13:43:01.837Z",
       "lastVerified": "2025-08-16T10:01:39.136Z",
       "status": "fresh"
     },
@@ -111,8 +111,8 @@
         "opencode"
       ],
       "timestamp": "2025-08-16T10:01:51.233Z",
-      "accessCount": 35,
-      "lastAccessed": "2025-08-17T10:11:30.200Z",
+      "accessCount": 37,
+      "lastAccessed": "2025-08-17T13:44:04.789Z",
       "lastVerified": "2025-08-16T10:01:51.233Z",
       "status": "fresh"
     },
@@ -129,8 +129,8 @@
         "libraries"
       ],
       "timestamp": "2025-08-16T10:25:31.431Z",
-      "accessCount": 33,
-      "lastAccessed": "2025-08-17T07:20:53.496Z",
+      "accessCount": 35,
+      "lastAccessed": "2025-08-17T13:44:04.789Z",
       "lastVerified": "2025-08-16T10:25:31.431Z",
       "status": "fresh"
     },
@@ -146,8 +146,8 @@
         "final"
       ],
       "timestamp": "2025-08-16T10:41:51.594Z",
-      "accessCount": 25,
-      "lastAccessed": "2025-08-17T07:20:53.496Z",
+      "accessCount": 26,
+      "lastAccessed": "2025-08-17T13:43:01.837Z",
       "lastVerified": "2025-08-16T10:41:51.594Z",
       "status": "fresh"
     },
@@ -163,8 +163,8 @@
         "system-prompts"
       ],
       "timestamp": "2025-08-16T10:45:35.124Z",
-      "accessCount": 32,
-      "lastAccessed": "2025-08-17T07:20:53.496Z",
+      "accessCount": 33,
+      "lastAccessed": "2025-08-17T13:43:01.837Z",
       "lastVerified": "2025-08-16T10:45:35.124Z",
       "status": "fresh"
     },
@@ -183,8 +183,8 @@
         "n8n"
       ],
       "timestamp": "2025-08-16T10:46:40.466Z",
-      "accessCount": 33,
-      "lastAccessed": "2025-08-17T10:11:30.200Z",
+      "accessCount": 35,
+      "lastAccessed": "2025-08-17T13:44:04.789Z",
       "lastVerified": "2025-08-16T10:46:40.466Z",
       "status": "fresh"
     },
@@ -203,8 +203,8 @@
         "score"
       ],
       "timestamp": "2025-08-16T10:46:41.719Z",
-      "accessCount": 18,
-      "lastAccessed": "2025-08-17T10:11:30.200Z",
+      "accessCount": 19,
+      "lastAccessed": "2025-08-17T13:44:04.789Z",
       "lastVerified": "2025-08-16T10:46:41.719Z",
       "status": "fresh"
     },
@@ -244,8 +244,8 @@
       ],
       "timestamp": "2025-08-16T10:47:08.698Z",
       "context": "UX evaluation of ken8n-coder system prompts and documentation for n8n workflow creation",
-      "accessCount": 11,
-      "lastAccessed": "2025-08-16T18:54:41.602Z",
+      "accessCount": 12,
+      "lastAccessed": "2025-08-17T13:44:04.789Z",
       "lastVerified": "2025-08-16T10:47:08.698Z",
       "status": "fresh"
     },
@@ -373,8 +373,8 @@
       ],
       "timestamp": "2025-08-16T10:49:14.163Z",
       "context": "Strategic technical architecture evaluation of ken8n-coder system",
-      "accessCount": 4,
-      "lastAccessed": "2025-08-17T10:11:30.200Z",
+      "accessCount": 5,
+      "lastAccessed": "2025-08-17T13:44:04.789Z",
       "lastVerified": "2025-08-16T10:49:14.163Z",
       "status": "fresh"
     },
@@ -1112,8 +1112,8 @@
         "analysis"
       ],
       "timestamp": "2025-08-16T15:42:17.552Z",
-      "accessCount": 7,
-      "lastAccessed": "2025-08-17T07:20:53.383Z",
+      "accessCount": 8,
+      "lastAccessed": "2025-08-17T13:44:04.789Z",
       "lastVerified": "2025-08-16T15:42:17.552Z",
       "status": "fresh"
     },
@@ -1187,8 +1187,8 @@
       ],
       "timestamp": "2025-08-16T15:45:52.582Z",
       "context": "Evaluating prompt length optimization for specialized n8n workflow task",
-      "accessCount": 4,
-      "lastAccessed": "2025-08-16T18:54:41.602Z",
+      "accessCount": 5,
+      "lastAccessed": "2025-08-17T13:44:04.789Z",
       "lastVerified": "2025-08-16T15:45:52.582Z",
       "status": "fresh"
     },
@@ -3650,7 +3650,300 @@
       "lastAccessed": "2025-08-17T13:19:33.557Z",
       "lastVerified": "2025-08-17T13:19:33.557Z",
       "status": "fresh"
+    },
+    {
+      "id": "mem_1755437930104_tfvz53kaj",
+      "content": "Comparing supercode.txt vs anthropic.txt prompts - supercode.txt is missing crucial elements for a coding terminal agent. The anthropic.txt has comprehensive library lists, proper n8n workflow structure requirements, security practices, tool usage policies, and task management guidance that supercode.txt lacks.",
+      "type": "general",
+      "tags": [
+        "general",
+        "analysis",
+        "prompts",
+        "supercode",
+        "anthropic",
+        "missing-features"
+      ],
+      "timestamp": "2025-08-17T13:38:50.104Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T13:38:50.104Z",
+      "lastVerified": "2025-08-17T13:38:50.104Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755438008255_elbbt7ey4",
+      "content": "User clarified: supercode.txt is specifically for generating code within Super Code nodes in n8n workflows, not for creating entire workflows. This is an important distinction that affects what should be included in the prompt.",
+      "type": "tip",
+      "tags": [
+        "tip",
+        "clarification",
+        "supercode",
+        "scope",
+        "n8n",
+        "super-code-node"
+      ],
+      "timestamp": "2025-08-17T13:40:08.255Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T13:40:08.255Z",
+      "lastVerified": "2025-08-17T13:40:08.255Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755438037182_1yr8rujsg",
+      "content": "Evaluating supercode.txt for Super Code JavaScript generation effectiveness. Key findings: \n- Current file is 45 lines focused on basic structure and global libraries\n- Missing critical error handling patterns, VM constraints, async/await patterns\n- Incomplete library documentation (says \"46 PRE-LOADED\" but only lists ~24)\n- Lacks input/output transformation examples and data type handling\n- No guidance on performance optimization or memory constraints in VM environment",
+      "type": "config",
+      "tags": [
+        "config",
+        "javascript",
+        "optimization",
+        "evaluation",
+        "supercode",
+        "n8n"
+      ],
+      "timestamp": "2025-08-17T13:40:37.182Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T13:40:37.182Z",
+      "lastVerified": "2025-08-17T13:40:37.182Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755438131123_ehnq4tvu9",
+      "content": "Analyzing supercode.txt for practical JavaScript patterns in n8n Super Code nodes. Current examples show basic input/output structure but lack critical real-world patterns like error handling, async operations, data validation, and complex transformations.",
+      "type": "error",
+      "tags": [
+        "error",
+        "javascript",
+        "assessment",
+        "supercode",
+        "n8n",
+        "patterns"
+      ],
+      "timestamp": "2025-08-17T13:42:11.123Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T13:42:11.123Z",
+      "lastVerified": "2025-08-17T13:42:11.123Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755438219202_w6d6xex77",
+      "content": "Evaluated supercode.txt vs anthropic.txt scope distinction:\n\nSCOPE CLARIFICATION:\n- supercode.txt = JavaScript code generation for Super Code nodes ONLY\n- anthropic.txt = Full n8n workflow creation with multiple nodes\n\nASSESSMENT FINDINGS:\n- supercode.txt is correctly narrow-focused (45 lines vs 163)\n- Missing some critical Super Code specific guidance from anthropic.txt\n- Current scope is appropriate but needs enhancement\n- Should NOT include task management, workflow structure, or file operations\n\nNEEDED ADDITIONS:\n- Critical syntax warnings (require() vs global usage)\n- More comprehensive library list (missing 46 vs 22)\n- Error handling patterns\n- VM environment constraints\n- Input/output data patterns beyond basic structure",
+      "type": "tip",
+      "tags": [
+        "tip",
+        "javascript",
+        "e",
+        "v",
+        "a",
+        "l",
+        "u",
+        "t",
+        "i",
+        "o",
+        "n",
+        ",",
+        " ",
+        "s",
+        "p",
+        "r",
+        "c",
+        "d",
+        "m",
+        "8"
+      ],
+      "timestamp": "2025-08-17T13:43:39.202Z",
+      "context": "Analyzing whether supercode.txt has appropriate scope for Super Code node JS generation vs full workflow creation",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T13:43:39.202Z",
+      "lastVerified": "2025-08-17T13:43:39.202Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755438328914_59yut88jn",
+      "content": "Super Code Pattern Evaluation Completed - Identified 5 critical missing JavaScript patterns for n8n Super Code node development:\n\n1. ASYNC/AWAIT ERROR HANDLING (10/10) - Missing async patterns cause Promise return failures\n2. INPUT VALIDATION (9/10) - No validation patterns despite having Joi/Ajv available  \n3. LARGE DATASET CHUNKING (9/10) - VM memory limits not addressed for enterprise data\n4. WEBHOOK PAYLOAD NORMALIZATION (8/10) - No patterns for handling varying webhook formats\n5. N8N ERROR PROPAGATION (8/10) - Poor debugging capabilities in production\n\nCurrent supercode.txt only has 45 lines with basic patterns. Missing these patterns causes runtime crashes, memory issues, and debugging nightmares in production workflows. Scored overall system 4/10 for production readiness.",
+      "type": "error",
+      "tags": [
+        "error",
+        "javascript",
+        "evaluation",
+        "n8n",
+        "supercode",
+        "patterns",
+        "production",
+        "critical-gaps"
+      ],
+      "timestamp": "2025-08-17T13:45:28.914Z",
+      "context": "Strategic evaluation of ken8n-coder supercode.txt patterns for production n8n workflows",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T13:45:28.914Z",
+      "lastVerified": "2025-08-17T13:45:28.914Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755438566776_3dtlu9yl0",
+      "content": "Successfully enhanced supercode.txt prompt with: 1) Complete library list (50+ libraries), 2) Critical VM environment warnings about require/import, 3) Production-ready error handling patterns, 4) Async/await HTTP request examples, 5) Data validation patterns, 6) Performance optimization with batching, 7) Common use cases for file processing, crypto, and data transformation. Now comprehensive for Super Code node JavaScript development.",
+      "type": "config",
+      "tags": [
+        "config",
+        "javascript",
+        "optimization",
+        "enhancement",
+        "supercode",
+        "prompt",
+        "complete",
+        "production-ready"
+      ],
+      "timestamp": "2025-08-17T13:49:26.776Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T13:49:26.776Z",
+      "lastVerified": "2025-08-17T13:49:26.776Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755438652067_yvcuqyz6d",
+      "content": "User requested 5-agent review of enhanced supercode.txt prompt to validate the improvements made for Super Code node JavaScript development.",
+      "type": "general",
+      "tags": [
+        "general",
+        "javascript",
+        "review",
+        "supercode",
+        "5-agents",
+        "validation"
+      ],
+      "timestamp": "2025-08-17T13:50:52.067Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T13:50:52.067Z",
+      "lastVerified": "2025-08-17T13:50:52.067Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755438729651_s7vf5seel",
+      "content": "Evaluated supercode.txt prompt for n8n Super Code node error handling patterns. Key findings:\n1. Basic try/catch structure provided but lacks nested error handling sophistication\n2. Async patterns show good timeout usage but limited concurrency control\n3. Input validation present but could be more comprehensive \n4. Error formats compatible with n8n but limited context preservation\n5. Performance patterns include batching but lack memory protection",
+      "type": "error",
+      "tags": [
+        "error",
+        "code-review",
+        "n8n",
+        "error-handling",
+        "async-patterns",
+        "javascript"
+      ],
+      "timestamp": "2025-08-17T13:52:09.651Z",
+      "context": "Code review of n8n Super Code node JavaScript prompt template",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T13:52:09.651Z",
+      "lastVerified": "2025-08-17T13:52:09.651Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755438784709_tqix02j80",
+      "content": "Analyzed Super Code node examples for practical utility assessment. Key findings:\n\nSTRENGTHS:\n- 50+ pre-loaded libraries (lodash, axios, dayjs, etc.) - comprehensive ecosystem\n- Clear VM environment rules (no require/import, use globals)\n- Proper error handling patterns with try/catch\n- Real-world patterns: async/HTTP, validation, batching, file processing\n- Production-ready structure with timeout protection and input validation\n\nWEAKNESSES:\n- Examples are somewhat basic/generic\n- Limited real business scenario depth\n- No complex data pipeline examples\n- Missing advanced integration patterns\n- Performance patterns could be more comprehensive\n\nPRACTICAL USAGE:\n- Basic structure is solid and copy-pastable\n- Library usage examples are realistic\n- Error handling follows n8n conventions\n- Validation patterns are production-ready",
+      "type": "config",
+      "tags": [
+        "config",
+        "assessment",
+        "supercode",
+        "n8n",
+        "javascript",
+        "code-examples"
+      ],
+      "timestamp": "2025-08-17T13:53:04.709Z",
+      "context": "Practical utility assessment of Super Code node JavaScript examples for production n8n workflows",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T13:53:04.709Z",
+      "lastVerified": "2025-08-17T13:53:04.709Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755438879831_7kektg6sm",
+      "content": "Evaluated supercode.txt developer experience: 7/10 score. Strong technical content prevents major VM gotchas (require/import restrictions) and provides production-ready patterns for error handling, validation, performance. Major weakness is information architecture - 50+ libraries in comma-separated dump makes discoverability terrible. Need to categorize libraries, add quick reference, improve progressive disclosure. Content quality suggests expert author who understands pain points, just needs better organization.",
+      "type": "code",
+      "tags": [
+        "code",
+        "evaluation",
+        "developer-experience",
+        "n8n",
+        "supercode",
+        "documentation-review"
+      ],
+      "timestamp": "2025-08-17T13:54:39.831Z",
+      "context": "Developer experience evaluation of n8n Super Code prompt for JavaScript developers building nodes",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T13:54:39.831Z",
+      "lastVerified": "2025-08-17T13:54:39.831Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755438905590_rppn0fpo2",
+      "content": "Evaluated supercode.txt prompt for enterprise n8n workflows. Found several good practices but critical security gaps for production use. Lacks comprehensive input sanitization, credential handling, logging, and audit trails needed for enterprise environments.",
+      "type": "general",
+      "tags": [
+        "general",
+        "security",
+        "enterprise",
+        "n8n",
+        "production",
+        "assessment"
+      ],
+      "timestamp": "2025-08-17T13:55:05.590Z",
+      "context": "Production readiness assessment of n8n Super Code prompt",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T13:55:05.590Z",
+      "lastVerified": "2025-08-17T13:55:05.590Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755438952994_3sedk816s",
+      "content": "Analyzing supercode.txt prompt for coding terminal agent effectiveness. Current prompt has 167 lines covering: 50+ pre-loaded libraries, VM environment rules, basic structure patterns, async/HTTP patterns, data validation, performance patterns, common use cases, and key patterns. Focus is on production-ready JavaScript for n8n Super Code nodes with error handling and validation.",
+      "type": "config",
+      "tags": [
+        "config",
+        "javascript",
+        "assessment",
+        "prompt-analysis",
+        "supercode",
+        "coding-agent"
+      ],
+      "timestamp": "2025-08-17T13:55:52.994Z",
+      "context": "Assessment task for supercode.txt prompt completeness as coding terminal agent",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T13:55:52.994Z",
+      "lastVerified": "2025-08-17T13:55:52.994Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755439206080_bwy7puchl",
+      "content": "Successfully enhanced supercode.txt with all critical elements: complete library list (simple comma-separated format), async/await patterns, comprehensive error handling, VM environment warnings, data validation, performance patterns, and TodoWrite tool guidance. Removed redundant library usage explanations since AI already knows what these libraries do.",
+      "type": "config",
+      "tags": [
+        "config",
+        "enhancement",
+        "supercode",
+        "complete",
+        "optimized"
+      ],
+      "timestamp": "2025-08-17T14:00:06.080Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T14:00:06.080Z",
+      "lastVerified": "2025-08-17T14:00:06.080Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755439365412_f1na635gv",
+      "content": "User wants to commit the supercode.txt enhancements and cursor positioning fixes. Need to use gitty agent for human-style commit message and complete sync process.",
+      "type": "general",
+      "tags": [
+        "general",
+        "commit",
+        "supercode",
+        "cursor-fix",
+        "sync"
+      ],
+      "timestamp": "2025-08-17T14:02:45.412Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T14:02:45.412Z",
+      "lastVerified": "2025-08-17T14:02:45.412Z",
+      "status": "fresh"
     }
   ],
-  "lastUpdated": "2025-08-17T13:19:33.557Z"
+  "lastUpdated": "2025-08-17T14:02:45.412Z"
 }
