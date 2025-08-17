@@ -89,9 +89,25 @@ function checkImports(code, result) {
 
 // Check code structure
 function checkStructure(code, result) {
-  if (!code.includes("$input")) {
-    result.addWarning("Code does not use $input - may not be processing workflow data")
-    result.addInfo("Start with: const data = $input.first().json")
+  // Check for various n8n input methods
+  const inputPatterns = [
+    "$input",
+    "$json",
+    "$node",
+    "$items",
+    "$parameter",
+    "$execution",
+    "$workflow",
+    '$("', // $("NodeName") syntax
+    "$('", // $('NodeName') syntax
+  ]
+
+  const usesInput = inputPatterns.some((pattern) => code.includes(pattern))
+
+  if (!usesInput) {
+    result.addWarning("Code does not appear to use n8n input variables")
+    result.addInfo('Common input methods: $input, $json, $node, $("NodeName")')
+    result.addInfo("For webhooks/triggers: Access data directly from $json")
   }
 
   if (!code.includes("return")) {
@@ -157,11 +173,21 @@ function checkCommonMistakes(code, result) {
     result.addWarning("References browser/DOM APIs - SuperCode runs in Node.js")
   }
 
-  const hasInputProcessing = code.includes("$input.first()") || code.includes("$input.all()")
+  // Check for any valid n8n data access pattern
+  const hasN8nDataAccess =
+    code.includes("$input") ||
+    code.includes("$json") ||
+    code.includes("$node") ||
+    code.includes("$items") ||
+    code.includes("$parameter") ||
+    /\$\(['"]/.test(code) // $("NodeName") or $('NodeName')
+
   const hasReturn = code.includes("return")
 
-  if (hasInputProcessing && hasReturn) {
-    result.addInfo("Basic structure looks good: reads input and returns data")
+  if (hasN8nDataAccess && hasReturn) {
+    result.addInfo("Structure looks good: accesses n8n data and returns result")
+  } else if (hasReturn && !hasN8nDataAccess) {
+    result.addInfo("Returns data but doesn't access n8n variables - may be a utility function")
   }
 }
 
