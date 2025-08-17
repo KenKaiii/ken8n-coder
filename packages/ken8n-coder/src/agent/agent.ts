@@ -4,6 +4,8 @@ import z from "zod"
 import { Provider } from "../provider/provider"
 import { generateObject, type ModelMessage } from "ai"
 import PROMPT_GENERATE from "./generate.txt"
+import PROMPT_WORKFLOW from "../session/prompt/workflow.txt"
+import PROMPT_SUPERCODE from "../session/prompt/supercode.txt"
 import { SystemPrompt } from "../session/system"
 import { mergeDeep } from "remeda"
 
@@ -62,7 +64,8 @@ export namespace Agent {
         builtIn: true,
       },
       build: {
-        name: "workflow builder",
+        name: "build",
+        prompt: PROMPT_WORKFLOW,
         tools: {},
         options: {},
         permission: agentPermission,
@@ -70,7 +73,7 @@ export namespace Agent {
         builtIn: true,
       },
       plan: {
-        name: "workflow planner",
+        name: "plan",
         options: {},
         permission: agentPermission,
         tools: {
@@ -83,7 +86,9 @@ export namespace Agent {
       },
       "super-code": {
         name: "super-code",
-        description: "Advanced Super Code node builder for n8n workflows",
+        description:
+          "JavaScript code snippet creator for n8n Super Code nodes - writes and validates code that runs inside nodes",
+        prompt: PROMPT_SUPERCODE,
         tools: {},
         options: {},
         permission: agentPermission,

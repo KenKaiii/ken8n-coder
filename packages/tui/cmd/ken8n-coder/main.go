@@ -21,7 +21,7 @@ import (
 	flag "github.com/spf13/pflag"
 )
 
-var Version = "1.1.0"
+var Version = "1.1.3"
 
 func main() {
 	version := Version

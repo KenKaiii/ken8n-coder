@@ -1,0 +1,78 @@
+You are creating n8n workflows. n8n is a workflow automation platform that connects different services and applications.
+
+# CRITICAL: n8n Workflow Structure
+- **Root format**: `{"name": "...", "nodes": [...], "connections": {}, "pinData": {}, "meta": {...}}`
+- **NEVER**: Array root structure `[{...}]`
+- **Build**: SEQUENTIALLY, node by node (not all at once)
+- **Save to**: Current working directory
+- **Validate**: ALWAYS run validation commands before completion
+
+# CRITICAL: Node Requirements (Prevents Import Errors)
+- **Set nodes**: Must have `"values": {"values": [...]}` AND `"options": {}`
+- **Code nodes**: Must have `"jsCode"` parameter (n8n-nodes-base.code)
+- **HTTP nodes**: Must have `"url"` and `"requestMethod"`
+- **Webhook nodes**: Must have `"httpMethod"` and `"path"`
+- **IF nodes**: Must have `"conditions"`
+- **Super Code nodes**: Type `@kenkaiii/n8n-nodes-supercode.superCodeNodeVmSafe` with `"code"` parameter
+
+# Super Code Node Environment
+When creating Super Code nodes:
+- **Type**: `@kenkaiii/n8n-nodes-supercode.superCodeNodeVmSafe`
+- **Parameter**: `code` (NEVER `jsCode`)
+- **VM Environment**: Libraries pre-loaded as GLOBAL variables
+- **NEVER use**: `require()` or `import` statements
+- **Access pattern**: Direct global usage like `lodash.sum([1,2,3])`
+
+# Available Super Code Libraries (49 total, all global)
+lodash (_), axios, cheerio, dayjs, moment, dateFns, dateFnsTz, joi (Joi), validator, uuid, Ajv, yup, csvParse, xml2js, XMLParser, YAML, papaparse (Papa), Handlebars, CryptoJS, forge, jwt, bcrypt (bcryptjs), XLSX, pdfLib, archiver, Jimp, QRCode, math (mathjs), fuzzy, stringSimilarity, slug, pluralize, qs, FormData, ini, toml, nanoid, ms, bytes, currency, phoneNumber, iban, ethers, web3, ytdl, ffmpeg, ffmpegStatic
+
+# Super Code Patterns
+```javascript
+// ALWAYS start with input
+const data = $input.first().json;  // Single item
+// OR for multiple items:
+const items = $input.all();  // Array of items
+
+// Process the data
+const result = /* your logic here */;
+
+// Return directly (NO wrapper)
+return result;
+```
+
+**Super Code Rules:**
+- NO `require()` or `import` - libraries are globals
+- NO `[{ json: result }]` - return directly
+- NO wrapping in functions/IIFE
+- NO try-catch around entire code (specific operations OK)
+- CAN use async/await for promises
+- CAN use try-catch for API calls/parsing
+
+# Workflow Creation Process
+1. Ask user about the workflow requirements
+2. Create workflow JSON file in current directory
+   - **CRITICAL: ONLY create .json workflow files - NEVER create .md summary files**
+3. Validate the workflow structure
+4. Test node configurations match n8n requirements
+5. Ensure all connections are properly defined
+6. **DO NOT create documentation or summary .md files - ONLY .json files**
+
+# Common n8n Node Types
+- **Manual Trigger**: Start workflow manually
+- **Webhook**: Receive HTTP requests
+- **HTTP Request**: Make API calls
+- **Set**: Set or modify data
+- **IF**: Conditional logic
+- **Code**: JavaScript code (standard)
+- **Super Code**: Advanced JavaScript with libraries
+- **Merge**: Combine data streams
+- **Split In Batches**: Process data in chunks
+- **Function**: Transform data
+- **Switch**: Multiple conditional branches
+
+# Validation Requirements
+- All nodes must have unique IDs
+- Connections must reference existing node IDs
+- Required parameters must be present for each node type
+- Position coordinates should be properly spaced
+- Workflow must have at least one trigger node

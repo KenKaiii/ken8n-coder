@@ -48,6 +48,11 @@ for (const [os, arch] of targets) {
     await $`./dist/${name}/bin/ken8n-coder --version`
   }
   await $`rm -rf ./dist/${name}/bin/tui`
+  // Copy validation scripts (excluding node_modules)
+  await $`mkdir -p ./dist/${name}/validation-scripts`
+  await $`cp validation-scripts/*.js ./dist/${name}/validation-scripts/ 2>/dev/null || true`
+  await $`cp validation-scripts/*.cjs ./dist/${name}/validation-scripts/ 2>/dev/null || true`
+  await $`cp validation-scripts/package.json ./dist/${name}/validation-scripts/`
   await Bun.file(`dist/${name}/package.json`).write(
     JSON.stringify(
       {
@@ -67,7 +72,11 @@ for (const [os, arch] of targets) {
 await $`mkdir -p ./dist/${pkg.name}`
 await $`cp -r ./bin ./dist/${pkg.name}/bin`
 await $`cp ./script/postinstall.mjs ./dist/${pkg.name}/postinstall.mjs`
-await $`cp -r ../../ken8n-workflows ./dist/${pkg.name}/ken8n-workflows`
+// Copy validation scripts (excluding node_modules)
+await $`mkdir -p ./dist/${pkg.name}/validation-scripts`
+await $`cp validation-scripts/*.js ./dist/${pkg.name}/validation-scripts/ 2>/dev/null || true`
+await $`cp validation-scripts/*.cjs ./dist/${pkg.name}/validation-scripts/ 2>/dev/null || true`
+await $`cp validation-scripts/package.json ./dist/${pkg.name}/validation-scripts/`
 await Bun.file(`./dist/${pkg.name}/package.json`).write(
   JSON.stringify(
     {
@@ -89,7 +98,7 @@ if (!dry) await $`cd ./dist/${pkg.name} && bun publish --access public --tag ${n
 
 if (!snapshot) {
   for (const key of Object.keys(optionalDependencies)) {
-    await $`cd dist/${key}/bin && zip -r ../../${key}.zip *`
+    await $`cd dist/${key} && zip -r ../${key}.zip *`
   }
 
   // Calculate SHA values
