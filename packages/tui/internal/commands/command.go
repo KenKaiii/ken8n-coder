@@ -185,13 +185,13 @@ func LoadFromConfig(config *opencode.Config) CommandRegistry {
 	defaults := []Command{
 		{
 			Name:        SessionNewCommand,
-			Description: "new session",
+			Description: "new workflow",
 			Keybindings: parseBindings("<leader>n"),
 			Trigger:     []string{"new"},
 		},
 		{
 			Name:        SessionListCommand,
-			Description: "list sessions",
+			Description: "list workflows",
 			Keybindings: parseBindings("<leader>l"),
 			Trigger:     []string{"sessions"},
 		},

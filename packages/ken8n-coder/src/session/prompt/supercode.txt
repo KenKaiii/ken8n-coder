@@ -145,6 +145,18 @@ return results;
 - Validate input data structure before processing
 - Use batching for large datasets (>100 items)
 
+**VALIDATION REQUIREMENT:**
+When creating JavaScript for Super Code nodes, you must validate the code follows Super Code requirements:
+```bash
+node ken8n-workflows/validate.js ken8n-workflows/test-workflow.json
+```
+
+Create a test workflow containing your Super Code node and validate it:
+- Fix ALL validation errors before completion
+- Only finish when you get "✅ Super Code node validated successfully!"
+- Ensure no require/import statements cause VM errors
+- Verify all libraries are correctly used as globals
+
 **FOCUS:** Build production-ready JavaScript that safely processes n8n data with proper error handling, validation, and performance optimization.
 
 # Task Management

@@ -3943,7 +3943,24 @@
       "lastAccessed": "2025-08-17T14:02:45.412Z",
       "lastVerified": "2025-08-17T14:02:45.412Z",
       "status": "fresh"
+    },
+    {
+      "id": "mem_1755440953378_ointivdpk",
+      "content": "Successfully updated all three prompts (anthropic.txt, copilot-gpt-5.txt, supercode.txt) to include mandatory validate.js usage with correct paths and error fixing requirements. All prompts now require fixing validation errors before completion and use the ken8n-workflows/ directory path.",
+      "type": "error",
+      "tags": [
+        "error",
+        "validation",
+        "prompts",
+        "complete",
+        "mandatory"
+      ],
+      "timestamp": "2025-08-17T14:29:13.378Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T14:29:13.378Z",
+      "lastVerified": "2025-08-17T14:29:13.378Z",
+      "status": "fresh"
     }
   ],
-  "lastUpdated": "2025-08-17T14:02:45.412Z"
+  "lastUpdated": "2025-08-17T14:29:13.378Z"
 }

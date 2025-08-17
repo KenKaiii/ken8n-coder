@@ -1,6 +1,6 @@
 {
   "name": "@ken8n-coder/cloud-function",
-  "version": "1.0.6-test",
+  "version": "1.0.8",
   "$schema": "https://json.schemastore.org/package.json",
   "private": true,
   "type": "module",

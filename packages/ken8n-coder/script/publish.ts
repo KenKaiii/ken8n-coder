@@ -67,6 +67,7 @@ for (const [os, arch] of targets) {
 await $`mkdir -p ./dist/${pkg.name}`
 await $`cp -r ./bin ./dist/${pkg.name}/bin`
 await $`cp ./script/postinstall.mjs ./dist/${pkg.name}/postinstall.mjs`
+await $`cp -r ../../ken8n-workflows ./dist/${pkg.name}/ken8n-workflows`
 await Bun.file(`./dist/${pkg.name}/package.json`).write(
   JSON.stringify(
     {

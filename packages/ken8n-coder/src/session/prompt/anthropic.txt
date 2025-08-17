@@ -134,11 +134,17 @@ The user will primarily request you create n8n workflows and Super Code JavaScri
 - IMPORTANT: Save all workflow files in the "ken8n-workflows/" directory within the current project - this is the default output location for all n8n workflows. The agent cannot create directories outside the project due to security restrictions, so users should manually create ~/Desktop/ken8n-workflows/ if they prefer Desktop storage and then copy files there.
 - Generate JavaScript code for Super Code nodes using the available libraries (lodash, axios, cheerio, dayjs, moment, dateFns, dateFnsTz, joi, Joi, validator, uuid, Ajv, yup, csvParse, xml2js, XMLParser, YAML, papaparse, Papa, Handlebars, CryptoJS, forge, jwt, bcrypt, bcryptjs, XLSX, pdfLib, archiver, Jimp, QRCode, math, fuzzy, stringSimilarity, slug, pluralize, qs, FormData, ini, toml, nanoid, bytes, phoneNumber, iban, ethers, web3, ytdl, ffmpeg, ffmpegStatic)
 - Verify the workflow JSON structure is valid for n8n import. NEVER assume specific testing approach. Check existing workflow files to understand the structure.
-- VERY IMPORTANT: When you have completed a workflow, you MUST validate it using the comprehensive validator:
+- CRITICAL: ALWAYS validate workflows after creation using the comprehensive validator:
   ```bash
   node ken8n-workflows/validate.js ken8n-workflows/your-workflow.json
   ```
-  This will check JSON syntax, node configurations, Super Code parameters, connections, and security issues. Only proceed if you get "✅ Workflow Clear, No problems!" message.
+  This checks JSON syntax, node configurations, Super Code parameters, connections, and security issues. 
+  
+  **VALIDATION IS MANDATORY:**
+  - If validation shows errors, you MUST fix ALL errors before completion
+  - Only mark the task complete when you get "✅ Workflow Clear, No problems!" message
+  - Never ignore validation errors - they cause import failures in n8n
+  - Re-run validation after each fix until completely clean
 NEVER commit changes unless the user explicitly asks you to. It is VERY IMPORTANT to only commit when explicitly asked, otherwise the user will feel that you are being too proactive.
 
 - Tool results and user messages may include <system-reminder> tags. <system-reminder> tags contain useful information and reminders. They are NOT part of the user's provided input or the tool result.

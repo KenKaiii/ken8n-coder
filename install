@@ -49,8 +49,8 @@ if [ -z "$requested_version" ]; then
     specific_version=$(curl -s https://api.github.com/repos/kenkaiii/ken8n-coder/releases/latest | awk -F'"' '/"tag_name": "/ {gsub(/^v/, "", $4); print $4}')
 
     if [[ $? -ne 0 || -z "$specific_version" ]]; then
-        echo "${YELLOW}Warning: Failed to fetch latest version (API rate limit?), using fallback v1.0.5${NC}"
-        specific_version="1.0.5"
+        echo "${YELLOW}Warning: Failed to fetch latest version (API rate limit?), using fallback v1.0.9${NC}"
+        specific_version="1.0.9"
         url="https://github.com/kenkaiii/ken8n-coder/releases/download/v${specific_version}/$filename"
     fi
 else
