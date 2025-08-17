@@ -879,7 +879,7 @@ func (a Model) View() (string, *tea.Cursor) {
 
 	cursor := a.editor.Cursor()
 	cursor.Position.X += editorX
-	cursor.Position.Y += editorY + 1
+	cursor.Position.Y += editorY
 
 	return mainLayout + "\n" + a.status.View(), cursor
 }
@@ -1010,7 +1010,7 @@ func (a Model) home() (string, int, int) {
 		)
 	}
 
-	return mainLayout, editorX + 5, editorY + 1
+	return mainLayout, editorX + 5, editorY + 2
 }
 
 func (a Model) chat() (string, int, int) {
@@ -1062,7 +1062,7 @@ func (a Model) chat() (string, int, int) {
 		)
 	}
 
-	return mainLayout, editorX + 5, editorY + 1
+	return mainLayout, editorX + 5, editorY + 2
 }
 
 func (a Model) executeCommand(command commands.Command) (tea.Model, tea.Cmd) {

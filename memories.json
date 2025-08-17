@@ -3494,7 +3494,163 @@
       "lastAccessed": "2025-08-17T12:38:00.261Z",
       "lastVerified": "2025-08-17T12:38:00.261Z",
       "status": "fresh"
+    },
+    {
+      "id": "mem_1755434607627_bwecde48a",
+      "content": "TUI cursor positioning bug: When launching TUI, cursor shows on line below input text area. Once chatting begins, cursor aligns correctly. Need to investigate initial cursor positioning logic.",
+      "type": "error",
+      "tags": [
+        "error",
+        "bug",
+        "tui",
+        "cursor",
+        "ui"
+      ],
+      "timestamp": "2025-08-17T12:43:27.627Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T12:43:27.627Z",
+      "lastVerified": "2025-08-17T12:43:27.627Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755434673303_x42bngsrd",
+      "content": "Found the root cause: In tui.go, both home() and chat() functions return cursor position with hardcoded offset `editorX + 5, editorY + 1`. However, the cursor positioning calculation doesn't account for the actual cursor position from the underlying textarea component during initialization. The editor.Cursor() is called in View() but the hardcoded offset (+5, +1) doesn't match the actual cursor coordinates from the textarea component.",
+      "type": "general",
+      "tags": [
+        "general",
+        "go",
+        "bug",
+        "cursor",
+        "tui",
+        "analysis"
+      ],
+      "timestamp": "2025-08-17T12:44:33.303Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T12:44:33.303Z",
+      "lastVerified": "2025-08-17T12:44:33.303Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755434740481_2dxg53u1z",
+      "content": "Fixed TUI cursor positioning bug: Removed hardcoded cursor offsets (+5, +1) from home() and chat() functions in tui.go. Changed from manually adding arbitrary offsets to properly using the textarea's calculated cursor position. This should fix the issue where cursor appeared on wrong line during TUI launch.",
+      "type": "tip",
+      "tags": [
+        "tip",
+        "go",
+        "fix",
+        "cursor",
+        "tui",
+        "positioning"
+      ],
+      "timestamp": "2025-08-17T12:45:40.481Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T12:45:40.481Z",
+      "lastVerified": "2025-08-17T12:45:40.481Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755434918567_h0s5mfeus",
+      "content": "Successfully fixed TUI cursor positioning bug. User confirmed fix works. Now need to update curl to version 1.0.5.",
+      "type": "config",
+      "tags": [
+        "config",
+        "success",
+        "curl",
+        "version-update"
+      ],
+      "timestamp": "2025-08-17T12:48:38.567Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T12:48:38.567Z",
+      "lastVerified": "2025-08-17T12:48:38.567Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755435063125_bf4n7bhtd",
+      "content": "User correctly called out that I only changed version text instead of updating the actual curl distribution system. Need to find and update the real deployment/installation mechanism so users can actually get version 1.0.5.",
+      "type": "config",
+      "tags": [
+        "config",
+        "deployment",
+        "curl",
+        "distribution",
+        "mistake"
+      ],
+      "timestamp": "2025-08-17T12:51:03.125Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T12:51:03.125Z",
+      "lastVerified": "2025-08-17T12:51:03.125Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755435563485_t8lgzomuy",
+      "content": "Successfully deployed ken8n-coder version 1.0.5! Built and published all platform binaries, created GitHub release at https://github.com/KenKaiii/ken8n-coder/releases/tag/v1.0.5 with cursor positioning fix. Users can now curl install the updated version.",
+      "type": "config",
+      "tags": [
+        "config",
+        "deployment",
+        "success",
+        "release",
+        "1.0.5"
+      ],
+      "timestamp": "2025-08-17T12:59:23.485Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T12:59:23.485Z",
+      "lastVerified": "2025-08-17T12:59:23.485Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755436068495_yh2v7ekww",
+      "content": "User reports cursor fix only works on Linux, not Mac - cursor way out of place on Mac. Need to check original opencode project (https://github.com/sst/opencode) to see how they handle cursor positioning properly across platforms.",
+      "type": "troubleshooting",
+      "tags": [
+        "troubleshooting",
+        "bug",
+        "mac",
+        "cursor",
+        "cross-platform",
+        "opencode"
+      ],
+      "timestamp": "2025-08-17T13:07:48.495Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T13:07:48.495Z",
+      "lastVerified": "2025-08-17T13:07:48.495Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755436215921_idfeddv08",
+      "content": "Implemented platform-specific cursor positioning fix: Linux uses no offset (0,0), macOS and Windows use original offset (5,1). This should fix the Mac cursor positioning issue while keeping Linux working correctly.",
+      "type": "tip",
+      "tags": [
+        "tip",
+        "fix",
+        "cursor",
+        "cross-platform",
+        "mac",
+        "linux"
+      ],
+      "timestamp": "2025-08-17T13:10:15.921Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T13:10:15.921Z",
+      "lastVerified": "2025-08-17T13:10:15.921Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755436773557_22a49ud1s",
+      "content": "Fixed cursor positioning by copying exact implementation from original opencode: home() and chat() return editorX + 5, editorY + 2 (not +1). View() uses simple cursor.Position.X += editorX, cursor.Position.Y += editorY. This should work correctly on both Mac and Linux.",
+      "type": "tip",
+      "tags": [
+        "tip",
+        "fix",
+        "cursor",
+        "opencode",
+        "cross-platform"
+      ],
+      "timestamp": "2025-08-17T13:19:33.557Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T13:19:33.557Z",
+      "lastVerified": "2025-08-17T13:19:33.557Z",
+      "status": "fresh"
     }
   ],
-  "lastUpdated": "2025-08-17T12:38:00.261Z"
+  "lastUpdated": "2025-08-17T13:19:33.557Z"
 }
