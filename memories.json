@@ -3960,7 +3960,364 @@
       "lastAccessed": "2025-08-17T14:29:13.378Z",
       "lastVerified": "2025-08-17T14:29:13.378Z",
       "status": "fresh"
+    },
+    {
+      "id": "mem_1755441520142_ilj4bn1zv",
+      "content": "User wants to commit the enhanced prompts with mandatory validation requirements. All three prompts (anthropic.txt, copilot-gpt-5.txt, supercode.txt) now include validate.js usage and error fixing requirements.",
+      "type": "error",
+      "tags": [
+        "error",
+        "commit",
+        "prompts",
+        "validation",
+        "enhanced"
+      ],
+      "timestamp": "2025-08-17T14:38:40.142Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T14:38:40.142Z",
+      "lastVerified": "2025-08-17T14:38:40.142Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755441557328_8b2v6poh7",
+      "content": "Major commit for mandatory validation enhancements. All three prompts (anthropic.txt, copilot-gpt-5.txt, supercode.txt) now require validate.js usage and error fixing before completion. Updated version to 1.0.9 across all packages, added ken8n-workflows to distribution bundle, and updated install script fallback. This prevents broken workflows being delivered to users.",
+      "type": "config",
+      "tags": [
+        "config",
+        "validation",
+        "prompts",
+        "mandatory",
+        "workflows",
+        "distribution"
+      ],
+      "timestamp": "2025-08-17T14:39:17.328Z",
+      "context": "User requested human-style commit for validation enhancements that prevent broken workflow delivery",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T14:39:17.328Z",
+      "lastVerified": "2025-08-17T14:39:17.328Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755441659913_gu4tk5x6s",
+      "content": "User wants to check if prompts specify correct file placement for generated workflows and code. Should all be placed in CWD (current working directory), not hardcoded paths. Need to review all three prompts before making any curl updates.",
+      "type": "tip",
+      "tags": [
+        "tip",
+        "file-placement",
+        "cwd",
+        "prompts",
+        "review"
+      ],
+      "timestamp": "2025-08-17T14:40:59.913Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T14:40:59.913Z",
+      "lastVerified": "2025-08-17T14:40:59.913Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755441984044_9a2q4zck1",
+      "content": "Fixed all three prompts to use CWD instead of hardcoded paths: anthropic.txt, copilot-gpt-5.txt, and supercode.txt now save files to current working directory and use 'node validate.js filename.json' instead of hardcoded ken8n-workflows/ paths. This respects where users actually want to work.",
+      "type": "solution",
+      "tags": [
+        "solution",
+        "fix",
+        "cwd",
+        "file-placement",
+        "prompts",
+        "complete"
+      ],
+      "timestamp": "2025-08-17T14:46:24.044Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T14:46:24.044Z",
+      "lastVerified": "2025-08-17T14:46:24.044Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755443411663_wf2rig2yw",
+      "content": "User requested library testing code for Super Code node but the generated code from supercode.txt doesn't work even after multiple renditions. This indicates issues with the supercode.txt prompt when generating complex JavaScript that properly uses the global libraries in the VM environment.",
+      "type": "config",
+      "tags": [
+        "config",
+        "javascript",
+        "testing",
+        "supercode",
+        "library-testing",
+        "broken-code",
+        "vm-environment"
+      ],
+      "timestamp": "2025-08-17T15:10:11.663Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T15:10:11.663Z",
+      "lastVerified": "2025-08-17T15:10:11.663Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755444012419_8dr77gmlx",
+      "content": "SuperCode Node - Critical Information for Prompts\n\n**Key Facts:**\n1. SuperCode is a sandboxed JavaScript VM environment in n8n\n2. 44+ libraries are PRE-LOADED as globals - NO require() or import needed\n3. Required code structure:\n   ```javascript\n   const data = $input.first().json;\n   // process data\n   return result; // MUST return object or array\n   ```\n4. Limitations:\n   - No dynamic imports (no require/import)\n   - No file system access\n   - No shell commands\n   - 30-second timeout\n   - 100k operation limit\n   - VM sandboxed\n\n5. Available globals:\n   - Libraries: lodash, axios, cheerio, dayjs, moment, joi, validator, uuid, csvParse, xml2js, YAML, Papa, Handlebars, CryptoJS, jwt, bcrypt, XLSX, pdfLib, Jimp, QRCode, mathjs, fuzzy, ethers, web3, ytdl, ffmpeg, phoneNumber, currency, iban, and more\n   - AI Mode: llm, memory, tools (when AI Agent Mode enabled)\n   - Utils: utils.memoryUsage(), utils.getAvailableLibraries(), utils.cleanup(), utils.formatDate(), utils.isEmail(), utils.retry()\n\n6. Current problem: Our supercode.txt prompt doesn't explain this correctly - it's causing LLMs to generate invalid code that tries to test libraries instead of using them properly for data processing",
+      "type": "config",
+      "tags": [
+        "config",
+        "javascript",
+        "supercode",
+        "n8n",
+        "prompts",
+        "vm",
+        "libraries"
+      ],
+      "timestamp": "2025-08-17T15:20:12.419Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T15:20:12.419Z",
+      "lastVerified": "2025-08-17T15:20:12.419Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755444236916_e5v8mso9i",
+      "content": "SuperCode Generation Problem - Root Cause\n\n**The Issue:**\nGenerated SuperCode doesn't work because the prompt makes LLMs think they should TEST libraries instead of USE them.\n\n**What's Generated (WRONG):**\n- Library validation tests\n- Checking if functions exist\n- Complex test harnesses\n- No input data processing\n\n**What Should Be Generated (RIGHT):**\n- Get input: const data = $input.first().json\n- Process data using libraries\n- Return transformed data\n- Focus on workflow data transformation\n\n**Example of Broken Pattern:**\n```javascript\n// Generated test code - WRONG\n['lodash', () => lodash.sum([1, 2, 3])]\n```\n\n**Example of Correct Pattern:**\n```javascript\n// Process workflow data - RIGHT\nconst data = $input.first().json;\nconst totals = lodash.sumBy(data.orders, 'amount');\nreturn [{ json: { total: totals } }];\n```\n\nThe supercode.txt prompt needs complete reframing from \"test libraries\" to \"process workflow data\"",
+      "type": "tip",
+      "tags": [
+        "tip",
+        "javascript",
+        "supercode",
+        "bug",
+        "prompt-fix",
+        "n8n"
+      ],
+      "timestamp": "2025-08-17T15:23:56.916Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T15:23:56.916Z",
+      "lastVerified": "2025-08-17T15:23:56.916Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755444379877_7e8knh1ii",
+      "content": "SuperCode CRITICAL CORRECTIONS - From Working Implementation\n\n**WRONG patterns in our prompt:**\n1. ❌ `return [{ json: result }]` - WRONG! Should be `return result`\n2. ❌ Wrapping everything in try-catch - Node handles this already\n3. ❌ Complex error returns - Node provides LLM-friendly errors automatically\n4. ❌ Using `$input.all()` - Should usually be `$input.first().json`\n\n**CORRECT patterns:**\n```javascript\n// Simple and direct\nconst data = $input.first().json;\nconst result = lodash.groupBy(data.items, 'category');\nreturn result; // Direct return, no wrapper!\n```\n\n**Node's built-in handling:**\n- Timeout detection (30 seconds)\n- Infinite loop prevention (100k ops)\n- Undefined reference catching\n- Type error enhancement\n- Memory limit checking\n- LLM-friendly error messages\n\n**Key insight:** The SuperCode node is SMART - it handles all the wrapping and error handling. We just need clean data processing code.\n\n**Use try-catch ONLY for:**\n- Expected failures (API calls, parsing)\n- NOT for the entire code block",
+      "type": "tip",
+      "tags": [
+        "tip",
+        "javascript",
+        "api",
+        "supercode",
+        "critical-fix",
+        "patterns",
+        "n8n"
+      ],
+      "timestamp": "2025-08-17T15:26:19.877Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T15:26:19.877Z",
+      "lastVerified": "2025-08-17T15:26:19.877Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755446330323_4qwki6sof",
+      "content": "SuperCode.txt Rewrite Plan - Requirements\n\n**Goal**: Fix supercode.txt to match real-world SuperCode usage patterns\n\n**Key Problems Identified**:\n1. Shows library testing instead of business problem solving\n2. Wrong input/output patterns (wrapping in [{ json: }] instead of direct return)\n3. Simple examples instead of real workflows\n4. Missing standard `const data = $input.first().json` pattern\n5. Not showing multi-library integration\n6. No rich output structures (summary, analytics, reports)\n\n**Requirements**:\n- Not bloated (no 10+ examples)\n- Agnostic and universal use cases\n- Focus on business workflows, not technical demos\n- Show proper input/output patterns\n- Demonstrate multi-library integration",
+      "type": "troubleshooting",
+      "tags": [
+        "troubleshooting",
+        "testing",
+        "supercode",
+        "planning",
+        "rewrite"
+      ],
+      "timestamp": "2025-08-17T15:58:50.323Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T15:58:50.323Z",
+      "lastVerified": "2025-08-17T15:58:50.323Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755446743117_3m7i50rab",
+      "content": "SuperCode.txt Rewrite - COMPLETED\n\n**What was fixed:**\n1. ✅ Removed library testing mindset - now focuses on business problem solving\n2. ✅ Fixed input pattern - emphasizes `const data = $input.first().json;`\n3. ✅ Fixed output pattern - direct returns, no `[{ json: }]` wrapper\n4. ✅ Added universal business examples:\n   - Data processing & enrichment\n   - CSV/Excel report generation\n   - API integration with batching\n   - Document generation with templates\n   - Multi-library integration\n5. ✅ Added workflow context explaining how SuperCode fits in n8n\n6. ✅ Removed excessive error handling and complex patterns\n7. ✅ Added performance best practices\n8. ✅ Simplified overall structure\n\n**Key improvements:**\n- Examples now show real business workflows\n- Standard pattern of getting input data is clear\n- Multiple libraries working together naturally\n- Rich output structures with summary, data, analytics\n- Focus on solving problems, not testing libraries\n\nThe prompt is now aligned with how SuperCode is actually used in production workflows.",
+      "type": "troubleshooting",
+      "tags": [
+        "troubleshooting",
+        "testing",
+        "api",
+        "supercode",
+        "completed",
+        "prompt-fix"
+      ],
+      "timestamp": "2025-08-17T16:05:43.117Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T16:05:43.117Z",
+      "lastVerified": "2025-08-17T16:05:43.117Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755447498319_hn4w90cqd",
+      "content": "SuperCode Critical Requirements - File Output and Validation\n\n**ADDED TO supercode.txt:**\n\n1. **File Output Requirement:**\n   - MUST save SuperCode to .js files (not workflow JSON)\n   - Example: `supercode-solution.js`, `customer-processor.js`\n\n2. **Mandatory Validation:**\n   - MUST test with: `node validation-scripts/validate-supercode.js <file.js>`\n   - MUST fix all errors before completion\n   - MUST see \"✅ SuperCode validation passed!\" before finishing\n   - NEVER mark task complete without successful validation\n\n3. **Validation Script Location:**\n   - Path: `/validation-scripts/validate-supercode.js`\n   - Supports: `--data input-data.json` for test data\n   - Can validate from stdin with `-`\n\nThis ensures:\n- All generated SuperCode is saved as JavaScript files\n- All code is validated before delivery\n- No broken code is ever delivered to users",
+      "type": "warning",
+      "tags": [
+        "warning",
+        "javascript",
+        "supercode",
+        "validation",
+        "requirements"
+      ],
+      "timestamp": "2025-08-17T16:18:18.319Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T16:18:18.319Z",
+      "lastVerified": "2025-08-17T16:18:18.319Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755448803960_uixxaxge1",
+      "content": "SuperCode.txt Optimization Task\n\n**Goal**: Condense supercode.txt while keeping crucial elements\n- Keep: All libraries list\n- Keep: All critical rules\n- Keep: Task creation requirements\n- Reduce: Verbose examples and redundant explanations\n- Target: 50% size reduction minimum",
+      "type": "general",
+      "tags": [
+        "general",
+        "optimization",
+        "supercode",
+        "opinion"
+      ],
+      "timestamp": "2025-08-17T16:40:03.960Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T16:40:03.960Z",
+      "lastVerified": "2025-08-17T16:40:03.960Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755448824167_h3kvdthkw",
+      "content": "Analyzed supercode.txt prompt file (410 lines) for length, readability, clarity, and bloat. Found significant verbosity with repetitive examples and over-engineered sections that could be condensed by 50-60%.",
+      "type": "general",
+      "tags": [
+        "general",
+        "analysis",
+        "prompt-optimization",
+        "supercode"
+      ],
+      "timestamp": "2025-08-17T16:40:24.167Z",
+      "context": "User requested brutal assessment of supercode.txt prompt file focusing on length, readability, clarity, and what could be removed",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T16:40:24.167Z",
+      "lastVerified": "2025-08-17T16:40:24.167Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755448886238_9a5vmsbk5",
+      "content": "Supercode.txt evaluation completed for task creation, libraries list, and critical rules preservation:\n\nTASK CREATION SECTION: 7/10\n- No explicit TodoWrite tool documentation in supercode.txt \n- Missing when to use task management guidance\n- No structured task breakdown examples for n8n workflows\n- Only brief validation requirement mentions tasks\n\nLIBRARIES LIST: 9/10  \n- Complete comma-separated list on line 16: lodash, axios, cheerio, dayjs, moment, dateFns, dateFnsTz, joi, Joi, validator, uuid, Ajv, yup, csvParse, xml2js, XMLParser, YAML, papaparse, Papa, Handlebars, CryptoJS, forge, jwt, bcrypt, bcryptjs, XLSX, pdfLib, archiver, Jimp, QRCode, math, fuzzy, stringSimilarity, slug, pluralize, qs, FormData, ini, toml, nanoid, bytes, phoneNumber, iban, ethers, web3, ytdl, ffmpeg, ffmpegStatic\n- Clear \"NO imports/require!\" instruction\n- Well-integrated into code examples\n\nCRITICAL RULES: 8/10\n- Strong security section (lines 51-67) with parameterized query examples\n- Clear input/output patterns with $input.first().json\n- Direct return requirements (no [{ json: result }] wrapper)\n- VM environment warnings and validation requirements\n- Missing some error handling edge cases",
+      "type": "config",
+      "tags": [
+        "config",
+        "evaluation",
+        "supercode",
+        "analysis"
+      ],
+      "timestamp": "2025-08-17T16:41:26.238Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T16:41:26.238Z",
+      "lastVerified": "2025-08-17T16:41:26.238Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755448963686_rrqkjlvu4",
+      "content": "Analyzed supercode.txt for condensation strategy. Current file is 410 lines with 5 bloated examples (lines 115-350, totaling 189 lines). Key findings:\n- Examples 1-3 show redundant patterns (validation, analytics, Excel generation)\n- Example 4 (document generation) is overly complex with unnecessary QR codes and templating \n- Example 5 (multi-library) just combines previous examples - adds no new patterns\n- Core principles (lines 1-114) are well-written and concise\n- Can reduce 5 examples to 2 examples, saving ~150 lines (37% reduction)",
+      "type": "general",
+      "tags": [
+        "general",
+        "supercode",
+        "condensation",
+        "analysis",
+        "file-optimization"
+      ],
+      "timestamp": "2025-08-17T16:42:43.686Z",
+      "context": "Analysis for condensing supercode.txt prompt file",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T16:42:43.686Z",
+      "lastVerified": "2025-08-17T16:42:43.686Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755449068544_4yswaeu7c",
+      "content": "Analyzed supercode.txt (410 lines) for condensation blueprint. Current issues: IIFE wrapping, excessive complexity, redundant examples. Plan: Reduce to ~200-250 lines with explicit anti-complexity rules, streamlined business patterns, and direct simplicity enforcement.",
+      "type": "general",
+      "tags": [
+        "general",
+        "supercode",
+        "condensation",
+        "anti-complexity",
+        "IIFE-prevention"
+      ],
+      "timestamp": "2025-08-17T16:44:28.544Z",
+      "context": "supercode.txt optimization analysis for preventing agent-generated complex code",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T16:44:28.544Z",
+      "lastVerified": "2025-08-17T16:44:28.544Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755450855976_nnpg0wfz4",
+      "content": "CRITICAL BUG FOUND: SUPERCODE agent loads multiple prompts causing conflicting instructions\n\nProblem Flow:\n1. session/index.ts line 740-752 builds system prompts\n2. For super-code agent WITHOUT prompt field:\n   - Line 745: Calls SystemPrompt.provider(modelID) \n   - For Claude models this returns PROMPT_ANTHROPIC (anthropic.txt)\n3. Lines 730-739: If agent is super-code, ADDS PROMPT_SUPERCODE to message parts\n\nResult: SUPERCODE agent sees BOTH:\n- anthropic.txt (general ken8n-coder instructions) as system prompt \n- supercode.txt (specific Super Code instructions) as message part\n\nThese have conflicting instructions about how to behave and what libraries are available.\n\nFix Options:\n1. Set prompt field on super-code agent in agent.ts to use supercode.txt\n2. OR handle super-code specially in SystemPrompt.provider\n3. OR remove the message part addition and rely on agent.prompt",
+      "type": "troubleshooting",
+      "tags": [
+        "troubleshooting",
+        "bug",
+        "supercode",
+        "agent",
+        "prompt",
+        "critical"
+      ],
+      "timestamp": "2025-08-17T17:14:15.976Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T17:14:15.976Z",
+      "lastVerified": "2025-08-17T17:14:15.976Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755451025851_4w9nsemuq",
+      "content": "COMPLETE PROMPT LOADING ANALYSIS FOR ALL AGENTS\n\n## BUILD Agent\nGets these prompts in order:\n1. SystemPrompt.header() - anthropic_spoof.txt (if using Anthropic provider)\n2. PROMPT_ANTHROPIC - anthropic.txt (main system prompt)\n3. SystemPrompt.environment() - working directory, git status, project tree\n4. SystemPrompt.custom() - AGENTS.md and CLAUDE.md files\n\n## PLAN Agent  \nGets these prompts in order:\n1. SystemPrompt.header() - anthropic_spoof.txt (if using Anthropic provider)\n2. PROMPT_ANTHROPIC - anthropic.txt (main system prompt)\n3. SystemPrompt.environment() - working directory, git status, project tree\n4. SystemPrompt.custom() - AGENTS.md and CLAUDE.md files\n5. PROMPT_PLAN - plan.txt (added to user message parts, not system prompt)\n\n## SUPER-CODE Agent\nGets these prompts in order:\n1. SystemPrompt.header() - anthropic_spoof.txt (if using Anthropic provider)\n2. PROMPT_ANTHROPIC - anthropic.txt (main system prompt)\n3. SystemPrompt.environment() - working directory, git status, project tree\n4. SystemPrompt.custom() - AGENTS.md and CLAUDE.md files\n5. PROMPT_SUPERCODE - supercode.txt (added to user message parts, not system prompt)\n\nKEY ISSUE: All three agents get anthropic.txt as their main system prompt because none define their own prompt field in agent.ts. PLAN and SUPER-CODE then get their specific prompts added as message parts, creating conflicting instructions.",
+      "type": "config",
+      "tags": [
+        "config",
+        "agent",
+        "prompts",
+        "build",
+        "plan",
+        "supercode",
+        "analysis"
+      ],
+      "timestamp": "2025-08-17T17:17:05.851Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T17:17:05.851Z",
+      "lastVerified": "2025-08-17T17:17:05.851Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755452048429_mmq6qqz2l",
+      "content": "FIXED: Multiple conflicting prompts issue for SUPERCODE agent\n\nSolution implemented:\n1. Cleaned anthropic.txt - removed coding-specific content, kept only universal elements\n2. Cleaned copilot-gpt-5.txt - made it generic, removed coding-specific sections\n3. Created workflow.txt - contains n8n workflow creation instructions for BUILD agent\n4. Updated agent.ts:\n   - BUILD agent now uses workflow.txt as its prompt\n   - SUPER-CODE agent now uses supercode.txt as its prompt\n5. Removed special handling in session/index.ts that was adding prompts as message parts\n\nResult:\n- BUILD agent: Gets anthropic.txt (base) + workflow.txt (specific)\n- SUPER-CODE agent: Gets anthropic.txt (base) + supercode.txt (specific) \n- PLAN agent: Gets anthropic.txt (base) + plan.txt (unchanged)\n- No more conflicting instructions between prompts",
+      "type": "troubleshooting",
+      "tags": [
+        "troubleshooting",
+        "fix",
+        "prompts",
+        "agents",
+        "supercode",
+        "completed"
+      ],
+      "timestamp": "2025-08-17T17:34:08.429Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T17:34:08.429Z",
+      "lastVerified": "2025-08-17T17:34:08.429Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755452263969_im6s1dk5c",
+      "content": "SUPER-CODE agent clarified to understand its true purpose:\n\nThe agent now knows:\n- It's writing code SNIPPETS for n8n Super Code nodes, NOT project files\n- .js files are TEMPORARY, only for validation testing\n- Code will be copy-pasted into n8n node editor, not imported\n- No module.exports, require(), or import statements\n- Libraries are VM globals, not npm packages\n- Each file is a self-contained snippet, not a module\n\nThis prevents the agent from creating files as if building a JavaScript project, and instead focuses on n8n-compatible code snippets.",
+      "type": "code",
+      "tags": [
+        "code",
+        "javascript",
+        "testing",
+        "supercode",
+        "agent",
+        "clarification",
+        "n8n"
+      ],
+      "timestamp": "2025-08-17T17:37:43.969Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-17T17:37:43.969Z",
+      "lastVerified": "2025-08-17T17:37:43.969Z",
+      "status": "fresh"
     }
   ],
-  "lastUpdated": "2025-08-17T14:29:13.378Z"
+  "lastUpdated": "2025-08-17T17:37:43.969Z"
 }

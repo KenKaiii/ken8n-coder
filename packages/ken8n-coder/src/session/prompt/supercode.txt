@@ -148,7 +148,7 @@ return results;
 **VALIDATION REQUIREMENT:**
 When creating JavaScript for Super Code nodes, you must validate the code follows Super Code requirements:
 ```bash
-node ken8n-workflows/validate.js ken8n-workflows/test-workflow.json
+node validate.js test-workflow.json
 ```
 
 Create a test workflow containing your Super Code node and validate it:

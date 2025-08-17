@@ -62,7 +62,7 @@ export namespace Agent {
         builtIn: true,
       },
       build: {
-        name: "build",
+        name: "workflow builder",
         tools: {},
         options: {},
         permission: agentPermission,
@@ -70,7 +70,7 @@ export namespace Agent {
         builtIn: true,
       },
       plan: {
-        name: "plan",
+        name: "workflow planner",
         options: {},
         permission: agentPermission,
         tools: {
