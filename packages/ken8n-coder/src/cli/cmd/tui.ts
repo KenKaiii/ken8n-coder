@@ -16,11 +16,40 @@ import { Ide } from "../../ide"
 import { Flag } from "../../flag/flag"
 import { Session } from "../../session"
 
-
 if (typeof OPENCODE_TUI_PATH !== "undefined") {
   await import(OPENCODE_TUI_PATH as string, {
     with: { type: "file" },
   })
+}
+
+async function resolveTuiBinary() {
+  let cmd = ["go", "run", "./main.go"]
+  let cwd = Bun.fileURLToPath(new URL("../../../../tui/cmd/ken8n-coder", import.meta.url))
+
+  // Check for downloaded binary from install script first
+  const installBinary = path.join(os.homedir(), ".ken8n-coder", "bin", "tui", "ken8n-coder-tui")
+  if (await Bun.file(installBinary).exists()) {
+    cmd = [installBinary]
+    cwd = process.cwd()
+  } else {
+    const tui = Bun.embeddedFiles.find((item) => (item as File).name.includes("tui")) as File
+    if (tui) {
+      let binaryName = tui.name
+      if (process.platform === "win32" && !binaryName.endsWith(".exe")) {
+        binaryName += ".exe"
+      }
+      const binary = path.join(Global.Path.cache, "tui", binaryName)
+      const file = Bun.file(binary)
+      if (!(await file.exists())) {
+        await Bun.write(file, tui, { mode: 0o755 })
+        await fs.chmod(binary, 0o755)
+      }
+      cwd = process.cwd()
+      cmd = [binary]
+    }
+  }
+
+  return { cmd, cwd }
 }
 
 export const TuiCommand = cmd({
@@ -101,23 +130,7 @@ export const TuiCommand = cmd({
           hostname: args.hostname,
         })
 
-        let cmd = ["go", "run", "./main.go"]
-        let cwd = Bun.fileURLToPath(new URL("../../../../tui/cmd/ken8n-coder", import.meta.url))
-        const tui = Bun.embeddedFiles.find((item) => (item as File).name.includes("tui")) as File
-        if (tui) {
-          let binaryName = tui.name
-          if (process.platform === "win32" && !binaryName.endsWith(".exe")) {
-            binaryName += ".exe"
-          }
-          const binary = path.join(Global.Path.cache, "tui", binaryName)
-          const file = Bun.file(binary)
-          if (!(await file.exists())) {
-            await Bun.write(file, tui, { mode: 0o755 })
-            await fs.chmod(binary, 0o755)
-          }
-          cwd = process.cwd()
-          cmd = [binary]
-        }
+        const { cmd, cwd } = await resolveTuiBinary()
         Log.Default.info("tui", {
           cmd,
         })
