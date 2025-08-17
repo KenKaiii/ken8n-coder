@@ -143,9 +143,10 @@ CURRENT_DIR="$(pwd)"
 # Change to the ken8n-coder directory and run like ken8n-coder-run
 cd "$HOME/.ken8n-coder/ken8n-coder"
 
-# Set up bun path and run with the original working directory as project
+# Set up bun path and run 
 export PATH="$HOME/.bun/bin:$PATH"
-exec bun run --conditions=development packages/ken8n-coder/src/index.ts "$@" "$CURRENT_DIR"
+cd "$CURRENT_DIR"
+exec bun run --conditions=development "$HOME/.ken8n-coder/ken8n-coder/packages/ken8n-coder/src/index.ts" "$@"
 EOF
     
     chmod +x "$INSTALL_DIR/ken8n-coder"
