@@ -4,14 +4,14 @@ import { $ } from "bun"
 
 console.log("=== publishing ===\n")
 
-const snapshot = process.env["OPENCODE_SNAPSHOT"] === "true"
+const snapshot = process.env["KEN8N_CODER_SNAPSHOT"] === "true"
 const version = snapshot
   ? `0.0.0-${new Date().toISOString().slice(0, 16).replace(/[-:T]/g, "")}`
-  : process.env["OPENCODE_VERSION"]
+  : process.env["KEN8N_CODER_VERSION"]
 if (!version) {
-  throw new Error("OPENCODE_VERSION is required")
+  throw new Error("KEN8N_CODER_VERSION is required")
 }
-process.env["OPENCODE_VERSION"] = version
+process.env["KEN8N_CODER_VERSION"] = version
 console.log("version:", version)
 
 const pkgjsons = await Array.fromAsync(
@@ -29,7 +29,7 @@ for (const file of pkgjsons) {
 }
 await $`bun install`
 
-console.log("\n=== opencode ===\n")
+console.log("\n=== ken8n-coder ===\n")
 await import(`../packages/ken8n-coder/script/publish.ts`)
 
 console.log("\n=== sdk ===\n")
@@ -48,7 +48,7 @@ if (!snapshot) {
   await $`git cherry-pick HEAD..origin/dev`.nothrow()
   await $`git push origin HEAD --tags --no-verify --force`
 
-  const previous = await fetch("https://api.github.com/repos/sst/opencode/releases/latest")
+  const previous = await fetch("https://api.github.com/repos/kenkaiii/ken8n-coder/releases/latest")
     .then((res) => {
       if (!res.ok) throw new Error(res.statusText)
       return res.json()
@@ -56,7 +56,7 @@ if (!snapshot) {
     .then((data) => data.tag_name)
 
   console.log("finding commits between", previous, "and", "HEAD")
-  const commits = await fetch(`https://api.github.com/repos/sst/opencode/compare/${previous}...HEAD`)
+  const commits = await fetch(`https://api.github.com/repos/kenkaiii/ken8n-coder/compare/${previous}...HEAD`)
     .then((res) => res.json())
     .then((data) => data.commits || [])
 

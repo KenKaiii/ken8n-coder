@@ -64,7 +64,7 @@ const cli = yargs(hideBin(process.argv))
       })(),
     })
 
-    process.env["OPENCODE"] = "1"
+    process.env["KEN8N_CODER"] = "1"
 
     Log.Default.info("opencode", {
       version: Installation.VERSION,

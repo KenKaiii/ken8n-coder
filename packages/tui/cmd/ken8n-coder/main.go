@@ -35,9 +35,9 @@ func main() {
 	var sessionID *string = flag.String("session", "", "session ID")
 	flag.Parse()
 
-	url := os.Getenv("OPENCODE_SERVER")
+	url := os.Getenv("KEN8N_CODER_SERVER")
 
-	appInfoStr := os.Getenv("OPENCODE_APP_INFO")
+	appInfoStr := os.Getenv("KEN8N_CODER_APP_INFO")
 	var appInfo opencode.App
 	err := json.Unmarshal([]byte(appInfoStr), &appInfo)
 	if err != nil {

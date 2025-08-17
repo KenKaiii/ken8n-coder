@@ -132,7 +132,7 @@ export namespace Installation {
       })
   }
 
-  export const VERSION = typeof OPENCODE_VERSION === "string" ? OPENCODE_VERSION : "dev"
+  export const VERSION = typeof KEN8N_CODER_VERSION === "string" ? KEN8N_CODER_VERSION : "dev"
   export const USER_AGENT = `opencode/${VERSION}`
 
   export async function latest() {

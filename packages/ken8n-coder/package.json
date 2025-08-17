@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
-  "version": "0.5.4",
+  "version": "1.0.3",
   "name": "ken8n-coder",
   "type": "module",
   "private": false,

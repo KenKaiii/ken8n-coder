@@ -17,15 +17,15 @@ import { Ide } from "../../ide"
 import { Flag } from "../../flag/flag"
 import { Session } from "../../session"
 
-if (typeof OPENCODE_TUI_PATH !== "undefined") {
-  await import(OPENCODE_TUI_PATH as string, {
+if (typeof KEN8N_CODER_TUI_PATH !== "undefined") {
+  await import(KEN8N_CODER_TUI_PATH as string, {
     with: { type: "file" },
   })
 }
 
 async function resolveTuiBinary() {
   let cmd = ["go", "run", "./main.go"]
-  let cwd = Bun.fileURLToPath(new URL("../../../../tui/cmd/ken8n-coder", import.meta.url))
+  let cwd = path.resolve(path.dirname(Bun.fileURLToPath(import.meta.url)), "../../../../tui/cmd/ken8n-coder")
 
   // Check for downloaded binary from install script first
   const installBinary = path.join(os.homedir(), ".ken8n-coder", "bin", "tui", "ken8n-coder-tui")
@@ -150,8 +150,8 @@ export const TuiCommand = cmd({
           env: {
             ...process.env,
             CGO_ENABLED: "0",
-            OPENCODE_SERVER: server.url.toString(),
-            OPENCODE_APP_INFO: JSON.stringify(app),
+            KEN8N_CODER_SERVER: server.url.toString(),
+            KEN8N_CODER_APP_INFO: JSON.stringify(app),
           },
           onExit: () => {
             server.stop()
@@ -162,7 +162,7 @@ export const TuiCommand = cmd({
           if (Installation.isDev()) return
           if (Installation.isSnapshot()) return
           const config = await Config.global()
-          if (config.autoupdate === false || Flag.OPENCODE_DISABLE_AUTOUPDATE) return
+          if (config.autoupdate === false || Flag.KEN8N_CODER_DISABLE_AUTOUPDATE) return
           const latest = await Installation.latest().catch(() => {})
           if (!latest) return
           if (Installation.VERSION === latest) return
@@ -210,9 +210,9 @@ export const TuiCommand = cmd({
  * In production: ["/path/to/ken8n-coder"]
  */
 function getOpencodeCommand(): string[] {
-  // Check if OPENCODE_BIN_PATH is set (used by shell wrapper scripts)
-  if (process.env["OPENCODE_BIN_PATH"]) {
-    return [process.env["OPENCODE_BIN_PATH"]]
+  // Check if KEN8N_CODER_BIN_PATH is set (used by shell wrapper scripts)
+  if (process.env["KEN8N_CODER_BIN_PATH"]) {
+    return [process.env["KEN8N_CODER_BIN_PATH"]]
   }
 
   const execPath = process.execPath.toLowerCase()

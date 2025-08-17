@@ -179,7 +179,7 @@ export namespace Session {
     state().sessions.set(result.id, result)
     await Storage.writeJSON("session/info/" + result.id, result)
     const cfg = await Config.get()
-    if (!result.parentID && (Flag.OPENCODE_AUTO_SHARE || cfg.share === "auto"))
+    if (!result.parentID && (Flag.KEN8N_CODER_AUTO_SHARE || cfg.share === "auto"))
       share(result.id)
         .then((share) => {
           update(result.id, (draft) => {

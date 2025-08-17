@@ -29,9 +29,9 @@ export namespace Config {
     }
 
     // Override with custom config if provided
-    if (Flag.OPENCODE_CONFIG) {
-      result = mergeDeep(result, await loadFile(Flag.OPENCODE_CONFIG))
-      log.debug("loaded custom config", { path: Flag.OPENCODE_CONFIG })
+    if (Flag.KEN8N_CODER_CONFIG) {
+      result = mergeDeep(result, await loadFile(Flag.KEN8N_CODER_CONFIG))
+      log.debug("loaded custom config", { path: Flag.KEN8N_CODER_CONFIG })
     }
 
     for (const [key, value] of Object.entries(auth)) {
@@ -114,8 +114,8 @@ export namespace Config {
       ].map((x) => "file://" + x),
     )
 
-    if (Flag.OPENCODE_PERMISSION) {
-      result.permission = mergeDeep(result.permission ?? {}, JSON.parse(Flag.OPENCODE_PERMISSION))
+    if (Flag.KEN8N_CODER_PERMISSION) {
+      result.permission = mergeDeep(result.permission ?? {}, JSON.parse(Flag.KEN8N_CODER_PERMISSION))
     }
 
     // Handle migration from autoshare to share field
