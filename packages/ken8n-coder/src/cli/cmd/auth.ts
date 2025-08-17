@@ -78,7 +78,7 @@ export const AuthLoginCommand = cmd({
     await App.provide({ cwd: process.cwd() }, async () => {
       UI.empty()
       prompts.intro("Add credential")
-      if (args.url) {
+      if (args.url && (args.url.startsWith("http://") || args.url.startsWith("https://"))) {
         const wellknown = await fetch(`${args.url}/.well-known/opencode`).then((x) => x.json())
         prompts.log.info(`Running \`${wellknown.auth.command.join(" ")}\``)
         const proc = Bun.spawn({

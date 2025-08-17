@@ -35,10 +35,14 @@ export namespace Config {
     }
 
     for (const [key, value] of Object.entries(auth)) {
-      if (value.type === "wellknown") {
+      if (value.type === "wellknown" && typeof key === "string" && (key.startsWith("http://") || key.startsWith("https://"))) {
         process.env[value.key] = value.token
-        const wellknown = await fetch(`${key}/.well-known/opencode`).then((x) => x.json())
-        result = mergeDeep(result, await load(JSON.stringify(wellknown.config ?? {}), process.cwd()))
+        try {
+          const wellknown = await fetch(`${key}/.well-known/opencode`).then((x) => x.json())
+          result = mergeDeep(result, await load(JSON.stringify(wellknown.config ?? {}), process.cwd()))
+        } catch (e) {
+          // Ignore wellknown config fetch errors
+        }
       }
     }
 

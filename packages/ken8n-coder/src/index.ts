@@ -22,7 +22,10 @@ import { GithubCommand } from "./cli/cmd/github"
 const cancel = new AbortController()
 
 try {
-} catch (e) {}
+  // Setup complete
+} catch (e) {
+  // Initialization error
+}
 
 process.on("unhandledRejection", (e) => {
   Log.Default.error("rejection", {
@@ -104,7 +107,7 @@ try {
     Object.assign(data, {
       name: e.name,
       message: e.message,
-      cause: e.cause?.toString(),
+      cause: e.cause instanceof Error ? e.cause.message : String(e.cause),
     })
   }
 
