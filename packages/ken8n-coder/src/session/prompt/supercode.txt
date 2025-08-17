@@ -57,7 +57,9 @@ web3, ytdl, ffmpeg, ffmpegStatic`
    - This file is ONLY for validation, not a real project file
    - The code inside is what will be pasted into n8n's Super Code node
    - **CRITICAL: ONLY create .js files - NEVER create .md summary files**
-3. **VALIDATE**: `node validate-supercode.js ./process-data.js`
+3. **VALIDATE**: `node ~/.ken8n-coder/validation-scripts/validate-supercode-static.js ./process-data.js`
+   - Uses static analysis (no dependencies required)
+   - For full validation with execution: First run `cd ~/.ken8n-coder/validation-scripts && npm install`
 4. Fix errors shown and re-validate until "✅ PASSED"
 5. NEVER finish until validation shows "✅ PASSED"
 6. Tell user the validated code is ready to paste into n8n Super Code node

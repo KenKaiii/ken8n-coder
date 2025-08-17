@@ -48,11 +48,9 @@ for (const [os, arch] of targets) {
     await $`./dist/${name}/bin/ken8n-coder --version`
   }
   await $`rm -rf ./dist/${name}/bin/tui`
-  // Copy validation scripts (excluding node_modules)
+  // Copy only the static validator (no dependencies needed)
   await $`mkdir -p ./dist/${name}/validation-scripts`
-  await $`cp validation-scripts/*.js ./dist/${name}/validation-scripts/ 2>/dev/null || true`
-  await $`cp validation-scripts/*.cjs ./dist/${name}/validation-scripts/ 2>/dev/null || true`
-  await $`cp validation-scripts/package.json ./dist/${name}/validation-scripts/`
+  await $`cp validation-scripts/validate-supercode-static.js ./dist/${name}/validation-scripts/ 2>/dev/null || true`
   await Bun.file(`dist/${name}/package.json`).write(
     JSON.stringify(
       {
@@ -72,11 +70,9 @@ for (const [os, arch] of targets) {
 await $`mkdir -p ./dist/${pkg.name}`
 await $`cp -r ./bin ./dist/${pkg.name}/bin`
 await $`cp ./script/postinstall.mjs ./dist/${pkg.name}/postinstall.mjs`
-// Copy validation scripts (excluding node_modules)
+// Copy only the static validator (no dependencies needed)
 await $`mkdir -p ./dist/${pkg.name}/validation-scripts`
-await $`cp validation-scripts/*.js ./dist/${pkg.name}/validation-scripts/ 2>/dev/null || true`
-await $`cp validation-scripts/*.cjs ./dist/${pkg.name}/validation-scripts/ 2>/dev/null || true`
-await $`cp validation-scripts/package.json ./dist/${pkg.name}/validation-scripts/`
+await $`cp validation-scripts/validate-supercode-static.js ./dist/${pkg.name}/validation-scripts/ 2>/dev/null || true`
 await Bun.file(`./dist/${pkg.name}/package.json`).write(
   JSON.stringify(
     {
