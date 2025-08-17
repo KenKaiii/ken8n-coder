@@ -2,12 +2,12 @@ import fs from "fs/promises"
 import { xdgData, xdgCache, xdgConfig, xdgState } from "xdg-basedir"
 import path from "path"
 
-const app = "opencode"
+const app = "ken8n-coder"
 
-const data = path.join(xdgData!, app)
-const cache = path.join(xdgCache!, app)
-const config = path.join(xdgConfig!, app)
-const state = path.join(xdgState!, app)
+const data = path.join(xdgData || "~/.local/share", app)
+const cache = path.join(xdgCache || "~/.cache", app)
+const config = path.join(xdgConfig || "~/.config", app)
+const state = path.join(xdgState || "~/.local/state", app)
 
 export namespace Global {
   export const Path = {
