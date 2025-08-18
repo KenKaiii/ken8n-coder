@@ -5900,7 +5900,317 @@
       "lastAccessed": "2025-08-18T10:44:20.016Z",
       "lastVerified": "2025-08-18T10:44:20.016Z",
       "status": "fresh"
+    },
+    {
+      "id": "mem_1755516683002_hjal800ao",
+      "content": "User wants to enhance the workflow.txt prompt system by adding a \"workflows\" folder in CWD that agents can access, adjust, edit, and refine. This would give agents the ability to not just follow workflows but also improve them based on experience.",
+      "type": "general",
+      "tags": [
+        "general",
+        "workflow-system",
+        "agent-capabilities",
+        "workflow-editing"
+      ],
+      "timestamp": "2025-08-18T11:31:23.002Z",
+      "context": "Discussing workflow system improvements - adding workflow modification capabilities",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T11:31:23.002Z",
+      "lastVerified": "2025-08-18T11:31:23.002Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755516774550_zfydtke20",
+      "content": "User corrected me - the agents in ken8n-coder don't use CLAUDE.md, they have their own prompt system. Need to focus on ken8n-coder's workflow.txt and how to add workflows folder functionality to that specific system.",
+      "type": "warning",
+      "tags": [
+        "warning",
+        "ken8n-coder",
+        "workflow-system",
+        "correction"
+      ],
+      "timestamp": "2025-08-18T11:32:54.550Z",
+      "context": "User correction about ken8n-coder agent system vs CLAUDE.md",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T11:32:54.550Z",
+      "lastVerified": "2025-08-18T11:32:54.550Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755516858998_far1mszsm",
+      "content": "Ken8n-coder workflow enhancement: The idea is to use the workflows folder not just for templates, but for the agent to REFACTOR and IMPROVE existing workflows using the new Super Code node. The Super Code node (with 49 global libraries) can potentially replace multiple nodes with a single, more powerful node - so the agent can take existing workflows and optimize/simplify them.",
+      "type": "general",
+      "tags": [
+        "general",
+        "ken8n-coder",
+        "super-code-node",
+        "workflow-optimization",
+        "refactoring"
+      ],
+      "timestamp": "2025-08-18T11:34:18.998Z",
+      "context": "Understanding the workflow refactoring capability with Super Code nodes",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T11:34:18.998Z",
+      "lastVerified": "2025-08-18T11:34:18.998Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755516958128_ce63xovmz",
+      "content": "Ken8n-coder workflow system enhancement: Add workflows folder capability where agents can CREATE, ADJUST, REFINE, and IMPROVE workflows. Key capabilities: 1) Refactor existing workflows using Super Code node to simplify complex multi-node chains, 2) Improve functionality while maintaining same purpose, 3) Create new optimized workflows, 4) Build institutional knowledge of workflow patterns. The Super Code node with 49 global libraries enables significant simplification opportunities.",
+      "type": "general",
+      "tags": [
+        "general",
+        "ken8n-coder",
+        "workflow-enhancement",
+        "super-code-optimization",
+        "workflow-management"
+      ],
+      "timestamp": "2025-08-18T11:35:58.128Z",
+      "context": "Complete understanding of workflow folder enhancement for ken8n-coder",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T11:35:58.128Z",
+      "lastVerified": "2025-08-18T11:35:58.128Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755517945058_c3camkhz4",
+      "content": "User wants to: 1) Clarify workflows folder is within CWD to avoid confusion, 2) Check supercode.txt for any crucial info missing from workflow.txt, 3) Keep system messages laser focused and reliable without bloating them",
+      "type": "warning",
+      "tags": [
+        "warning",
+        "ken8n-coder",
+        "workflow-txt",
+        "supercode-txt",
+        "system-message-optimization"
+      ],
+      "timestamp": "2025-08-18T11:52:25.058Z",
+      "context": "Refining workflow.txt enhancement - clarity and efficiency focus",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T11:52:25.058Z",
+      "lastVerified": "2025-08-18T11:52:25.058Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755518039199_wr4wyfjd0",
+      "content": "User corrected me again - workflow.txt creates .json workflow files, not .js files. The .js file creation and validation is specific to supercode.txt agent. Workflow.txt deals with complete n8n workflow JSON structures. Need to focus on what's actually missing for workflow optimization in workflow.txt without mixing up the two different agent purposes.",
+      "type": "general",
+      "tags": [
+        "general",
+        "optimization",
+        "ken8n-coder",
+        "workflow-txt-vs-supercode-txt",
+        "json-vs-js",
+        "agent-distinction"
+      ],
+      "timestamp": "2025-08-18T11:53:59.199Z",
+      "context": "Understanding the distinction between workflow.txt (creates .json) vs supercode.txt (creates .js)",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T11:53:59.199Z",
+      "lastVerified": "2025-08-18T11:53:59.199Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755518200034_fy86q2mw0",
+      "content": "User identified limitation in current input patterns for both supercode.txt and workflow.txt. Current patterns only show basic $input.first().json and $input.all() but real workflows need: 1) Reference specific previous nodes like $('NodeName').first().json, 2) Handle multiple node outputs, 3) Process complex HTTP response data, 4) User-provided JSON for testing. Need to add expanded input pattern guidance and instructions to request sample JSON from users.",
+      "type": "concept",
+      "tags": [
+        "concept",
+        "testing",
+        "ken8n-coder",
+        "input-patterns",
+        "node-referencing",
+        "json-handling"
+      ],
+      "timestamp": "2025-08-18T11:56:40.034Z",
+      "context": "Enhancing input patterns in ken8n-coder system prompts",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T11:56:40.034Z",
+      "lastVerified": "2025-08-18T11:56:40.034Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755518388929_skdsvqs4w",
+      "content": "User corrected input pattern examples. In n8n: \n- Direct previous node: {{ $json.chatInput }}\n- Reference specific node from earlier: {{ $('When chat message received').item.json.chatInput }}\n- .first().json only takes first input, not good for specifics\n- Need to use proper n8n referencing syntax with {{ }} and .item.json pattern",
+      "type": "concept",
+      "tags": [
+        "concept",
+        "ken8n-coder",
+        "n8n-syntax",
+        "node-referencing",
+        "input-patterns-correct"
+      ],
+      "timestamp": "2025-08-18T11:59:48.929Z",
+      "context": "Correct n8n input pattern syntax for referencing nodes",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T11:59:48.929Z",
+      "lastVerified": "2025-08-18T11:59:48.929Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755518548185_oo4h0gqxo",
+      "content": "User clarified the input pattern approach: 1) The {{ }} syntax is for n8n expressions in workflows, 2) For Super Code development/testing, users provide JSON examples of their input data, 3) The system should be totally agnostic - users can provide ANY JSON structure as input examples, 4) Example: user says \"financial audit\" and provides JSON like [{\"chatInput\": \"hi\"}] - the agent should work with whatever structure they provide, 5) Key is to ask users for their specific input JSON examples rather than assuming patterns.",
+      "type": "tip",
+      "tags": [
+        "tip",
+        "testing",
+        "ken8n-coder",
+        "json-inputs",
+        "user-provided-data",
+        "agnostic-approach"
+      ],
+      "timestamp": "2025-08-18T12:02:28.185Z",
+      "context": "Understanding flexible, user-provided JSON input approach for Super Code",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T12:02:28.185Z",
+      "lastVerified": "2025-08-18T12:02:28.185Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755518787643_703jd6ckl",
+      "content": "User suggests workflow optimization: prefer Code nodes and Super Code nodes over Set nodes. Code/Super Code nodes can function as Set nodes for displaying data but are much more reliable and flexible. This would be a workflow creation guideline.",
+      "type": "tip",
+      "tags": [
+        "tip",
+        "optimization",
+        "ken8n-coder",
+        "workflow-optimization",
+        "code-nodes-vs-set-nodes",
+        "reliability"
+      ],
+      "timestamp": "2025-08-18T12:06:27.643Z",
+      "context": "Workflow optimization - preferring Code/Super Code over Set nodes",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T12:06:27.643Z",
+      "lastVerified": "2025-08-18T12:06:27.643Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755518858480_n9n8gg27l",
+      "content": "User asking whether to prefer Super Code nodes over even regular Code nodes. Super Code nodes have 49 global libraries and more capabilities, so might be better to just standardize on Super Code nodes for all data manipulation instead of mixing Code and Super Code nodes.",
+      "type": "tip",
+      "tags": [
+        "tip",
+        "ken8n-coder",
+        "super-code-nodes",
+        "workflow-simplification",
+        "standardization"
+      ],
+      "timestamp": "2025-08-18T12:07:38.480Z",
+      "context": "Considering simplifying workflow guidance to prefer Super Code nodes over all alternatives",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T12:07:38.480Z",
+      "lastVerified": "2025-08-18T12:07:38.480Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755518963529_mtm9mje4b",
+      "content": "Found conflicts in workflow.txt: 1) Lines 12-13 provide detailed requirements for Set nodes and Code nodes, but lines 53-56 say to use Super Code nodes instead of Set/Code nodes. 2) Lines 73-85 list Set, Code, and Function nodes as common node types, but conflicts with preferring Super Code nodes. 3) Line 90 mentions required parameters for each node type, but if we prefer Super Code, we shouldn't be documenting other node requirements as prominently.",
+      "type": "warning",
+      "tags": [
+        "warning",
+        "ken8n-coder",
+        "workflow-txt",
+        "conflicts",
+        "super-code-preference"
+      ],
+      "timestamp": "2025-08-18T12:09:23.529Z",
+      "context": "Analyzing workflow.txt for conflicts after adding Super Code node preference",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T12:09:23.529Z",
+      "lastVerified": "2025-08-18T12:09:23.529Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755519109603_qhbwuv253",
+      "content": "Analyzing workflow.txt and supercode.txt for remaining conflicts. Found: 1) Input patterns inconsistency - both files show $input.first().json and $input.all() patterns that we discussed earlier as potentially limiting. 2) Library lists are identical between both files (good consistency). 3) Super Code rules are consistent between files. 4) Both files emphasize \"SIMPLE, WORKING code. Do NOT over-engineer\" consistently. 5) Both files correctly specify creating only .json (workflow) or .js (supercode) files, never .md files.",
+      "type": "warning",
+      "tags": [
+        "warning",
+        "ken8n-coder",
+        "conflict-analysis",
+        "workflow-txt",
+        "supercode-txt",
+        "final-review"
+      ],
+      "timestamp": "2025-08-18T12:11:49.603Z",
+      "context": "Final conflict analysis of workflow.txt and supercode.txt",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T12:11:49.603Z",
+      "lastVerified": "2025-08-18T12:11:49.603Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755519326540_ug7gpneyz",
+      "content": "User wants to clarify input handling flexibility: The current $input.first().json and $input.all() patterns are too rigid. Agents should understand that: 1) Users may provide custom input examples/JSON data they want to work with, 2) Not every Super Code node needs to use the standard $input patterns, 3) Users might want to work with specific data structures they provide, 4) Agents should be flexible about input handling rather than forcing the two standard patterns.",
+      "type": "tip",
+      "tags": [
+        "tip",
+        "ken8n-coder",
+        "input-flexibility",
+        "custom-inputs",
+        "user-provided-data"
+      ],
+      "timestamp": "2025-08-18T12:15:26.540Z",
+      "context": "Making input handling more flexible in supercode.txt and workflow.txt",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T12:15:26.540Z",
+      "lastVerified": "2025-08-18T12:15:26.540Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755519437443_731dnx4uw",
+      "content": "User wants me to push a new release v2.0.0 to GitHub. This includes all the workflow.txt and supercode.txt changes we made: workflow library management, Super Code node preference, conflict resolution, flexible input handling.",
+      "type": "general",
+      "tags": [
+        "general",
+        "github-release",
+        "v2.0.0",
+        "workflow-improvements",
+        "super-code-optimization"
+      ],
+      "timestamp": "2025-08-18T12:17:17.443Z",
+      "context": "Preparing GitHub release v2.0.0 with workflow system improvements",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T12:17:17.443Z",
+      "lastVerified": "2025-08-18T12:17:17.443Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755521116076_1s2pn2957",
+      "content": "User is asking about creating an actual GitHub release for v2.0.0, not just pushing the tag. I only created a git tag and pushed it, but didn't create the actual GitHub release with release notes. Need to use gh cli to create the proper GitHub release.",
+      "type": "general",
+      "tags": [
+        "general",
+        "github-release",
+        "v2.0.0",
+        "gh-cli",
+        "release-notes"
+      ],
+      "timestamp": "2025-08-18T12:45:16.076Z",
+      "context": "Need to create proper GitHub release for v2.0.0",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T12:45:16.076Z",
+      "lastVerified": "2025-08-18T12:45:16.076Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755521261526_cmu5but6r",
+      "content": "Install script is failing on v2.0.0 release. Error shows it's trying to download and extract but getting \"File is not a zip file\" error. Previous releases worked fine. The issue seems to be that we created a GitHub release but didn't build/attach the actual release artifacts (zip files) to the release. We only pushed the tag and created release notes, but the install script expects downloadable zip files.",
+      "type": "config",
+      "tags": [
+        "config",
+        "install-script",
+        "v2.0.0",
+        "release-artifacts",
+        "github-release",
+        "zip-files"
+      ],
+      "timestamp": "2025-08-18T12:47:41.526Z",
+      "context": "v2.0.0 install script failing - missing release artifacts",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T12:47:41.526Z",
+      "lastVerified": "2025-08-18T12:47:41.526Z",
+      "status": "fresh"
     }
   ],
-  "lastUpdated": "2025-08-18T10:44:20.016Z"
+  "lastUpdated": "2025-08-18T12:47:41.526Z"
 }
