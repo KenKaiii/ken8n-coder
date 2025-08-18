@@ -14,8 +14,8 @@
         "architecture"
       ],
       "timestamp": "2025-08-16T09:56:06.079Z",
-      "accessCount": 41,
-      "lastAccessed": "2025-08-18T05:12:18.290Z",
+      "accessCount": 42,
+      "lastAccessed": "2025-08-18T05:47:35.561Z",
       "lastVerified": "2025-08-16T09:56:06.079Z",
       "status": "fresh"
     },
@@ -31,8 +31,8 @@
         "generation"
       ],
       "timestamp": "2025-08-16T09:56:32.524Z",
-      "accessCount": 38,
-      "lastAccessed": "2025-08-18T05:12:18.290Z",
+      "accessCount": 39,
+      "lastAccessed": "2025-08-18T05:47:35.561Z",
       "lastVerified": "2025-08-16T09:56:32.524Z",
       "status": "fresh"
     },
@@ -70,8 +70,8 @@
       ],
       "timestamp": "2025-08-16T10:01:19.276Z",
       "context": "Successfully completed comprehensive n8n research task",
-      "accessCount": 41,
-      "lastAccessed": "2025-08-18T05:12:18.290Z",
+      "accessCount": 42,
+      "lastAccessed": "2025-08-18T05:47:35.561Z",
       "lastVerified": "2025-08-16T10:01:19.276Z",
       "status": "fresh"
     },
@@ -111,8 +111,8 @@
         "opencode"
       ],
       "timestamp": "2025-08-16T10:01:51.233Z",
-      "accessCount": 39,
-      "lastAccessed": "2025-08-18T05:12:09.141Z",
+      "accessCount": 40,
+      "lastAccessed": "2025-08-18T05:47:35.561Z",
       "lastVerified": "2025-08-16T10:01:51.233Z",
       "status": "fresh"
     },
@@ -163,8 +163,8 @@
         "system-prompts"
       ],
       "timestamp": "2025-08-16T10:45:35.124Z",
-      "accessCount": 34,
-      "lastAccessed": "2025-08-18T04:29:12.050Z",
+      "accessCount": 35,
+      "lastAccessed": "2025-08-18T05:47:35.561Z",
       "lastVerified": "2025-08-16T10:45:35.124Z",
       "status": "fresh"
     },
@@ -203,8 +203,8 @@
         "score"
       ],
       "timestamp": "2025-08-16T10:46:41.719Z",
-      "accessCount": 20,
-      "lastAccessed": "2025-08-18T04:29:12.050Z",
+      "accessCount": 21,
+      "lastAccessed": "2025-08-18T05:47:35.561Z",
       "lastVerified": "2025-08-16T10:46:41.719Z",
       "status": "fresh"
     },
@@ -224,8 +224,8 @@
       ],
       "timestamp": "2025-08-16T10:46:54.150Z",
       "context": "Analysis of ken8n-coder system gaps for comprehensive n8n workflow creation",
-      "accessCount": 7,
-      "lastAccessed": "2025-08-16T16:04:19.011Z",
+      "accessCount": 8,
+      "lastAccessed": "2025-08-18T05:47:35.561Z",
       "lastVerified": "2025-08-16T10:46:54.150Z",
       "status": "fresh"
     },
@@ -244,8 +244,8 @@
       ],
       "timestamp": "2025-08-16T10:47:08.698Z",
       "context": "UX evaluation of ken8n-coder system prompts and documentation for n8n workflow creation",
-      "accessCount": 13,
-      "lastAccessed": "2025-08-18T04:29:12.050Z",
+      "accessCount": 14,
+      "lastAccessed": "2025-08-18T05:47:35.561Z",
       "lastVerified": "2025-08-16T10:47:08.698Z",
       "status": "fresh"
     },
@@ -373,8 +373,8 @@
       ],
       "timestamp": "2025-08-16T10:49:14.163Z",
       "context": "Strategic technical architecture evaluation of ken8n-coder system",
-      "accessCount": 5,
-      "lastAccessed": "2025-08-17T13:44:04.789Z",
+      "accessCount": 6,
+      "lastAccessed": "2025-08-18T05:47:35.561Z",
       "lastVerified": "2025-08-16T10:49:14.163Z",
       "status": "fresh"
     },
@@ -1112,8 +1112,8 @@
         "analysis"
       ],
       "timestamp": "2025-08-16T15:42:17.552Z",
-      "accessCount": 8,
-      "lastAccessed": "2025-08-17T13:44:04.789Z",
+      "accessCount": 9,
+      "lastAccessed": "2025-08-18T05:47:35.561Z",
       "lastVerified": "2025-08-16T15:42:17.552Z",
       "status": "fresh"
     },
@@ -5278,7 +5278,476 @@
       "lastAccessed": "2025-08-18T05:44:47.017Z",
       "lastVerified": "2025-08-18T05:44:47.017Z",
       "status": "fresh"
+    },
+    {
+      "id": "mem_1755496042198_2vmfandhx",
+      "content": "BUILD agent issue reported: TypeError: undefined is not an object (evaluating 'response.headers'). PLAN agent and supercode agent work fine, but BUILD agent fails with this JavaScript error. Need to investigate what's causing the response.headers to be undefined.",
+      "type": "troubleshooting",
+      "tags": [
+        "troubleshooting",
+        "javascript",
+        "build-agent",
+        "error",
+        "response-headers",
+        "debug"
+      ],
+      "timestamp": "2025-08-18T05:47:22.198Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T05:47:22.198Z",
+      "lastVerified": "2025-08-18T05:47:22.198Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755496051517_bjqli8e72",
+      "content": "User reporting TypeError with BUILD agent: 'undefined is not an object (evaluating 'response.headers')'. PLAN and supercode agents work fine, so this is specific to BUILD agent functionality.",
+      "type": "general",
+      "tags": [
+        "general",
+        "build-agent",
+        "error",
+        "response-headers",
+        "debugging"
+      ],
+      "timestamp": "2025-08-18T05:47:31.517Z",
+      "context": "BUILD agent debugging session",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T05:47:31.517Z",
+      "lastVerified": "2025-08-18T05:47:31.517Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755496073900_ti42n0old",
+      "content": "BUILD agent TypeError investigation: \"TypeError: undefined is not an object (evaluating 'response.headers')\" - PLAN and supercode agents work fine, but BUILD agent fails. Need to find BUILD agent implementation and fix response.headers access issue.",
+      "type": "troubleshooting",
+      "tags": [
+        "troubleshooting",
+        "build-agent",
+        "typescript-error",
+        "response-headers",
+        "ken8n-coder"
+      ],
+      "timestamp": "2025-08-18T05:47:53.900Z",
+      "context": "ken8n-coder project debugging - BUILD agent specific error",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T05:47:53.900Z",
+      "lastVerified": "2025-08-18T05:47:53.900Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755496118670_h76dv3xow",
+      "content": "FOUND: response.headers error is in webfetch.ts lines 65 and 76. The fetch() call on line 48-56 returns a response object, but it could be undefined if fetch fails in a way that doesn't throw an error. The AbortSignal.any() or context abort signal might be causing issues specific to BUILD agent execution context.",
+      "type": "error",
+      "tags": [
+        "error",
+        "webfetch",
+        "build-agent",
+        "typescript-error",
+        "response-undefined"
+      ],
+      "timestamp": "2025-08-18T05:48:38.670Z",
+      "context": "BUILD agent TypeError analysis - webfetch.ts investigation",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T05:48:38.670Z",
+      "lastVerified": "2025-08-18T05:48:38.670Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755496153686_0gus63lay",
+      "content": "ROOT CAUSE IDENTIFIED: AbortSignal.any() incompatibility in webfetch.ts line 49. Other tools like bash.ts use ctx.abort directly. AbortSignal.any() is a newer JavaScript feature that may not be available in Bun 1.2.20 or may be causing the fetch to return undefined response. Need to replace AbortSignal.any() with compatible implementation.",
+      "type": "general",
+      "tags": [
+        "general",
+        "javascript",
+        "root-cause",
+        "abortsignal-any",
+        "compatibility",
+        "bun"
+      ],
+      "timestamp": "2025-08-18T05:49:13.686Z",
+      "context": "BUILD agent TypeError root cause analysis",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T05:49:13.686Z",
+      "lastVerified": "2025-08-18T05:49:13.686Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755496201377_2e0jtal9e",
+      "content": "SOLUTION IMPLEMENTED: Fixed BUILD agent TypeError by replacing AbortSignal.any() with manual abort signal handling in webfetch.ts. Changed from AbortSignal.any([controller.signal, ctx.abort]) to using addEventListener/removeEventListener for compatibility with Bun 1.2.20. Added proper try-catch cleanup to ensure event listeners are removed.",
+      "type": "solution",
+      "tags": [
+        "solution",
+        "webfetch",
+        "abortsignal",
+        "build-agent-fix"
+      ],
+      "timestamp": "2025-08-18T05:50:01.377Z",
+      "context": "BUILD agent TypeError fix completion",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T05:50:01.377Z",
+      "lastVerified": "2025-08-18T05:50:01.377Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755496235789_ys18poe63",
+      "content": "BUILD agent TypeError only occurs in live version 1.1.7, but works fine in `bun run dev`. This suggests the issue is build/packaging related, not a runtime compatibility issue as initially thought.",
+      "type": "config",
+      "tags": [
+        "config",
+        "build-agent",
+        "version-1.1.7",
+        "dev-vs-live",
+        "packaging-issue"
+      ],
+      "timestamp": "2025-08-18T05:50:35.789Z",
+      "context": "BUILD agent debugging - version difference clarification",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T05:50:35.789Z",
+      "lastVerified": "2025-08-18T05:50:35.789Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755496250336_4g5fw33o1",
+      "content": "BUILD agent TypeError: \"undefined is not an object (evaluating 'response.headers')\" ONLY in live version 1.1.7, works perfectly in `bun run dev`. This indicates a build/packaging issue where response object becomes undefined in production but not development. Need to investigate build config, bundling differences, webfetch tool packaging, and v1.1.7 specific changes.",
+      "type": "config",
+      "tags": [
+        "config",
+        "bug",
+        "build-issue",
+        "production",
+        "webfetch",
+        "v1.1.7"
+      ],
+      "timestamp": "2025-08-18T05:50:50.336Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T05:50:50.336Z",
+      "lastVerified": "2025-08-18T05:50:50.336Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755496332490_h8hmp9ksy",
+      "content": "BUILD ISSUE ANALYSIS: Found that TypeScript code gets compiled using Bun's --compile flag (line 41 in publish.ts) which creates standalone binary. The error \"undefined is not an object (evaluating 'response.headers')\" suggests the fetch response object is undefined only in production builds, not dev. This could be a polyfill or runtime environment issue in the compiled binary.",
+      "type": "config",
+      "tags": [
+        "config",
+        "typescript",
+        "build-analysis",
+        "bun-compile",
+        "fetch-polyfill",
+        "production-bug"
+      ],
+      "timestamp": "2025-08-18T05:52:12.490Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T05:52:12.490Z",
+      "lastVerified": "2025-08-18T05:52:12.490Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755496518509_rxygrifkz",
+      "content": "ROOT CAUSE FOUND: The \"undefined is not an object (evaluating 'response.headers')\" error in BUILD agent v1.1.7 is due to HTMLRewriter issues in Bun compiled binaries. Bun has known issues with HTMLRewriter in production/compiled contexts where either the HTMLRewriter transform returns undefined or the fetch response processing fails. This affects webfetch.ts lines 164-166 where HTMLRewriter is used for HTML text extraction.",
+      "type": "error",
+      "tags": [
+        "error",
+        "root-cause",
+        "htmlrewriter",
+        "bun-bug",
+        "compiled-binary",
+        "fix-needed"
+      ],
+      "timestamp": "2025-08-18T05:55:18.509Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T05:55:18.509Z",
+      "lastVerified": "2025-08-18T05:55:18.509Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755496761929_rqobvyenv",
+      "content": "SOLUTION IMPLEMENTED: Fixed BUILD agent v1.1.7 \"undefined is not an object (evaluating 'response.headers')\" error by:\n\n1. Adding proper error handling for fetch response validation\n2. Using optional chaining (response.headers?.get()) to safely access headers  \n3. Adding try-catch blocks around header access with fallback behavior\n4. Implementing HTMLRewriter fallback using regex for compiled binaries where HTMLRewriter may fail\n5. Fixed transformedResponse handling in extractTextFromHTML function\n\nThe issue was caused by Bun's HTMLRewriter and fetch response headers behaving differently in compiled binaries vs development. The fix ensures webfetch tool works in both environments.",
+      "type": "troubleshooting",
+      "tags": [
+        "troubleshooting",
+        "solution",
+        "webfetch-fix",
+        "build-agent",
+        "production-ready",
+        "v1.1.7-fix"
+      ],
+      "timestamp": "2025-08-18T05:59:21.929Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T05:59:21.929Z",
+      "lastVerified": "2025-08-18T05:59:21.929Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755496782377_fn2cxmalw",
+      "content": "Fixed BUILD agent TypeError in v1.1.7. Root cause: Bun compilation differences between dev and production. HTMLRewriter and fetch response handling behave differently in compiled binaries. Solution: Added response validation, safe header access with optional chaining, HTMLRewriter fallback using regex, and proper error handling in webfetch.ts.",
+      "type": "error",
+      "tags": [
+        "error",
+        "build-agent",
+        "fix",
+        "bun-compilation",
+        "htmlrewriter",
+        "webfetch",
+        "v1.1.7"
+      ],
+      "timestamp": "2025-08-18T05:59:42.377Z",
+      "context": "BUILD agent fix implementation",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T05:59:42.377Z",
+      "lastVerified": "2025-08-18T05:59:42.377Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755496919324_9bs503th3",
+      "content": "User wants to check release scripts to ensure the webfetch.ts fix gets properly deployed. Need to examine how the build/release process works to prevent shipping the wrong version.",
+      "type": "config",
+      "tags": [
+        "config",
+        "release-scripts",
+        "deployment",
+        "build-agent-fix",
+        "version-control"
+      ],
+      "timestamp": "2025-08-18T06:01:59.324Z",
+      "context": "Release script validation for BUILD agent fix",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T06:01:59.324Z",
+      "lastVerified": "2025-08-18T06:01:59.324Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755496997979_43j1onzwt",
+      "content": "Release script analysis complete: BUILD agent fix is already in codebase and will be included in next release. The publish.ts script properly builds from current source, compiles with bun --compile, smoke tests, and publishes. No issues found with release process.",
+      "type": "troubleshooting",
+      "tags": [
+        "troubleshooting",
+        "release-validation",
+        "build-agent-fix",
+        "deployment-ready"
+      ],
+      "timestamp": "2025-08-18T06:03:17.979Z",
+      "context": "Release validation complete",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T06:03:17.979Z",
+      "lastVerified": "2025-08-18T06:03:17.979Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755497036725_lpvqnhqe4",
+      "content": "User requested release of v1.1.8 to deploy BUILD agent fix. Need to update version from 1.1.7 to 1.1.8 and run publish script.",
+      "type": "config",
+      "tags": [
+        "config",
+        "release",
+        "v1.1.8",
+        "build-agent-fix",
+        "deployment"
+      ],
+      "timestamp": "2025-08-18T06:03:56.725Z",
+      "context": "Version 1.1.8 release preparation",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T06:03:56.725Z",
+      "lastVerified": "2025-08-18T06:03:56.725Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755497316871_oj7kg1hd2",
+      "content": "Successfully released ken8n-coder v1.1.8 with BUILD agent fix. All platform binaries built and published to npm. Smoke test passed. Only Homebrew tap update failed due to missing GITHUB_TOKEN, but main release succeeded.",
+      "type": "troubleshooting",
+      "tags": [
+        "troubleshooting",
+        "release-complete",
+        "v1.1.8",
+        "build-agent-fix",
+        "npm-published"
+      ],
+      "timestamp": "2025-08-18T06:08:36.871Z",
+      "context": "v1.1.8 release complete",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T06:08:36.871Z",
+      "lastVerified": "2025-08-18T06:08:36.871Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755497604215_amcjsf3ht",
+      "content": "User reports curl install still shows 1.1.7. Published v1.1.8 to npm but need to create GitHub release for install script to pick up new version.",
+      "type": "config",
+      "tags": [
+        "config",
+        "github-release",
+        "v1.1.8",
+        "install-script",
+        "deployment"
+      ],
+      "timestamp": "2025-08-18T06:13:24.215Z",
+      "context": "GitHub release needed for v1.1.8",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T06:13:24.215Z",
+      "lastVerified": "2025-08-18T06:13:24.215Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755497797085_b0t0gxgbf",
+      "content": "Fixed GitHub release issue for v1.1.8. The release was created but not marked as 'latest'. Used `gh release edit v1.1.8 --latest` to fix this. Now the install script should pick up v1.1.8 correctly since it uses GitHub API's latest release endpoint.",
+      "type": "tip",
+      "tags": [
+        "tip",
+        "api",
+        "github-release",
+        "v1.1.8",
+        "latest-release",
+        "install-script-fixed"
+      ],
+      "timestamp": "2025-08-18T06:16:37.085Z",
+      "context": "GitHub release deployment complete",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T06:16:37.085Z",
+      "lastVerified": "2025-08-18T06:16:37.085Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755509778093_bruobxmgw",
+      "content": "User identified two key improvements for workflow.txt:\n1. Missing chat trigger - very important n8n trigger type for building workflows\n2. Should add \"simple, working code\" principle from supercode.txt to prevent over-engineering\n\nThe chat trigger is indeed a crucial n8n trigger type that enables conversational workflows and should be included in the common node types section.",
+      "type": "tip",
+      "tags": [
+        "tip",
+        "n8n",
+        "workflow",
+        "triggers",
+        "chat",
+        "improvement"
+      ],
+      "timestamp": "2025-08-18T09:36:18.093Z",
+      "context": "Workflow.txt improvements - missing chat trigger and simplicity principle",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T09:36:18.093Z",
+      "lastVerified": "2025-08-18T09:36:18.093Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755509846552_h40y53mo3",
+      "content": "Successfully added the simplicity principle \"You're creating SIMPLE, WORKING code. Do NOT over-engineer\" to the Super Code Rules section in workflow.txt. This ensures consistency with supercode.txt and prevents over-engineering when generating code for Super Code nodes within workflows.",
+      "type": "warning",
+      "tags": [
+        "warning",
+        "n8n",
+        "workflow",
+        "supercode",
+        "simplicity",
+        "completed"
+      ],
+      "timestamp": "2025-08-18T09:37:26.552Z",
+      "context": "Completed workflow.txt improvement - added simplicity principle to Super Code section",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T09:37:26.552Z",
+      "lastVerified": "2025-08-18T09:37:26.552Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755510188506_8jcl2usdw",
+      "content": "User experiencing Mac installation failures with ken8n-coder install script. Errors include: directory creation failures, curl write failures, and shell-init errors. Works on Linux but fails on Mac (darwin-arm64)",
+      "type": "config",
+      "tags": [
+        "config",
+        "install-script",
+        "mac-issues",
+        "ken8n-coder",
+        "bug"
+      ],
+      "timestamp": "2025-08-18T09:43:08.506Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T09:43:08.506Z",
+      "lastVerified": "2025-08-18T09:43:08.506Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755510325227_1ao8oli8z",
+      "content": "User asking if the curl install command works on PowerShell. The install script is a bash script that won't work natively on PowerShell - it needs WSL, Git Bash, or a Windows-specific installer",
+      "type": "config",
+      "tags": [
+        "config",
+        "powershell",
+        "windows",
+        "install-script",
+        "compatibility"
+      ],
+      "timestamp": "2025-08-18T09:45:25.226Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T09:45:25.226Z",
+      "lastVerified": "2025-08-18T09:45:25.226Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755510376201_l44jmjakp",
+      "content": "User needs seamless cross-platform installation (Windows, Linux, Mac) using curl. Current bash script works on Linux/Mac but not Windows. Need options for seamless Windows support.",
+      "type": "general",
+      "tags": [
+        "general",
+        "cross-platform",
+        "installation",
+        "curl",
+        "windows",
+        "seamless"
+      ],
+      "timestamp": "2025-08-18T09:46:16.201Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T09:46:16.201Z",
+      "lastVerified": "2025-08-18T09:46:16.201Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755510444728_4fsb9j8xq",
+      "content": "User's install script is named 'install' (no .sh extension) not 'install.sh'. The correct URL should be https://raw.githubusercontent.com/kenkaiii/ken8n-coder/main/install",
+      "type": "tip",
+      "tags": [
+        "tip",
+        "install-script",
+        "filename",
+        "404-error",
+        "correction"
+      ],
+      "timestamp": "2025-08-18T09:47:24.728Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T09:47:24.728Z",
+      "lastVerified": "2025-08-18T09:47:24.728Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755510488613_lqwptc5sc",
+      "content": "User asking if the current bash install script will work on Windows via WSL. Since WSL provides a Linux environment with bash, curl, and standard Unix tools, it should work fine.",
+      "type": "tip",
+      "tags": [
+        "tip",
+        "WSL",
+        "windows",
+        "bash",
+        "install-script",
+        "compatibility"
+      ],
+      "timestamp": "2025-08-18T09:48:08.613Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T09:48:08.613Z",
+      "lastVerified": "2025-08-18T09:48:08.613Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755510547553_3kj500mcq",
+      "content": "User asking about WSL shell configuration files - whether it uses ~/.zshrc or ~/.bashrc. WSL defaults to bash but users can install and switch to zsh. The install script already handles this by detecting $SHELL and adding PATH to the appropriate config file.",
+      "type": "config",
+      "tags": [
+        "config",
+        "WSL",
+        "shell",
+        "bashrc",
+        "zshrc",
+        "configuration"
+      ],
+      "timestamp": "2025-08-18T09:49:07.553Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T09:49:07.553Z",
+      "lastVerified": "2025-08-18T09:49:07.553Z",
+      "status": "fresh"
     }
   ],
-  "lastUpdated": "2025-08-18T05:44:47.017Z"
+  "lastUpdated": "2025-08-18T09:49:07.553Z"
 }

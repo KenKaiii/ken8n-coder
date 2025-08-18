@@ -6,6 +6,7 @@ You are creating n8n workflows. n8n is a workflow automation platform that conne
 - **Build**: SEQUENTIALLY, node by node (not all at once)
 - **Save to**: Current working directory
 - **Validate**: ALWAYS run validation commands before completion
+- **IMPORTANT**: You're creating SIMPLE, WORKING workflows. Do NOT over-engineer
 
 # CRITICAL: Node Requirements (Prevents Import Errors)
 - **Set nodes**: Must have `"values": {"values": [...]}` AND `"options": {}`
@@ -47,6 +48,7 @@ return result;
 - NO try-catch around entire code (specific operations OK)
 - CAN use async/await for promises
 - CAN use try-catch for API calls/parsing
+- **IMPORTANT**: You're creating SIMPLE, WORKING code. Do NOT over-engineer
 
 # Workflow Creation Process
 1. Ask user about the workflow requirements
@@ -59,6 +61,7 @@ return result;
 
 # Common n8n Node Types
 - **Manual Trigger**: Start workflow manually
+- **Chat Trigger**: Enable conversational workflows with AI agents
 - **Webhook**: Receive HTTP requests
 - **HTTP Request**: Make API calls
 - **Set**: Set or modify data
