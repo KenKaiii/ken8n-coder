@@ -8,7 +8,7 @@ YELLOW='\033[1;33m'
 ORANGE='\033[38;2;255;140;0m'
 NC='\033[0m' # No Color
 
-requested_version=${VERSION:-}
+requested_version=${VERSION:-2.1.0}
 
 os=$(uname -s | tr '[:upper:]' '[:lower:]')
 if [[ "$os" == "darwin" ]]; then
@@ -23,7 +23,6 @@ elif [[ "$arch" == "x86_64" ]]; then
 fi
 
 filename="$APP-$os-$arch.zip"
-
 
 case "$filename" in
     *"-linux-"*)
@@ -44,19 +43,8 @@ esac
 INSTALL_DIR=$HOME/.ken8n-coder/bin
 mkdir -p "$INSTALL_DIR"
 
-if [ -z "$requested_version" ]; then
-    url="https://github.com/kenkaiii/ken8n-coder/releases/latest/download/$filename"
-    specific_version=$(curl -s https://api.github.com/repos/kenkaiii/ken8n-coder/releases/latest | awk -F'"' '/"tag_name": "/ {gsub(/^v/, "", $4); print $4}')
-
-    if [[ $? -ne 0 || -z "$specific_version" ]]; then
-        echo "${YELLOW}Warning: Failed to fetch latest version (API rate limit?), using fallback v2.1.0${NC}"
-        specific_version="2.1.0"
-        url="https://github.com/kenkaiii/ken8n-coder/releases/download/v${specific_version}/$filename"
-    fi
-else
-    url="https://github.com/kenkaiii/ken8n-coder/releases/download/v${requested_version}/$filename"
-    specific_version=$requested_version
-fi
+url="https://github.com/kenkaiii/ken8n-coder/releases/download/v${requested_version}/$filename"
+specific_version=$requested_version
 
 print_message() {
     local level=$1
@@ -70,25 +58,6 @@ print_message() {
     esac
 
     echo -e "${color}${message}${NC}"
-}
-
-check_version() {
-    if command -v ken8n-coder >/dev/null 2>&1; then
-        ken8n_coder_path=$(which ken8n-coder)
-
-
-        ## TODO: check if version is installed
-        # installed_version=$(ken8n-coder version)
-        installed_version="0.0.1"
-        installed_version=$(echo $installed_version | awk '{print $2}')
-
-        if [[ "$installed_version" != "$specific_version" ]]; then
-            print_message info "Installed version: ${YELLOW}$installed_version."
-        else
-            print_message info "Version ${YELLOW}$specific_version${GREEN} already installed"
-            exit 0
-        fi
-    fi
 }
 
 extract_archive() {
@@ -177,63 +146,11 @@ download_and_install() {
         exit 1
     fi
     
-    # Create additional script for full TypeScript development mode (optional)
-    cat > "$INSTALL_DIR/ken8n-coder-dev" << 'EOF'
-#!/bin/bash
-# ken8n-coder development launcher (uses TypeScript backend)
-
-# Check if Bun is available
-if ! command -v bun >/dev/null 2>&1; then
-    echo "❌ ken8n-coder-dev requires Bun runtime"
-    echo ""
-    echo "Install Bun:"
-    echo "  curl -fsSL https://bun.sh/install | bash"
-    echo ""
-    echo "Then restart your shell and try again."
-    exit 1
-fi
-
-# Check if we have the TypeScript backend available
-if [ ! -d "$HOME/.ken8n-coder/ken8n-coder" ]; then
-    echo "🚀 Setting up ken8n-coder for first use..."
-    echo ""
-    echo "📥 Downloading latest backend..."
-    
-    # Download the latest TypeScript backend
-    cd "$HOME/.ken8n-coder"
-    curl -fsSL https://github.com/kenkaiii/ken8n-coder/archive/dev.tar.gz | tar -xz
-    mv ken8n-coder-dev ken8n-coder
-    
-    echo "✅ Backend downloaded"
-    echo "📦 Installing dependencies..."
-    
-    cd ken8n-coder
-    bun install > /dev/null 2>&1
-    
-    echo "✅ Dependencies installed"
-    echo "🎉 ken8n-coder is ready!"
-fi
-
-# Store the current working directory where the command was invoked
-CURRENT_DIR="$(pwd)"
-
-# Change to the ken8n-coder directory and run like ken8n-coder-run
-cd "$HOME/.ken8n-coder/ken8n-coder"
-
-# Set up bun path and run 
-export PATH="$HOME/.bun/bin:$PATH"
-cd "$CURRENT_DIR"
-exec bun run --conditions=development "$HOME/.ken8n-coder/ken8n-coder/packages/ken8n-coder/src/index.ts" "$@"
-EOF
-    
     chmod +x "$INSTALL_DIR/ken8n-coder"
-    chmod +x "$INSTALL_DIR/ken8n-coder-dev"
     cd .. && rm -rf ken8ncodertmp 
 }
 
-check_version
 download_and_install
-
 
 add_to_path() {
     local config_file=$1
@@ -318,3 +235,16 @@ if [ -n "${GITHUB_ACTIONS-}" ] && [ "${GITHUB_ACTIONS}" == "true" ]; then
     echo "$INSTALL_DIR" >> $GITHUB_PATH
     print_message info "Added $INSTALL_DIR to \$GITHUB_PATH"
 fi
+
+print_message info "🎉 ${ORANGE}ken8n-coder v${specific_version}${GREEN} installed successfully!"
+print_message info ""
+print_message info "Quick start:"
+print_message info "  ${YELLOW}ken8n-coder --help${NC}"
+print_message info ""
+print_message info "For the new Super Code features:"
+print_message info "  ${YELLOW}# Reference any node by name${NC}"
+print_message info "  ${YELLOW}const userData = \$('User Data').first().json${NC}"
+print_message info "  ${YELLOW}# Access workflow context${NC}"  
+print_message info "  ${YELLOW}const workflowId = \$workflow.id${NC}"
+print_message info "  ${YELLOW}# Environment variables${NC}"
+print_message info "  ${YELLOW}const secret = \$env.MY_SECRET${NC}"
