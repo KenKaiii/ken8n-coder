@@ -1,7 +1,7 @@
 {
   "name": "@ken8n-coder/web",
   "type": "module",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "scripts": {
     "dev": "astro dev",
     "dev:remote": "sst shell --stage=dev --target=Web astro dev",

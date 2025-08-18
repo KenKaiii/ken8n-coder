@@ -38,5 +38,7 @@ fi
 
 echo "New version: $new_version"
 
-gh workflow run publish.yml -f version="$new_version" 
+# Run the publish script directly with the new version
+export KEN8N_CODER_VERSION="$new_version"
+bun script/publish.ts
 
