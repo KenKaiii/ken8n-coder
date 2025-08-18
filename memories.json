@@ -5747,7 +5747,160 @@
       "lastAccessed": "2025-08-18T09:49:07.553Z",
       "lastVerified": "2025-08-18T09:49:07.553Z",
       "status": "fresh"
+    },
+    {
+      "id": "mem_1755511211444_it37bpjaz",
+      "content": "User has WSL installation error: unzip command not found at line 98 of install script. This is common in WSL environments where unzip isn't installed by default. The install script downloads a .zip file but fails to extract it when unzip is missing.",
+      "type": "config",
+      "tags": [
+        "config",
+        "wsl",
+        "installation",
+        "unzip",
+        "error"
+      ],
+      "timestamp": "2025-08-18T10:00:11.444Z",
+      "context": "ken8n-coder installation issue on Windows WSL",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T10:00:11.444Z",
+      "lastVerified": "2025-08-18T10:00:11.444Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755511251250_zyjpr64r2",
+      "content": "Fixed WSL installation issue by adding check_and_install_unzip() function to install script. The function detects missing unzip command and automatically installs it using the appropriate package manager (apt-get, yum, dnf, pacman, apk). Includes helpful error messages if automatic installation fails.",
+      "type": "config",
+      "tags": [
+        "config",
+        "wsl",
+        "fix",
+        "unzip",
+        "install-script",
+        "completed"
+      ],
+      "timestamp": "2025-08-18T10:00:51.250Z",
+      "context": "ken8n-coder WSL fix implementation",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T10:00:51.250Z",
+      "lastVerified": "2025-08-18T10:00:51.250Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755511412769_yndc85qnt",
+      "content": "Replaced dangerous auto-sudo approach with safer multi-tool extraction method. New extract_archive() function tries: 1) unzip (if available), 2) python3 zipfile module, 3) python zipfile module, 4) provides helpful error with manual installation instructions. No automatic sudo, maintains user control, works on most systems including WSL.",
+      "type": "code",
+      "tags": [
+        "code",
+        "python",
+        "wsl",
+        "security",
+        "extraction",
+        "install-script",
+        "python-fallback"
+      ],
+      "timestamp": "2025-08-18T10:03:32.769Z",
+      "context": "ken8n-coder improved WSL solution",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T10:03:32.769Z",
+      "lastVerified": "2025-08-18T10:03:32.769Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755511684474_w25eu531r",
+      "content": "Thoroughly tested WSL fix with multiple scenarios: 1) unzip available but fails -> Python fallback works, 2) unzip completely missing -> Python fallback works, 3) no extraction tools -> helpful error message. All tests passed. The install script now handles WSL environments gracefully without requiring sudo.",
+      "type": "config",
+      "tags": [
+        "config",
+        "python",
+        "wsl",
+        "testing",
+        "python-fallback",
+        "verified",
+        "ready-for-release"
+      ],
+      "timestamp": "2025-08-18T10:08:04.474Z",
+      "context": "ken8n-coder WSL testing complete",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T10:08:04.474Z",
+      "lastVerified": "2025-08-18T10:08:04.474Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755512100832_4ob8o1lo1",
+      "content": "Released ken8n-coder v1.1.9 with WSL support. Fixed Windows WSL installation by adding Python zipfile fallback when unzip is missing. No automatic sudo, maintains security. Release includes detailed notes about WSL compatibility. Ready for Windows users to test.",
+      "type": "solution",
+      "tags": [
+        "solution",
+        "python",
+        "release",
+        "v1.1.9",
+        "wsl",
+        "windows",
+        "production"
+      ],
+      "timestamp": "2025-08-18T10:15:00.832Z",
+      "context": "ken8n-coder v1.1.9 release",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T10:15:00.832Z",
+      "lastVerified": "2025-08-18T10:15:00.832Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755512548813_7vp533c3e",
+      "content": "CRITICAL ISSUE: The v1.1.9 release broke the installer completely. No binary assets were uploaded to the GitHub release, so the install script downloads an empty/invalid file instead of a zip. This affects ALL platforms including the user's own Mac/Linux systems. Need immediate fix.",
+      "type": "config",
+      "tags": [
+        "config",
+        "critical",
+        "broken-installer",
+        "v1.1.9",
+        "emergency"
+      ],
+      "timestamp": "2025-08-18T10:22:28.813Z",
+      "context": "ken8n-coder v1.1.9 installer broken",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T10:22:28.813Z",
+      "lastVerified": "2025-08-18T10:22:28.813Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755512805730_bkaodd1ev",
+      "content": "FIXED: Emergency repair of v1.1.9 installer completed. Built all platform binaries, created zip files, and uploaded them to GitHub release. Installer now works correctly on all platforms. The WSL Python fallback feature is preserved and functional.",
+      "type": "solution",
+      "tags": [
+        "solution",
+        "python",
+        "fixed",
+        "emergency-repair",
+        "v1.1.9",
+        "installer-working"
+      ],
+      "timestamp": "2025-08-18T10:26:45.730Z",
+      "context": "ken8n-coder v1.1.9 emergency fix completed",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T10:26:45.730Z",
+      "lastVerified": "2025-08-18T10:26:45.730Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755513860016_3wkiypy4w",
+      "content": "FIXED: Released ken8n-coder v1.1.10 with critical WSL Bun dependency fix. The main binary was incorrectly switching to ken8n-coder-dev which required Bun. Removed the automatic fallback logic, making the main binary truly standalone. WSL users can now install and run seamlessly without Bun.",
+      "type": "config",
+      "tags": [
+        "config",
+        "fixed",
+        "v1.1.10",
+        "wsl",
+        "standalone",
+        "no-bun-required"
+      ],
+      "timestamp": "2025-08-18T10:44:20.016Z",
+      "context": "ken8n-coder v1.1.10 WSL Bun fix",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T10:44:20.016Z",
+      "lastVerified": "2025-08-18T10:44:20.016Z",
+      "status": "fresh"
     }
   ],
-  "lastUpdated": "2025-08-18T09:49:07.553Z"
+  "lastUpdated": "2025-08-18T10:44:20.016Z"
 }
