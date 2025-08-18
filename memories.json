@@ -5226,7 +5226,26 @@
       "lastAccessed": "2025-08-18T05:23:02.622Z",
       "lastVerified": "2025-08-18T05:23:02.622Z",
       "status": "fresh"
+    },
+    {
+      "id": "mem_1755495281094_77iv4zzjv",
+      "content": "Ken8n-coder v1.1.7 release SUCCESSFULLY TESTED with simplified script!\n\nRESULTS:\n✅ Version calculation: v1.1.6 → v1.1.7 (patch)\n✅ Cross-platform builds: All 7 platforms built successfully  \n✅ NPM publishing: All platform packages published to registry\n✅ Smoke tests: Linux binaries show correct version 1.1.7\n✅ GitHub release: Created with all ZIP artifacts\n✅ Install script: Fresh install downloads and works correctly\n✅ API validation: Latest release API shows v1.1.7\n\nISSUE IDENTIFIED & FIXED:\n- Original script/release missing git operations and GitHub release creation\n- Created release-complete.sh: Complete 67-line script that handles everything\n- Includes: build → git commit → git tag → GitHub release\n\nSIMPLIFIED RELEASE PROCESS WORKING:\n- Reduced from 552 lines to 67 lines (88% reduction)\n- Removed GitHub Actions dependency issues\n- Built on existing solid publish.ts infrastructure\n- End-to-end tested and validated",
+      "type": "config",
+      "tags": [
+        "config",
+        "api",
+        "release-tested",
+        "v1.1.7",
+        "simplified",
+        "working",
+        "end-to-end"
+      ],
+      "timestamp": "2025-08-18T05:34:41.094Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-18T05:34:41.094Z",
+      "lastVerified": "2025-08-18T05:34:41.094Z",
+      "status": "fresh"
     }
   ],
-  "lastUpdated": "2025-08-18T05:23:02.622Z"
+  "lastUpdated": "2025-08-18T05:34:41.094Z"
 }
