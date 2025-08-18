@@ -7,7 +7,6 @@ import { UI } from "../ui"
 import { cmd } from "./cmd"
 import path from "path"
 import fs from "fs/promises"
-import * as fsSync from "fs"
 import os from "os"
 import { Installation } from "../../installation"
 import { Config } from "../../config/config"
@@ -224,16 +223,8 @@ function getOpencodeCommand(): string[] {
     return [execPath, "run", process.argv[1]]
   }
 
-  // In production, if we're running from the Go TUI binary, use ken8n-coder-dev for auth
-  // This prevents infinite recursion since the Go binary is only for TUI, not full CLI
-  const devCommand = path.join(path.dirname(process.execPath), "ken8n-coder-dev")
-  try {
-    if (process.execPath.includes("ken8n-coder") && fsSync.existsSync(devCommand)) {
-      return [devCommand]
-    }
-  } catch (e) {
-    // fs might not be available in all contexts, continue to fallback
-  }
+  // In production, use the same binary (don't switch to ken8n-coder-dev)
+  // The main binary should handle all commands without requiring Bun
 
   // Fallback to current executable path
   return [process.execPath]
