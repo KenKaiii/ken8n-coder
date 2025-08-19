@@ -5,7 +5,6 @@ import * as prompts from "@clack/prompts"
 import { UI } from "../ui"
 import fs from "fs/promises"
 import path from "path"
-import os from "os"
 import { Filesystem } from "../../util/filesystem"
 import { exec } from "child_process"
 import { promisify } from "util"
@@ -222,34 +221,19 @@ export const McpSetupCommand = cmd({
       await testN8nConnection(baseUrl, apiKey)
 
       // Update configuration
-      // Check if MCP is installed locally first
-      const localMcpPath = path.join(
-        os.homedir(),
-        ".ken8n-coder",
-        "mcp",
-        "node_modules",
-        "@kenkaiii/ken8n-mcp",
-        "dist",
-        "index.js",
-      )
+      // ALWAYS use npx to ensure latest version
       let mcpCommand: string[]
 
+      // Check if Node.js is available
       try {
-        await fs.access(localMcpPath)
-        mcpCommand = ["node", localMcpPath]
-        prompts.log.info("✓ Using local MCP installation")
+        await execAsync("node --version")
+        mcpCommand = ["npx", "-y", "@kenkaiii/ken8n-mcp"]
+        prompts.log.info("✓ Will use npx to run MCP server (always latest version)")
       } catch {
-        // Check if Node.js is available
-        try {
-          await execAsync("node --version")
-          mcpCommand = ["npx", "-y", "@kenkaiii/ken8n-mcp"]
-          prompts.log.info("✓ Will use npx to run MCP server")
-        } catch {
-          prompts.log.warning("⚠️  Node.js not found. MCP server requires Node.js to run.")
-          prompts.log.warning("   Install Node.js from https://nodejs.org/ and run setup again.")
-          prompts.log.info("   Saving configuration anyway...")
-          mcpCommand = ["npx", "-y", "@kenkaiii/ken8n-mcp"]
-        }
+        prompts.log.warning("⚠️  Node.js not found. MCP server requires Node.js to run.")
+        prompts.log.warning("   Install Node.js from https://nodejs.org/ and run setup again.")
+        prompts.log.info("   Saving configuration anyway...")
+        mcpCommand = ["npx", "-y", "@kenkaiii/ken8n-mcp"]
       }
 
       const updatedConfig = {

@@ -8,7 +8,7 @@ YELLOW='\033[1;33m'
 ORANGE='\033[38;2;255;140;0m'
 NC='\033[0m' # No Color
 
-requested_version=${VERSION:-2.2.0}
+requested_version=${VERSION:-2.3.0}
 
 os=$(uname -s | tr '[:upper:]' '[:lower:]')
 if [[ $os == "darwin" ]]; then
