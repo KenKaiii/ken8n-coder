@@ -78,7 +78,7 @@ EOF
       print_message info "3. Restart ken8n-coder to use the MCP tools"
     else
       print_message warning "ken8n-coder not found in PATH"
-      print_message info "Install ken8n-coder first: curl -fsSL https://github.com/kenkaiii/ken8n-coder/releases/download/install.sh | bash"
+      print_message info "Install ken8n-coder first: curl -fsSL https://raw.githubusercontent.com/KenKaiii/ken8n-coder/main/install.sh | bash"
     fi
   else
     print_message error "Failed to install MCP server"

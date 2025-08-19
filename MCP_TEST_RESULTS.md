@@ -8,12 +8,9 @@ All MCP installation components have been successfully tested and are ready for 
 
 ### 1. ✅ Standalone MCP Installation (`install-mcp.sh`)
 
-
-- Script successfully installs MCP to `~/.ken8n-coder/mcp/`
 - Correctly detects existing installations
 - Prompts for updates when MCP already exists
 - NPM package `@kenkaiii/ken8n-mcp` installs correctly
-
 
 ### 2. ✅ Main Installation Integration (`install.sh`)
 
@@ -22,10 +19,8 @@ All MCP installation components have been successfully tested and are ready for 
 - Handles both yes/no responses gracefully
 - Falls back appropriately if Node.js not available
 
-
 ### 3. ✅ MCP Setup Command
 
-- `ken8n-coder mcp setup` command is available
 - Correctly detects local MCP installation
 - Falls back to npx when local installation not found
 
@@ -60,30 +55,31 @@ All MCP installation components have been successfully tested and are ready for 
 
 ### Modified Files
 
-
 - `install.sh` - Added MCP installation prompt
 - `packages/ken8n-coder/src/cli/cmd/mcp.ts` - Enhanced setup command
+
 - `ken8n-coder.json` - Removed invalid $schema, added MCP config
 
 ## How Users Will Install
 
-
 ### Option 1: During ken8n-coder Installation
 
 ```bash
-curl -fsSL https://github.com/kenkaiii/ken8n-coder/releases/download/install.sh | bash
-# When prompted: "Install MCP server? (y/N)" -> y
+# Download and run the installer
+curl -fsSL \
+  https://raw.githubusercontent.com/KenKaiii/ken8n-coder/main/install.sh \
+  | bash
 ```
 
 ### Option 2: After ken8n-coder Installation
 
-
 ```bash
 # Install MCP
-curl -fsSL https://raw.githubusercontent.com/kenkaiii/ken8n-coder/main/install-mcp.sh | bash
+curl -fsSL \
+  https://raw.githubusercontent.com/kenkaiii/ken8n-coder/main/install-mcp.sh \
+  | bash
 
 # Configure
-ken8n-coder mcp setup
 ```
 
 ### Option 3: Manual Installation
@@ -109,7 +105,6 @@ After setup, users will have:
       "environment": {
         "N8N_BASE_URL": "http://localhost:5678",
         "N8N_API_KEY": "n8n_api_..."
-
       },
       "enabled": true
     }

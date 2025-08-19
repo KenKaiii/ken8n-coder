@@ -40,7 +40,10 @@ Perfect for:
 ## Quick Start
 
 ```bash
-# Install globally via npm (works on Windows, Mac, and Linux)
+# Install via curl (recommended)
+curl -fsSL https://raw.githubusercontent.com/KenKaiii/ken8n-coder/main/install.sh | bash
+
+# Or install globally via npm
 npm i -g ken8n-coder@latest
 
 # Launch the terminal interface

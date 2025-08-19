@@ -11,7 +11,7 @@ The ken8n-mcp server enables AI agents to deploy workflows directly to your n8n 
 When you install ken8n-coder via curl, you'll be prompted to optionally install the MCP server:
 
 ```bash
-curl -fsSL https://github.com/kenkaiii/ken8n-coder/releases/download/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/KenKaiii/ken8n-coder/main/install.sh | bash
 ```
 
 During installation, you'll see:
