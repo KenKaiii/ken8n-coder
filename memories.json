@@ -7231,7 +7231,24 @@
       "lastAccessed": "2025-08-19T21:43:01.252Z",
       "lastVerified": "2025-08-19T21:43:01.252Z",
       "status": "fresh"
+    },
+    {
+      "id": "mem_1755640652464_e71i52by3",
+      "content": "npm update vs npm install behavior:\n- npm update: Updates packages to the latest version that satisfies the version range in package.json\n- If package.json has \"^1.0.0\", npm update will only update to latest 1.x.x, NOT 2.x.x\n- If package.json has no version specified, npm update does nothing\n- npm install @package@latest: Always installs the absolute latest version regardless of package.json constraints",
+      "type": "tip",
+      "tags": [
+        "tip",
+        "npm",
+        "debugging",
+        "ken8n-coder",
+        "mcp"
+      ],
+      "timestamp": "2025-08-19T21:57:32.464Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-19T21:57:32.464Z",
+      "lastVerified": "2025-08-19T21:57:32.464Z",
+      "status": "fresh"
     }
   ],
-  "lastUpdated": "2025-08-19T21:43:01.252Z"
+  "lastUpdated": "2025-08-19T21:57:32.464Z"
 }
