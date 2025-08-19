@@ -206,7 +206,14 @@ export class N8nClient {
    */
   private async makeRequest(method: string, endpoint: string, data?: any, params?: any): Promise<any> {
     try {
-      const url = `${this.baseUrl}/api/v1${endpoint}`;
+      let url = `${this.baseUrl}/api/v1${endpoint}`;
+      
+      // Add query parameters if provided
+      if (params) {
+        const queryString = new URLSearchParams(params).toString();
+        url += `?${queryString}`;
+      }
+      
       const config = {
         method,
         url,

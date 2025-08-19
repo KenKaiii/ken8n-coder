@@ -208,10 +208,14 @@ Note: Webhook trigger is REQUIRED for MCP testing - other triggers can't be test
 # ERROR HANDLING WORKFLOW
 1. Deploy workflow
 2. Test with webhook
-3. If error occurs:
-   - Read exact error message
-   - Identify issue location (could be any node)
-   - Fix the error (Super Code logic, node configuration, connections, etc.)
-   - Redeploy
-   - Test again
-4. Continue until "✅ Workflow executed successfully"
+3. Use `n8n_get_execution` to check results
+4. If errors found in execution:
+   - **You CAN see**: Complete error messages with line numbers
+   - **You CAN see**: Which node failed and why
+   - **You CAN see**: The broken code (for Super Code nodes)
+   - **You CAN see**: API errors, credential issues, configuration problems
+   - Fix the specific error based on the message
+   - Redeploy and test again
+5. Continue until execution shows no errors
+
+**MCP v2.2.1+ provides full error visibility** - syntax errors, runtime errors, API failures, missing credentials, ALL visible!

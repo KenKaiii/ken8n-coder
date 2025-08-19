@@ -390,18 +390,64 @@ class N8nMCPServer {
     try {
       const execution = await this.n8nClient.getExecution(executionId)
 
+      // Extract essential information including ALL errors
+      const result: any = {
+        success: true,
+        executionId: execution.id,
+        status: (execution as any).status || 'unknown',
+        finished: execution.finished,
+        workflowId: execution.workflowId,
+        startedAt: execution.startedAt,
+        stoppedAt: execution.stoppedAt,
+      }
+
+      // If there are errors, extract them
+      if ((execution as any).status === 'error' || execution.data?.resultData?.error) {
+        result.errors = []
+        
+        // Add main execution error if present
+        if (execution.data?.resultData?.error) {
+          result.errors.push({
+            type: 'main',
+            nodeName: (execution.data.resultData.error as any).node?.name,
+            message: (execution.data.resultData.error as any).message,
+            // Include the problematic code/config if it's a Super Code node
+            code: (execution.data.resultData.error as any).node?.parameters?.code,
+          })
+        }
+
+        // Add per-node errors from runData
+        if (execution.data?.resultData?.runData) {
+          for (const [nodeName, nodeExecutions] of Object.entries(execution.data.resultData.runData)) {
+            for (let i = 0; i < (nodeExecutions as any[]).length; i++) {
+              const nodeExec = (nodeExecutions as any[])[i]
+              if (nodeExec.error && nodeExec.executionStatus === 'error') {
+                // Avoid duplicating the main error
+                if (!result.errors.some((e: any) => e.nodeName === nodeName && e.message === nodeExec.error.message)) {
+                  result.errors.push({
+                    type: 'node',
+                    nodeName: nodeName,
+                    executionIndex: i,
+                    message: nodeExec.error.message,
+                    code: nodeExec.error.node?.parameters?.code,
+                  })
+                }
+              }
+            }
+          }
+        }
+      }
+
+      // Include successful execution data if no errors
+      if (!result.errors && execution.data) {
+        result.data = execution.data
+      }
+
       return {
         content: [
           {
             type: "text",
-            text: JSON.stringify(
-              {
-                success: true,
-                execution: execution, // Return ENTIRE execution object, not filtered
-              },
-              null,
-              2,
-            ),
+            text: JSON.stringify(result, null, 2),
           },
         ],
       }
