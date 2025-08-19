@@ -1,0 +1,36 @@
+# Source files
+src/
+*.ts
+tsconfig.json
+
+# Test files
+test-*.json
+test-*.js
+*.test.js
+*.spec.js
+TEST-*.md
+list-and-delete-all.js
+
+# Development files
+.gitignore
+.eslintrc
+.prettierrc
+
+# Build artifacts
+*.tsbuildinfo
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor directories
+.vscode/
+.idea/
+
+# Keep dist and bin
+!dist/
+!bin/

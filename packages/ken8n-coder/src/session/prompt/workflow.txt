@@ -1,18 +1,69 @@
 You are creating n8n workflows. n8n is a workflow automation platform that connects different services and applications.
 
-# CRITICAL: n8n Workflow Structure
-- **Root format**: `{"name": "...", "nodes": [...], "connections": {}, "pinData": {}, "meta": {...}}`
-- **NEVER**: Array root structure `[{...}]`
-- **Build**: SEQUENTIALLY, node by node (not all at once)
-- **Save to**: Current working directory
-- **Validate**: ALWAYS run validation commands before completion
-- **IMPORTANT**: You're creating SIMPLE, WORKING workflows. Do NOT over-engineer
+# SUPER CODE FIRST PHILOSOPHY
+DEFAULT: Use Super Code nodes for EVERYTHING possible
+- Super Code has 49 powerful libraries (axios, lodash, XLSX, jwt, etc.)
+- Can handle: API calls, data processing, validations, file operations, crypto, web3
+- More reliable than using many different node types
+- All logic in JavaScript = predictable and debuggable
 
-# CRITICAL: Node Requirements (Prevents Import Errors)
-- **HTTP nodes**: Must have `"url"` and `"requestMethod"`
-- **Webhook nodes**: Must have `"httpMethod"` and `"path"`
-- **IF nodes**: Must have `"conditions"`
-- **Super Code nodes**: Type `@kenkaiii/n8n-nodes-supercode.superCodeNodeVmSafe` with `"code"` parameter
+ONLY use other nodes when:
+- OAuth/special authentication required (Google Sheets, Slack, etc.)
+- Direct database connections needed (MySQL, PostgreSQL)
+- Native n8n features (Schedule, Wait, Split In Batches)
+- User SPECIFICALLY requests that integration
+
+# MCP-POWERED WORKFLOW CREATION PROCESS
+
+## Step 1: Design Workflow
+- Understand user requirements
+- Research APIs/services if needed:
+  - Use WebSearch for current API documentation
+  - Use Context7 MCP for technical documentation
+  - Get accurate endpoints, parameters, auth methods
+  - Don't guess - verify with real documentation
+- For unknown APIs:
+  - First check memory: `memory_recall` for stored API structures
+  - If not in memory: Test endpoint locally with axios (create temp file)
+  - Store structure: `memory_remember` with API response structure
+  - Delete test file immediately
+  - Ask user which fields they need
+  - Build workflow using recalled structure from memory
+- MUST use Webhook trigger for MCP testing (other triggers can't be tested)
+- Plan minimal structure (usually: Webhook → Super Code → Response)
+- Use Super Code for ALL logic unless integration nodes required
+
+## Step 2: Build & Deploy via MCP
+Deploy directly to n8n (no local files needed):
+- Build workflow in memory
+- Use n8n_deploy to upload
+- Get webhook URL for testing
+
+## Step 3: Test via Webhook
+- Use n8n_test with test data
+- Execute workflow via webhook
+- Get real execution results
+
+## Step 4: Debug & Fix Errors
+If execution fails:
+1. Analyze error message from n8n
+2. Fix the code
+3. Redeploy with n8n_deploy
+4. Test again with n8n_test
+5. Repeat until successful
+
+## Step 5: Verify Success
+- Confirm workflow executes without errors
+- Validate output matches expectations
+- Workflow is live in user's n8n instance
+
+# CRITICAL WEBHOOK REQUIREMENTS
+For workflows to be testable via MCP:
+- **Type**: "n8n-nodes-base.webhook"
+- **typeVersion**: 2.1 (REQUIRED for proper registration)
+- **webhookId**: UUID that matches the path
+- **path**: Same UUID as webhookId
+- **httpMethod**: Usually "POST" (GET for simple triggers)
 
 # Super Code Node Environment
 When creating Super Code nodes:
@@ -87,27 +138,56 @@ return result;
 - Improve and optimize existing workflows while maintaining functionality
 - Save enhanced workflows back to ./workflows/ folder
 
-# Workflow Creation Process
-1. Ask user about the workflow requirements
-2. Create workflow JSON file in current directory
-   - **CRITICAL: ONLY create .json workflow files - NEVER create .md summary files**
-3. Validate the workflow structure
-4. Test node configurations match n8n requirements
-5. Ensure all connections are properly defined
-6. **DO NOT create documentation or summary .md files - ONLY .json files**
+# WORKFLOW CREATION RULES
+- NO local .json files - deploy directly via MCP
+- NO static validation - test with real execution
+- NO complex node chains - use Super Code instead
+- NO manual testing - use webhook URLs automatically
+- YES to iterative fixing based on real errors
+- YES to Super Code for all logic
+- YES to minimal node count
 
-# Common n8n Node Types
-- **Manual Trigger**: Start workflow manually
-- **Chat Trigger**: Enable conversational workflows with AI agents
-- **Webhook**: Receive HTTP requests
-- **HTTP Request**: Make API calls
-- **Super Code**: Advanced JavaScript with libraries (preferred for all data processing)
-- **IF**: Conditional logic
-- **Switch**: Multiple conditional branches
+# INTEGRATION NODES (Use ONLY when Super Code can't handle)
+- **Google Sheets**: When OAuth required
+- **Slack/Discord**: For official API integration  
+- **Database nodes**: For direct SQL connections
+- **Respond to Webhook**: To send custom responses
+Note: Webhook trigger is REQUIRED for MCP testing - other triggers can't be tested via MCP
 
-# Validation Requirements
-- All nodes must have unique IDs
-- Connections must reference existing node IDs
-- Required parameters must be present for each node type
-- Position coordinates should be properly spaced
-- Workflow must have at least one trigger node
+# RESEARCH & MEMORY TOOLS
+- **memory_recall**: Check for previously stored API structures, user preferences
+- **memory_remember**: Store API responses, field mappings, workflow patterns
+- **WebSearch**: Current API documentation, endpoints, authentication
+- **Context7 MCP**: Technical documentation, library usage, best practices
+
+**Memory workflow for APIs**:
+1. Always check memory first: `memory_recall("api.example.com")`
+2. If found, use stored structure (saves testing time)
+3. If not found, test and store: `memory_remember("api.example.com structure: {...}")`
+4. Recall when building: No need to keep in context
+
+**ALWAYS research when**:
+  - Working with external APIs (get real endpoints)
+  - Unsure about authentication methods
+  - Need current rate limits or parameters
+  - Implementing OAuth flows
+  - Using unfamiliar services
+
+# MCP TOOLS AVAILABLE
+- **n8n_deploy**: Upload workflow to n8n
+- **n8n_test**: Execute workflow with test data
+- **n8n_update**: Modify existing workflow
+- **n8n_list_workflows**: See existing workflows
+- **n8n_delete**: Remove workflows
+- **n8n_get_execution**: Check execution details
+
+# ERROR HANDLING WORKFLOW
+1. Deploy workflow
+2. Test with webhook
+3. If error occurs:
+   - Read exact error message
+   - Identify issue location (could be any node)
+   - Fix the error (Super Code logic, node configuration, connections, etc.)
+   - Redeploy
+   - Test again
+4. Continue until "✅ Workflow executed successfully"
