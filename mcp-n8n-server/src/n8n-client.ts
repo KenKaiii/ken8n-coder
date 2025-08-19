@@ -386,8 +386,23 @@ export class N8nClient {
       }
 
       // Fallback to webhook response
-      const responseData = await response.json();
-      console.log('📊 Response:', JSON.stringify(responseData, null, 2));
+      let responseData;
+      const responseText = await response.text();
+      
+      if (responseText) {
+        try {
+          responseData = JSON.parse(responseText);
+          console.log('📊 Response:', JSON.stringify(responseData, null, 2));
+        } catch {
+          // Response is not JSON, use as plain text
+          responseData = responseText;
+          console.log('📊 Response (text):', responseData);
+        }
+      } else {
+        // Empty response
+        responseData = null;
+        console.log('📊 Response: (empty)');
+      }
 
       return {
         success: true,

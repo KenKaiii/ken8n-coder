@@ -7213,7 +7213,25 @@
       "lastAccessed": "2025-08-19T19:34:04.635Z",
       "lastVerified": "2025-08-19T19:34:04.635Z",
       "status": "fresh"
+    },
+    {
+      "id": "mem_1755639781252_qvknoumvg",
+      "content": "MCP n8n server successfully restarted. The server runs via stdio and exits immediately after showing \"MCP n8n Server running on stdio\" - this is normal behavior. It will be automatically started by Claude Desktop when the MCP protocol is invoked. Currently configured with test API key at http://localhost:5678. To use properly, need to get actual API key from n8n Settings → n8n API → Create new key.",
+      "type": "config",
+      "tags": [
+        "config",
+        "api",
+        "mcp",
+        "n8n",
+        "server",
+        "restart"
+      ],
+      "timestamp": "2025-08-19T21:43:01.252Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-19T21:43:01.252Z",
+      "lastVerified": "2025-08-19T21:43:01.252Z",
+      "status": "fresh"
     }
   ],
-  "lastUpdated": "2025-08-19T19:34:04.635Z"
+  "lastUpdated": "2025-08-19T21:43:01.252Z"
 }

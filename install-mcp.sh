@@ -65,8 +65,8 @@ install_mcp() {
 EOF
   fi
 
-  # Install the MCP server
-  if npm install --production @kenkaiii/ken8n-mcp >/dev/null 2>&1; then
+  # Install the MCP server (force latest version)
+  if npm install --production @kenkaiii/ken8n-mcp@latest >/dev/null 2>&1; then
     print_message info "✅ MCP server installed successfully"
 
     # Check if ken8n-coder is installed
@@ -95,7 +95,7 @@ update_mcp() {
     print_message info "Updating existing MCP server installation..."
     cd "$MCP_DIR"
 
-    if npm update @kenkaiii/ken8n-mcp >/dev/null 2>&1; then
+    if npm install --production @kenkaiii/ken8n-mcp@latest >/dev/null 2>&1; then
       print_message info "✅ MCP server updated successfully"
     else
       print_message warning "Failed to update, trying fresh install..."
