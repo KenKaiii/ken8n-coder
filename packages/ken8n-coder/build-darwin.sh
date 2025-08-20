@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-VERSION="2.3.5"
+VERSION="2.3.6"
 cd /home/ken/Projects/ken8n-coder/ken8n-coder/packages/ken8n-coder
 
 # Build darwin-x64
