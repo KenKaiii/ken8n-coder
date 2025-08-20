@@ -59,8 +59,8 @@ interface TestResult {
 }
 
 export class N8nClient {
-  private baseUrl: string
-  private apiKey: string
+  private readonly baseUrl: string
+  private readonly apiKey: string
 
   constructor(baseUrl: string, apiKey: string) {
     this.baseUrl = baseUrl.replace(/\/$/, "") // Remove trailing slash
@@ -82,72 +82,101 @@ export class N8nClient {
    * Validate and auto-fix workflow structure with all the robustness from original script
    */
   private validateWorkflow(workflow: N8nWorkflow): N8nWorkflowNode {
+    this.validateWorkflowBasicStructure(workflow)
+    const webhookNode = this.findWebhookNode(workflow)
+    this.validateWebhookNode(webhookNode)
+    this.applyWebhookAutoFixes(webhookNode)
+    console.log("✅ Webhook node validated and fixed")
+    return webhookNode
+  }
+
+  private validateWorkflowBasicStructure(workflow: N8nWorkflow): void {
     if (!workflow.name) {
       throw new Error('Invalid workflow: Missing "name" field. Workflow must have: {"name": "...", "nodes": [...]}')
     }
-
     if (!workflow.nodes || !Array.isArray(workflow.nodes)) {
       throw new Error(
         'Invalid workflow: Missing or invalid "nodes" array. Workflow must have: {"name": "...", "nodes": [...]}',
       )
     }
-
     if (workflow.nodes.length === 0) {
       throw new Error("Invalid workflow: No nodes defined. Add at least one node to the workflow")
     }
+  }
 
+  private findWebhookNode(workflow: N8nWorkflow): N8nWorkflowNode {
     const webhookNode = workflow.nodes.find((n) => n.type === "n8n-nodes-base.webhook")
     if (!webhookNode) {
       throw new Error(
         'Workflow must have a webhook trigger node to be testable. Add a webhook trigger as the first node: Type: n8n-nodes-base.webhook, Parameters: path (e.g., "my-webhook")',
       )
     }
+    return webhookNode
+  }
 
+  private validateWebhookNode(webhookNode: N8nWorkflowNode): void {
     if (!webhookNode.parameters) {
       throw new Error("Webhook node missing parameters. Add parameters.path to your webhook node")
     }
+  }
 
-    // AUTO-FIX: Upgrade webhook version for proper registration
+  private applyWebhookAutoFixes(webhookNode: N8nWorkflowNode): void {
+    this.fixWebhookVersion(webhookNode)
+    this.fixWebhookIdAndPath(webhookNode)
+    this.fixWebhookHttpMethod(webhookNode)
+    this.fixWebhookResponseMode(webhookNode)
+    this.fixWebhookOptions(webhookNode)
+  }
+
+  private fixWebhookVersion(webhookNode: N8nWorkflowNode): void {
     if (webhookNode.typeVersion !== 2.1) {
       console.log(`🔧 Auto-fixing: Upgrading webhook from version ${webhookNode.typeVersion || 2} to 2.1`)
       webhookNode.typeVersion = 2.1
     }
+  }
 
-    // AUTO-FIX: Ensure webhookId exists and matches path
-    // Check if webhookId already exists and is a valid UUID - if so, use it
+  private fixWebhookIdAndPath(webhookNode: N8nWorkflowNode): void {
     const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
 
     if (webhookNode.webhookId && uuidRegex.test(webhookNode.webhookId)) {
-      if (webhookNode.parameters.path !== webhookNode.webhookId) {
+      if (webhookNode.parameters!.path !== webhookNode.webhookId) {
         console.log("🔧 Auto-fixing: Setting path to match existing webhookId")
-        webhookNode.parameters.path = webhookNode.webhookId
+        webhookNode.parameters!.path = webhookNode.webhookId
       }
-    } else if (!webhookNode.webhookId || webhookNode.webhookId !== webhookNode.parameters.path) {
-      // If path is not a UUID, generate one
-      if (!webhookNode.parameters.path || !uuidRegex.test(webhookNode.parameters.path)) {
+      return
+    }
+
+    if (!webhookNode.webhookId || webhookNode.webhookId !== webhookNode.parameters!.path) {
+      if (!webhookNode.parameters!.path || !uuidRegex.test(webhookNode.parameters!.path)) {
         const uuid = this.generateUUID()
         console.log(`🔧 Auto-fixing: Generating UUID for webhook path: ${uuid}`)
-        webhookNode.parameters.path = uuid
+        webhookNode.parameters!.path = uuid
         webhookNode.webhookId = uuid
       } else {
         console.log("🔧 Auto-fixing: Setting webhookId to match path")
-        webhookNode.webhookId = webhookNode.parameters.path
+        webhookNode.webhookId = webhookNode.parameters!.path
       }
     }
+  }
 
-    // AUTO-FIX: Ensure httpMethod is set
-    if (!webhookNode.parameters.httpMethod) {
+  private fixWebhookHttpMethod(webhookNode: N8nWorkflowNode): void {
+    if (!webhookNode.parameters!.httpMethod) {
       console.log("🔧 Auto-fixing: Setting httpMethod to POST")
-      webhookNode.parameters.httpMethod = "POST"
+      webhookNode.parameters!.httpMethod = "POST"
     }
+  }
 
-    // AUTO-FIX: Ensure options object exists
-    if (!webhookNode.parameters.options) {
-      webhookNode.parameters.options = {}
+  private fixWebhookResponseMode(webhookNode: N8nWorkflowNode): void {
+    if (!webhookNode.parameters!.responseMode) {
+      console.log("🔧 Auto-fixing: Setting responseMode to responseNode")
+      webhookNode.parameters!.responseMode = "responseNode"
     }
+  }
 
-    console.log("✅ Webhook node validated and fixed")
-    return webhookNode
+  private fixWebhookOptions(webhookNode: N8nWorkflowNode): void {
+    if (!webhookNode.parameters!.options) {
+      webhookNode.parameters!.options = {}
+    }
   }
 
   /**
@@ -225,15 +254,6 @@ export class N8nClient {
         url += `?${queryString}`
       }
 
-      const config = {
-        method,
-        url,
-        headers: { "X-N8N-API-KEY": this.apiKey },
-        data,
-        params,
-        timeout: 30000,
-      }
-
       const response = await fetch(url, {
         method: method.toUpperCase(),
         headers: {
@@ -306,10 +326,13 @@ export class N8nClient {
         try {
           await this.makeRequest("POST", `/workflows/${result.id}/activate`, {})
           console.log("✅ Workflow activated")
-        } catch (error) {
+        } catch (error: unknown) {
           console.error("⚠️  Workflow created but not activated")
-          if ((error as any).response?.data?.message) {
-            console.error(`🔴 Activation error: ${(error as any).response.data.message}`)
+          if (error && typeof error === "object" && "response" in error) {
+            const err = error as { response?: { data?: { message?: string } } }
+            if (err.response?.data?.message) {
+              console.error(`🔴 Activation error: ${err.response.data.message}`)
+            }
           }
           console.error("💡 Workflow may have credential issues or missing connections")
         }
@@ -370,55 +393,11 @@ export class N8nClient {
       const execution = await this.getLatestExecution(workflowId)
 
       if (execution) {
-        if (execution.data?.resultData?.error) {
-          const error = execution.data.resultData.error
-          throw new Error(`Workflow failed in node "${error.node?.name || "unknown"}": ${error.message}`)
-        }
-
-        if (execution.finished) {
-          console.log("✅ Workflow executed successfully")
-          let output
-          if (execution.data?.resultData?.runData) {
-            const nodes = Object.keys(execution.data.resultData.runData)
-            const lastNode = nodes[nodes.length - 1]
-            const nodeOutput = execution.data.resultData.runData[lastNode]
-            if (nodeOutput?.[0]?.data?.main?.[0]) {
-              output = nodeOutput[0].data.main[0]
-              console.log("📊 Output:", JSON.stringify(output, null, 2))
-            }
-          }
-
-          return {
-            success: true,
-            executionId: execution.id,
-            output,
-          }
-        }
+        return this.processExecutionDetails(execution)
       }
 
       // Fallback to webhook response
-      let responseData
-      const responseText = await response.text()
-
-      if (responseText) {
-        try {
-          responseData = JSON.parse(responseText)
-          console.log("📊 Response:", JSON.stringify(responseData, null, 2))
-        } catch {
-          // Response is not JSON, use as plain text
-          responseData = responseText
-          console.log("📊 Response (text):", responseData)
-        }
-      } else {
-        // Empty response
-        responseData = null
-        console.log("📊 Response: (empty)")
-      }
-
-      return {
-        success: true,
-        output: responseData,
-      }
+      return this.processWebhookResponse(response)
     } catch (error: any) {
       return {
         success: false,
@@ -458,6 +437,63 @@ export class N8nClient {
       return result
     } catch (error) {
       this.handleApiError(error, { action: "Update workflow" })
+    }
+  }
+
+  private processExecutionDetails(execution: N8nExecution): TestResult {
+    if (execution.data?.resultData?.error) {
+      const error = execution.data.resultData.error
+      throw new Error(`Workflow failed in node "${error.node?.name || "unknown"}": ${error.message}`)
+    }
+
+    if (execution.finished) {
+      console.log("✅ Workflow executed successfully")
+      const output = this.extractExecutionOutput(execution)
+      return {
+        success: true,
+        executionId: execution.id,
+        output,
+      }
+    }
+
+    throw new Error("Workflow still running or incomplete")
+  }
+
+  private extractExecutionOutput(execution: N8nExecution): any {
+    if (!execution.data?.resultData?.runData) {
+      return undefined
+    }
+    const nodes = Object.keys(execution.data.resultData.runData)
+    const lastNode = nodes[nodes.length - 1]
+    const nodeOutput = execution.data.resultData.runData[lastNode]
+    if (nodeOutput?.[0]?.data?.main?.[0]) {
+      const output = nodeOutput[0].data.main[0]
+      console.log("📊 Output:", JSON.stringify(output, null, 2))
+      return output
+    }
+    return undefined
+  }
+
+  private async processWebhookResponse(response: Response): Promise<TestResult> {
+    const responseText = await response.text()
+    let responseData: any
+
+    if (responseText) {
+      try {
+        responseData = JSON.parse(responseText)
+        console.log("📊 Response:", JSON.stringify(responseData, null, 2))
+      } catch {
+        responseData = responseText
+        console.log("📊 Response (text):", responseData)
+      }
+    } else {
+      responseData = null
+      console.log("📊 Response: (empty)")
+    }
+
+    return {
+      success: true,
+      output: responseData,
     }
   }
 
