@@ -2,11 +2,13 @@
 set -euo pipefail
 APP=ken8n-coder
 
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-ORANGE='\033[38;2;255;140;0m'
-NC='\033[0m' # No Color
+# Color scheme that works on both light and dark terminals
+RED='\033[0;31m'                # Errors - visible on both
+PINK='\033[38;2;255;179;209m'   # Brand color - light pink
+PURPLE='\033[38;2;218;112;214m' # Highlights - orchid purple
+BLUE='\033[38;2;100;149;237m'   # Info/success - cornflower blue
+GRAY='\033[38;2;128;128;128m'   # Secondary text - medium gray
+NC='\033[0m'                    # No Color
 
 requested_version=${VERSION:-2.3.4}
 
@@ -52,8 +54,8 @@ print_message() {
   local color=""
 
   case $level in
-  info) color="${GREEN}" ;;
-  warning) color="${YELLOW}" ;;
+  info) color="${BLUE}" ;;
+  warning) color="${PURPLE}" ;;
   error) color="${RED}" ;;
   esac
 
@@ -101,12 +103,12 @@ except Exception as e:
 "
   else
     print_message error "No extraction tool found. Please install one of the following:"
-    print_message info "  Ubuntu/Debian/WSL: ${YELLOW}sudo apt-get install unzip${NC}"
-    print_message info "  CentOS/RHEL: ${YELLOW}sudo yum install unzip${NC}"
-    print_message info "  Fedora: ${YELLOW}sudo dnf install unzip${NC}"
-    print_message info "  Arch: ${YELLOW}sudo pacman -S unzip${NC}"
-    print_message info "  Alpine: ${YELLOW}sudo apk add unzip${NC}"
-    print_message info "  macOS: ${YELLOW}brew install unzip${NC} (unzip should be pre-installed)"
+    print_message info "  Ubuntu/Debian/WSL: ${PURPLE}sudo apt-get install unzip${NC}"
+    print_message info "  CentOS/RHEL: ${PURPLE}sudo yum install unzip${NC}"
+    print_message info "  Fedora: ${PURPLE}sudo dnf install unzip${NC}"
+    print_message info "  Arch: ${PURPLE}sudo pacman -S unzip${NC}"
+    print_message info "  Alpine: ${PURPLE}sudo apk add unzip${NC}"
+    print_message info "  macOS: ${PURPLE}brew install unzip${NC} ${GRAY}(unzip should be pre-installed)${NC}"
     print_message info ""
     print_message info "Alternatively, if you have Python installed, make sure python3 or python is in your PATH."
     exit 1
@@ -114,7 +116,7 @@ except Exception as e:
 }
 
 download_and_install() {
-  print_message info "Downloading ${ORANGE}ken8n-coder ${GREEN}version: ${YELLOW}$specific_version ${GREEN}..."
+  print_message info "Downloading ${PINK}ken8n-coder ${BLUE}version: ${PURPLE}$specific_version ${BLUE}..."
   mkdir -p ken8ncodertmp && cd ken8ncodertmp
   curl -# -L -o "$filename" "$url"
   extract_archive "$filename"
@@ -161,7 +163,7 @@ add_to_path() {
   elif [[ -w $config_file ]]; then
     echo -e "\n# ken8n-coder" >>"$config_file"
     echo "$command" >>"$config_file"
-    print_message info "Successfully added ${ORANGE}ken8n-coder ${GREEN}to \$PATH in $config_file"
+    print_message info "Successfully added ${PINK}ken8n-coder ${BLUE}to \$PATH in $config_file"
   else
     print_message warning "Manually add the directory to $config_file (or similar):"
     print_message info "  $command"
@@ -236,7 +238,26 @@ if [ -n "${GITHUB_ACTIONS-}" ] && [ "${GITHUB_ACTIONS}" == "true" ]; then
   print_message info "Added $INSTALL_DIR to \$GITHUB_PATH"
 fi
 
-print_message info "🎉 ${ORANGE}ken8n-coder v${specific_version}${GREEN} installed successfully!"
+print_message info "🎉 ${PINK}ken8n-coder v${specific_version}${BLUE} installed successfully!"
+
+# Provide instructions for PATH activation
+print_message info ""
+print_message info "${PURPLE}⚡ To activate ken8n-coder in your current session:${NC}"
+case "$SHELL" in
+*bash*)
+  print_message info "   ${PINK}source ~/.bashrc${NC}"
+  ;;
+*zsh*)
+  print_message info "   ${PINK}source ~/.zshrc${NC}"
+  ;;
+*fish*)
+  print_message info "   ${PINK}source ~/.config/fish/config.fish${NC}"
+  ;;
+*)
+  print_message info "   ${GRAY}Restart your terminal or run:${NC} ${PINK}source <your-shell-config>${NC}"
+  ;;
+esac
+print_message info "   ${GRAY}Or simply open a new terminal window${NC}"
 
 # Optional: Install MCP server for n8n integration
 if command -v node >/dev/null 2>&1 && command -v npm >/dev/null 2>&1; then
@@ -273,7 +294,7 @@ fi
 PINK='\033[38;2;255;179;209m'
 
 print_message info ""
-print_message info "${ORANGE}Welcome to...${NC}"
+print_message info "${PINK}Welcome to...${NC}"
 print_message info ""
 echo -e "${PINK}░▒▓█▓▒░░▒▓█▓▒░▒▓████████▓▒░▒▓███████▓▒░ ░▒▓██████▓▒░░▒▓███████▓▒░${NC}"
 echo -e "${PINK}░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░${NC}"
@@ -283,17 +304,17 @@ echo -e "${PINK}░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░    
 echo -e "${PINK}░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░${NC}"
 echo -e "${PINK}░▒▓█▓▒░░▒▓█▓▒░▒▓████████▓▒░▒▓█▓▒░░▒▓█▓▒░░▒▓██████▓▒░░▒▓█▓▒░░▒▓█▓▒░${NC}"
 print_message info ""
-print_message info "${GREEN}═══════════════════════════════════════════════════════════════════════════════════════════${NC}"
+print_message info "${PURPLE}═══════════════════════════════════════════════════════════════════════════════════════════${NC}"
 print_message info ""
-print_message info "${GREEN}🚀 Getting Started:${NC}"
+print_message info "${PURPLE}🚀 Getting Started:${NC}"
 print_message info ""
-print_message info "  ${YELLOW}1. Set up authentication (first time only):${NC}"
-print_message info "     ${ORANGE}ken8n-coder auth login${NC}"
+print_message info "  ${PURPLE}1. Set up authentication ${GRAY}(first time only):${NC}"
+print_message info "     ${PINK}ken8n-coder auth login${NC}"
 print_message info ""
-print_message info "  ${YELLOW}2. Configure n8n MCP server for workflow deployment:${NC}"
-print_message info "     ${ORANGE}ken8n-coder mcp setup${NC}"
+print_message info "  ${PURPLE}2. Configure n8n MCP server ${GRAY}for workflow deployment:${NC}"
+print_message info "     ${PINK}ken8n-coder mcp setup${NC}"
 print_message info ""
-print_message info "  ${YELLOW}3. Start creating workflows:${NC}"
-print_message info "     ${ORANGE}ken8n-coder${NC}"
+print_message info "  ${PURPLE}3. Start creating workflows:${NC}"
+print_message info "     ${PINK}ken8n-coder${NC}"
 print_message info ""
-print_message info "${GREEN}Need help?${NC} Run: ${ORANGE}ken8n-coder --help${NC}"
+print_message info "${BLUE}Need help?${NC} Run: ${PINK}ken8n-coder --help${NC}"
