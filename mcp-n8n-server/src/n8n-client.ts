@@ -192,7 +192,14 @@ export class N8nClient {
     if (error.response?.status === 401) {
       throw new Error(`Authentication failed. Check your API key. Get a new key from n8n Settings → n8n API`)
     } else if (error.response?.status === 404) {
-      throw new Error(`n8n API not found at: ${this.baseUrl}. Check your n8n URL configuration`)
+      // More specific 404 messages based on context
+      if (context.action === "Get execution") {
+        throw new Error(`Execution not found. The execution ID may be invalid or has been deleted.`)
+      } else if (context.action === "Delete workflow" || context.action === "Update workflow") {
+        throw new Error(`Workflow not found. The workflow ID may be invalid or has been deleted.`)
+      } else {
+        throw new Error(`Resource not found. The requested item does not exist.`)
+      }
     } else if (error.response?.status === 400) {
       const message = error.response?.data?.message ? `n8n error: ${error.response.data.message}` : "Bad request"
       throw new Error(`${context.action} failed: ${message}. Check workflow structure and node types`)
