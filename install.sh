@@ -293,7 +293,7 @@ EOF
 
 # Setup default MCP configuration
 setup_mcp_config() {
-  local CONFIG_DIR="$HOME/.ken8n-coder"
+  local CONFIG_DIR="$HOME/.config/ken8n-coder"
   local CONFIG_FILE="$CONFIG_DIR/ken8n-coder.json"
 
   # Only create config if it doesn't exist
@@ -310,6 +310,11 @@ setup_mcp_config() {
     "memory": {
       "type": "local",
       "command": ["npx", "-y", "ken-you-remember"],
+      "enabled": true
+    },
+    "n8n": {
+      "type": "local",
+      "command": ["npx", "-y", "@kenkaiii/ken8n-mcp"],
       "enabled": true
     }
   },
