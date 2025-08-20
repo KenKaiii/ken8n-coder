@@ -10,7 +10,7 @@ BLUE='\033[38;2;100;149;237m'   # Info/success - cornflower blue
 GRAY='\033[38;2;128;128;128m'   # Secondary text - medium gray
 NC='\033[0m'                    # No Color
 
-requested_version=${VERSION:-2.3.4}
+requested_version=${VERSION:-2.3.5}
 
 os=$(uname -s | tr '[:upper:]' '[:lower:]')
 if [[ $os == "darwin" ]]; then
@@ -239,6 +239,45 @@ if [ -n "${GITHUB_ACTIONS-}" ] && [ "${GITHUB_ACTIONS}" == "true" ]; then
 fi
 
 print_message info "🎉 ${PINK}ken8n-coder v${specific_version}${BLUE} installed successfully!"
+
+# Update or install MCP server for n8n integration
+update_mcp_server() {
+  local MCP_DIR="$HOME/.ken8n-coder/mcp"
+
+  if [ -d "$MCP_DIR/node_modules/@kenkaiii/ken8n-mcp" ]; then
+    print_message info ""
+    print_message info "Updating n8n MCP server to latest version..."
+    cd "$MCP_DIR"
+    if npm install --production @kenkaiii/ken8n-mcp@latest >/dev/null 2>&1; then
+      local MCP_VERSION
+      MCP_VERSION=$(grep '"version"' node_modules/@kenkaiii/ken8n-mcp/package.json | sed 's/.*"version": "\(.*\)".*/\1/')
+      print_message info "✅ MCP server updated to v${MCP_VERSION}"
+    fi
+    cd - >/dev/null
+  elif command -v node >/dev/null 2>&1 && command -v npm >/dev/null 2>&1; then
+    print_message info ""
+    print_message info "Installing n8n MCP server..."
+    mkdir -p "$MCP_DIR"
+    cd "$MCP_DIR"
+    cat >package.json <<'EOF'
+{
+  "name": "ken8n-coder-mcp-local",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local MCP server installation for ken8n-coder"
+}
+EOF
+    if npm install --production @kenkaiii/ken8n-mcp@latest >/dev/null 2>&1; then
+      local MCP_VERSION
+      MCP_VERSION=$(grep '"version"' node_modules/@kenkaiii/ken8n-mcp/package.json | sed 's/.*"version": "\(.*\)".*/\1/')
+      print_message info "✅ MCP server installed v${MCP_VERSION}"
+    fi
+    cd - >/dev/null
+  fi
+}
+
+# Always update MCP to latest version
+update_mcp_server
 
 # Define color for the logo (matching TUI)
 PINK='\033[38;2;255;179;209m'
