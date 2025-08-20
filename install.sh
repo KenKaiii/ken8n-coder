@@ -240,56 +240,6 @@ fi
 
 print_message info "🎉 ${PINK}ken8n-coder v${specific_version}${BLUE} installed successfully!"
 
-# Provide instructions for PATH activation
-print_message info ""
-print_message info "${PURPLE}⚡ To activate ken8n-coder in your current session:${NC}"
-case "$SHELL" in
-*bash*)
-  print_message info "   ${PINK}source ~/.bashrc${NC}"
-  ;;
-*zsh*)
-  print_message info "   ${PINK}source ~/.zshrc${NC}"
-  ;;
-*fish*)
-  print_message info "   ${PINK}source ~/.config/fish/config.fish${NC}"
-  ;;
-*)
-  print_message info "   ${GRAY}Restart your terminal or run:${NC} ${PINK}source <your-shell-config>${NC}"
-  ;;
-esac
-print_message info "   ${GRAY}Or simply open a new terminal window${NC}"
-
-# Optional: Install MCP server for n8n integration
-if command -v node >/dev/null 2>&1 && command -v npm >/dev/null 2>&1; then
-  print_message info ""
-  print_message info "Would you like to install the n8n MCP server for workflow deployment?"
-  print_message info "This allows AI agents to deploy workflows directly to your n8n instance."
-  read -p "Install MCP server? (y/N) " -n 1 -r
-  echo
-  if [[ $REPLY =~ ^[Yy]$ ]]; then
-    MCP_DIR="$HOME/.ken8n-coder/mcp"
-    mkdir -p "$MCP_DIR"
-    cd "$MCP_DIR"
-
-    cat >package.json <<'EOF'
-{
-  "name": "ken8n-coder-mcp-local",
-  "version": "1.0.0",
-  "private": true,
-  "description": "Local MCP server installation for ken8n-coder"
-}
-EOF
-
-    if npm install --production @kenkaiii/ken8n-mcp >/dev/null 2>&1; then
-      print_message info "✅ MCP server installed successfully"
-      print_message info "Run 'ken8n-coder mcp setup' to configure your n8n connection"
-    else
-      print_message warning "MCP server installation failed. You can install it later with:"
-      print_message info "  curl -fsSL https://raw.githubusercontent.com/kenkaiii/ken8n-coder/main/install-mcp.sh | bash"
-    fi
-  fi
-fi
-
 # Define color for the logo (matching TUI)
 PINK='\033[38;2;255;179;209m'
 
@@ -308,13 +258,27 @@ print_message info "${PURPLE}═════════════════
 print_message info ""
 print_message info "${PURPLE}🚀 Getting Started:${NC}"
 print_message info ""
-print_message info "  ${PURPLE}1. Set up authentication ${GRAY}(first time only):${NC}"
+print_message info "  ${PURPLE}1. Activate ken8n-coder in your current terminal:${NC}"
+case "$SHELL" in
+*bash*)
+  print_message info "     ${PINK}source ~/.bashrc${NC}"
+  ;;
+*zsh*)
+  print_message info "     ${PINK}source ~/.zshrc${NC}"
+  ;;
+*fish*)
+  print_message info "     ${PINK}source ~/.config/fish/config.fish${NC}"
+  ;;
+*)
+  print_message info "     ${PINK}source <your-shell-config>${NC} ${GRAY}or open a new terminal${NC}"
+  ;;
+esac
+print_message info ""
+print_message info "  ${PURPLE}2. Set up authentication ${GRAY}(first time only):${NC}"
 print_message info "     ${PINK}ken8n-coder auth login${NC}"
 print_message info ""
-print_message info "  ${PURPLE}2. Configure n8n MCP server ${GRAY}for workflow deployment:${NC}"
+print_message info "  ${PURPLE}3. Configure your ken8n-mcp server ${GRAY}(for n8n connectivity):${NC}"
 print_message info "     ${PINK}ken8n-coder mcp setup${NC}"
 print_message info ""
-print_message info "  ${PURPLE}3. Start creating workflows:${NC}"
+print_message info "  ${PURPLE}4. Start creating workflows:${NC}"
 print_message info "     ${PINK}ken8n-coder${NC}"
-print_message info ""
-print_message info "${BLUE}Need help?${NC} Run: ${PINK}ken8n-coder --help${NC}"
