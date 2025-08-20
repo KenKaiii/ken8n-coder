@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-VERSION="2.2.0"
+VERSION="2.3.4"
 cd /home/ken/Projects/ken8n-coder/ken8n-coder/packages/ken8n-coder
 
 # Build darwin-x64
@@ -15,7 +15,7 @@ rm -rf ./dist/ken8n-coder-darwin-x64/bin/tui
 mkdir -p ./dist/ken8n-coder-darwin-x64/validation-scripts
 cp validation-scripts/validate-supercode-static.js ./dist/ken8n-coder-darwin-x64/validation-scripts/ 2>/dev/null || true
 
-cat > dist/ken8n-coder-darwin-x64/package.json << EOF
+cat >dist/ken8n-coder-darwin-x64/package.json <<EOF
 {
   "name": "ken8n-coder-darwin-x64",
   "version": "$VERSION",
@@ -35,7 +35,7 @@ rm -rf ./dist/ken8n-coder-darwin-x64-baseline/bin/tui
 mkdir -p ./dist/ken8n-coder-darwin-x64-baseline/validation-scripts
 cp validation-scripts/validate-supercode-static.js ./dist/ken8n-coder-darwin-x64-baseline/validation-scripts/ 2>/dev/null || true
 
-cat > dist/ken8n-coder-darwin-x64-baseline/package.json << EOF
+cat >dist/ken8n-coder-darwin-x64-baseline/package.json <<EOF
 {
   "name": "ken8n-coder-darwin-x64-baseline",
   "version": "$VERSION",
@@ -55,7 +55,7 @@ rm -rf ./dist/ken8n-coder-darwin-arm64/bin/tui
 mkdir -p ./dist/ken8n-coder-darwin-arm64/validation-scripts
 cp validation-scripts/validate-supercode-static.js ./dist/ken8n-coder-darwin-arm64/validation-scripts/ 2>/dev/null || true
 
-cat > dist/ken8n-coder-darwin-arm64/package.json << EOF
+cat >dist/ken8n-coder-darwin-arm64/package.json <<EOF
 {
   "name": "ken8n-coder-darwin-arm64",
   "version": "$VERSION",

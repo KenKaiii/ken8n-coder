@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
-  "version": "2.3.0",
+  "version": "2.3.4",
   "name": "ken8n-coder",
   "type": "module",
   "private": false,
@@ -12,7 +12,15 @@
     "type": "git",
     "url": "https://github.com/kenkaiii/ken8n-coder"
   },
-  "keywords": ["n8n", "workflow", "automation", "ai", "super-code", "terminal", "tui"],
+  "keywords": [
+    "n8n",
+    "workflow",
+    "automation",
+    "ai",
+    "super-code",
+    "terminal",
+    "tui"
+  ],
   "scripts": {
     "typecheck": "tsc --noEmit",
     "dev": "bun run --conditions=development ./src/index.ts"
