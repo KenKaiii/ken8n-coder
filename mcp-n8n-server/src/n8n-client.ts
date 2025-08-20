@@ -437,10 +437,9 @@ export class N8nClient {
         nodes: updated.nodes || [],
         connections: updated.connections || {},
         settings: updated.settings || {},
-        active: updated.active !== undefined ? updated.active : false,
       }
 
-      // Add optional fields if they exist
+      // Add optional fields if they exist (but NOT active - it's read-only in PUT)
       if (updated.staticData) workflowToUpdate.staticData = updated.staticData
       if (updated.pinData) workflowToUpdate.pinData = updated.pinData
       if (updated.meta) workflowToUpdate.meta = updated.meta
