@@ -5,6 +5,7 @@ import * as prompts from "@clack/prompts"
 import { UI } from "../ui"
 import fs from "fs/promises"
 import path from "path"
+import os from "os"
 import { Filesystem } from "../../util/filesystem"
 import { exec } from "child_process"
 import { promisify } from "util"
@@ -90,6 +91,21 @@ export const McpAddCommand = cmd({
 async function findConfigFile(cwd: string): Promise<{ path: string; config: any }> {
   const configFiles = ["ken8n-coder.json", "ken8n-coder.jsonc"]
 
+  // First check the XDG config directory
+  const configDir = path.join(os.homedir(), ".config", "ken8n-coder")
+  for (const file of configFiles) {
+    const configPath = path.join(configDir, file)
+    try {
+      const content = await fs.readFile(configPath, "utf-8")
+      const existingConfig = JSON.parse(content)
+      prompts.log.info(`Using existing configuration: ${configPath}`)
+      return { path: configPath, config: existingConfig }
+    } catch (error) {
+      // File doesn't exist or is invalid, continue
+    }
+  }
+
+  // Fallback to searching from current directory
   for (const file of configFiles) {
     const found = await Filesystem.findUp(file, cwd)
     if (found.length > 0) {
@@ -105,8 +121,9 @@ async function findConfigFile(cwd: string): Promise<{ path: string; config: any 
     }
   }
 
-  // Create new config file if none found
-  const configPath = path.join(cwd, "ken8n-coder.json")
+  // Create new config file in the correct XDG config directory
+  await fs.mkdir(configDir, { recursive: true })
+  const configPath = path.join(configDir, "ken8n-coder.json")
   prompts.log.info(`Creating new configuration file: ${configPath}`)
   return { path: configPath, config: {} }
 }

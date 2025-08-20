@@ -311,11 +311,6 @@ setup_mcp_config() {
       "type": "local",
       "command": ["npx", "-y", "ken-you-remember"],
       "enabled": true
-    },
-    "n8n": {
-      "type": "local",
-      "command": ["npx", "-y", "@kenkaiii/ken8n-mcp"],
-      "enabled": true
     }
   },
   "$schema": "https://opencode.ai/config.json"
