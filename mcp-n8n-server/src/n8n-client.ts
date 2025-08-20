@@ -527,6 +527,45 @@ export class N8nClient {
   }
 
   /**
+   * List executions with optional filtering
+   */
+  async listExecutions(
+    options: {
+      workflowId?: string
+      status?: "success" | "error" | "running" | "waiting"
+      limit?: number
+    } = {},
+  ): Promise<N8nExecution[]> {
+    try {
+      const params: any = {}
+
+      if (options.workflowId) params.workflowId = options.workflowId
+      if (options.status) params.status = options.status
+      if (options.limit) params.limit = options.limit
+
+      const result = await this.makeRequest("GET", "/executions", undefined, params)
+
+      // Return full execution details for each execution
+      const executions = result.data || []
+      const fullExecutions = []
+
+      for (const exec of executions) {
+        try {
+          const fullExec = await this.getExecution(exec.id)
+          fullExecutions.push(fullExec)
+        } catch (error) {
+          // If we can't get full details, include basic info
+          fullExecutions.push(exec)
+        }
+      }
+
+      return fullExecutions
+    } catch (error) {
+      this.handleApiError(error, { action: "List executions" })
+    }
+  }
+
+  /**
    * List workflows with optional filtering
    */
   async listWorkflows(limit: number = 100, activeOnly: boolean = false): Promise<N8nWorkflow[]> {

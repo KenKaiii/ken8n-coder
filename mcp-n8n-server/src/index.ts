@@ -38,6 +38,12 @@ const DeleteWorkflowSchema = z.object({
   workflowId: z.string(),
 })
 
+const ListExecutionsSchema = z.object({
+  workflowId: z.string().optional(),
+  status: z.enum(["success", "error", "running", "waiting"]).optional(),
+  limit: z.number().optional().default(3),
+})
+
 interface N8nConfig {
   baseUrl: string
   apiKey: string
@@ -193,6 +199,29 @@ class N8nMCPServer {
               required: ["workflowId"],
             },
           },
+          {
+            name: "n8n_list_executions",
+            description: "List workflow executions with optional filters (returns most recent first)",
+            inputSchema: {
+              type: "object",
+              properties: {
+                workflowId: {
+                  type: "string",
+                  description: "Filter executions by workflow ID",
+                },
+                status: {
+                  type: "string",
+                  enum: ["success", "error", "running", "waiting"],
+                  description: "Filter by execution status",
+                },
+                limit: {
+                  type: "number",
+                  description: "Maximum number of executions to return (default: 3)",
+                  default: 3,
+                },
+              },
+            },
+          },
         ],
       }
     })
@@ -217,6 +246,9 @@ class N8nMCPServer {
 
           case "n8n_delete":
             return await this.deleteWorkflow(request.params.arguments)
+
+          case "n8n_list_executions":
+            return await this.listExecutions(request.params.arguments)
 
           default:
             throw new Error(`Unknown tool: ${request.params.name}`)
@@ -384,17 +416,58 @@ class N8nMCPServer {
     }
   }
 
+  private extractExecutionErrors(execution: any) {
+    const errors = []
+
+    // Add main execution error if present
+    if (execution.data?.resultData?.error) {
+      errors.push({
+        type: "main",
+        nodeName: execution.data.resultData.error.node?.name,
+        message: execution.data.resultData.error.message,
+        code: execution.data.resultData.error.node?.parameters?.code,
+      })
+    }
+
+    // Add per-node errors from runData
+    if (execution.data?.resultData?.runData) {
+      for (const [nodeName, nodeExecutions] of Object.entries(execution.data.resultData.runData)) {
+        this.extractNodeErrors(nodeName, nodeExecutions as any[], errors)
+      }
+    }
+
+    return errors.length > 0 ? errors : undefined
+  }
+
+  private extractNodeErrors(nodeName: string, nodeExecutions: any[], errors: any[]) {
+    for (let i = 0; i < nodeExecutions.length; i++) {
+      const nodeExec = nodeExecutions[i]
+      if (nodeExec.error && nodeExec.executionStatus === "error") {
+        // Avoid duplicating the main error
+        if (!errors.some((e: any) => e.nodeName === nodeName && e.message === nodeExec.error.message)) {
+          errors.push({
+            type: "node",
+            nodeName: nodeName,
+            executionIndex: i,
+            message: nodeExec.error.message,
+            code: nodeExec.error.node?.parameters?.code,
+          })
+        }
+      }
+    }
+  }
+
   private async getExecution(args: unknown) {
     const { executionId } = GetExecutionSchema.parse(args)
 
     try {
       const execution = await this.n8nClient.getExecution(executionId)
 
-      // Extract essential information including ALL errors
+      // Extract essential information
       const result: any = {
         success: true,
         executionId: execution.id,
-        status: (execution as any).status || 'unknown',
+        status: (execution as any).status || "unknown",
         finished: execution.finished,
         workflowId: execution.workflowId,
         startedAt: execution.startedAt,
@@ -402,40 +475,9 @@ class N8nMCPServer {
       }
 
       // If there are errors, extract them
-      if ((execution as any).status === 'error' || execution.data?.resultData?.error) {
-        result.errors = []
-        
-        // Add main execution error if present
-        if (execution.data?.resultData?.error) {
-          result.errors.push({
-            type: 'main',
-            nodeName: (execution.data.resultData.error as any).node?.name,
-            message: (execution.data.resultData.error as any).message,
-            // Include the problematic code/config if it's a Super Code node
-            code: (execution.data.resultData.error as any).node?.parameters?.code,
-          })
-        }
-
-        // Add per-node errors from runData
-        if (execution.data?.resultData?.runData) {
-          for (const [nodeName, nodeExecutions] of Object.entries(execution.data.resultData.runData)) {
-            for (let i = 0; i < (nodeExecutions as any[]).length; i++) {
-              const nodeExec = (nodeExecutions as any[])[i]
-              if (nodeExec.error && nodeExec.executionStatus === 'error') {
-                // Avoid duplicating the main error
-                if (!result.errors.some((e: any) => e.nodeName === nodeName && e.message === nodeExec.error.message)) {
-                  result.errors.push({
-                    type: 'node',
-                    nodeName: nodeName,
-                    executionIndex: i,
-                    message: nodeExec.error.message,
-                    code: nodeExec.error.node?.parameters?.code,
-                  })
-                }
-              }
-            }
-          }
-        }
+      if ((execution as any).status === "error" || execution.data?.resultData?.error) {
+        const errors = this.extractExecutionErrors(execution)
+        if (errors) result.errors = errors
       }
 
       // Include successful execution data if no errors
@@ -533,6 +575,68 @@ class N8nMCPServer {
               {
                 success: true,
                 message: `Workflow ${workflowId} deleted successfully`,
+              },
+              null,
+              2,
+            ),
+          },
+        ],
+      }
+    } catch (error) {
+      return {
+        content: [
+          {
+            type: "text",
+            text: JSON.stringify(
+              {
+                success: false,
+                error: error instanceof Error ? error.message : "Unknown error",
+              },
+              null,
+              2,
+            ),
+          },
+        ],
+      }
+    }
+  }
+
+  private async listExecutions(args: unknown) {
+    const { workflowId, status, limit } = ListExecutionsSchema.parse(args)
+
+    try {
+      const executions = await this.n8nClient.listExecutions({
+        workflowId,
+        status,
+        limit,
+      })
+
+      // Extract essential info from each execution (already sorted by most recent)
+      const executionSummaries = executions.map((exec) => ({
+        id: exec.id,
+        workflowId: exec.workflowId,
+        status: (exec as any).status || (exec.finished ? "success" : "running"),
+        finished: exec.finished,
+        mode: exec.mode,
+        startedAt: exec.startedAt,
+        stoppedAt: exec.stoppedAt,
+        error: exec.data?.resultData?.error
+          ? {
+              message: exec.data.resultData.error.message,
+              node: exec.data.resultData.error.node?.name,
+            }
+          : undefined,
+      }))
+
+      return {
+        content: [
+          {
+            type: "text",
+            text: JSON.stringify(
+              {
+                success: true,
+                count: executionSummaries.length,
+                executions: executionSummaries,
               },
               null,
               2,
