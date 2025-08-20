@@ -10,7 +10,7 @@ BLUE='\033[38;2;100;149;237m'   # Info/success - cornflower blue
 GRAY='\033[38;2;128;128;128m'   # Secondary text - medium gray
 NC='\033[0m'                    # No Color
 
-requested_version=${VERSION:-2.3.6}
+requested_version=${VERSION:-2.3.7}
 
 os=$(uname -s | tr '[:upper:]' '[:lower:]')
 if [[ $os == "darwin" ]]; then
@@ -240,10 +240,11 @@ fi
 
 print_message info "🎉 ${PINK}ken8n-coder v${specific_version}${BLUE} installed successfully!"
 
-# Update or install MCP server for n8n integration
-update_mcp_server() {
+# Update or install MCP servers
+update_mcp_servers() {
   local MCP_DIR="$HOME/.ken8n-coder/mcp"
 
+  # Install/update n8n MCP server
   if [ -d "$MCP_DIR/node_modules/@kenkaiii/ken8n-mcp" ]; then
     print_message info ""
     print_message info "Updating n8n MCP server to latest version..."
@@ -251,12 +252,12 @@ update_mcp_server() {
     if npm install --production @kenkaiii/ken8n-mcp@latest >/dev/null 2>&1; then
       local MCP_VERSION
       MCP_VERSION=$(grep '"version"' node_modules/@kenkaiii/ken8n-mcp/package.json | sed 's/.*"version": "\(.*\)".*/\1/')
-      print_message info "✅ MCP server updated to v${MCP_VERSION}"
+      print_message info "✅ n8n MCP server updated to v${MCP_VERSION}"
     fi
     cd - >/dev/null
   elif command -v node >/dev/null 2>&1 && command -v npm >/dev/null 2>&1; then
     print_message info ""
-    print_message info "Installing n8n MCP server..."
+    print_message info "Installing MCP servers..."
     mkdir -p "$MCP_DIR"
     cd "$MCP_DIR"
     cat >package.json <<'EOF'
@@ -270,14 +271,60 @@ EOF
     if npm install --production @kenkaiii/ken8n-mcp@latest >/dev/null 2>&1; then
       local MCP_VERSION
       MCP_VERSION=$(grep '"version"' node_modules/@kenkaiii/ken8n-mcp/package.json | sed 's/.*"version": "\(.*\)".*/\1/')
-      print_message info "✅ MCP server installed v${MCP_VERSION}"
+      print_message info "✅ n8n MCP server installed v${MCP_VERSION}"
+    fi
+    cd - >/dev/null
+  fi
+
+  # Install ken-you-remember MCP (memory tool)
+  if command -v node >/dev/null 2>&1 && command -v npm >/dev/null 2>&1; then
+    print_message info "Installing memory MCP server (ken-you-remember)..."
+    cd "$MCP_DIR"
+    if npm install --production ken-you-remember@latest >/dev/null 2>&1; then
+      local MEMORY_VERSION
+      MEMORY_VERSION=$(grep '"version"' node_modules/ken-you-remember/package.json 2>/dev/null | sed 's/.*"version": "\(.*\)".*/\1/' || echo "latest")
+      print_message info "✅ Memory MCP server installed${MEMORY_VERSION:+ v$MEMORY_VERSION}"
+    else
+      print_message warning "Could not install ken-you-remember MCP. Memory features may not be available."
     fi
     cd - >/dev/null
   fi
 }
 
-# Always update MCP to latest version
-update_mcp_server
+# Setup default MCP configuration
+setup_mcp_config() {
+  local CONFIG_DIR="$HOME/.ken8n-coder"
+  local CONFIG_FILE="$CONFIG_DIR/ken8n-coder.json"
+
+  # Only create config if it doesn't exist
+  if [ ! -f "$CONFIG_FILE" ]; then
+    print_message info "Setting up default MCP configuration..."
+    mkdir -p "$CONFIG_DIR"
+    cat >"$CONFIG_FILE" <<'EOF'
+{
+  "mcp": {
+    "context7": {
+      "type": "remote",
+      "url": "https://mcp.context7.com/sse"
+    },
+    "memory": {
+      "type": "local",
+      "command": ["npx", "-y", "ken-you-remember"],
+      "enabled": true
+    }
+  },
+  "$schema": "https://opencode.ai/config.json"
+}
+EOF
+    print_message info "✅ MCP configuration created at $CONFIG_FILE"
+  else
+    print_message info "MCP configuration already exists at $CONFIG_FILE"
+  fi
+}
+
+# Always update MCP servers and setup config
+update_mcp_servers
+setup_mcp_config
 
 # Define color for the logo (matching TUI)
 PINK='\033[38;2;255;179;209m'
@@ -316,7 +363,7 @@ print_message info ""
 print_message info "  ${PURPLE}2. Set up authentication ${GRAY}(first time only):${NC}"
 print_message info "     ${PINK}ken8n-coder auth login${NC}"
 print_message info ""
-print_message info "  ${PURPLE}3. Configure your ken8n-mcp server ${GRAY}(for n8n connectivity):${NC}"
+print_message info "  ${PURPLE}3. Configure your n8n server connection:${NC}"
 print_message info "     ${PINK}ken8n-coder mcp setup${NC}"
 print_message info ""
 print_message info "  ${PURPLE}4. Start creating workflows:${NC}"

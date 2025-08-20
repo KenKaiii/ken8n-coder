@@ -7248,7 +7248,157 @@
       "lastAccessed": "2025-08-19T21:57:32.464Z",
       "lastVerified": "2025-08-19T21:57:32.464Z",
       "status": "fresh"
+    },
+    {
+      "id": "mem_1755688207598_4492rm5qk",
+      "content": "n8n MCP API Investigation: The n8n MCP server currently accepts workflow JSON objects as parameters, not file uploads. The endpoints use JSON payloads, not multipart/form-data file uploads. This means we need to read file contents and pass them as JSON objects to the API.",
+      "type": "general",
+      "tags": [
+        "general",
+        "api",
+        "n8n",
+        "mcp",
+        "workflows",
+        "technical-constraints"
+      ],
+      "timestamp": "2025-08-20T11:10:07.598Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-20T11:10:07.598Z",
+      "lastVerified": "2025-08-20T11:10:07.598Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755688341831_aahxw71ma",
+      "content": "n8n API Workflow Update Limitations (2024):\n- NO partial updates supported - must send entire workflow\n- PUT /workflows/{id} completely overwrites the workflow\n- To change one node: GET entire workflow → modify JSON → PUT entire workflow back\n- Community wants PATCH support but it doesn't exist yet\n- This confirms our file-based approach is actually the best solution - edit locally, send full object",
+      "type": "solution",
+      "tags": [
+        "solution",
+        "api",
+        "n8n",
+        "workflows",
+        "limitations",
+        "architecture-decision"
+      ],
+      "timestamp": "2025-08-20T11:12:21.831Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-20T11:12:21.831Z",
+      "lastVerified": "2025-08-20T11:12:21.831Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755688616399_8mcrqihmj",
+      "content": "Workflow.txt Analysis - Current Issues and Recommended Changes:\n\nCURRENT PROBLEMS:\n1. No mention of local file storage for workflows\n2. Says \"NO local .json files\" (line 165) - contradicts needed approach\n3. Focuses on direct MCP deployment without persistence\n4. No guidance on workflow updates via file editing\n5. Missing file-based workflow management strategy\n\nRECOMMENDED APPROACH:\n1. Add workflow file management section\n2. Change deployment to: Create file → Read file → Deploy\n3. Add update strategy: Edit file → Read → Deploy full workflow\n4. Include ./n8n-workflows/ directory structure\n5. Emphasize file persistence for version control and editing\n6. Keep Super Code philosophy but add file-based workflow\n\nKEY CHANGES NEEDED:\n- Line 165: Remove \"NO local .json files\"\n- Add section on workflow file management\n- Update deployment process to include file creation\n- Add update process using file editing\n- Explain why file-based is better (n8n API limitation)",
+      "type": "config",
+      "tags": [
+        "config",
+        "deployment",
+        "api",
+        "n8n",
+        "workflow.txt",
+        "architecture",
+        "refactoring",
+        "file-management"
+      ],
+      "timestamp": "2025-08-20T11:16:56.399Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-20T11:16:56.399Z",
+      "lastVerified": "2025-08-20T11:16:56.399Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755688752825_b95r9ftyp",
+      "content": "Workflow Management Strategy - Refined Approach:\n\nWORKFLOW LOCATIONS:\n1. CWD (current working directory): Active workflows being created/edited\n   - workflow-name.json files saved directly in CWD\n   - Easy access, no path complexity\n   \n2. ./workflows/ folder: Reference library\n   - Pre-built workflow templates\n   - Examples to learn from\n   - User can request: \"use the workflow from ./workflows/example.json as reference\"\n\nKEY PRINCIPLE:\n- Create/edit workflows in CWD for simplicity\n- Reference ./workflows/ for patterns and examples\n- No complex directory structures needed",
+      "type": "concept",
+      "tags": [
+        "concept",
+        "n8n",
+        "workflow-management",
+        "architecture",
+        "cwd",
+        "file-structure"
+      ],
+      "timestamp": "2025-08-20T11:19:12.825Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-20T11:19:12.825Z",
+      "lastVerified": "2025-08-20T11:19:12.825Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755688880603_wv1gdyco7",
+      "content": "Workflow Reference Library - Dual Purpose:\n\n1. REFERENCING (user-requested):\n   - \"Use the slack workflow as a base\"\n   - \"Start with the webhook-to-database pattern\"\n   - Copy and adapt existing patterns\n\n2. REFINEMENT (proactive improvement):\n   - Load existing workflows from ./workflows/\n   - Analyze for inefficiencies (multiple nodes doing simple tasks)\n   - Replace node chains with Super Code nodes\n   - Simplify complex flows\n   - Add error handling\n   - Optimize performance\n   - Save improved version back\n\nKEY: ./workflows/ is both a learning resource AND optimization target",
+      "type": "config",
+      "tags": [
+        "config",
+        "database",
+        "optimization",
+        "n8n",
+        "workflows",
+        "refinement",
+        "reference-library"
+      ],
+      "timestamp": "2025-08-20T11:21:20.603Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-20T11:21:20.603Z",
+      "lastVerified": "2025-08-20T11:21:20.603Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755688967631_wo1d414le",
+      "content": "Webhook Configuration Flexibility:\n\nIMPORTANT: Webhook settings depend on use case, not defaults:\n\n1. HTTP METHOD:\n   - GET: Simple triggers, URL parameters, browser testing\n   - POST: Receiving data payloads, form submissions, API calls\n   - PUT/PATCH/DELETE: RESTful operations if needed\n   - Ask user or infer from context\n\n2. RESPONSE MODE:\n   - \"responseViaWebhook\": When workflow needs to process before responding\n   - \"lastNode\": When immediate response needed (simpler workflows)\n   - Depends on workflow complexity and timing needs\n\n3. COMMON PATTERNS:\n   - Simple data receiver: POST + lastNode\n   - Browser test endpoint: GET + lastNode  \n   - Complex processing: POST + responseViaWebhook\n   - REST API simulation: Multiple methods as needed\n\nKEY: Don't assume POST or responseViaWebhook - match to actual requirements",
+      "type": "warning",
+      "tags": [
+        "warning",
+        "testing",
+        "api",
+        "n8n",
+        "webhooks",
+        "http-methods",
+        "response-modes",
+        "flexibility"
+      ],
+      "timestamp": "2025-08-20T11:22:47.631Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-20T11:22:47.631Z",
+      "lastVerified": "2025-08-20T11:22:47.631Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755689101183_t8w0ss5ga",
+      "content": "n8n Webhook Examples - Minimal Required Fields:\n\nGET WEBHOOK (default, no httpMethod needed):\n- path: \"endpoint-name\"\n- responseMode: \"lastNode\" \n- webhookId: \"endpoint-name\" (matches path)\n- httpMethod: NOT SPECIFIED (defaults to GET)\n\nPOST WEBHOOK:\n- httpMethod: \"POST\" (must be specified)\n- path: \"endpoint-name\"\n- responseMode: \"lastNode\" or \"responseViaWebhook\"\n- webhookId: \"endpoint-name\" (matches path)\n\nKEY INSIGHTS:\n1. GET is default - don't specify httpMethod\n2. POST requires explicit httpMethod: \"POST\"\n3. webhookId should match path (not UUID)\n4. Both examples use responseMode: \"lastNode\"\n5. Don't include pinData, meta, instanceId in generation",
+      "type": "warning",
+      "tags": [
+        "warning",
+        "n8n",
+        "webhooks",
+        "examples",
+        "GET",
+        "POST",
+        "minimal-config"
+      ],
+      "timestamp": "2025-08-20T11:25:01.183Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-20T11:25:01.183Z",
+      "lastVerified": "2025-08-20T11:25:01.183Z",
+      "status": "fresh"
+    },
+    {
+      "id": "mem_1755689263338_u3n7s78ix",
+      "content": "n8n Response Mode Correction:\n\nCORRECT RESPONSE MODES:\n- \"responseNode\": When using Respond to Webhook node later in workflow\n- \"lastNode\": When last node's output becomes the response\n\nNOT \"responseViaWebhook\" or \"responseNodeViaWebhook\" - it's just \"responseNode\"\n\nCommon patterns:\n- Simple workflow: responseMode: \"lastNode\" (no Respond node needed)\n- Complex with custom response: responseMode: \"responseNode\" + Respond to Webhook node\n- GET webhooks: Usually \"lastNode\" for simplicity\n- POST webhooks: Either mode depending on complexity",
+      "type": "general",
+      "tags": [
+        "general",
+        "n8n",
+        "webhooks",
+        "responseMode",
+        "correction",
+        "responseNode"
+      ],
+      "timestamp": "2025-08-20T11:27:43.338Z",
+      "accessCount": 0,
+      "lastAccessed": "2025-08-20T11:27:43.338Z",
+      "lastVerified": "2025-08-20T11:27:43.338Z",
+      "status": "fresh"
     }
   ],
-  "lastUpdated": "2025-08-19T21:57:32.464Z"
+  "lastUpdated": "2025-08-20T11:27:43.338Z"
 }
