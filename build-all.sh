@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-VERSION="2.3.7"
+VERSION="2.3.9"
 echo "Building ken8n-coder v${VERSION} for all platforms..."
 
 cd /home/ken/Projects/ken8n-coder/ken8n-coder/packages/ken8n-coder
