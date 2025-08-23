@@ -277,28 +277,38 @@ class N8nMCPServer {
       // Execute the deploy-script to extract JSON from file
       const userScriptPath = path.join(process.env.HOME || "~", ".ken8n-coder", "deploy-script", "deploy-workflow.js")
       const currentDir = path.dirname(new URL(import.meta.url).pathname)
+      const packageScriptPath = path.join(currentDir, "..", "deploy-script", "deploy-workflow.js")
       const localScriptPath = path.join(currentDir, "..", "..", "deploy-script", "deploy-workflow.js")
-      
-      // Use user script if it exists, otherwise use local script for testing
-      const scriptPath = fs.existsSync(userScriptPath) ? userScriptPath : localScriptPath
+
+      // Try user script first, then package script, then local script
+      let scriptPath: string
+      if (fs.existsSync(userScriptPath)) {
+        scriptPath = userScriptPath
+      } else if (fs.existsSync(packageScriptPath)) {
+        scriptPath = packageScriptPath
+      } else {
+        scriptPath = localScriptPath
+      }
       const scriptCommand = `node "${scriptPath}" "${workflowFile}" --json-output`
-      
-      const scriptOutput = execSync(scriptCommand, { 
-        encoding: 'utf8',
-        timeout: 30000 // 30 second timeout
+
+      const scriptOutput = execSync(scriptCommand, {
+        encoding: "utf8",
+        timeout: 30000, // 30 second timeout
       })
-      
+
       // Parse the JSON output from the script
       const workflow = JSON.parse(scriptOutput.trim())
-      
+
       // Use workflow JSON from script
       workflowToDeply = {
         ...workflow,
         name: name || workflow.name || "Unnamed Workflow",
         nodes: workflow.nodes || [],
-      } as any
+      }
     } catch (scriptError) {
-      throw new Error(`Failed to execute deploy script: ${scriptError instanceof Error ? scriptError.message : 'Unknown error'}`)
+      throw new Error(
+        `Failed to execute deploy script: ${scriptError instanceof Error ? scriptError.message : "Unknown error"}`,
+      )
     }
 
     try {
