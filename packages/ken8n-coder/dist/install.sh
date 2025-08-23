@@ -129,11 +129,17 @@ download_and_install() {
     if [ -d "ken8n-coder-$os-$arch/validation-scripts" ]; then
       cp -r "ken8n-coder-$os-$arch/validation-scripts" "$HOME/.ken8n-coder/"
     fi
+    if [ -d "ken8n-coder-$os-$arch/deploy-script" ]; then
+      cp -r "ken8n-coder-$os-$arch/deploy-script" "$HOME/.ken8n-coder/"
+    fi
   elif [ -f "ken8n-coder-$os-$arch/bin/ken8n-coder.exe" ]; then
     mv "ken8n-coder-$os-$arch/bin/ken8n-coder.exe" "$INSTALL_DIR/ken8n-coder.exe"
     # Copy validation scripts from platform directory
     if [ -d "ken8n-coder-$os-$arch/validation-scripts" ]; then
       cp -r "ken8n-coder-$os-$arch/validation-scripts" "$HOME/.ken8n-coder/"
+    fi
+    if [ -d "ken8n-coder-$os-$arch/deploy-script" ]; then
+      cp -r "ken8n-coder-$os-$arch/deploy-script" "$HOME/.ken8n-coder/"
     fi
   elif [ -f "bin/ken8n-coder" ]; then
     mv bin/ken8n-coder "$INSTALL_DIR/ken8n-coder"

@@ -62,7 +62,7 @@ Process:
 2. Save to workflow-name.json in CWD
 3. Deploy using the copy-paste script:
    ```bash
-   node ./deploy-script/deploy-workflow.js workflow-name.json
+   node ~/.ken8n-coder/deploy-script/deploy-workflow.js workflow-name.json
    ```
    This script will show you how to deploy. Then:
    - Read file: const fileContent = Read('workflow-name.json')
@@ -77,7 +77,7 @@ Process:
 Use the deploy-workflow.js script located at ./deploy-script/deploy-workflow.js:
 ```bash
 # Run this first to prepare deployment:
-node ./deploy-script/deploy-workflow.js your-workflow.json
+node ~/.ken8n-coder/deploy-script/deploy-workflow.js your-workflow.json
 ```
 
 Then use the output to deploy via MCP:
@@ -110,7 +110,7 @@ If execution fails:
 3. Save updated file
 4. Redeploy using copy-paste method:
    ```bash
-   node ./deploy-script/deploy-workflow.js workflow-name.json
+   node ~/.ken8n-coder/deploy-script/deploy-workflow.js workflow-name.json
    ```
    Then: Read → Parse → Deploy entire object
 5. Test again with n8n_test
@@ -131,7 +131,7 @@ For modifications (more reliable than regenerating):
 3. Save updated file
 4. Deploy using copy-paste method:
    ```bash
-   node ./deploy-script/deploy-workflow.js workflow-name.json
+   node ~/.ken8n-coder/deploy-script/deploy-workflow.js workflow-name.json
    ```
    Then:
    - const fileContent = Read('workflow-name.json')
@@ -304,7 +304,7 @@ Example refinements:
 - YES to minimal webhook configuration
 - YES to Super Code for all logic
 - YES to iterative fixing based on real errors
-- YES to copy-paste deployment (use ./deploy-script/deploy-workflow.js script!)
+- YES to copy-paste deployment (use ~/.ken8n-coder/deploy-script/deploy-workflow.js script!)
 - NO to manually recreating JSON in deployment calls
 
 # INTEGRATION NODES (Use ONLY when Super Code can't handle)
