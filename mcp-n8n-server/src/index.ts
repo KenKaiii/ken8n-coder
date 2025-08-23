@@ -5,11 +5,13 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { CallToolRequestSchema, ListToolsRequestSchema } from "@modelcontextprotocol/sdk/types.js"
 import { z } from "zod"
 import { N8nClient } from "./n8n-client.js"
-// Removed fs, path, os imports - no longer needed for config file
+import { execSync } from "child_process"
+import path from "path"
+import fs from "fs"
 
 // Input schemas
 const DeployWorkflowSchema = z.object({
-  workflow: z.object({}).passthrough(), // Accept any workflow JSON object
+  workflowFile: z.string(), // File path to workflow JSON
   name: z.string().optional(),
   active: z.boolean().optional().default(true),
 })
@@ -93,17 +95,17 @@ class N8nMCPServer {
         tools: [
           {
             name: "n8n_deploy",
-            description: "Deploy a workflow to n8n",
+            description: "Deploy a workflow to n8n using file path",
             inputSchema: {
               type: "object",
               properties: {
-                workflow: {
-                  type: "object",
-                  description: "The workflow JSON object",
+                workflowFile: {
+                  type: "string",
+                  description: "Path to the workflow JSON file",
                 },
                 name: {
                   type: "string",
-                  description: "Optional workflow name",
+                  description: "Optional workflow name override",
                 },
                 active: {
                   type: "boolean",
@@ -111,7 +113,7 @@ class N8nMCPServer {
                   default: true,
                 },
               },
-              required: ["workflow"],
+              required: ["workflowFile"],
             },
           },
           {
@@ -267,14 +269,37 @@ class N8nMCPServer {
   }
 
   private async deployWorkflow(args: unknown) {
-    const { workflow, name, active } = DeployWorkflowSchema.parse(args)
+    const { workflowFile, name, active } = DeployWorkflowSchema.parse(args)
 
-    // Use workflow JSON directly - no file reading!
-    const workflowToDeply = {
-      ...workflow,
-      name: name || workflow.name || "Unnamed Workflow",
-      nodes: workflow.nodes || [],
-    } as any // Type assertion since workflow comes from zod validation
+    let workflowToDeply: any
+
+    try {
+      // Execute the deploy-script to extract JSON from file
+      const userScriptPath = path.join(process.env.HOME || "~", ".ken8n-coder", "deploy-script", "deploy-workflow.js")
+      const currentDir = path.dirname(new URL(import.meta.url).pathname)
+      const localScriptPath = path.join(currentDir, "..", "..", "deploy-script", "deploy-workflow.js")
+      
+      // Use user script if it exists, otherwise use local script for testing
+      const scriptPath = fs.existsSync(userScriptPath) ? userScriptPath : localScriptPath
+      const scriptCommand = `node "${scriptPath}" "${workflowFile}" --json-output`
+      
+      const scriptOutput = execSync(scriptCommand, { 
+        encoding: 'utf8',
+        timeout: 30000 // 30 second timeout
+      })
+      
+      // Parse the JSON output from the script
+      const workflow = JSON.parse(scriptOutput.trim())
+      
+      // Use workflow JSON from script
+      workflowToDeply = {
+        ...workflow,
+        name: name || workflow.name || "Unnamed Workflow",
+        nodes: workflow.nodes || [],
+      } as any
+    } catch (scriptError) {
+      throw new Error(`Failed to execute deploy script: ${scriptError instanceof Error ? scriptError.message : 'Unknown error'}`)
+    }
 
     try {
       const result = await this.n8nClient.deployWorkflow(workflowToDeply)

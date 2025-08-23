@@ -62,7 +62,28 @@ if (args.length < 1) {
   process.exit(1)
 }
 
+const jsonOutputMode = args.includes("--json-output")
 const filePath = args[0]
-const name = args[1] || null
+const name = jsonOutputMode ? null : args[1] || null
 
-deployWorkflow(filePath, name)
+if (jsonOutputMode) {
+  // MCP mode: Output only the JSON workflow for the MCP tool to consume
+  try {
+    const fileContent = fs.readFileSync(filePath, "utf8")
+    const workflow = JSON.parse(fileContent)
+
+    // Override name if provided
+    if (name) {
+      workflow.name = name
+    }
+
+    // Output only the workflow JSON to stdout
+    console.log(JSON.stringify(workflow))
+  } catch (error) {
+    console.error(`Error: ${error.message}`)
+    process.exit(1)
+  }
+} else {
+  // Agent mode: Output deployment instructions
+  deployWorkflow(filePath, name)
+}
