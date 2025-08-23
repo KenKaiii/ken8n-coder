@@ -10,7 +10,7 @@ BLUE='\033[38;2;100;149;237m'   # Info/success - cornflower blue
 GRAY='\033[38;2;128;128;128m'   # Secondary text - medium gray
 NC='\033[0m'                    # No Color
 
-requested_version=${VERSION:-2.4.0}
+requested_version=${VERSION:-2.4.2}
 
 os=$(uname -s | tr '[:upper:]' '[:lower:]')
 if [[ $os == "darwin" ]]; then
@@ -129,17 +129,29 @@ download_and_install() {
     if [ -d "ken8n-coder-$os-$arch/validation-scripts" ]; then
       cp -r "ken8n-coder-$os-$arch/validation-scripts" "$HOME/.ken8n-coder/"
     fi
+    # Copy deploy-script from platform directory (v2.4.2+)
+    if [ -d "ken8n-coder-$os-$arch/deploy-script" ]; then
+      cp -r "ken8n-coder-$os-$arch/deploy-script" "$HOME/.ken8n-coder/"
+    fi
   elif [ -f "ken8n-coder-$os-$arch/bin/ken8n-coder.exe" ]; then
     mv "ken8n-coder-$os-$arch/bin/ken8n-coder.exe" "$INSTALL_DIR/ken8n-coder.exe"
     # Copy validation scripts from platform directory
     if [ -d "ken8n-coder-$os-$arch/validation-scripts" ]; then
       cp -r "ken8n-coder-$os-$arch/validation-scripts" "$HOME/.ken8n-coder/"
     fi
+    # Copy deploy-script from platform directory (v2.4.2+)
+    if [ -d "ken8n-coder-$os-$arch/deploy-script" ]; then
+      cp -r "ken8n-coder-$os-$arch/deploy-script" "$HOME/.ken8n-coder/"
+    fi
   elif [ -f "bin/ken8n-coder" ]; then
     mv bin/ken8n-coder "$INSTALL_DIR/ken8n-coder"
     # Copy validation scripts if present (v1.1.3+)
     if [ -d "validation-scripts" ]; then
       cp -r validation-scripts "$HOME/.ken8n-coder/"
+    fi
+    # Copy deploy-script if present (v2.4.2+)
+    if [ -d "deploy-script" ]; then
+      cp -r deploy-script "$HOME/.ken8n-coder/"
     fi
   elif [ -f "ken8n-coder" ]; then
     mv ken8n-coder "$INSTALL_DIR/ken8n-coder"
