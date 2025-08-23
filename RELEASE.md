@@ -1,6 +1,38 @@
 # Ken8n-Coder Release Process
 
-This document explains how to build, test, and deploy new versions of ken8n-coder that users can install via curl.
+This document explains how to build, test, and deploy new versions of
+ken8n-coder that users can install via curl.
+
+## Latest Release: v2.4.0
+
+### What's New in v2.4.0
+
+#### 🚀 Major Performance Improvement: Copy-Paste Deployment
+
+- **NEW**: Introduced `deploy-script/deploy-workflow.js` for efficient
+  workflow deployment
+- **FIXED**: BUILD agent no longer manually recreates entire JSON
+  structures when deploying
+- **IMPROVED**: Workflow deployment now uses copy-paste method
+  (read file → parse → deploy)
+- **RESULT**: Deployment of large workflows (10,000+ characters)
+  reduced from minutes to seconds
+
+#### Technical Changes
+
+- Added `./deploy-script/deploy-workflow.js` utility script
+- Updated `workflow.txt` instructions to use copy-paste deployment method
+- Removed inefficient manual JSON recreation in BUILD agent workflow
+- Script properly handles ES modules in Node.js environment
+
+#### Impact
+
+- **Before**: Agent would manually write 11,000+ characters into
+  deployment tool
+- **After**: Agent reads JSON file and deploys entire object in
+  3 lines of code
+- Eliminates transcription errors and token waste
+- Makes large workflow deployments instant and reliable
 
 ## Overview
 
@@ -14,10 +46,12 @@ Ken8n-coder uses a multi-step release process:
 
 ## File Locations
 
-- **TUI Version**: `/packages/tui/cmd/ken8n-coder/main.go` (line 24: `var Version = "x.x.x"`)
-- **Install Script**: `/install` (fallback version around line 53)
+- **TUI Version**: `/packages/tui/cmd/ken8n-coder/main.go`
+  (line 24: `var Version = "x.x.x"`)
+- **Install Script**: `/install.sh` (default version on line 13)
 - **Build Script**: `/script/publish.ts` (main release automation)
-- **Package Build**: `/packages/ken8n-coder/script/publish.ts` (platform-specific builds)
+- **Package Build**: `/packages/ken8n-coder/script/publish.ts`
+  (platform-specific builds)
 
 ## Step-by-Step Release Process
 
@@ -47,7 +81,8 @@ KEN8N_CODER_VERSION=NEW_VERSION bun script/publish.ts
 This will:
 
 - Update all package.json files
-- Build binaries for all platforms (Windows, Linux, macOS with different architectures)
+- Build binaries for all platforms (Windows, Linux, macOS with
+  different architectures)
 - Publish to NPM registry
 - Create ZIP files for GitHub release
 - Generate platform-specific SHA hashes
@@ -63,17 +98,21 @@ git tag vNEW_VERSION
 git push origin vNEW_VERSION --no-verify
 
 # Create GitHub release with binaries
-gh release create vNEW_VERSION --title "vNEW_VERSION" --notes "Release notes here" ./packages/ken8n-coder/dist/*.zip
+gh release create vNEW_VERSION --title "vNEW_VERSION" \
+  --notes "Release notes here" ./packages/ken8n-coder/dist/*.zip
 ```
 
 ### 5. Test Installation
 
 ```bash
 # Test the curl installation picks up the new version
-curl -s https://api.github.com/repos/kenkaiii/ken8n-coder/releases/latest | grep tag_name
+curl -s https://api.github.com/repos/kenkaiii/ken8n-coder/releases/latest \
+  | grep tag_name
 
 # Test actual installation
-curl -fsSL https://raw.githubusercontent.com/kenkaiii/ken8n-coder/main/install | bash
+curl -fsSL \
+  https://raw.githubusercontent.com/kenkaiii/ken8n-coder/main/install.sh \
+  | bash
 ```
 
 ## Testing Process
@@ -86,13 +125,15 @@ curl -fsSL https://raw.githubusercontent.com/kenkaiii/ken8n-coder/main/install |
 KEN8N_CODER_VERSION=X.X.X-test bun script/publish.ts
 git tag vX.X.X-test
 git push origin vX.X.X-test
-gh release create vX.X.X-test --prerelease --notes "Test version" ./packages/ken8n-coder/dist/*.zip
+gh release create vX.X.X-test --prerelease \
+  --notes "Test version" ./packages/ken8n-coder/dist/*.zip
 ```
 
 2. **Test Installation**:
 
 ```bash
-VERSION=X.X.X-test bash <(curl -fsSL https://raw.githubusercontent.com/kenkaiii/ken8n-coder/main/install)
+VERSION=X.X.X-test bash <(curl -fsSL \
+  https://raw.githubusercontent.com/kenkaiii/ken8n-coder/main/install.sh)
 ```
 
 3. **Test on Multiple Platforms**:
@@ -104,8 +145,10 @@ VERSION=X.X.X-test bash <(curl -fsSL https://raw.githubusercontent.com/kenkaiii/
 
 ### Build Process
 
-- **NPM Packages**: Platform-specific binaries published to NPM registry
-- **GitHub Releases**: ZIP files containing binaries for direct download
+- **NPM Packages**: Platform-specific binaries published to NPM
+  registry
+- **GitHub Releases**: ZIP files containing binaries for direct
+  download
 - **Homebrew**: Auto-generated formula for macOS package manager
 
 ### Installation Flow

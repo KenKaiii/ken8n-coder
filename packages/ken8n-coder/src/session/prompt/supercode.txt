@@ -72,12 +72,13 @@ return result;
 
 **AVAILABLE LIBRARIES (pre-loaded, 49 total):**
 
-`lodash (_), axios, cheerio, dayjs, moment, dateFns, dateFnsTz, joi (Joi),
-validator, uuid, Ajv, yup, csvParse, xml2js, XMLParser, YAML, papaparse (Papa),
-Handlebars, CryptoJS, forge, jwt, bcrypt (bcryptjs), XLSX, pdfLib, archiver,
+`_, lodash, axios, cheerio, dayjs, moment, date-fns, date-fns-tz, joi, Joi,
+validator, uuid, Ajv, yup, zod, z, csvParse, xml2js, XMLParser, YAML, papaparse, Papa,
+Handlebars, CryptoJS, forge, jwt, bcrypt, bcryptjs, XLSX, xlsx, pdfLib, archiver,
 Jimp, QRCode, math, fuzzy, stringSimilarity, slug, pluralize, qs,
-FormData, ini, toml, nanoid, bytes, currency, phoneNumber, iban, ethers,
-web3, ytdl, ffmpeg, ffmpegStatic`
+FormData, ini, toml, nanoid, ms, bytes, phoneNumber, iban, ethers,
+web3, ytdl, ffmpeg, ffmpegStatic, franc, compromise, pRetry, pLimit,
+htmlToText, marked, jsonDiff, cronParser`
 
 **WORKFLOW (MUST DO ALL STEPS):**
 
