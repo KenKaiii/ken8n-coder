@@ -71,32 +71,47 @@ Process:
 4. Workflow persists locally AND in n8n
 5. Get webhook URL for testing
 
-## CRITICAL: Copy-Paste Deployment (USE THE SCRIPT!)
-**NEVER manually recreate JSON in the deploy call!**
+## 🚨 MANDATORY: Copy-Paste Deployment Method 🚨
+**❌ FORBIDDEN: Manual JSON recreation in deploy calls**
+**✅ REQUIRED: File reading + parsing method ONLY**
 
-Use the deploy-workflow.js script located at ./deploy-script/deploy-workflow.js:
-```bash
-# Run this first to prepare deployment:
-node ~/.ken8n-coder/deploy-script/deploy-workflow.js your-workflow.json
+### STEP 1: Read the saved workflow file
+```javascript
+const fileContent = Read('workflow-name.json')
+const workflow = JSON.parse(fileContent)
 ```
 
-Then use the output to deploy via MCP:
+### STEP 2: Deploy the parsed object (takes 1 second)
 ```javascript
-// ✅ CORRECT (copy-paste method - takes seconds):
-const fileContent = Read('workflow.json')
-const workflow = JSON.parse(fileContent)
 n8n_deploy({ workflow: workflow, active: true })
+```
 
-// ❌ WRONG (manual recreation - takes forever, causes errors):
+### ❌ ABSOLUTELY FORBIDDEN - DO NOT DO THIS:
+```javascript
+// This method is BANNED - takes 5+ minutes and causes errors
 n8n_deploy({ 
   workflow: {
-    name: "manually typing...",
-    nodes: [...hundreds of lines...]
+    name: "manually typing workflow name...",
+    nodes: [
+      {
+        parameters: { /* typing hundreds of lines... */ }
+      }
+    ],
+    connections: { /* more manual typing... */ }
   }
 })
 ```
 
-This saves massive time - a 10,000+ character workflow deploys instantly!
+### ✅ ALWAYS DO THIS INSTEAD:
+```javascript
+// Read file → Parse → Deploy (instant deployment)
+const fileContent = Read('workflow-name.json')
+const workflow = JSON.parse(fileContent) 
+n8n_deploy({ workflow: workflow, active: true })
+```
+
+**RULE: If deployment takes >10 seconds, you are doing it WRONG**
+**The entire workflow JSON already exists in the file - USE IT!**
 
 ## Step 3: Test via Webhook
 - Use n8n_test with test data
