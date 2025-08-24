@@ -563,7 +563,14 @@ export const GithubRunCommand = cmd({
           prompt = prompt.slice(0, start + offset) + replacement + prompt.slice(start + offset + tag.length)
           offset += replacement.length - tag.length
 
-          const contentType = res.headers.get("content-type")
+          // Safely get content-type with defensive coding
+          let contentType: string | null = null
+          try {
+            contentType = res.headers?.get("content-type") || null
+          } catch (error) {
+            console.warn("Could not access content-type header:", error)
+          }
+          
           imgData.push({
             filename,
             mime: contentType?.startsWith("image/") ? contentType : "text/plain",

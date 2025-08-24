@@ -9,6 +9,118 @@ import {
   setAuthParams,
 } from "./utils.js"
 
+// Helper functions for safe header access and response processing
+function safeGetHeader(response: Response | undefined, headerName: string): string | null {
+  try {
+    return response?.headers?.get(headerName) || null
+  } catch (error) {
+    console.warn(`Could not access ${headerName} header:`, error)
+    return null
+  }
+}
+
+function validateResponse(response: Response | undefined): void {
+  if (!response) {
+    throw new Error("Fetch returned undefined response")
+  }
+}
+
+function handleEmptyResponse(response: Response, result: any, opts: any) {
+  const contentLength = safeGetHeader(response, "Content-Length")
+
+  if (response.status === 204 || contentLength === "0") {
+    return opts.responseStyle === "data"
+      ? {}
+      : {
+          data: {},
+          ...result,
+        }
+  }
+  return null
+}
+
+function processSuccessResponse(response: Response, result: any, opts: any) {
+  const emptyResponse = handleEmptyResponse(response, result, opts)
+  if (emptyResponse !== null) return emptyResponse
+
+  const contentType = safeGetHeader(response, "Content-Type")
+  const parseAs = (opts.parseAs === "auto" ? getParseAs(contentType) : opts.parseAs) ?? "json"
+
+  return { contentType, parseAs }
+}
+
+async function processDataResponse(response: Response, parseAs: string, result: any, opts: any) {
+  let data: any
+  switch (parseAs) {
+    case "arrayBuffer":
+    case "blob":
+    case "formData":
+    case "json":
+    case "text":
+      data = await response[parseAs]()
+      break
+    case "stream":
+      return opts.responseStyle === "data"
+        ? response.body
+        : {
+            data: response.body,
+            ...result,
+          }
+  }
+
+  if (parseAs === "json") {
+    if (opts.responseValidator) {
+      await opts.responseValidator(data)
+    }
+
+    if (opts.responseTransformer) {
+      data = await opts.responseTransformer(data)
+    }
+  }
+
+  return opts.responseStyle === "data"
+    ? data
+    : {
+        data,
+        ...result,
+      }
+}
+
+function processErrorResponse(response: Response, request: Request, result: any, opts: any, interceptors: any) {
+  return async () => {
+    const textError = await response.text()
+    let jsonError: unknown
+
+    try {
+      jsonError = JSON.parse(textError)
+    } catch {
+      // noop
+    }
+
+    const error = jsonError ?? textError
+    let finalError = error
+
+    for (const fn of interceptors.error._fns) {
+      if (fn) {
+        finalError = (await fn(error, response, request, opts)) as string
+      }
+    }
+
+    finalError = finalError || ({} as string)
+
+    if (opts.throwOnError) {
+      throw finalError
+    }
+
+    return opts.responseStyle === "data"
+      ? undefined
+      : {
+          error: finalError,
+          ...result,
+        }
+  }
+}
+
 type ReqInit = Omit<RequestInit, "body" | "headers"> & {
   body?: any
   headers: ReturnType<typeof mergeHeaders>
@@ -70,7 +182,7 @@ export const createClient = (config: Config = {}): Client => {
 
     // fetch must be assigned here, otherwise it would throw the error:
     // TypeError: Failed to execute 'fetch' on 'Window': Illegal invocation
-    const _fetch = opts.fetch!
+    const _fetch = opts.fetch
     let response = await _fetch(request)
 
     for (const fn of interceptors.response._fns) {
@@ -84,86 +196,20 @@ export const createClient = (config: Config = {}): Client => {
       response,
     }
 
+    validateResponse(response)
+
     if (response.ok) {
-      if (response.status === 204 || response.headers.get("Content-Length") === "0") {
-        return opts.responseStyle === "data"
-          ? {}
-          : {
-              data: {},
-              ...result,
-            }
+      const successResult = processSuccessResponse(response, result, opts)
+
+      if (typeof successResult === "object" && "parseAs" in successResult) {
+        const { parseAs } = successResult
+        return await processDataResponse(response, parseAs, result, opts)
       }
 
-      const parseAs =
-        (opts.parseAs === "auto" ? getParseAs(response.headers.get("Content-Type")) : opts.parseAs) ?? "json"
-
-      let data: any
-      switch (parseAs) {
-        case "arrayBuffer":
-        case "blob":
-        case "formData":
-        case "json":
-        case "text":
-          data = await response[parseAs]()
-          break
-        case "stream":
-          return opts.responseStyle === "data"
-            ? response.body
-            : {
-                data: response.body,
-                ...result,
-              }
-      }
-
-      if (parseAs === "json") {
-        if (opts.responseValidator) {
-          await opts.responseValidator(data)
-        }
-
-        if (opts.responseTransformer) {
-          data = await opts.responseTransformer(data)
-        }
-      }
-
-      return opts.responseStyle === "data"
-        ? data
-        : {
-            data,
-            ...result,
-          }
+      return successResult
     }
 
-    const textError = await response.text()
-    let jsonError: unknown
-
-    try {
-      jsonError = JSON.parse(textError)
-    } catch {
-      // noop
-    }
-
-    const error = jsonError ?? textError
-    let finalError = error
-
-    for (const fn of interceptors.error._fns) {
-      if (fn) {
-        finalError = (await fn(error, response, request, opts)) as string
-      }
-    }
-
-    finalError = finalError || ({} as string)
-
-    if (opts.throwOnError) {
-      throw finalError
-    }
-
-    // TODO: we probably want to return error and improve types
-    return opts.responseStyle === "data"
-      ? undefined
-      : {
-          error: finalError,
-          ...result,
-        }
+    return await processErrorResponse(response, request, result, opts, interceptors)()
   }
 
   return {
