@@ -70,7 +70,7 @@ return result;
 ✅ CAN use try-catch for API calls/parsing
 ✅ Write code that will be copy-pasted into n8n, not imported
 
-**AVAILABLE LIBRARIES (pre-loaded, 49 total):**
+**AVAILABLE LIBRARIES (pre-loaded, 55 total):**
 
 `_, lodash, axios, cheerio, dayjs, moment, date-fns, date-fns-tz, joi, Joi,
 validator, uuid, Ajv, yup, zod, z, csvParse, xml2js, XMLParser, YAML, papaparse, Papa,
@@ -78,7 +78,7 @@ Handlebars, CryptoJS, forge, jwt, bcrypt, bcryptjs, XLSX, xlsx, pdfLib, archiver
 Jimp, QRCode, math, fuzzy, stringSimilarity, slug, pluralize, qs,
 FormData, ini, toml, nanoid, ms, bytes, phoneNumber, iban, ethers,
 web3, ytdl, ffmpeg, ffmpegStatic, franc, compromise, pRetry, pLimit,
-htmlToText, marked, jsonDiff, cronParser`
+htmlToText, marked, jsonDiff, cronParser, ccxt, coinGecko, solana, bitcoin, secp256k1, bip39`
 
 **WORKFLOW (MUST DO ALL STEPS):**
 

@@ -164,8 +164,8 @@ When creating Super Code nodes:
 - **NEVER use**: `require()` or `import` statements
 - **Access pattern**: Direct global usage like `lodash.sum([1,2,3])`
 
-# Available Super Code Libraries (49 total, all global)
-_, lodash, axios, cheerio, dayjs, moment, date-fns, date-fns-tz, joi, Joi, validator, uuid, Ajv, yup, zod, z, csvParse, xml2js, XMLParser, YAML, papaparse, Papa, Handlebars, CryptoJS, forge, jwt, bcrypt, bcryptjs, XLSX, xlsx, pdfLib, archiver, Jimp, QRCode, math, fuzzy, stringSimilarity, slug, pluralize, qs, FormData, ini, toml, nanoid, ms, bytes, phoneNumber, iban, ethers, web3, ytdl, ffmpeg, ffmpegStatic, franc, compromise, pRetry, pLimit, htmlToText, marked, jsonDiff, cronParser
+# Available Super Code Libraries (55 total, all global)
+_, lodash, axios, cheerio, dayjs, moment, date-fns, date-fns-tz, joi, Joi, validator, uuid, Ajv, yup, zod, z, csvParse, xml2js, XMLParser, YAML, papaparse, Papa, Handlebars, CryptoJS, forge, jwt, bcrypt, bcryptjs, XLSX, xlsx, pdfLib, archiver, Jimp, QRCode, math, fuzzy, stringSimilarity, slug, pluralize, qs, FormData, ini, toml, nanoid, ms, bytes, phoneNumber, iban, ethers, web3, ytdl, ffmpeg, ffmpegStatic, franc, compromise, pRetry, pLimit, htmlToText, marked, jsonDiff, cronParser, ccxt, coinGecko, solana, bitcoin, secp256k1, bip39
 
 # Input Handling (Flexible Approach)
 - Ask user what input data they're working with
