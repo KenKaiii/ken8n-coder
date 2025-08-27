@@ -10,7 +10,7 @@ BLUE='\033[38;2;100;149;237m'   # Info/success - cornflower blue
 GRAY='\033[38;2;128;128;128m'   # Secondary text - medium gray
 NC='\033[0m'                    # No Color
 
-requested_version=${VERSION:-2.4.3}
+requested_version=${VERSION:-2.4.4}
 
 os=$(uname -s | tr '[:upper:]' '[:lower:]')
 if [[ $os == "darwin" ]]; then
