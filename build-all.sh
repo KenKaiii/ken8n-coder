@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-VERSION="2.4.3"
+VERSION="2.4.6"
 echo "Building ken8n-coder v${VERSION} for all platforms..."
 
 cd /home/ken/Projects/ken8n-coder/ken8n-coder/packages/ken8n-coder
@@ -66,6 +66,10 @@ for platform in "${platforms[@]}"; do
   # Copy deploy-script folder
   mkdir -p "./dist/ken8n-coder-${os}-${arch}/deploy-script"
   cp ../../deploy-script/deploy-workflow.js "./dist/ken8n-coder-${os}-${arch}/deploy-script/" 2>/dev/null || true
+
+  # Copy prompt files (agent instructions)
+  mkdir -p "./dist/ken8n-coder-${os}-${arch}/packages/ken8n-coder/src/session/prompt"
+  cp -r src/session/prompt/*.txt "./dist/ken8n-coder-${os}-${arch}/packages/ken8n-coder/src/session/prompt/" 2>/dev/null || true
 
   # Create package.json for the platform
   cat >"dist/ken8n-coder-${os}-${arch}/package.json" <<EOF
