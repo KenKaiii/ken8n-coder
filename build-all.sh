@@ -82,10 +82,19 @@ for platform in "${platforms[@]}"; do
 EOF
 
   echo "✅ Built ${os}-${arch}"
+
+  # CRITICAL: Validate the build contains all required files
+  echo "🔍 Validating build for ${os}-${arch}..."
+  if ! node ../../../validate-release.cjs "./dist/ken8n-coder-${os}-${arch}"; then
+    echo "❌ VALIDATION FAILED FOR ${os}-${arch}"
+    echo "🚫 ABORTING BUILD - Fix missing files above"
+    exit 1
+  fi
+  echo "✅ Validation passed for ${os}-${arch}"
 done
 
 echo ""
-echo "🎉 All builds complete for v${VERSION}!"
+echo "🎉 All builds complete and validated for v${VERSION}!"
 echo ""
 echo "Next steps:"
 echo "1. Test the binaries (at least one per OS)"

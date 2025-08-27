@@ -1,0 +1,95 @@
+{
+  "required_files": [
+    {
+      "path": "packages/ken8n-coder/src/session/prompt/supercode.txt",
+      "validation": "hash_check",
+      "description": "SuperCode agent instructions - ANY change must be captured"
+    },
+    {
+      "path": "packages/ken8n-coder/src/session/prompt/workflow.txt",
+      "validation": "hash_check",
+      "description": "Workflow agent instructions - ANY change must be captured"
+    },
+    {
+      "path": "packages/ken8n-coder/src/session/prompt/anthropic.txt",
+      "validation": "hash_check",
+      "description": "Anthropic model prompt - ANY change must be captured"
+    },
+    {
+      "path": "packages/ken8n-coder/src/session/prompt/gemini.txt",
+      "validation": "hash_check",
+      "description": "Gemini model prompt - ANY change must be captured"
+    },
+    {
+      "path": "packages/ken8n-coder/src/session/prompt/codex.txt",
+      "validation": "hash_check",
+      "description": "Codex model prompt - ANY change must be captured"
+    },
+    {
+      "path": "packages/ken8n-coder/src/session/prompt/plan.txt",
+      "validation": "hash_check",
+      "description": "Planning prompt - ANY change must be captured"
+    },
+    {
+      "path": "packages/ken8n-coder/src/session/prompt/initialize.txt",
+      "validation": "hash_check",
+      "description": "Initialization prompt - ANY change must be captured"
+    },
+    {
+      "path": "packages/ken8n-coder/src/session/prompt/summarize.txt",
+      "validation": "hash_check",
+      "description": "Summarization prompt - ANY change must be captured"
+    },
+    {
+      "path": "packages/ken8n-coder/src/session/prompt/title.txt",
+      "validation": "hash_check",
+      "description": "Title generation prompt - ANY change must be captured"
+    },
+    {
+      "path": "packages/ken8n-coder/src/session/prompt/qwen.txt",
+      "validation": "hash_check",
+      "description": "Qwen model prompt - ANY change must be captured"
+    },
+    {
+      "path": "packages/ken8n-coder/src/session/prompt/beast.txt",
+      "validation": "hash_check",
+      "description": "Beast model prompt - ANY change must be captured"
+    },
+    {
+      "path": "packages/ken8n-coder/src/session/prompt/copilot-gpt-5.txt",
+      "validation": "hash_check",
+      "description": "Copilot GPT-5 model prompt - ANY change must be captured"
+    },
+    {
+      "path": "packages/ken8n-coder/src/session/prompt/anthropic_spoof.txt",
+      "validation": "hash_check",
+      "description": "Anthropic spoof prompt - ANY change must be captured"
+    },
+    {
+      "path": "validation-scripts/validate-supercode-static.js",
+      "validation": "hash_check",
+      "description": "SuperCode validation script - ANY change must be captured"
+    },
+    {
+      "path": "deploy-script/deploy-workflow.js",
+      "validation": "hash_check",
+      "description": "Workflow deployment script - ANY change must be captured"
+    },
+    {
+      "path": "bin/ken8n-coder",
+      "validation": "file_exists",
+      "description": "Main executable binary"
+    },
+    {
+      "path": "package.json",
+      "validation": "hash_check",
+      "description": "Package metadata - version changes etc must be captured"
+    }
+  ],
+  "file_hashes": {
+    "validation-scripts/validate-supercode-static.js": "5264ff38b8fb5241e039926a8df4adc51b5b3543fed13f4ac6961ba9e9b8573e",
+    "deploy-script/deploy-workflow.js": "be4daf31140b83efb72e0a725ca172c14624763a74903233f3c4824d263032ed",
+    "package.json": "43f54c08107eb400c200632d706f818178838bf3aebad4bcbe366ed6db5a3dc8"
+  },
+  "validation_notes": "Hash validation ensures ANY change to critical files is detected and must be updated in releases. No more missing changes!"
+}
