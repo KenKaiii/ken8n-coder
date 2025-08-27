@@ -253,6 +253,16 @@ func LoadFromConfig(config *opencode.Config) CommandRegistry {
 			Description: "page down",
 			Keybindings: parseBindings("pgdown"),
 		},
+		{
+			Name:        SessionChildCycleCommand,
+			Description: "next child session",
+			Keybindings: parseBindings("ctrl+right"),
+		},
+		{
+			Name:        SessionChildCycleReverseCommand,
+			Description: "previous child session",
+			Keybindings: parseBindings("ctrl+left"),
+		},
 	}
 	registry := make(CommandRegistry)
 	keybinds := map[string]string{}
