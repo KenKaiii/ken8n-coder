@@ -1,0 +1,86 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# release-complete.sh - Complete release script for ken8n-coder
+# Usage: ./release-complete.sh [--minor|--major]
+
+# Parse arguments
+RELEASE_TYPE="patch"
+case "${1:-}" in
+--minor) RELEASE_TYPE="minor" ;;
+--major) RELEASE_TYPE="major" ;;
+--help)
+  echo "Usage: $0 [--minor|--major]"
+  echo "  (default: patch release)"
+  exit 0
+  ;;
+"")
+  # Default to patch
+  ;;
+*)
+  echo "Unknown argument: $1"
+  echo "Usage: $0 [--minor|--major]"
+  exit 1
+  ;;
+esac
+
+echo "🚀 Creating $RELEASE_TYPE release..."
+
+# Get latest version
+LATEST_TAG=$(gh release list --limit 1 --json tagName --jq '.[0].tagName')
+if [ -z "$LATEST_TAG" ]; then
+  echo "❌ No tags found"
+  exit 1
+fi
+
+echo "📋 Latest release: $LATEST_TAG"
+
+# Calculate new version
+VERSION_WITHOUT_V=${LATEST_TAG#v}
+IFS='.' read -ra VERSION <<<"$VERSION_WITHOUT_V"
+
+case "$RELEASE_TYPE" in
+minor)
+  NEW_VERSION="${VERSION[0]}.$((VERSION[1] + 1)).0"
+  ;;
+major)
+  NEW_VERSION="$((VERSION[0] + 1)).0.0"
+  ;;
+*)
+  NEW_VERSION="${VERSION[0]}.${VERSION[1]}.$((VERSION[2] + 1))"
+  ;;
+esac
+
+echo "🎯 New version: v$NEW_VERSION"
+
+# Build and publish
+echo "🔨 Building release artifacts..."
+export KEN8N_CODER_VERSION="$NEW_VERSION"
+bun script/publish.ts
+
+# Git operations
+echo "🏷️  Creating git tag..."
+git add .
+git commit -m "release: v$NEW_VERSION - Update version files and publish artifacts
+
+- Update all package.json files to v$NEW_VERSION
+- Build and publish cross-platform binaries to NPM
+- Generate release artifacts for GitHub download
+
+🤖 Generated with [Claude Code](https://claude.ai/code)
+
+Co-Authored-By: Claude <noreply@anthropic.com>"
+
+git tag "v$NEW_VERSION"
+git push origin main --tags
+
+# GitHub release
+echo "📦 Creating GitHub release..."
+cd packages/ken8n-coder
+gh release create "v$NEW_VERSION" \
+  --title "v$NEW_VERSION" \
+  --generate-notes \
+  dist/ken8n-coder-*.zip
+
+echo "✅ Release v$NEW_VERSION complete!"
+echo "🔗 https://github.com/kenkaiii/ken8n-coder/releases/tag/v$NEW_VERSION"

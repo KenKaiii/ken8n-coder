@@ -1,0 +1,14 @@
+{
+  "mcp": {
+    "context7": {
+      "type": "remote",
+      "url": "https://mcp.context7.com/sse"
+    },
+    "memory": {
+      "type": "local",
+      "command": ["npx", "-y", "ken-you-remember"],
+      "enabled": true
+    }
+  },
+  "$schema": "https://opencode.ai/config.json"
+}

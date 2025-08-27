@@ -1,0 +1,12 @@
+#!/bin/bash
+# ken8n-coder global launcher script
+
+# Store the current working directory where the command was invoked
+CURRENT_DIR="$(pwd)"
+
+# Change to the project directory to access the executable
+cd /home/ken/Projects/ken8n-coder/ken8n-coder
+
+# Set up bun path and run with the original working directory as project
+export PATH="$HOME/.bun/bin:$PATH"
+exec bun run --conditions=development packages/ken8n-coder/src/index.ts "$@" "$CURRENT_DIR"

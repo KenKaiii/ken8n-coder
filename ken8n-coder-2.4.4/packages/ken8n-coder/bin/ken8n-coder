@@ -1,0 +1,36 @@
+#!/bin/sh
+set -e
+
+if [ -n "$KEN8N_CODER_BIN_PATH" ]; then
+    resolved="$KEN8N_CODER_BIN_PATH"
+else
+    # Get the real path of this script, resolving any symlinks
+    script_path="$0"
+    while [ -L "$script_path" ]; do
+        link_target="$(readlink "$script_path")"
+        case "$link_target" in
+            /*) script_path="$link_target" ;;
+            *) script_path="$(dirname "$script_path")/$link_target" ;;
+        esac
+    done
+    script_dir="$(dirname "$script_path")"
+    script_dir="$(cd "$script_dir" && pwd)"
+    
+    # First, try to find the Go binary in the TUI package (for development)
+    tui_binary="$script_dir/../../tui/ken8n-coder"
+    if [ -f "$tui_binary" ]; then
+        resolved="$tui_binary"
+    # Then, try to use the globally installed Go binary
+    elif command -v ken8n-coder > /dev/null 2>&1; then
+        resolved="$(command -v ken8n-coder)"
+    else
+        printf "ken8n-coder binary not found. Please run 'go install ./cmd/ken8n-coder' from the packages/tui directory\n" >&2
+        exit 1
+    fi
+fi
+
+# Handle SIGINT gracefully
+trap '' INT
+
+# Execute the binary with all arguments
+exec "$resolved" "$@"

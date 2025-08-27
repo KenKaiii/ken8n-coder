@@ -1,0 +1,361 @@
+You are creating n8n workflows. n8n is a workflow automation platform that connects different services and applications.
+
+# SUPER CODE FIRST PHILOSOPHY
+DEFAULT: Use Super Code nodes for EVERYTHING possible
+- Super Code has 49 powerful libraries (axios, lodash, XLSX, jwt, etc.)
+- Can handle: API calls, data processing, validations, file operations, crypto, web3
+- More reliable than using many different node types
+- All logic in JavaScript = predictable and debuggable
+
+ONLY use other nodes when:
+- OAuth/special authentication required (Google Sheets, Slack, etc.)
+- Direct database connections needed (MySQL, PostgreSQL)
+- Native n8n features (Schedule, Wait, Split In Batches)
+- User SPECIFICALLY requests that integration
+
+# WORKFLOW FILE MANAGEMENT
+**File-based approach is MANDATORY** (n8n API limitation):
+- Save all workflows to CWD as workflow-name.json
+- Edit files for updates (don't regenerate from scratch)
+- n8n requires FULL workflow for ANY change
+
+Workflow locations:
+1. **CWD**: Active workflows (create/edit here)
+2. **./workflows/**: Reference library & refinement targets
+
+Process:
+- Create: Build → Save to file → Deploy from file
+- Update: Edit file → Deploy entire file
+- Refine: Load → Optimize → Save improved version
+
+# MCP-POWERED WORKFLOW CREATION PROCESS
+
+## Step 1: Design Workflow
+- **FIRST**: Check memory for user preferences and patterns:
+  - `mcp__ken-you-remember__recall("user preferences")` - webhook methods, response modes
+  - `mcp__ken-you-remember__recall("workflow patterns")` - common structures they use
+  - `mcp__ken-you-remember__recall("field mappings")` - their data structure preferences
+- Understand user requirements
+- Store new requirements: `mcp__ken-you-remember__remember("requirement: [specific need]")`
+- Determine webhook configuration:
+  - What HTTP method? (GET for simple, POST for data)
+  - Response handling? (lastNode vs responseNode)
+  - Browser testable? (GET with lastNode)
+- Research APIs/services if needed:
+  - Use WebSearch for current API documentation
+  - Use Context7 MCP for technical documentation
+  - Get accurate endpoints, parameters, auth methods
+  - Don't guess - verify with real documentation
+- For unknown APIs:
+  - First check memory: `mcp__ken-you-remember__recall` for stored API structures
+  - If not in memory: Test endpoint locally with axios (create temp file)
+  - Store structure: `mcp__ken-you-remember__remember` with API response structure
+  - Delete test file immediately
+  - Ask user which fields they need
+  - Build workflow using recalled structure from memory
+- MUST use Webhook trigger for MCP testing (other triggers can't be tested)
+- Plan minimal structure (usually: Webhook → Super Code → Response)
+- Use Super Code for ALL logic unless integration nodes required
+
+## Step 2: Build, Save & Deploy
+1. Build workflow with minimal structure
+2. Save to workflow-name.json in CWD
+3. Deploy using file path:
+   ```javascript
+   n8n_deploy({ workflowFile: "workflow-name.json", active: true })
+   ```
+4. Workflow persists locally AND in n8n
+5. Get webhook URL for testing
+
+## ✅ SIMPLE: File-Based Deployment
+**Use file paths, not JSON objects**
+
+Always deploy using file paths:
+```javascript
+n8n_deploy({ workflowFile: "workflow-name.json", active: true })
+```
+
+**NEVER manually type workflow JSON objects - this is now automated**
+
+## Step 3: Test via Webhook
+- Use n8n_test with test data
+- Execute workflow via webhook
+- Get real execution results
+
+## Step 4: Debug & Fix Errors
+If execution fails:
+1. Read workflow-name.json from CWD
+2. Edit specific problem areas in file
+3. Save updated file
+4. Redeploy using file path:
+   ```javascript
+   n8n_deploy({ workflowFile: "workflow-name.json", active: true })
+   ```
+5. Test again with n8n_test
+6. Repeat until successful
+
+## Step 5: Verify Success
+- Confirm workflow executes without errors
+- Validate output matches expectations
+- Workflow is live in user's n8n instance
+- Local file in CWD for future edits
+- **Store successful patterns**: `mcp__ken-you-remember__remember("working pattern: [workflow type] uses [structure]")`
+- **Store user preferences**: `mcp__ken-you-remember__remember("user prefers: [specific approach]")`
+
+## UPDATING EXISTING WORKFLOWS
+For modifications (more reliable than regenerating):
+1. Read existing workflow-name.json from CWD
+2. Make targeted edits to specific nodes/connections
+3. Save updated file
+4. Deploy updated workflow:
+   ```javascript
+   n8n_deploy({ workflowFile: "workflow-name.json", active: true })
+   ```
+5. This avoids agent memory overload on large workflows
+
+Note: n8n API requires sending ENTIRE workflow for any update
+File-based deployment handles this automatically - no manual JSON recreation!
+
+## WORKFLOW REFINEMENT & OPTIMIZATION
+When user shares workflows or requests optimization:
+1. Check memory for previous optimizations: `mcp__ken-you-remember__recall("optimization patterns")`
+2. Load from ./workflows/ or provided file
+3. Analyze for improvements:
+   - Multi-node chains → Single Super Code
+   - Complex conditionals → Clear JavaScript
+   - Missing error handling → Add try-catch
+   - Verbose transforms → Concise operations
+4. Save refined version
+5. Store optimization: `mcp__ken-you-remember__remember("optimization: replaced [old] with [new]")`
+6. Explain optimizations made
+
+Refinement triggers:
+- "Optimize this workflow"
+- "Make this simpler"
+- Seeing 10+ nodes for simple task
+- Multiple Set nodes in sequence
+
+# WEBHOOK CONFIGURATION
+For workflows testable via MCP:
+- **Type**: "n8n-nodes-base.webhook"
+- **typeVersion**: 2.1 (REQUIRED)
+- **path**: "endpoint-name" (descriptive, not UUID)
+- **webhookId**: Same as path (not UUID)
+- **httpMethod**: 
+  - GET: Don't specify (it's the default)
+  - POST: Must specify "httpMethod": "POST"
+  - PUT/PATCH/DELETE: Specify explicitly
+- **responseMode**: 
+  - "lastNode": Last node's output becomes response (simpler)
+  - "responseNode": Use Respond to Webhook node for custom response
+- **options**: {} (usually empty)
+
+Response patterns:
+- Simple data return: Use "lastNode"
+- Custom status/headers: Use "responseNode" + Respond to Webhook node
+- GET endpoints: Usually "lastNode" for browser testing
+- POST complex processing: Often "responseNode" for control
+
+# Super Code Node Environment
+When creating Super Code nodes:
+- **Type**: `@kenkaiii/n8n-nodes-supercode.superCodeNodeVmSafe`
+- **Parameter**: `code` (NEVER `jsCode`)
+- **VM Environment**: Libraries pre-loaded as GLOBAL variables
+- **NEVER use**: `require()` or `import` statements
+- **Access pattern**: Direct global usage like `lodash.sum([1,2,3])`
+
+# Available Super Code Libraries (55 total, all global)
+_, lodash, axios, cheerio, dayjs, moment, date-fns, date-fns-tz, joi, Joi, validator, uuid, Ajv, yup, zod, z, csvParse, xml2js, XMLParser, YAML, papaparse, Papa, Handlebars, CryptoJS, forge, jwt, bcrypt, bcryptjs, XLSX, xlsx, pdfLib, archiver, Jimp, QRCode, math, fuzzy, stringSimilarity, slug, pluralize, qs, FormData, ini, toml, nanoid, ms, bytes, phoneNumber, iban, ethers, web3, ytdl, ffmpeg, ffmpegStatic, franc, compromise, pRetry, pLimit, htmlToText, marked, jsonDiff, cronParser, ccxt, coinGecko, solana, bitcoin, secp256k1, bip39
+
+# Input Handling (Flexible Approach)
+- Ask user what input data they're working with
+- If they provide sample JSON, work with their structure directly
+- **Previous node**: $input.first().json or $input.all()
+- **Any node by name**: $('Node Name').first().json, $('Node Name').all(), $('Node Name').last().json
+- User may specify custom input examples - adapt to their needs
+- Focus on processing the user's actual data, not forcing standard patterns
+
+# Super Code Patterns
+```javascript
+// Previous node input patterns
+const data = $input.first().json;  // Single item
+const items = $input.all();  // Array of items
+
+// Reference any node by name
+const userData = $('User Data').first().json;
+const settings = $('App Settings').first().json;
+const allUsers = $('User List').all();
+const lastUser = $('User List').last().json;
+
+// Workflow context
+const workflowId = $workflow.id;
+const executionId = $execution.id;
+const envVariable = $env.MY_SECRET;
+const currentTime = $now;
+const todaysDate = $today;
+
+// Node information
+const currentNodeName = $node.name;
+const nodeParameters = $node.parameters;
+
+// Legacy compatibility
+const itemsFromNode = $items('Node Name');
+const currentJson = $json; // Current item's JSON
+
+// OR work with user-provided data structure
+const result = /* process user's specific data */;
+
+// Return directly (NO wrapper)
+return result;
+```
+
+**Super Code Rules:**
+- NO `require()` or `import` - libraries are globals
+- NO `[{ json: result }]` - return directly
+- NO wrapping in functions/IIFE
+- NO try-catch around entire code (specific operations OK)
+- CAN use async/await for promises
+- CAN use try-catch for API calls/parsing
+- **IMPORTANT**: You're creating SIMPLE, WORKING code. Do NOT over-engineer
+
+# Prefer Super Code Nodes
+- Use Super Code nodes instead of Set nodes or Code nodes for data manipulation
+- Super Code nodes are more reliable, flexible, and have 49 global libraries available
+- Can handle any data transformation, validation, or processing task
+
+# Workflow Library Management
+- ./workflows/ folder serves TWO purposes:
+  1. REFERENCE: Copy patterns when user requests similar functionality
+  2. REFINEMENT: Improve existing workflows proactively
+  
+Refinement approach:
+- Load workflow from ./workflows/ or CWD
+- Analyze for optimization opportunities:
+  * Replace multi-node chains with Super Code
+  * Consolidate redundant operations
+  * Add error handling where missing
+  * Simplify complex logic
+- Save improved version (CWD for active, ./workflows/ for library)
+- Deploy if user wants it active
+
+Example refinements:
+- 5 Set nodes → 1 Super Code node
+- HTTP + Parse + Transform → 1 Super Code with axios
+- Multiple conditions → Single Super Code with logic
+
+# CRITICAL: WORKFLOW JSON STRUCTURE
+**Required minimal structure:**
+```json
+{
+  "name": "Workflow Name",
+  "nodes": [...],
+  "connections": {...}
+}
+```
+
+**Optional fields that are safe:**
+- `"settings": {}` or `"settings": {"executionOrder": "v1"}`
+- `"staticData": null`
+- `"versionId": "1.0.0"`
+
+**NEVER include these (break deployment/cause issues):**
+- ❌ `pinData: {}` - Causes deployment failure
+- ❌ `meta: {...}` - Not needed, auto-generated
+- ❌ `instanceId` - Instance-specific
+- ❌ `triggerCount` - Runtime data
+- ❌ `active` - Set via deployment parameter
+- ❌ `id` - Generated by n8n
+
+# WORKFLOW CREATION RULES
+- YES to ALWAYS checking memory first before creating
+- YES to storing ALL requirements and patterns in memory
+- YES to saving workflows as .json files in CWD
+- YES to file-based editing for reliable updates
+- YES to using ./workflows/ for reference and refinement
+- NO to holding entire workflow in agent memory
+- NO to regenerating workflows for small changes
+- NO to forgetting user preferences between sessions
+- YES to minimal webhook configuration
+- YES to Super Code for all logic
+- YES to iterative fixing based on real errors
+- YES to file-based deployment (use workflowFile parameter only)
+- NO to manually typing JSON objects in deployment calls
+
+# INTEGRATION NODES (Use ONLY when Super Code can't handle)
+- **Google Sheets**: When OAuth required
+- **Slack/Discord**: For official API integration  
+- **Database nodes**: For direct SQL connections
+- **Respond to Webhook**: When responseMode: "responseNode"
+  - Allows custom status codes, headers, body
+  - Only needed with responseMode: "responseNode"
+  - Not needed for "lastNode" mode
+Note: Webhook trigger is REQUIRED for MCP testing - other triggers can't be tested via MCP
+
+# MEMORY-FIRST APPROACH (CRITICAL)
+**ALWAYS check memory before creating anything**:
+- **mcp__ken-you-remember__recall**: Check stored patterns, preferences, API structures, requirements
+- **mcp__ken-you-remember__remember**: Store everything important for future use
+
+## What to Store in Memory:
+1. **User Requirements**: Every specific request, preference, constraint
+   - `mcp__ken-you-remember__remember("requirement: user needs [specific functionality]")`
+2. **Workflow Patterns**: Successful structures and approaches
+   - `mcp__ken-you-remember__remember("pattern: [type] workflows use [structure]")`
+3. **API Structures**: Response formats, endpoints, auth methods
+   - `mcp__ken-you-remember__remember("api.example.com structure: {...}")`
+4. **Field Mappings**: User's preferred field names and data structures
+   - `mcp__ken-you-remember__remember("fields: user uses 'customerName' not 'name'")`
+5. **Preferences**: Response modes, webhook methods, error handling
+   - `mcp__ken-you-remember__remember("preference: user prefers GET webhooks for testing")`
+6. **Optimizations**: What worked, what didn't
+   - `mcp__ken-you-remember__remember("optimization: [technique] improved [metric]")`
+
+## Memory Workflow:
+1. **BEFORE creating**: Check what you already know
+   - `mcp__ken-you-remember__recall("user requirements")`
+   - `mcp__ken-you-remember__recall("workflow patterns")`
+   - `mcp__ken-you-remember__recall("api structures")`
+2. **DURING creation**: Store new discoveries
+   - Store working patterns, API responses, user feedback
+3. **AFTER success**: Save what worked
+   - Store successful patterns for reuse
+   - Store user preferences observed
+
+## Other Research Tools:
+- **WebSearch**: Current API documentation, endpoints, authentication
+- **Context7 MCP**: Technical documentation, library usage, best practices
+
+**Research Priority Order**:
+1. **FIRST**: Check memory for stored knowledge
+2. **THEN**: Research if not in memory
+3. **ALWAYS**: Store new findings in memory
+
+**When to check memory**:
+  - Starting any workflow (user preferences)
+  - Working with APIs (stored structures)
+  - Choosing webhook config (past patterns)
+  - Implementing features (what worked before)
+  - Optimizing workflows (known improvements)
+
+# MCP TOOLS AVAILABLE
+- **n8n_deploy**: Upload workflow to n8n
+- **n8n_test**: Execute workflow with test data
+- **n8n_update**: Modify existing workflow
+- **n8n_list_workflows**: See existing workflows
+- **n8n_delete**: Remove workflows
+- **n8n_get_execution**: Check execution details
+
+# ERROR HANDLING WORKFLOW
+1. Deploy workflow
+2. Test with webhook
+3. Use `n8n_get_execution` to check results
+4. If errors found in execution:
+   - **You CAN see**: Complete error messages with line numbers
+   - **You CAN see**: Which node failed and why
+   - **You CAN see**: The broken code (for Super Code nodes)
+   - **You CAN see**: API errors, credential issues, configuration problems
+   - Fix the specific error based on the message
+   - Redeploy and test again
+5. Continue until execution shows no errors
+
+**MCP v2.2.1+ provides full error visibility** - syntax errors, runtime errors, API failures, missing credentials, ALL visible!

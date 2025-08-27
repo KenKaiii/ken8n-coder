@@ -1,0 +1,8 @@
+Please analyze this n8n workspace and create an AGENTS.md file containing:
+1. n8n workflow validation/testing commands - especially for importing and testing workflows
+2. n8n workflow guidelines including JSON structure, node configurations, Super Code JavaScript patterns, naming conventions, credential handling, etc.
+
+The file you create will be given to agentic n8n workflow creation agents (such as yourself) that operate in this workspace. Make it about 20 lines long.
+If there are existing workflow patterns (in workflows/ or .n8n/) or n8n configuration files, make sure to include them.
+
+If there's already an AGENTS.md, improve it if it's located in ${path}

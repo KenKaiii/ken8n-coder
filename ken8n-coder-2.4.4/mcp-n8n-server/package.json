@@ -1,0 +1,39 @@
+{
+  "name": "@kenkaiii/ken8n-mcp",
+  "version": "2.4.4",
+  "description": "MCP server for n8n workflow management",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsc && node dist/index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.6.0",
+    "axios": "^1.7.7",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.1",
+    "typescript": "^5.7.2"
+  },
+  "bin": {
+    "ken8n-mcp-setup": "./bin/setup.js",
+    "ken8n-mcp": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "bin",
+    "deploy-script"
+  ],
+  "keywords": [
+    "mcp",
+    "n8n",
+    "workflow",
+    "automation",
+    "claude"
+  ],
+  "author": "Ken8n Team",
+  "license": "MIT"
+}
